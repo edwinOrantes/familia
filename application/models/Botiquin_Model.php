@@ -191,7 +191,7 @@ class Botiquin_Model extends CI_Model {
     }
 
     public function detalleFacturasCompra($id){
-        $sql = "SELECT fc.*, p.idProveedor, p.empresaProveedor FROM tbl_factura_compra as fc INNER JOIN tbl_proveedores as p ON(fc.idProveedor = p.idProveedor) WHERE idFactura = '$id' ";
+        $sql = "SELECT fc.*, p.idProveedor, p.empresaProveedor, p.tipoContribuyente FROM tbl_factura_compra as fc INNER JOIN tbl_proveedores as p ON(fc.idProveedor = p.idProveedor) WHERE idFactura = '$id' ";
         $datos = $this->db->query($sql);
         return $datos->row();
     }
@@ -282,8 +282,8 @@ class Botiquin_Model extends CI_Model {
     // Metodos async
         public function guardarMedicamentoAsync($data = null){
             if($data != null){
-                $sql = "INSERT INTO tbl_factura_medicamentos(idFactura, idMedicamento, cantidad, precio, vencimiento, total)
-                        VALUES(?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO tbl_factura_medicamentos(idFactura, idMedicamento, cantidad, precio, vencimiento, total, descuento)
+                        VALUES(?, ?, ?, ?, ?, ?, ?)";
                 
                 if($this->db->query($sql, $data)){
                     return true;
@@ -297,7 +297,7 @@ class Botiquin_Model extends CI_Model {
 
         public function guardarIVARetenido($data = null){
             if($data != null){
-                $sql = "UPDATE tbl_factura_compra SET ivaRetenido = ?, ivaPercibido = ?, descuentoCompra = ? WHERE idFactura  = ?";
+                $sql = "UPDATE tbl_factura_compra SET descuentoCompra = ? WHERE idFactura  = ?";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{

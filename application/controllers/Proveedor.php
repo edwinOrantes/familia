@@ -50,7 +50,18 @@ class Proveedor extends CI_Controller {
 
 	public function guardar_proveedor(){
         $datos = $this->input->post();
-        $bool = $this->Proveedor_Model->guardarProveedor($datos);
+
+		// Datos para el servicio externo
+		$externo["proveedor"] = $datos["empresaProveedor"];
+		$externo["tipoEntidad"] = 2;
+		$externo["descripcionExterno"] = "Para pago de honorarios";
+		// Creando un solo arreglo
+		$data["proveedor"] = $datos;
+		$data["externo"] = $externo;
+
+
+
+        $bool = $this->Proveedor_Model->guardarProveedor($data);
 		if($bool){
 			$this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
 			redirect(base_url()."Proveedor/");
@@ -58,11 +69,12 @@ class Proveedor extends CI_Controller {
 			$this->session->set_flashdata("error","Error al guardar los datos!");
 			redirect(base_url()."Proveedor/");
 		}
+
+		// echo json_encode($datos);
     }
 
     public function actualizar_proveedor(){
         $datos = $this->input->post();
-        //var_dump($datos);
 		$bool = $this->Proveedor_Model->actualizarProveedor($datos);
 		if($bool){
 			$this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
@@ -71,6 +83,8 @@ class Proveedor extends CI_Controller {
 			$this->session->set_flashdata("error","Error al actualizar los datos!");
 			redirect(base_url()."Proveedor/");
 		}
+
+		// echo json_encode($datos);
     }
 
     public function eliminar_proveedor(){
@@ -89,11 +103,14 @@ class Proveedor extends CI_Controller {
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->setCellValue('A1', 'Código');
-		$sheet->setCellValue('B1', 'Empresa');
+		$sheet->setCellValue('B1', 'Proveedor');
 		$sheet->setCellValue('C1', 'NRC');
-		$sheet->setCellValue('D1', 'NIT');
+		$sheet->setCellValue('D1', 'Visitador');
 		$sheet->setCellValue('E1', 'Teléfono');
-		$sheet->setCellValue('F1', 'Direccion');
+		$sheet->setCellValue('F1', 'Plazo pago');
+		$sheet->setCellValue('G1', 'Tipo contribuyente');
+		$sheet->setCellValue('H1', 'Direccion');
+
 			
 		$datos = $this->Proveedor_Model->obtenerProveedores();
 		$number = 1;
@@ -102,9 +119,11 @@ class Proveedor extends CI_Controller {
 			$sheet->setCellValue('A'.$flag, $d->codigoProveedor);
 			$sheet->setCellValue('B'.$flag, $d->empresaProveedor);
 			$sheet->setCellValue('C'.$flag, $d->nrcProveedor);
-			$sheet->setCellValue('D'.$flag, $d->nitProveedor);
+			$sheet->setCellValue('D'.$flag, $d->visitadorProveedor);
 			$sheet->setCellValue('E'.$flag, $d->telefonoProveedor);
-			$sheet->setCellValue('F'.$flag, $d->direccionProveedor);
+			$sheet->setCellValue('F'.$flag, $d->plazoProveedor." dias");
+			$sheet->setCellValue('G'.$flag, $d->tipoContribuyente);
+			$sheet->setCellValue('H'.$flag, $d->direccionProveedor);
 				
 			$flag = $flag+1;
 			$number = $number+1;
@@ -120,14 +139,8 @@ class Proveedor extends CI_Controller {
 					],
 				];
 		//Font BOLD
-		$sheet->getStyle('A1:F1')->getFont()->setBold(true);		
-		//$sheet->getStyle('A1:I10')->applyFromArray($styleThinBlackBorderOutline);
-		//Alignment
-		//fONT SIZE
-		//$sheet->getStyle('A1:H10')->getFont()->setSize(12);
-		//$sheet->getStyle('A1:E2')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+		$sheet->getStyle('A1:H1')->getFont()->setBold(true);		
 
-		//$sheet->getStyle('A2:D100')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
 			//Custom width for Individual Columns
 		$sheet->getColumnDimension('A')->setAutoSize(true);
 		$sheet->getColumnDimension('B')->setAutoSize(true);
@@ -135,6 +148,8 @@ class Proveedor extends CI_Controller {
 		$sheet->getColumnDimension('D')->setAutoSize(true);
 		$sheet->getColumnDimension('E')->setAutoSize(true);
 		$sheet->getColumnDimension('F')->setAutoSize(true);
+		$sheet->getColumnDimension('G')->setAutoSize(true);
+		$sheet->getColumnDimension('H')->setAutoSize(true);
 		$curdate = date('d-m-Y H:i:s');
 		$writer = new Xlsx($spreadsheet);
 		$filename = 'listado_proveedores '.$curdate;

@@ -4,8 +4,8 @@
 		<div class="col-md-12">
 
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
-                    <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-file-word"></i> Hoja </a> </li>
+                <ol class="breadcrumb breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-file"></i> Hoja </a> </li>
                     <li class="breadcrumb-item"><a href="#">Listado de hojas</a></li>
                 </ol>
             </nav>

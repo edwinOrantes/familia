@@ -537,6 +537,7 @@ class Botiquin extends CI_Controller {
 				$data["precioC"]  = $this->input->post("precioC");
 				$data["fecha"]  = $this->input->post("fecha");
 				$data["total"]  = ($this->input->post("cantidad") * $data["precioC"]  = $this->input->post("precioC"));
+				$data["descuento"]  = $this->input->post("descuento");
 
 				$bool = $this->Botiquin_Model->guardarMedicamentoAsync($data);
 
@@ -550,6 +551,8 @@ class Botiquin extends CI_Controller {
 					header("content-type:application/json");
 					print json_encode($respuesta);
 				}
+
+				// echo json_encode($data);
 
 			}
 			else{

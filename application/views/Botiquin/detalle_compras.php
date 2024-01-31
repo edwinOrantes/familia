@@ -21,19 +21,25 @@
 <?php
     $totalCompraGlobal = 0;
     $totalIva = 0;
+    $ivaPercibido = 0;
     foreach ($medicamentos as $medicamento) {
         // $totalCompraGlobal += number_format(($medicamento->cantidad * $medicamento->precio), 2) + number_format((($medicamento->cantidad * $medicamento->precio) * 0.13), 2);
-        $totalCompraGlobal += ($medicamento->cantidad * $medicamento->precio);
+        $totalCompraGlobal += (($medicamento->cantidad * $medicamento->precio) - $medicamento->descuento);
     }
 
-    
-    $totalIva = (($totalCompraGlobal-$facturas->descuentoCompra) *0.13);
+    $totalIva = (($totalCompraGlobal - $facturas->descuentoCompra) *0.13);
+
+    if($facturas->tipoContribuyente == "Grande"){
+        $ivaPercibido = $totalCompraGlobal * 0.01;
+    }
+
     $idFactura = '"' . $facturas->idFactura . '"';
     $nDocumento = '"' . $facturas->numeroFactura . '"';
     $nProveedor = '"' . $facturas->idProveedor . '"';
     $fFactura = '"' . $facturas->fechaFactura . '"';
     $pFactura = '"' . $facturas->plazoFactura . '"';
     $dFactura = '"' . $facturas->descripcionFactura . '"';
+
 ?>
 
 <!-- Body Content Wrapper -->
@@ -144,6 +150,7 @@
                                                 <th class="text-center" scope="col">Medicamento</th>
                                                 <th class="text-center" scope="col">Precio unitario</th>
                                                 <th class="text-center" scope="col">Cantidad</th>
+                                                <th class="text-center" scope="col">Descuento</th>
                                                 <th class="text-center" scope="col">Total</th>
                                                 <th class="text-center" scope="col">Vencimiento</th>
                                                 <th class="text-center" scope="col">Opción</th>
@@ -165,7 +172,8 @@
                                                     <td class="text-center"><?php echo $medicamento->nombreMedicamento; ?></td>
                                                     <td class="text-center">$ <?php echo number_format($medicamento->precio, 5); ?></td>
                                                     <td class="text-center"><?php echo $medicamento->cantidad; ?></td>
-                                                    <td class="text-center">$ <?php echo number_format(($medicamento->cantidad * $medicamento->precio), 5); ?> <input value="<?php echo number_format((($medicamento->cantidad * $medicamento->precio) +  + ($medicamento->cantidad * $medicamento->precio) * 0.13), 2); ?>" type="hidden" class="totalM" required> </td>
+                                                    <td class="text-center">$<?php echo $medicamento->descuento; ?></td>
+                                                    <td class="text-center">$ <?php echo number_format(($medicamento->cantidad * $medicamento->precio) - $medicamento->descuento, 5); ?> <input value="<?php echo number_format((($medicamento->cantidad * $medicamento->precio) +  + ($medicamento->cantidad * $medicamento->precio) * 0.13), 2); ?>" type="hidden" class="totalM" required> </td>
                                                     <td class="text-center">
                                                         <?php
                                                             if($medicamento->vencimiento == ""){
@@ -178,8 +186,12 @@
                                                     </td>
                                                 <td class="text-center">
                                                         <?php
-                                                        echo "<a onclick='actualizarMedicamentos($idMedicamento, $idFactura, $stock, $cantidad, $precio, $transaccion)' href='#actualizarMedicamentos' data-toggle='modal'><i class='fas fa-edit ms-text-success'></i></a>";
-                                                        echo "<a onclick='eliminarMedicamentos($idMedicamento, $idFactura, $stock, $cantidad, $precio, $transaccion)' href='#eliminarMedicamentos' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                                            if($facturas->estadoFactura == 1){
+                                                                echo "<a onclick='actualizarMedicamentos($idMedicamento, $idFactura, $stock, $cantidad, $precio, $transaccion)' href='#actualizarMedicamentos' data-toggle='modal'><i class='fas fa-edit ms-text-success'></i></a>";
+                                                                echo "<a onclick='eliminarMedicamentos($idMedicamento, $idFactura, $stock, $cantidad, $precio, $transaccion)' href='#eliminarMedicamentos' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                                            }else{
+                                                                echo "---";
+                                                            }
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -187,32 +199,24 @@
                                             <?php } ?>
                                             <tr id="">
                                                 <td class="text-right" scope="row" colspan="5"><strong>Sumas</strong></td>
-                                                <td class="text-center" colspan="2">
+                                                <td class="text-center" colspan="3">
                                                     <label for="" id=""><strong>$ <?php echo number_format(($totalCompraGlobal), 2); ?></strong></label>
                                                 </td>
                                             </tr> 
 
                                             <tr id="">
                                                 <td class="text-right" scope="row" colspan="5"><strong>IVA</strong></td>
-                                                <td class="text-center" colspan="2">
+                                                <td class="text-center" colspan="3">
                                                     <label for="" id=""><strong>$ <?php echo number_format(($totalIva), 2); ?></strong></label>
                                                 </td>
                                             </tr>
 
-                                            <!-- IVA retenido -->
-                                                <!-- <tr id="">
-                                                    <td class="text-right" scope="row" colspan="5"><strong>(-) IVA retenido</strong></td>
-                                                    <td class="text-center" colspan="2">
-                                                        <label for="" id=""><strong>$ <?php echo number_format(($facturas->ivaRetenido), 2); ?></strong></label>
-                                                    </td>
-                                                </tr> -->
-                                            <!-- Fin IVA retenido -->
 
                                             <!-- IVA percibido -->
                                                 <tr id="">
                                                     <td class="text-right" scope="row" colspan="5"><strong>(+) IVA Percibido</strong></td>
                                                     <td class="text-center" colspan="2">
-                                                        <label for="" id=""><strong>$ <?php echo number_format(($facturas->ivaPercibido), 2); ?></strong></label>
+                                                        <label for="" id=""><strong>$ <?php echo number_format(($ivaPercibido), 2); ?></strong></label>
                                                     </td>
                                                 </tr>
                                             <!-- Fin IVA percibido -->
@@ -229,7 +233,7 @@
                                             <tr id="detalleFactura">
                                                 <td class="text-right" scope="row" colspan="5"><strong>TOTAL</strong></td>
                                                 <td class="text-center" colspan="2">
-                                                    <label for="" id="totalCompraL"><strong>$ <?php echo number_format((($totalCompraGlobal + $totalIva + $facturas->ivaPercibido - $facturas->descuentoCompra) - $facturas->ivaRetenido), 2); ?></strong></label>
+                                                    <label for="" id="totalCompraL"><strong>$ <?php echo number_format((($totalCompraGlobal + $totalIva + $ivaPercibido - $facturas->descuentoCompra) - $facturas->ivaRetenido), 2); ?></strong></label>
                                                     <input type="hidden" value="<?php echo number_format($totalCompraGlobal, 2); ?>" class="form-control" id="totalCompra" name="totalCompra">
                                                 </td>
                                             </tr>
@@ -278,6 +282,7 @@
                                                     <th class="text-center" scope="col">Nombre</th>
                                                     <th class="text-center" scope="col">Cantidad</th>
                                                     <th class="text-center" scope="col"> Precio </th>
+                                                    <th class="text-center" scope="col"> Descuento </th>
                                                     <th class="text-center" scope="col">Vencimiento</th>
                                                     <th class="text-center" scope="col">Opción</th>
                                                 </tr>
@@ -306,6 +311,7 @@
                                                                 <input type="hidden" value="<?php echo $facturas->idFactura; ?>" id="test" class="form-control facturaM">
                                                             </td>
                                                             <td class="text-center" scope="row"><input type="text" value="<?php echo $medicamento->precioCMedicamento; ?>" style="width: 100px;" class="form-control menosHeight precioCM">  </td>
+                                                            <td class="text-center" scope="row"><input type="text" value="0" class="form-control menosHeight descuentoMedicamento"  size="5">  </td>
                                                             <td class="text-center" scope="row"><input type="date" class="form-control menosHeight fechaCM"  size="5">  </td>
                                                             <td class="text-center">
                                                                 <?php
@@ -576,31 +582,6 @@
                         <div class="ms-panel ms-panel-bshadow-none">
                             <div class="ms-panel-body">
                                 <form action="<?php echo base_url(); ?>Botiquin/guardar_iva" method="POST">
-                                    <div class="form-row">
-                                        <div class="col-md-12">
-                                            <label for="">IVA retenido</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="ivaRetenido" name="ivaRetenido" placeholder="Ingrese la cantidad de IVA retenido" required>
-                                                <div class="invalid-tooltip">
-                                                    Ingrese la cantidad de IVA retenido.
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="col-md-12">
-                                            <label for="">IVA Percibido</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="ivaPercibido" name="ivaPercibido" placeholder="Ingrese la cantidad de IVA percibido" required>
-                                                <div class="invalid-tooltip">
-                                                    Ingrese la cantidad de IVA percibido.
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
 
                                     <div class="form-row">
                                         <div class="col-md-12">
@@ -658,6 +639,7 @@
             cantidad: $(this).closest('tr').find(".cantidadM").val(),
             fecha: $(this).closest('tr').find(".fechaCM").val(),
             factura: $(this).closest('tr').find(".facturaM").val(),
+            descuento: $(this).closest('tr').find(".descuentoMedicamento").val()
         }
 
         $.ajax({

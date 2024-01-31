@@ -56,8 +56,13 @@
 <?php
     $total = 0;
     $iva = 0;
+    $percibido = 0;
     foreach ($medicamentos as $medicamento) {
-        $total += ($medicamento->cantidad * $medicamento->precio);
+        $total += ($medicamento->cantidad * $medicamento->precio) - $medicamento->descuento;
+    }
+
+    if($factura->tipoContribuyente == "Grande"){
+        $percibido = $total * 0.01;
     }
 
     $iva = $total * 0.13;
@@ -108,30 +113,7 @@
                             <td><strong>Descripción</strong></td>
                             <td><?php echo $factura->descripcionFactura; ?></td>
                             <td><!-- <strong>Dias desde compra</strong> --></td>
-                            <td>
-                                <?php
-                                    /* $fecha1= new DateTime($factura->fechaFactura);
-                                    $fecha2= new DateTime(Date("y-m-d"));
-                                    $diff = $fecha1->diff($fecha2);
-                                    
-                                    if($diff->days > 30 && $factura->estadoFactura == 1){
-                                        echo "<span class='pendiente p-2'>Factura vencida</span>";
-                                    }else{
-                                        if($diff->days <= 30 && $factura->estadoFactura == 1){
-                                            echo $diff->days." dias";
-                                        }else{
-                                            if($diff->days <= 30 && $factura->estadoFactura == 0){
-                                                echo "<span class='saldada p-2'>Factura saldada</span>";
-                                            }else{
-                                                if($diff->days > 30 && $factura->estadoFactura == 0){
-                                                    echo "<span class='saldada p-2'>Factura saldada</span>";
-                                                }
-                                            }
-                                        }
-                                    } */
-                                    
-                                ?>
-                            </td>
+                            <td></td>
                             <td><strong>Recibida Por: </strong></td>
                             <td><?php echo $factura->recibidoPor; ?></td>
                         </tr>
@@ -150,14 +132,16 @@
                             <td style="color: #fff"><strong>Medicamento</strong></td>
                             <td style="color: #fff"><strong>Precio</strong></td>
                             <td style="color: #fff"><strong>Cantidad</strong></td>
-                            <!-- <td style="color: #fff"><strong>IVA</strong></td> -->
+                            <td style="color: #fff"><strong>Descuento</strong></td>
                             <td style="color: #fff"><strong>Total</strong></td>
                         </tr>
 
                     </thead>
                     <tbody>
                         <?php
+                            $totalFila = 0;
                             foreach ($medicamentos as $medicamento) {
+                                $totalFila = ($medicamento->precio * $medicamento->cantidad) - $medicamento->descuento;
                         ?>
                         <tr>
                             <td class="text-center">
@@ -183,27 +167,27 @@
                             <td><?php echo $medicamento->nombreMedicamento ?></td>
                             <td>$ <?php echo $medicamento->precio ?></td>
                             <td><?php echo $medicamento->cantidad ?></td>
-                            <!-- <td><?php echo number_format((($medicamento->cantidad * $medicamento->precio) * 0.13), 5) ?></td> -->
-                            <td>$ <?php echo number_format((($medicamento->precio * $medicamento->cantidad) + (($medicamento->cantidad * $medicamento->precio) * 0.13) ), 5) ?></td>
+                            <td><?php echo $medicamento->descuento ?></td>
+                            <td>$ <?php echo number_format(( $totalFila), 2) ?></td>
                         </tr>
 
                         <?php } ?>
 
                         <tr>
-                            <td colspan="5" style="text-align: right"><strong>SUBTOTAL</strong></td>
+                            <td colspan="6" style="text-align: right"><strong>SUBTOTAL</strong></td>
                             <td colspan=""><strong>$ <?php echo number_format($total, 2) ?></strong></td>
                         </tr>
                         <tr>
-                            <td colspan="5" style="text-align: right"><strong>IVA</strong></td>
+                            <td colspan="6" style="text-align: right"><strong>IVA</strong></td>
                             <td colspan=""><strong>$ <?php echo number_format($iva, 2) ?></strong></td>
                         </tr>
 
                         <?php
-                            if($factura->ivaPercibido > 0){
+                            if($percibido > 0){
                         ?>
                         <tr>
-                            <td colspan="5" style="text-align: right"><strong>IVA Percibido</strong></td>
-                            <td colspan=""><strong>$ <?php echo number_format($factura->ivaPercibido, 2) ?></strong></td>
+                            <td colspan="6" style="text-align: right"><strong>IVA Percibido</strong></td>
+                            <td colspan=""><strong>$ <?php echo number_format($percibido, 2) ?></strong></td>
                         </tr>
                         <?php } ?>
 
@@ -211,14 +195,14 @@
                             if($factura->descuentoCompra > 0){
                         ?>
                         <tr>
-                            <td colspan="5" style="text-align: right"><strong>Descuento</strong></td>
+                            <td colspan="6" style="text-align: right"><strong>Descuento</strong></td>
                             <td colspan=""><strong>$ <?php echo number_format($factura->descuentoCompra, 2) ?></strong></td>
                         </tr>
                         <?php } ?>
 
                         <tr>
-                            <td colspan="5" style="text-align: right"><strong>TOTAL</strong></td>
-                            <td colspan=""><strong>$ <?php echo number_format(($total+$iva+$factura->ivaPercibido-$factura->descuentoCompra), 2) ?></strong></td>
+                            <td colspan="6" style="text-align: right"><strong>TOTAL</strong></td>
+                            <td colspan=""><strong>$ <?php echo number_format(($total + $iva + $percibido - $factura->descuentoCompra), 2) ?></strong></td>
                         </tr>
                     </tbody>
                 </table>
