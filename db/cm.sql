@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `tbl_abonos_empleados` (
   PRIMARY KEY (`idAbono`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_abonos_empleados: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_abonos_hoja
 CREATE TABLE IF NOT EXISTS `tbl_abonos_hoja` (
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `tbl_abonos_hoja` (
   PRIMARY KEY (`idAbono`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_abonos_hoja: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_accesos
 CREATE TABLE IF NOT EXISTS `tbl_accesos` (
@@ -57,7 +57,16 @@ CREATE TABLE IF NOT EXISTS `tbl_accesos` (
   PRIMARY KEY (`idAcceso`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_accesos: ~8 rows (aproximadamente)
+INSERT INTO `tbl_accesos` (`idAcceso`, `nombreAcceso`, `descripcionAcceso`, `estadoAcceso`, `fechaAcceso`) VALUES
+	(1, 'Administrador', 'Acceso total al sistema.', 1, '2021-04-29 21:43:54'),
+	(2, 'Cajera', 'Usuario que se encargara de cobros.', 1, '2021-06-15 22:29:29'),
+	(3, 'Botiquin', 'Empleado del area de botiquin.', 1, '2021-05-04 00:17:17'),
+	(4, 'Cuentas', 'Persona encargada de efectuar cuentas.', 1, '2021-06-15 22:29:53'),
+	(5, 'Contabilidad', 'Encargado de llevar la contabilidad.', 1, '2021-06-15 22:30:32'),
+	(6, 'Gerente', 'Encargado de la administracion del hospital.', 1, '2021-06-15 22:31:20'),
+	(7, 'Laboratorio', 'Para los empleados de Laboratorio Clinico', 1, '2021-07-30 20:07:57'),
+	(8, 'Sala', 'Encargado de botiquín de salas', 1, '2023-10-04 20:18:09');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_animations
 CREATE TABLE IF NOT EXISTS `tbl_animations` (
@@ -69,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `tbl_animations` (
   PRIMARY KEY (`idAnimation`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_animations: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_antigeno_prostatico
 CREATE TABLE IF NOT EXISTS `tbl_antigeno_prostatico` (
@@ -82,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tbl_antigeno_prostatico` (
   PRIMARY KEY (`idAntigenoProstatico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_antigeno_prostatico: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_anuncios
 CREATE TABLE IF NOT EXISTS `tbl_anuncios` (
@@ -95,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `tbl_anuncios` (
   PRIMARY KEY (`idAnuncio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_anuncios: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_areas_hospital
 CREATE TABLE IF NOT EXISTS `tbl_areas_hospital` (
@@ -105,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tbl_areas_hospital` (
   PRIMARY KEY (`idArea`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_areas_hospital: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_bacteriologia
 CREATE TABLE IF NOT EXISTS `tbl_bacteriologia` (
@@ -142,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `tbl_bacteriologia` (
   PRIMARY KEY (`idBacteriologia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_bacteriologia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_bitacora
 CREATE TABLE IF NOT EXISTS `tbl_bitacora` (
@@ -151,9 +160,27 @@ CREATE TABLE IF NOT EXISTS `tbl_bitacora` (
   `descripcionBitacora` text NOT NULL,
   `fechaBitacora` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idBitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=969 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=971 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~10 rows (aproximadamente)
+INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `fechaBitacora`) VALUES
+	(954, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:12'),
+	(955, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:36'),
+	(956, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:56:32'),
+	(957, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 23:24:01'),
+	(958, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-16 20:36:16'),
+	(959, 1, 'El usuario: Informatica agrego la compra con Id = 18', '2024-01-16 21:02:58'),
+	(960, 1, 'El usuario: Informatica agrego la compra con Id = 19', '2024-01-16 21:12:51'),
+	(961, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-17 21:04:40'),
+	(962, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-20 00:44:48'),
+	(963, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-20 00:57:41'),
+	(964, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-25 20:21:10'),
+	(965, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-25 23:31:46'),
+	(966, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-27 23:23:19'),
+	(967, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-28 14:48:46'),
+	(968, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-28 20:02:14'),
+	(969, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-30 01:22:36'),
+	(970, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-30 01:31:43');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cargos
 CREATE TABLE IF NOT EXISTS `tbl_cargos` (
@@ -162,7 +189,20 @@ CREATE TABLE IF NOT EXISTS `tbl_cargos` (
   PRIMARY KEY (`idCargo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cargos: ~12 rows (aproximadamente)
+INSERT INTO `tbl_cargos` (`idCargo`, `nombreCargo`) VALUES
+	(1, 'Ingeniero de Sistemas Informáticos'),
+	(3, 'Lic. en Enfermería'),
+	(4, 'Auxiliar de Enfermería'),
+	(5, 'Enfermera'),
+	(6, 'Contabilidad'),
+	(7, 'Auxiliar de Limpieza'),
+	(8, 'Gerente'),
+	(9, 'Botiquín '),
+	(10, 'Administrador de cuentas'),
+	(11, 'Cajera'),
+	(12, 'Laboratorio'),
+	(13, 'Rayos X');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_citas_hemodialisis
 CREATE TABLE IF NOT EXISTS `tbl_citas_hemodialisis` (
@@ -180,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `tbl_citas_hemodialisis` (
   PRIMARY KEY (`idCita`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_citas_hemodialisis: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_clasificacion_cg
 CREATE TABLE IF NOT EXISTS `tbl_clasificacion_cg` (
@@ -189,7 +229,13 @@ CREATE TABLE IF NOT EXISTS `tbl_clasificacion_cg` (
   PRIMARY KEY (`idClasificacionCG`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_clasificacion_cg: ~5 rows (aproximadamente)
+INSERT INTO `tbl_clasificacion_cg` (`idClasificacionCG`, `nombreCG`) VALUES
+	(1, 'Compras'),
+	(2, 'Gastos de administración'),
+	(3, 'Gastos de ventas'),
+	(4, 'Gastos financieros'),
+	(5, 'Otros gastos');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_clasificacion_medicamentos
 CREATE TABLE IF NOT EXISTS `tbl_clasificacion_medicamentos` (
@@ -198,7 +244,35 @@ CREATE TABLE IF NOT EXISTS `tbl_clasificacion_medicamentos` (
   PRIMARY KEY (`idClasificacionMedicamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_clasificacion_medicamentos: ~27 rows (aproximadamente)
+INSERT INTO `tbl_clasificacion_medicamentos` (`idClasificacionMedicamento`, `nombreClasificacionMedicamento`) VALUES
+	(1, 'Analgésicos'),
+	(2, 'Anestésico'),
+	(3, 'Antialérgicos'),
+	(4, 'Anticoagulantes '),
+	(5, 'Antiácidos '),
+	(6, 'Antibióticos '),
+	(7, 'Atropínicos '),
+	(8, 'Cardiovascular '),
+	(9, 'Controlados '),
+	(10, 'Diuréticos '),
+	(11, 'Esteroides '),
+	(12, 'Gastrointestinal '),
+	(13, 'Gíneco-obstétrico '),
+	(14, 'Hematológico '),
+	(15, 'Insumos médicos '),
+	(16, 'Medicamentos de usos varios '),
+	(17, 'Muestras médicas '),
+	(18, 'Neumológicos '),
+	(19, 'Neurológicos '),
+	(20, 'Relajante muscular '),
+	(21, 'Endocrinológicos '),
+	(22, 'Servicios externos '),
+	(23, 'Soluciones intravenosa '),
+	(24, 'Respiratorios '),
+	(25, 'Urológico '),
+	(26, 'Vitaminas '),
+	(27, 'Otros');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_clasificacion_ri
 CREATE TABLE IF NOT EXISTS `tbl_clasificacion_ri` (
@@ -207,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `tbl_clasificacion_ri` (
   PRIMARY KEY (`idClasificacionRI`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_clasificacion_ri: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_coagulacion
 CREATE TABLE IF NOT EXISTS `tbl_coagulacion` (
@@ -224,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `tbl_coagulacion` (
   PRIMARY KEY (`idCoagulacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_coagulacion: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_compras_hemo
 CREATE TABLE IF NOT EXISTS `tbl_compras_hemo` (
@@ -245,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `tbl_compras_hemo` (
   PRIMARY KEY (`idCompraHemo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_compras_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_compras_lab
 CREATE TABLE IF NOT EXISTS `tbl_compras_lab` (
@@ -265,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `tbl_compras_lab` (
   PRIMARY KEY (`idCompraLab`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_compras_lab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_compras_limpieza
 CREATE TABLE IF NOT EXISTS `tbl_compras_limpieza` (
@@ -286,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `tbl_compras_limpieza` (
   PRIMARY KEY (`idCompraLimpieza`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_compras_limpieza: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_constancia
 CREATE TABLE IF NOT EXISTS `tbl_constancia` (
@@ -301,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `tbl_constancia` (
   PRIMARY KEY (`idConstancia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_constancia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_consultas
 CREATE TABLE IF NOT EXISTS `tbl_consultas` (
@@ -319,7 +393,9 @@ CREATE TABLE IF NOT EXISTS `tbl_consultas` (
   PRIMARY KEY (`idConsulta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_consultas: ~1 rows (aproximadamente)
+INSERT INTO `tbl_consultas` (`idConsulta`, `idPaciente`, `idMedico`, `nombrePaciente`, `peso`, `altura`, `imc`, `fechaConsulta`, `hojaCobro`, `estadoConsulta`, `creadaConsulta`) VALUES
+	(1, 1, 1, 'Juan Antonio Campos', 72.70, 1.50, 32.31, '2024-01-28', 1, 1, '2024-01-28 15:42:20');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_consulta_laboratorio
 CREATE TABLE IF NOT EXISTS `tbl_consulta_laboratorio` (
@@ -334,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `tbl_consulta_laboratorio` (
   PRIMARY KEY (`idConsultaLaboratorio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_consulta_laboratorio: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_contancia_incapacidad
 CREATE TABLE IF NOT EXISTS `tbl_contancia_incapacidad` (
@@ -352,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `tbl_contancia_incapacidad` (
   PRIMARY KEY (`idConstancia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_contancia_incapacidad: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_control_cajeras
 CREATE TABLE IF NOT EXISTS `tbl_control_cajeras` (
@@ -369,7 +445,9 @@ CREATE TABLE IF NOT EXISTS `tbl_control_cajeras` (
   PRIMARY KEY (`idControl`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_control_cajeras: ~0 rows (aproximadamente)
+INSERT INTO `tbl_control_cajeras` (`idControl`, `idUsuario`, `idHoja`, `correlativoHoja`, `fechaGenerado`, `fechaLiquidado`, `estadoControl`, `turnoCorte`, `pivoteCorte`, `creadoControl`) VALUES
+	(30, 1, 179, 1, '2024-01-16', '0000-00-00', 1, '', 0, '2024-01-16 22:19:23');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_control_descuentos
 CREATE TABLE IF NOT EXISTS `tbl_control_descuentos` (
@@ -380,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `tbl_control_descuentos` (
   PRIMARY KEY (`idControlD`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_control_descuentos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_control_reactivos
 CREATE TABLE IF NOT EXISTS `tbl_control_reactivos` (
@@ -395,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `tbl_control_reactivos` (
   PRIMARY KEY (`idControlR`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_control_reactivos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_corte_cajera
 CREATE TABLE IF NOT EXISTS `tbl_corte_cajera` (
@@ -407,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `tbl_corte_cajera` (
   PRIMARY KEY (`idCorteCaja`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_corte_cajera: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cropologia
 CREATE TABLE IF NOT EXISTS `tbl_cropologia` (
@@ -444,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cropologia` (
   PRIMARY KEY (`idCropologia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cropologia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuentas_gastos
 CREATE TABLE IF NOT EXISTS `tbl_cuentas_gastos` (
@@ -457,7 +535,10 @@ CREATE TABLE IF NOT EXISTS `tbl_cuentas_gastos` (
   CONSTRAINT `tbl_cuentas_gastos_ibfk_1` FOREIGN KEY (`clasificacionCuenta`) REFERENCES `tbl_clasificacion_cg` (`idClasificacionCG`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuentas_gastos: ~2 rows (aproximadamente)
+INSERT INTO `tbl_cuentas_gastos` (`idCuenta`, `nombreCuenta`, `clasificacionCuenta`, `descripcionCuenta`) VALUES
+	(83, 'ANDA', 2, 'Para pagos de servicio de agua potable.'),
+	(84, 'Honorarios medicos', 3, 'Para el pago de honorarios.');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuentas_gestion_insumos
 CREATE TABLE IF NOT EXISTS `tbl_cuentas_gestion_insumos` (
@@ -468,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuentas_gestion_insumos` (
   PRIMARY KEY (`idCuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuentas_gestion_insumos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuentas_pagar
 CREATE TABLE IF NOT EXISTS `tbl_cuentas_pagar` (
@@ -490,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuentas_pagar` (
   CONSTRAINT `tbl_cuentas_pagar_ibfk_1` FOREIGN KEY (`idProveedor`) REFERENCES `tbl_proveedores` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuentas_pagar: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuenta_botiquin
 CREATE TABLE IF NOT EXISTS `tbl_cuenta_botiquin` (
@@ -503,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuenta_botiquin` (
   PRIMARY KEY (`idCuentaBotiquin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuenta_botiquin: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuenta_descargos_bm
 CREATE TABLE IF NOT EXISTS `tbl_cuenta_descargos_bm` (
@@ -517,7 +598,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuenta_descargos_bm` (
   PRIMARY KEY (`idDescargosBM`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuenta_descargos_bm: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuenta_isbm
 CREATE TABLE IF NOT EXISTS `tbl_cuenta_isbm` (
@@ -529,7 +610,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuenta_isbm` (
   PRIMARY KEY (`idCuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuenta_isbm: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cuenta_medicamentos
 CREATE TABLE IF NOT EXISTS `tbl_cuenta_medicamentos` (
@@ -541,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cuenta_medicamentos` (
   PRIMARY KEY (`idCuentaMedicamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_cuenta_medicamentos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcompra_hemo
 CREATE TABLE IF NOT EXISTS `tbl_dcompra_hemo` (
@@ -554,7 +635,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dcompra_hemo` (
   PRIMARY KEY (`idDCompraHemo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dcompra_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcompra_limpieza
 CREATE TABLE IF NOT EXISTS `tbl_dcompra_limpieza` (
@@ -567,7 +648,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dcompra_limpieza` (
   PRIMARY KEY (`idDCompraLimpieza`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dcompra_limpieza: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcuenta_descargosbm
 CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargosbm` (
@@ -581,7 +662,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargosbm` (
   PRIMARY KEY (`idDescargosBM`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dcuenta_descargosbm: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcuenta_descargoslab
 CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargoslab` (
@@ -594,7 +675,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargoslab` (
   PRIMARY KEY (`idDescargosLab`)
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dcuenta_descargoslab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcuenta_isbm
 CREATE TABLE IF NOT EXISTS `tbl_dcuenta_isbm` (
@@ -606,7 +687,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dcuenta_isbm` (
   PRIMARY KEY (`idDetalleCuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dcuenta_isbm: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_departamentos_sv
 CREATE TABLE IF NOT EXISTS `tbl_departamentos_sv` (
@@ -619,7 +700,22 @@ CREATE TABLE IF NOT EXISTS `tbl_departamentos_sv` (
   CONSTRAINT `tbl_departamentos_sv_ibfk_1` FOREIGN KEY (`idZona`) REFERENCES `tbl_zonas_sv` (`idZona`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_departamentos_sv: ~14 rows (aproximadamente)
+INSERT INTO `tbl_departamentos_sv` (`idDepartamento`, `nombreDepartamento`, `isoDepartamento`, `idZona`) VALUES
+	(1, 'Ahuachapán', 'SV-AH', 1),
+	(2, 'Santa Ana', 'SV-SA', 1),
+	(3, 'Sonsonate', 'SV-SO', 1),
+	(4, 'La Libertad', 'SV-LI', 2),
+	(5, 'Chalatenango', 'SV-CH', 2),
+	(6, 'San Salvador', 'SV-SS', 2),
+	(7, 'Cuscatlán', 'SV-CU', 3),
+	(8, 'La Paz', 'SV-PA', 3),
+	(9, 'Cabañas', 'SV-CA', 3),
+	(10, 'San Vicente', 'SV-SV', 3),
+	(11, 'Usulután', 'SV-US', 4),
+	(12, 'Morazán', 'SV-MO', 4),
+	(13, 'San Miguel', 'SV-SM', 4),
+	(14, 'La Unión', 'SV-UN', 4);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_depuracion_creatinina
 CREATE TABLE IF NOT EXISTS `tbl_depuracion_creatinina` (
@@ -639,7 +735,7 @@ CREATE TABLE IF NOT EXISTS `tbl_depuracion_creatinina` (
   PRIMARY KEY (`idDepuracion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_depuracion_creatinina: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_descargos_donantes
 CREATE TABLE IF NOT EXISTS `tbl_descargos_donantes` (
@@ -654,7 +750,7 @@ CREATE TABLE IF NOT EXISTS `tbl_descargos_donantes` (
   PRIMARY KEY (`idDescargosDonante`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_descargos_donantes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_descuentos_planilla
 CREATE TABLE IF NOT EXISTS `tbl_descuentos_planilla` (
@@ -664,7 +760,7 @@ CREATE TABLE IF NOT EXISTS `tbl_descuentos_planilla` (
   PRIMARY KEY (`idDP`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_descuentos_planilla: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_detalle_compra_lab
 CREATE TABLE IF NOT EXISTS `tbl_detalle_compra_lab` (
@@ -680,7 +776,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detalle_compra_lab` (
   PRIMARY KEY (`idDetalleCL`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_detalle_compra_lab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_detalle_consulta
 CREATE TABLE IF NOT EXISTS `tbl_detalle_consulta` (
@@ -695,7 +791,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detalle_consulta` (
   PRIMARY KEY (`idDetalleConsulta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_detalle_consulta: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_detalle_planilla
 CREATE TABLE IF NOT EXISTS `tbl_detalle_planilla` (
@@ -721,7 +817,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detalle_planilla` (
   PRIMARY KEY (`idDetallePlanilla`)
 ) ENGINE=InnoDB AUTO_INCREMENT=572 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_detalle_planilla: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_detalle_procedimientos
 CREATE TABLE IF NOT EXISTS `tbl_detalle_procedimientos` (
@@ -742,7 +838,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detalle_procedimientos` (
   CONSTRAINT `tbl_detalle_procedimientos_ibfk_3` FOREIGN KEY (`idHoja`) REFERENCES `tbl_hoja_cobro` (`idHoja`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_detalle_procedimientos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_donantes
 CREATE TABLE IF NOT EXISTS `tbl_donantes` (
@@ -756,7 +852,7 @@ CREATE TABLE IF NOT EXISTS `tbl_donantes` (
   PRIMARY KEY (`idDonante`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_donantes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_donantes_insumo
 CREATE TABLE IF NOT EXISTS `tbl_donantes_insumo` (
@@ -770,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `tbl_donantes_insumo` (
   PRIMARY KEY (`idDonanteInsumo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_donantes_insumo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_donantes_salidas
 CREATE TABLE IF NOT EXISTS `tbl_donantes_salidas` (
@@ -787,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `tbl_donantes_salidas` (
   PRIMARY KEY (`idDonanteSalida`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_donantes_salidas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dsalidas_hemo
 CREATE TABLE IF NOT EXISTS `tbl_dsalidas_hemo` (
@@ -801,7 +897,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dsalidas_hemo` (
   PRIMARY KEY (`idDescargosHemo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dsalidas_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dsalidas_limpieza
 CREATE TABLE IF NOT EXISTS `tbl_dsalidas_limpieza` (
@@ -815,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dsalidas_limpieza` (
   PRIMARY KEY (`idDescargosLimpieza`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_dsalidas_limpieza: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_empleados
 CREATE TABLE IF NOT EXISTS `tbl_empleados` (
@@ -842,7 +938,19 @@ CREATE TABLE IF NOT EXISTS `tbl_empleados` (
   CONSTRAINT `tbl_empleados_ibfk_2` FOREIGN KEY (`cargoEmpleado`) REFERENCES `tbl_cargos` (`idCargo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_empleados: ~11 rows (aproximadamente)
+INSERT INTO `tbl_empleados` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `edadEmpleado`, `telefonoEmpleado`, `cargoEmpleado`, `sexoEmpleado`, `duiEmpleado`, `nitEmpleado`, `estadoEmpleado`, `nacimientoEmpleado`, `departamentoEmpleado`, `municipioEmpleado`, `direccionEmpleado`, `ingresoEmpleado`) VALUES
+	(1, 'Edwin Alexander', 'Cortez Orantes', 29, '0000-0000', 1, 'Masculino', '00000000-0', '0000-000000-000-0', 'Casado/a', '1992-01-03', 11, 42, 'Usulután', '2021-01-04'),
+	(3, 'Carla Isolina', 'Ortez González', 27, '0000-0000', 9, 'Femenino', '00000000-0', '0000-000000-000-0', 'Soltero/a', '1994-08-06', 11, 64, 'Usulután', '2021-01-01'),
+	(4, 'Carla Marisa ', 'Maradiaga de Paredes', 21, '0000-0000', 9, 'Femenino', '00000000-0', '0000-000000-000-0', 'Casado/a', '2000-01-01', 11, 64, 'Usulután', '2021-01-01'),
+	(5, 'Catalina de Jesús', 'Gómez Vázquez', 41, '0000-0000', 9, 'Femenino', '00000000-0', '0000-000000-000-0', 'Soltero/a', '1980-06-15', 11, 64, 'Usulután', '2021-01-01'),
+	(6, 'Elena Abigail', 'Cruz Rodríguez', 29, '0000-0000', 10, 'Femenino', '00000000-0', '0000-000000-000-0', 'Casado/a', '1992-01-01', 11, 64, 'Usulután', '2021-01-01'),
+	(7, 'Jacquelinne Vanessa', 'Trejo de Zepeda', 35, '0000-0000', 11, 'Femenino', '00000000-0', '0000-000000-000-0', 'Casado/a', '1986-01-01', 11, 64, 'Usulután', '2021-01-01'),
+	(8, 'Alba Rosa ', 'Ramirez Vasquez', 35, '7043-7030', 11, 'Femenino', '03864088-4', '0000-000000-000-0', 'Soltero/a', '1985-10-14', 11, 64, 'Colonia Las Colinas, Casa ·6', '2014-06-01'),
+	(9, 'Wendy del Carmen', 'Serpas Funes', 27, '7244-5673', 11, 'Femenino', '05071660-1', '0000-000000-000-0', 'Soltero/a', '1994-03-20', 11, 54, 'Colonia El Milagro, Lote 8, Poligono 10, La Poza', '2021-06-15'),
+	(10, 'Claudia Patricia ', 'Garcia', 28, '7923-4541', 11, 'Femenino', '04481254-6', '0000-000000-000-0', 'Casado/a', '1991-07-09', 11, 64, 'Colonia Saravia', '2020-09-21'),
+	(11, 'Carlos Miguel', 'Martinez Mejia', 34, '7747-1360', 6, 'Masculino', '03731973-9', '1123-110587-101-9', 'Soltero/a', '1987-06-28', 11, 64, 'Colonia Espiritu Santo Calle Principal Casa # 40', '2020-09-03'),
+	(12, 'Laboratorio', 'Orellana', 0, '0000-0000', 12, 'Masculino', '00000000-0', '0000-000000-000-0', 'Soltero/a', '2021-07-30', 11, 64, 'Usulutan', '2021-01-01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_empleado_x_descuentos
 CREATE TABLE IF NOT EXISTS `tbl_empleado_x_descuentos` (
@@ -857,7 +965,7 @@ CREATE TABLE IF NOT EXISTS `tbl_empleado_x_descuentos` (
   PRIMARY KEY (`idEmDes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_empleado_x_descuentos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_espermograma
 CREATE TABLE IF NOT EXISTS `tbl_espermograma` (
@@ -888,7 +996,7 @@ CREATE TABLE IF NOT EXISTS `tbl_espermograma` (
   PRIMARY KEY (`idEspermograma`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_espermograma: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_examenes_realizados
 CREATE TABLE IF NOT EXISTS `tbl_examenes_realizados` (
@@ -899,7 +1007,7 @@ CREATE TABLE IF NOT EXISTS `tbl_examenes_realizados` (
   PRIMARY KEY (`idExamenRealizado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=440 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_examenes_realizados: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_externos
 CREATE TABLE IF NOT EXISTS `tbl_externos` (
@@ -914,7 +1022,10 @@ CREATE TABLE IF NOT EXISTS `tbl_externos` (
   KEY `idProveedor` (`idEntidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_externos: ~2 rows (aproximadamente)
+INSERT INTO `tbl_externos` (`idExterno`, `nombreExterno`, `tipoEntidad`, `idEntidad`, `descripcionExterno`, `pivoteExterno`, `separacionMedico`) VALUES
+	(1, 'Dr. Marcos Alonso(Honorarios)', 1, 1, 'Para pago de honorarios', 0, 0),
+	(2, 'Farmalab', 2, 12, 'Para pago de cuentas', 0, 0);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_externos_generados
 CREATE TABLE IF NOT EXISTS `tbl_externos_generados` (
@@ -927,7 +1038,7 @@ CREATE TABLE IF NOT EXISTS `tbl_externos_generados` (
   KEY `inicioExternoGenerado` (`inicioExternoGenerado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_externos_generados: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_facturas
 CREATE TABLE IF NOT EXISTS `tbl_facturas` (
@@ -943,7 +1054,7 @@ CREATE TABLE IF NOT EXISTS `tbl_facturas` (
   PRIMARY KEY (`id_factura`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_facturas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_facturas_emitidas
 CREATE TABLE IF NOT EXISTS `tbl_facturas_emitidas` (
@@ -956,7 +1067,7 @@ CREATE TABLE IF NOT EXISTS `tbl_facturas_emitidas` (
   PRIMARY KEY (`idFacturaEmitida`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_facturas_emitidas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_factura_compra
 CREATE TABLE IF NOT EXISTS `tbl_factura_compra` (
@@ -980,7 +1091,10 @@ CREATE TABLE IF NOT EXISTS `tbl_factura_compra` (
   CONSTRAINT `tbl_factura_compra_ibfk_1` FOREIGN KEY (`idProveedor`) REFERENCES `tbl_proveedores` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_factura_compra: ~2 rows (aproximadamente)
+INSERT INTO `tbl_factura_compra` (`idFactura`, `tipoFactura`, `documentoFactura`, `numeroFactura`, `idProveedor`, `fechaFactura`, `plazoFactura`, `descripcionFactura`, `totalFactura`, `fechaIngreso`, `estadoFactura`, `ivaRetenido`, `ivaPercibido`, `descuentoCompra`, `recibidoPor`) VALUES
+	(18, 'Compra de medicamentos', 'Crédito fiscal', '5000', 12, '2024-01-16', 0, 'Compra de medicamentos', 0.00, '2024-01-16 21:02:57', 0, 0.00, 0.00, 0.00, 'Edwin Cortez'),
+	(19, 'Compra de medicamentos', 'Crédito fiscal', '2355', 12, '2024-01-16', 0, 'Compra de medicamentos', 0.00, '2024-01-16 21:12:51', 0, 5.00, 5.00, 5.00, 'Edwin Cortez');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_factura_medicamentos
 CREATE TABLE IF NOT EXISTS `tbl_factura_medicamentos` (
@@ -999,7 +1113,11 @@ CREATE TABLE IF NOT EXISTS `tbl_factura_medicamentos` (
   CONSTRAINT `tbl_factura_medicamentos_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `tbl_factura_compra` (`idFactura`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_factura_medicamentos: ~2 rows (aproximadamente)
+INSERT INTO `tbl_factura_medicamentos` (`idFacturaMedicamento`, `idFactura`, `idMedicamento`, `cantidad`, `precio`, `vencimiento`, `lote`, `total`, `fechaAgregado`) VALUES
+	(102, 18, 970, 100, 0.45000, '2025-01-16', '', 45.00, '2024-01-16 21:05:19'),
+	(103, 19, 970, 10, 0.55000, '2026-01-23', '', 5.50, '2024-01-16 21:13:07'),
+	(104, 19, 971, 100, 0.55000, '2025-01-17', '', 55.00, '2024-01-16 21:13:18');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_gases_arteriales
 CREATE TABLE IF NOT EXISTS `tbl_gases_arteriales` (
@@ -1019,7 +1137,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gases_arteriales` (
   PRIMARY KEY (`idGasesArteriales`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_gases_arteriales: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_gastos
 CREATE TABLE IF NOT EXISTS `tbl_gastos` (
@@ -1046,7 +1164,9 @@ CREATE TABLE IF NOT EXISTS `tbl_gastos` (
   KEY `idProveedorGasto` (`idProveedorGasto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_gastos: ~0 rows (aproximadamente)
+INSERT INTO `tbl_gastos` (`idGasto`, `tipoGasto`, `montoGasto`, `entregadoGasto`, `idCuentaGasto`, `fechaGasto`, `entidadGasto`, `idProveedorGasto`, `pagoGasto`, `numeroGasto`, `bancoGasto`, `cuentaGasto`, `descripcionGasto`, `codigoGasto`, `flagGasto`, `efectuoGasto`, `eliminadoPor`, `estadoGasto`) VALUES
+	(187, 1, 500.00, 'Sofia Beltran', 84, '2024-01-13', 1, 1, 1, '', '', '', 'Pago de honorarios', 1, 0, 'Edwin Cortez', '', 1);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_habitacion
 CREATE TABLE IF NOT EXISTS `tbl_habitacion` (
@@ -1057,7 +1177,45 @@ CREATE TABLE IF NOT EXISTS `tbl_habitacion` (
   PRIMARY KEY (`idHabitacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_habitacion: ~37 rows (aproximadamente)
+INSERT INTO `tbl_habitacion` (`idHabitacion`, `numeroHabitacion`, `estadoHabitacion`, `creadoHabitacion`) VALUES
+	(1, 'Consultorio', 0, '2024-01-13 23:19:10'),
+	(2, 'Emergencia', 0, '2024-01-13 23:19:10'),
+	(3, 'Máxima emergencia', 0, '2024-01-13 23:19:10'),
+	(4, 'Recuperación', 1, '2024-01-13 23:19:10'),
+	(5, 'Terapia', 0, '2024-01-13 23:19:10'),
+	(6, '201', 0, '2024-01-13 23:19:10'),
+	(7, '202', 0, '2024-01-13 23:19:10'),
+	(8, '203', 0, '2024-01-13 23:19:10'),
+	(9, '204', 0, '2024-01-13 23:19:10'),
+	(10, '205', 0, '2024-01-13 23:19:10'),
+	(11, '301', 0, '2024-01-13 23:19:10'),
+	(12, '302', 0, '2024-01-13 23:19:10'),
+	(13, '303', 0, '2024-01-13 23:19:10'),
+	(14, '304', 1, '2024-01-13 23:19:10'),
+	(15, '305', 0, '2024-01-13 23:19:10'),
+	(16, '306', 1, '2024-01-13 23:19:10'),
+	(17, '307', 1, '2024-01-13 23:19:10'),
+	(18, '308', 0, '2024-01-13 23:19:10'),
+	(19, '309', 0, '2024-01-13 23:19:10'),
+	(20, '310', 1, '2024-01-13 23:19:10'),
+	(21, '311', 0, '2024-01-13 23:19:10'),
+	(22, '312', 0, '2024-01-13 23:19:10'),
+	(23, '313', 0, '2024-01-13 23:19:10'),
+	(24, '401', 0, '2024-01-13 23:19:10'),
+	(25, '402', 0, '2024-01-13 23:19:10'),
+	(26, '403', 0, '2024-01-13 23:19:10'),
+	(27, '404', 0, '2024-01-13 23:19:10'),
+	(28, '405', 0, '2024-01-13 23:19:10'),
+	(29, '406', 0, '2024-01-13 23:19:10'),
+	(30, '407', 0, '2024-01-13 23:19:10'),
+	(31, '408', 0, '2024-01-13 23:19:10'),
+	(32, '409', 0, '2024-01-13 23:19:10'),
+	(33, '410', 0, '2024-01-13 23:19:10'),
+	(34, '411', 0, '2024-01-13 23:19:10'),
+	(35, '412', 0, '2024-01-13 23:19:10'),
+	(36, '413', 0, '2024-01-13 23:19:10'),
+	(37, 'Pendiente', 0, '2024-01-13 23:19:10');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hematologia
 CREATE TABLE IF NOT EXISTS `tbl_hematologia` (
@@ -1089,7 +1247,7 @@ CREATE TABLE IF NOT EXISTS `tbl_hematologia` (
   PRIMARY KEY (`idHematologia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hematologia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hisopado_nasal
 CREATE TABLE IF NOT EXISTS `tbl_hisopado_nasal` (
@@ -1103,7 +1261,7 @@ CREATE TABLE IF NOT EXISTS `tbl_hisopado_nasal` (
   PRIMARY KEY (`idHisopadoNasal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hisopado_nasal: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_cobro
 CREATE TABLE IF NOT EXISTS `tbl_hoja_cobro` (
@@ -1142,7 +1300,10 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_cobro` (
   CONSTRAINT `tbl_hoja_cobro_ibfk_3` FOREIGN KEY (`idPaciente`) REFERENCES `tbl_pacientes` (`idPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_cobro: ~2 rows (aproximadamente)
+INSERT INTO `tbl_hoja_cobro` (`idHoja`, `codigoHoja`, `idPaciente`, `fechaHoja`, `tipoHoja`, `idMedico`, `idHabitacion`, `totalHoja`, `estadoHoja`, `salidaHoja`, `fechaIngresoHoja`, `correlativoSalidaHoja`, `diagnosticoHoja`, `anulada`, `credito_fiscal`, `motivoAnulada`, `paraHoja`, `descuentoHoja`, `seguroHoja`, `dh`, `esPaquete`, `porPagos`, `detalleAnulada`, `fechaRecibo`, `pagaMedico`, `destinoHoja`, `totalPaquete`, `esPromocion`) VALUES
+	(1, 1000, 1, '2024-01-28', 'Ambulatorio', 1, 1, 0.00, 1, '', '2024-01-28 15:42:20', 0, '', 0, '', '', 'Paciente', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 1, 0.00, 0),
+	(2, 1001, 2, '2024-01-28', 'Ambulatorio', 1, 1, 0.00, 1, '', '2024-01-28 15:47:22', 0, '', 0, '', '', 'Paciente', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 2, 0.00, 0);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_externos
 CREATE TABLE IF NOT EXISTS `tbl_hoja_externos` (
@@ -1157,7 +1318,7 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_externos` (
   KEY `idExterno` (`idExterno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_externos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_insumos
 CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos` (
@@ -1180,7 +1341,7 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos` (
   CONSTRAINT `tbl_hoja_insumos_ibfk_3` FOREIGN KEY (`idHoja`) REFERENCES `tbl_hoja_cobro` (`idHoja`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_insumos_eliminados
 CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos_eliminados` (
@@ -1195,7 +1356,10 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos_eliminados` (
   PRIMARY KEY (`idEliminado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos_eliminados: ~2 rows (aproximadamente)
+INSERT INTO `tbl_hoja_insumos_eliminados` (`idEliminado`, `filaEliminada`, `idHoja`, `idInsumo`, `precioInsumo`, `cantidadInsumo`, `descuentoUnitario`, `fechaEliminado`) VALUES
+	(14, 613, 179, 970, 1.00, 1, 0.00, '2024-01-28 00:13:45'),
+	(15, 614, 179, 971, 3.50, 1, 0.00, '2024-01-28 00:13:45');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_honorarios
 CREATE TABLE IF NOT EXISTS `tbl_honorarios` (
@@ -1215,7 +1379,7 @@ CREATE TABLE IF NOT EXISTS `tbl_honorarios` (
   PRIMARY KEY (`idHonorario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_honorarios: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_honorarios_paquetes
 CREATE TABLE IF NOT EXISTS `tbl_honorarios_paquetes` (
@@ -1232,7 +1396,7 @@ CREATE TABLE IF NOT EXISTS `tbl_honorarios_paquetes` (
   PRIMARY KEY (`idHonorarioPaquete`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_honorarios_paquetes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_inmunologia
 CREATE TABLE IF NOT EXISTS `tbl_inmunologia` (
@@ -1251,7 +1415,7 @@ CREATE TABLE IF NOT EXISTS `tbl_inmunologia` (
   PRIMARY KEY (`idInmunologia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_inmunologia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_insumos_hemo
 CREATE TABLE IF NOT EXISTS `tbl_insumos_hemo` (
@@ -1265,7 +1429,7 @@ CREATE TABLE IF NOT EXISTS `tbl_insumos_hemo` (
   PRIMARY KEY (`idInsumoHemo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_insumos_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_insumos_lab
 CREATE TABLE IF NOT EXISTS `tbl_insumos_lab` (
@@ -1282,7 +1446,7 @@ CREATE TABLE IF NOT EXISTS `tbl_insumos_lab` (
   PRIMARY KEY (`idInsumoLab`)
 ) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_insumos_lab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_insumos_limpieza
 CREATE TABLE IF NOT EXISTS `tbl_insumos_limpieza` (
@@ -1302,7 +1466,7 @@ CREATE TABLE IF NOT EXISTS `tbl_insumos_limpieza` (
   PRIMARY KEY (`idInsumoLimpieza`)
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_insumos_limpieza: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex
 CREATE TABLE IF NOT EXISTS `tbl_kardex` (
@@ -1319,7 +1483,7 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex` (
   PRIMARY KEY (`idKardex`)
 ) ENGINE=InnoDB AUTO_INCREMENT=552 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_bodega
 CREATE TABLE IF NOT EXISTS `tbl_kardex_bodega` (
@@ -1334,7 +1498,7 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_bodega` (
   PRIMARY KEY (`idKardex`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_bodega: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_botiquin
 CREATE TABLE IF NOT EXISTS `tbl_kardex_botiquin` (
@@ -1352,7 +1516,14 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_botiquin` (
   PRIMARY KEY (`idKardex`)
 ) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_botiquin: ~6 rows (aproximadamente)
+INSERT INTO `tbl_kardex_botiquin` (`idKardex`, `idInsumo`, `cantidadInsumo`, `stockActual`, `tipoKardex`, `filaEntrada`, `filaSalida`, `filaEmpleado`, `conceptoKardex`, `movimientoPor`, `creadoKardex`) VALUES
+	(203, 970, 0, 0, 'Eliminado', 101, 0, 0, '', 0, '2024-01-16 21:03:46'),
+	(204, 970, 100, 100, 'Entrada', 102, 0, 0, '', 0, '2024-01-16 21:05:19'),
+	(205, 970, 10, 110, 'Entrada', 103, 0, 0, '', 0, '2024-01-16 21:13:07'),
+	(206, 971, 100, 100, 'Entrada', 104, 0, 0, '', 0, '2024-01-16 21:13:18'),
+	(207, 970, 0, 110, 'Eliminado', 0, 613, 0, '-', 0, '2024-01-16 22:20:51'),
+	(208, 971, 0, 100, 'Eliminado', 0, 614, 0, '-', 0, '2024-01-16 22:20:52');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_hemo
 CREATE TABLE IF NOT EXISTS `tbl_kardex_hemo` (
@@ -1367,7 +1538,7 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_hemo` (
   PRIMARY KEY (`idKardex`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_lab
 CREATE TABLE IF NOT EXISTS `tbl_kardex_lab` (
@@ -1382,7 +1553,7 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_lab` (
   PRIMARY KEY (`idKardex`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_lab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_liquidaciones_caja
 CREATE TABLE IF NOT EXISTS `tbl_liquidaciones_caja` (
@@ -1395,7 +1566,7 @@ CREATE TABLE IF NOT EXISTS `tbl_liquidaciones_caja` (
   PRIMARY KEY (`idLiquidacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_liquidaciones_caja: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_llegada_pacientes
 CREATE TABLE IF NOT EXISTS `tbl_llegada_pacientes` (
@@ -1413,7 +1584,7 @@ CREATE TABLE IF NOT EXISTS `tbl_llegada_pacientes` (
   PRIMARY KEY (`idLlegada`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_llegada_pacientes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_medicamentos
 CREATE TABLE IF NOT EXISTS `tbl_medicamentos` (
@@ -1437,7 +1608,10 @@ CREATE TABLE IF NOT EXISTS `tbl_medicamentos` (
   KEY `idProveedorMedicamento` (`idProveedorMedicamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=972 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_medicamentos: ~2 rows (aproximadamente)
+INSERT INTO `tbl_medicamentos` (`idMedicamento`, `idBM`, `codigoMedicamento`, `nombreMedicamento`, `idProveedorMedicamento`, `precioCMedicamento`, `precioVMedicamento`, `tipoMedicamento`, `idClasificacionMedicamento`, `stockMedicamento`, `usadosMedicamento`, `pivoteMedicamento`, `minimoMedicamento`, `ocultarMedicamento`, `feriadoMedicamento`) VALUES
+	(970, 0, 1000, 'Acetaminofen', 12, 0.25, 1.00, 'Medicamentos', 1, 110, 0, 0, 0, 0, 1.00),
+	(971, 0, 1001, 'Azitromicina', 12, 0.60, 3.50, 'Medicamentos', 6, 100, 0, 0, 0, 0, 3.50);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_medicos
 CREATE TABLE IF NOT EXISTS `tbl_medicos` (
@@ -1449,7 +1623,9 @@ CREATE TABLE IF NOT EXISTS `tbl_medicos` (
   PRIMARY KEY (`idMedico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_medicos: ~0 rows (aproximadamente)
+INSERT INTO `tbl_medicos` (`idMedico`, `nombreMedico`, `especialidadMedico`, `telefonoMedico`, `direccionMedico`) VALUES
+	(1, 'Dr. Marcos Alonso', 'Ginecologo/Pediatra', '7541-2563', 'El Transito');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_menu
 CREATE TABLE IF NOT EXISTS `tbl_menu` (
@@ -1460,7 +1636,36 @@ CREATE TABLE IF NOT EXISTS `tbl_menu` (
   PRIMARY KEY (`idMenu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_menu: ~27 rows (aproximadamente)
+INSERT INTO `tbl_menu` (`idMenu`, `nombreMenu`, `htmlMenu`, `fechaMenu`) VALUES
+	(1, 'Pacientes', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#patient" aria-expanded="false"\r\n                        aria-controls="patient">\r\n                        <span><i class="fas fa-user"></i>Pacientes</span>\r\n                    </a>\r\n                    <ul id="patient" class="collapse" aria-labelledby="patient" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Paciente/agregar_pacientes">Agregar paciente</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Paciente/lista_pacientes">Lista pacientes</a> </li>\r\n                    </ul>\r\n                </li>', '2021-04-30 02:00:15'),
+	(2, 'Hoja de cobro', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#hojaCobro" aria-expanded="false"\r\n        aria-controls="hojaCobro">\r\n        <span><i class="fa fa-file"></i>Hoja de cobro</span>\r\n    </a>\r\n    <ul id="hojaCobro" class="collapse" aria-labelledby="hojaCobro" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Hoja/">Agregar Hoja</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Hoja/lista_hojas">Listado de Hojas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>ServiciosExternos/">Servicios Externos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Proveedor/">Proveedores</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Hoja/historial_hojas">Historial de Hojas</a> </li>\r\n    </ul>\r\n</li>', '2021-04-30 02:00:15'),
+	(3, 'Botiquin', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#botiquin" aria-expanded="false"\r\n                        aria-controls="botiquin">\r\n                        <span><i class="fa fa-thermometer"></i>Botiquin</span>\r\n                    </a>\r\n                    <ul id="botiquin" class="collapse" aria-labelledby="botiquin" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Botiquin/">Medicamentos</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Botiquin/agregar_medicamento">Agregar compra</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Botiquin/historial_compras">Historial compras</a> </li>\r\n                    </ul>\r\n                </li>', '2021-04-30 02:00:43'),
+	(4, 'Cotización', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#cotizacion" aria-expanded="false"\r\n                        aria-controls="cotizacion">\r\n                        <span><i class="fa fa-file"></i>Cotización</span>\r\n                    </a>\r\n                    <ul id="cotizacion" class="collapse" aria-labelledby="cotizacion" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Hoja/presupuesto">Crear cotización</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Hoja/lista_presupuestos">Listado de cotizaciones</a> </li>\r\n                    </ul>\r\n                </li>', '2021-04-30 04:20:37'),
+	(5, 'Gastos', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#gastos" aria-expanded="false"\r\n                        aria-controls="gastos">\r\n                        <span><i class="fa fa-tasks"></i>Gastos</span>\r\n                    </a>\r\n                    <ul id="gastos" class="collapse" aria-labelledby="gastos" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Gastos/">Cuentas</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Gastos/control_gastos">Control de gastos</a> </li>\r\n                    </ul>\r\n                </li>', '2021-05-01 00:20:44'),
+	(6, 'Médicos', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#doctor" aria-expanded="false"\r\n                        aria-controls="doctor">\r\n                        <span><i class="fas fa-stethoscope"></i>Médico</span>\r\n                    </a>\r\n                    <ul id="doctor" class="collapse" aria-labelledby="doctor" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Medico/">Lista médicos</a> </li>\r\n                    </ul>\r\n                </li>', '2021-05-01 00:20:44'),
+	(7, 'Empleados', '<li class="menu-item">\r\n                    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#empleados" aria-expanded="false"\r\n                        aria-controls="empleados">\r\n                        <span><i class="fas fa-users"></i>Empleados</span>\r\n                    </a>\r\n                    <ul id="empleados" class="collapse" aria-labelledby="empleados" data-parent="#side-nav-accordion">\r\n                        <li> <a href="<?php echo base_url(); ?>Empleado/">Agregar empleado</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Empleado/lista_empleados">Lista empleados</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Empleado/vacaciones_empleados">Cumpleañeros</a> </li>\r\n                        <li> <a href="<?php echo base_url(); ?>Empleado/cargos_empleados">Cargos</a> </li>\r\n                    </ul>\r\n                </li>', '2021-05-01 00:20:44'),
+	(8, 'Habitaciones', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#habitacion" aria-expanded="false"\r\n        aria-controls="habitacion">\r\n        <span><i class="fas fa-hospital"></i>Habitaciones</span>\r\n    </a>\r\n    <ul id="habitacion" class="collapse" aria-labelledby="habitacion" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Paciente/esquema_habitaciones">Esquema de habitaciones</a></li>\r\n        <li> <a href="<?php echo base_url(); ?>Paciente/senso_diario">Senso diario</a></li>\r\n    </ul>\r\n</li>', '2021-05-01 00:20:44'),
+	(9, 'Reportes', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#reportes" aria-expanded="false"\r\n        aria-controls="reportes">\r\n        <span><i class="fas fa-file-invoice-dollar"></i>Reportes</span>\r\n    </a>\r\n    <ul id="reportes" class="collapse" aria-labelledby="reportes" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/liquidacion_caja">Liquidación de caja</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/cobros_pacientes">Cobros a pacientes</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/externos_hoja">Externos por hoja</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/rx_laboratorio">RX y Laboratorio</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/detalle_gastos">Detalle gastos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/detalle_compras">Detalle compras</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/detalle_facturas">Facturas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/salidas_botiquin">Salidas de botiquín</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/detalle_medicamento">Detalle medicamento</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Reportes/ingresos_costos_gastos">Ingresos, Costos, Gastos</a> </li>\r\n    </ul>\r\n</li>', '2021-05-01 00:20:44'),
+	(10, 'Configuraciòn', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#configuracion"\r\n        aria-expanded="false" aria-controls="configuracion">\r\n        <span><i class="fa fa-cog"></i>Configuración</span>\r\n    </a>\r\n    <ul id="configuracion" class="collapse" aria-labelledby="configuracion"\r\n        data-parent="#side-nav-accordion">\r\n        <li><a href="<?php echo base_url(); ?>Accesos/">Accesos</a></li>\r\n        <li><a href="<?php echo base_url(); ?>Usuarios/gestion_usuarios">Usuarios</a></li>\r\n        <li><a href="<?php echo base_url(); ?>Permisos/">Permisos</a></li>\r\n        <li><a href="<?php echo base_url(); ?>Herramientas/movimientos_hojas">Movimientos Hojas</a></li>\r\n    </ul>\r\n</li>', '2021-05-01 00:20:44'),
+	(11, 'Cuentas por pagar', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#pagar" aria-expanded="false" aria-controls="pagar">\r\n        <span><i class="fas fa-clipboard-list"></i>Cuentas por pagar</span>\r\n    </a>\r\n    <ul id="pagar" class="collapse" aria-labelledby="pagar" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>CuentasPendientes/cuentas_por_pagar">Gestión cuentas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>CuentasPendientes/cuentas_por_proveedor">Cuentas por proveedor</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>CuentasPendientes/cuentas_por_fecha">Cuentas por fecha</a> </li>\r\n    </ul>\r\n</li>', '2021-05-18 23:29:04'),
+	(12, 'Stock Medicamentos', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#stock" aria-expanded="false"\r\n        aria-controls="stock">\r\n        <span><i class="fas fa-clipboard-list"></i>Stock Medicamentos</span>\r\n    </a>\r\n    <ul id="stock" class="collapse" aria-labelledby="stock" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Botiquin/stock_medicamentos">Actualizar Stock</a> </li>\r\n    </ul>\r\n</li>', '2021-06-30 20:54:18'),
+	(13, 'Laboratorio', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#laboratorio" aria-expanded="false"aria-controls="laboratorio">\r\n        <span><i class="fas fa-flask"></i>Laboratorio</span>\r\n    </a>\r\n    <ul id="laboratorio" class="collapse" aria-labelledby="laboratorio" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Laboratorio/agregar_examen">Agregar examen</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Laboratorio/examenes_realizados">Examenes realizados</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Laboratorio/historial_examenes">Historial examenes</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Laboratorio/resumen_examenes">Resumen examenes</a> </li>\r\n    </ul>\r\n</li>', '2021-07-30 21:02:34'),
+	(14, 'Facturación', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#anuncio" aria-expanded="false"aria-controls="anuncio">\r\n        <span><i class="fas fa-newspaper"></i>Facturación</span>\r\n    </a>\r\n    <ul id="anuncio" class="collapse" aria-labelledby="laboratorio" data-parent="#side-nav-accordion">\r\n        <!-- <li> <a href="<?php echo base_url(); ?>Herramientas/agregar_anuncio">Gestion de anuncios</a> </li> -->\r\n        <!-- <li> <a href="<?php echo base_url(); ?>Herramientas/factura_isbm">Factura ISBM</a> </li> -->\r\n        <li> <a href="<?php echo base_url(); ?>Herramientas/facturacion">Facturación</a> </li>\r\n    </ul>\r\n</li>', '2021-10-26 21:15:57'),
+	(15, 'Honorarios', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#honorarios" aria-expanded="false"aria-controls="honorarios">\r\n        <span><i class="fa fa-money-bill"></i>Honorarios</span>\r\n    </a>\r\n    <ul id="honorarios" class="collapse" aria-labelledby="laboratorio" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Honorarios/gestion_honorarios">Honorario de cuentas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Honorarios/honorarios_paquetes">Honorarios de paquetes</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Honorarios/honorarios_en_banco">Honorarios en banco</a> </li>\r\n    </ul>\r\n</li>', '2021-11-12 20:23:19'),
+	(16, 'Precio medicamentos', '<li class="menu-item">\r\n    <a href="<?php echo base_url(); ?>Botiquin/precios_medicamentos/">\r\n    <span><i class="fas fa-list"></i>Precio medicamentos</span>\r\n    </a>\r\n</li>', '2022-01-26 19:58:11'),
+	(17, 'Hemodialisis', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#hemodialisis" aria-expanded="false" aria-controls="hemodialisis">\r\n        <span><i class="fa fa-tasks"></i>Hemodiálisis </span>\r\n    </a>\r\n    <ul id="hemodialisis" class="collapse" aria-labelledby="hemodialisis" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Hemodialisis/agregar_paciente/">Agregar paciente</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Hemodialisis/agregar_cita/">Agregar cita</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Hemodialisis/lista_citas/">Lista citas</a> </li>\r\n    </ul>\r\n</li>', '2022-02-14 22:47:18'),
+	(18, 'Medicamentos', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#medicamentos" aria-expanded="false" aria-controls="medicamentos">\r\n        <span><i class="fa fa-pills"></i>Medicamentos </span>\r\n    </a>\r\n    <ul id="medicamentos" class="collapse" aria-labelledby="medicamentos" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Medicamentos/cuentas_medicamento/">Gestión de cuentas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Medicamentos/lista_salidas/">Lista de salidas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Medicamentos/resumen_salidas/">Resumen  salidas</a> </li>\r\n    </ul>\r\n</li>', '2022-02-24 20:55:56'),
+	(19, 'ISBM, Hemo, Empleados', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#isbm" aria-expanded="false" aria-controls="isbm">\r\n        <span><i class="fa fa-tablets"></i>ISBM, Hemo, Empleados</span>\r\n    </a>\r\n    <ul id="isbm" class="collapse" aria-labelledby="isbm" data-parent="#side-nav-accordion">\r\n        <!--<li> <a href="<?php echo base_url(); ?>Isbm/cuentas_isbm/">Crear Requisición</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Isbm/cuentas_isbm/">Lista requisiciones</a> </li>-->\r\n        <li> <a href="<?php echo base_url(); ?>Isbm/cuenta_descargo/">Crear cuenta para descargos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Isbm/lista_cuenta_descargos/">Lista cuenta descargos</a> </li>\r\n    </ul>\r\n</li>', '2022-04-18 20:51:53'),
+	(20, 'Insumos laboratorio', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#insumosLab" aria-expanded="false" aria-controls="insumosLab">\r\n        <span><i class="fa fa-vials"></i>Insumos laboratorio</span>\r\n    </a>\r\n    <ul id="insumosLab" class="collapse" aria-labelledby="insumosLab" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>InsumosLab/agregar_compra/">Agregar compra</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosLab/lista_compras/">Lista compras</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosLab/lista_insumos/">Lista insumos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosLab/gestion_insumos/">Gestión insumos</a> </li>\r\n       <li> <a href="<?php echo base_url(); ?>InsumosLab/donantes/">Ingreso de sangre</a> </li>\r\n       <li> <a href="<?php echo base_url(); ?>InsumosLab/salida_sangre/">Salida de sangre</a> </li>\r\n    </ul>\r\n</li>', '2022-05-20 22:06:09'),
+	(21, 'Insumos limpieza', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#insumosLimpieza" aria-expanded="false" aria-controls="insumosLimpieza">\r\n        <span><i class="fa fa-list"></i>Insumos limpieza</span>\r\n    </a>\r\n    <ul id="insumosLimpieza" class="collapse" aria-labelledby="insumosLimpieza" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Limpieza/agregar_compra/">Agregar compra</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Limpieza/lista_compras/">Lista compras</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Limpieza/descargos_insumos">Salidas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Limpieza/">Gestión insumos</a> </li>\r\n    </ul>\r\n</li>', '2022-08-26 21:00:47'),
+	(22, 'Insumos Hemodialisis', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#insumosHemodialisis" aria-expanded="false" aria-controls="insumosHemodialisis">\r\n        <span><i class="fa fa-list"></i>Insumos Hemodialisis</span>\r\n    </a>\r\n    <ul id="insumosHemodialisis" class="collapse" aria-labelledby="insumosHemodialisis" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>InsumosHemo/agregar_compra/">Agregar compra</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosHemo/lista_compras/">Lista compras</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosHemo/descargos_insumos">Salidas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>InsumosHemo/">Gestión insumos</a> </li>\r\n    </ul>\r\n</li>', '2022-09-23 20:07:36'),
+	(23, 'Planilla', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#planilla" aria-expanded="false" aria-controls="planilla">\r\n        <span><i class="fa fa-users"></i>Planilla</span>\r\n    </a>\r\n    <ul id="planilla" class="collapse" aria-labelledby="planilla" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Planilla/">Crear planilla</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Planilla/historial_planillas/">Historial planilla</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Planilla/personal_planilla/">Personal planilla</a> </li>\r\n   </ul>\r\n</li>', '2023-02-13 21:52:59'),
+	(24, 'Cortes de caja', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#cortes" aria-expanded="false"\r\n        aria-controls="cortes">\r\n        <span><i class="fas fa-file"></i>Cortes de caja</span>\r\n    </a>\r\n    <ul id="cortes" class="collapse" aria-labelledby="cortes" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Cajeras/">Hacer corte</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Cajeras/lista_cortes">Lista de cortes</a> </li>\r\n    </ul>\r\n</li>', '2023-08-02 21:28:20'),
+	(25, 'Quirófanos', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#quirofanos" aria-expanded="false"\r\n        aria-controls="quirofanos">\r\n        <span><i class="fas fa-file"></i>Quirófanos</span>\r\n    </a>\r\n    <ul id="quirofanos" class="collapse" aria-labelledby="quirofanos" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Quirofanos/">Cuentas Activas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Quirofanos/lista_procedimientos">Lista de cuentas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Quirofanos/resumen_insumos">Resumen insumos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Quirofanos/resumen_insumos_botiquin">Resumen insumos salas</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Quirofanos/lista_insumos">Lista de insumos</a> </li>\r\n    </ul>\r\n</li>', '2023-10-04 20:23:50'),
+	(26, 'Auditoria', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#auditoria" aria-expanded="false" aria-controls="auditoria">\r\n        <span><i class="fa fa-users"></i>Auditoria</span>\r\n    </a>\r\n    <ul id="auditoria" class="collapse" aria-labelledby="auditoria" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Auditoria/cuentas_con_abonos/">Cuentas con abonos</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Auditoria/liquidacion_caja/">Liquidación de caja</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Auditoria/cuentas_pendientes/">Cuentas pendientes</a> </li>\r\n   </ul>\r\n</li>', '2023-10-07 19:39:27'),
+	(27, 'Stocks', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#stocks" aria-expanded="false" aria-controls="stocks">\r\n        <span><i class="fa fa-list"></i>Stocks</span>\r\n    </a>\r\n    <ul id="stocks" class="collapse" aria-labelledby="stocks" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Stock/">Crear stock</a> </li>\r\n        <li> <a href="<?php echo base_url(); ?>Botiquin/estado_stocks/">Lista de stocks</a> </li>\r\n   </ul>\r\n</li>', '2023-12-08 22:00:55'),
+	(28, 'Consultas', '<li class="menu-item">\r\n    <a href="#" class="has-chevron" data-toggle="collapse" data-target="#consultas" aria-expanded="false" aria-controls="consultas">\r\n        <span><i class="fa fa-list"></i>Consultas</span>\r\n    </a>\r\n    <ul id="consultas" class="collapse" aria-labelledby="consultas" data-parent="#side-nav-accordion">\r\n        <li> <a href="<?php echo base_url(); ?>Consultas/">Lista consultas</a> </li>\r\n   </ul>\r\n</li>', '2024-01-28 20:44:51');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_movimientos_hoja
 CREATE TABLE IF NOT EXISTS `tbl_movimientos_hoja` (
@@ -1473,7 +1678,21 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos_hoja` (
   PRIMARY KEY (`idMovimiento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_movimientos_hoja: ~13 rows (aproximadamente)
+INSERT INTO `tbl_movimientos_hoja` (`idMovimiento`, `idHoja`, `idUsuario`, `nombreUsuario`, `detalleBitacora`, `fechaMovimiento`) VALUES
+	(1, 180, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:07:25'),
+	(2, 1, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:15:06'),
+	(3, 1, 1, 'Informatica', 'Actualizo los datos del paciente', '2024-01-28 00:22:45'),
+	(4, 1, 1, 'Informatica', 'Actualizo los datos del paciente', '2024-01-28 00:22:52'),
+	(5, 1, 1, 'Informatica', 'Actualizo los datos del paciente', '2024-01-28 00:22:58'),
+	(6, 1, 1, 'Informatica', 'El usuario visualizo el resumen de la cuenta', '2024-01-28 00:24:39'),
+	(7, 2, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Juan Antonio Campos', '2024-01-28 00:43:50'),
+	(8, 3, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Maria del Carmen Alfaro', '2024-01-28 00:59:46'),
+	(9, 4, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 01:00:47'),
+	(10, 5, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Maria Romero Cruz', '2024-01-28 01:02:09'),
+	(11, 1, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Juan Antonio Campos', '2024-01-28 15:39:10'),
+	(12, 1, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Juan Antonio Campos', '2024-01-28 15:42:20'),
+	(13, 2, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Maria del Carmen Alfaro', '2024-01-28 15:47:22');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_movimientos_stocks
 CREATE TABLE IF NOT EXISTS `tbl_movimientos_stocks` (
@@ -1494,7 +1713,7 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos_stocks` (
   CONSTRAINT `tbl_movimientos_stocks_ibfk_3` FOREIGN KEY (`idHoja`) REFERENCES `tbl_hoja_cobro` (`idHoja`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_movimientos_stocks: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_municipios_sv
 CREATE TABLE IF NOT EXISTS `tbl_municipios_sv` (
@@ -1506,7 +1725,270 @@ CREATE TABLE IF NOT EXISTS `tbl_municipios_sv` (
   CONSTRAINT `tbl_municipios_sv_ibfk_1` FOREIGN KEY (`idDepartamento`) REFERENCES `tbl_departamentos_sv` (`idDepartamento`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_municipios_sv: ~262 rows (aproximadamente)
+INSERT INTO `tbl_municipios_sv` (`idMunicipio`, `nombreMunicipio`, `idDepartamento`) VALUES
+	(1, 'Ahuachapán', 1),
+	(2, 'Jujutla', 1),
+	(3, 'Atiquizaya', 1),
+	(4, 'Concepción de Ataco', 1),
+	(5, 'El Refugio', 1),
+	(6, 'Guaymango', 1),
+	(7, 'Apaneca', 1),
+	(8, 'San Francisco Menéndez', 1),
+	(9, 'San Lorenzo', 1),
+	(10, 'San Pedro Puxtla', 1),
+	(11, 'Tacuba', 1),
+	(12, 'Turín', 1),
+	(13, 'Candelaria de la Frontera', 2),
+	(14, 'Chalchuapa', 2),
+	(15, 'Coatepeque', 2),
+	(16, 'El Congo', 2),
+	(17, 'El Porvenir', 2),
+	(18, 'Masahuat', 2),
+	(19, 'Metapán', 2),
+	(20, 'San Antonio Pajonal', 2),
+	(21, 'San Sebastián Salitrillo', 2),
+	(22, 'Santa Ana', 2),
+	(23, 'Santa Rosa Guachipilín', 2),
+	(24, 'Santiago de la Frontera', 2),
+	(25, 'Texistepeque', 2),
+	(26, 'Acajutla', 3),
+	(27, 'Armenia', 3),
+	(28, 'Caluco', 3),
+	(29, 'Cuisnahuat', 3),
+	(30, 'Izalco', 3),
+	(31, 'Juayúa', 3),
+	(32, 'Nahuizalco', 3),
+	(33, 'Nahulingo', 3),
+	(34, 'Salcoatitán', 3),
+	(35, 'San Antonio del Monte', 3),
+	(36, 'San Julián', 3),
+	(37, 'Santa Catarina Masahuat', 3),
+	(38, 'Santa Isabel Ishuatán', 3),
+	(39, 'Santo Domingo de Guzmán', 3),
+	(40, 'Sonsonate', 3),
+	(41, 'Sonzacate', 3),
+	(42, 'Alegría', 11),
+	(43, 'Berlín', 11),
+	(44, 'California', 11),
+	(45, 'Concepción Batres', 11),
+	(46, 'El Triunfo', 11),
+	(47, 'Ereguayquín', 11),
+	(48, 'Estanzuelas', 11),
+	(49, 'Jiquilisco', 11),
+	(50, 'Jucuapa', 11),
+	(51, 'Jucuarán', 11),
+	(52, 'Mercedes Umaña', 11),
+	(53, 'Nueva Granada', 11),
+	(54, 'Ozatlán', 11),
+	(55, 'Puerto El Triunfo', 11),
+	(56, 'San Agustín', 11),
+	(57, 'San Buenaventura', 11),
+	(58, 'San Dionisio', 11),
+	(59, 'San Francisco Javier', 11),
+	(60, 'Santa Elena', 11),
+	(61, 'Santa María', 11),
+	(62, 'Santiago de María', 11),
+	(63, 'Tecapán', 11),
+	(64, 'Usulután', 11),
+	(65, 'Carolina', 13),
+	(66, 'Chapeltique', 13),
+	(67, 'Chinameca', 13),
+	(68, 'Chirilagua', 13),
+	(69, 'Ciudad Barrios', 13),
+	(70, 'Comacarán', 13),
+	(71, 'El Tránsito', 13),
+	(72, 'Lolotique', 13),
+	(73, 'Moncagua', 13),
+	(74, 'Nueva Guadalupe', 13),
+	(75, 'Nuevo Edén de San Juan', 13),
+	(76, 'Quelepa', 13),
+	(77, 'San Antonio del Mosco', 13),
+	(78, 'San Gerardo', 13),
+	(79, 'San Jorge', 13),
+	(80, 'San Luis de la Reina', 13),
+	(81, 'San Miguel', 13),
+	(82, 'San Rafael Oriente', 13),
+	(83, 'Sesori', 13),
+	(84, 'Uluazapa', 13),
+	(85, 'Arambala', 12),
+	(86, 'Cacaopera', 12),
+	(87, 'Chilanga', 12),
+	(88, 'Corinto', 12),
+	(89, 'Delicias de Concepción', 12),
+	(90, 'El Divisadero', 12),
+	(91, 'El Rosario (Morazán)', 12),
+	(92, 'Gualococti', 12),
+	(93, 'Guatajiagua', 12),
+	(94, 'Joateca', 12),
+	(95, 'Jocoaitique', 12),
+	(96, 'Jocoro', 12),
+	(97, 'Lolotiquillo', 12),
+	(98, 'Meanguera', 12),
+	(99, 'Osicala', 12),
+	(100, 'Perquín', 12),
+	(101, 'San Carlos', 12),
+	(102, 'San Fernando (Morazán)', 12),
+	(103, 'San Francisco Gotera', 12),
+	(104, 'San Isidro (Morazán)', 12),
+	(105, 'San Simón', 12),
+	(106, 'Sensembra', 12),
+	(107, 'Sociedad', 12),
+	(108, 'Torola', 12),
+	(109, 'Yamabal', 12),
+	(110, 'Yoloaiquín', 12),
+	(111, 'La Unión', 14),
+	(112, 'San Alejo', 14),
+	(113, 'Yucuaiquín', 14),
+	(114, 'Conchagua', 14),
+	(115, 'Intipucá', 14),
+	(116, 'San José', 14),
+	(117, 'El Carmen (La Unión)', 14),
+	(118, 'Yayantique', 14),
+	(119, 'Bolívar', 14),
+	(120, 'Meanguera del Golfo', 14),
+	(121, 'Santa Rosa de Lima', 14),
+	(122, 'Pasaquina', 14),
+	(123, 'Anamoros', 14),
+	(124, 'Nueva Esparta', 14),
+	(125, 'El Sauce', 14),
+	(126, 'Concepción de Oriente', 14),
+	(127, 'Polorós', 14),
+	(128, 'Lislique', 14),
+	(129, 'Antiguo Cuscatlán', 4),
+	(130, 'Chiltiupán', 4),
+	(131, 'Ciudad Arce', 4),
+	(132, 'Colón', 4),
+	(133, 'Comasagua', 4),
+	(134, 'Huizúcar', 4),
+	(135, 'Jayaque', 4),
+	(136, 'Jicalapa', 4),
+	(137, 'La Libertad', 4),
+	(138, 'Santa Tecla', 4),
+	(139, 'Nuevo Cuscatlán', 4),
+	(140, 'San Juan Opico', 4),
+	(141, 'Quezaltepeque', 4),
+	(142, 'Sacacoyo', 4),
+	(143, 'San José Villanueva', 4),
+	(144, 'San Matías', 4),
+	(145, 'San Pablo Tacachico', 4),
+	(146, 'Talnique', 4),
+	(147, 'Tamanique', 4),
+	(148, 'Teotepeque', 4),
+	(149, 'Tepecoyo', 4),
+	(150, 'Zaragoza', 4),
+	(151, 'Agua Caliente', 5),
+	(152, 'Arcatao', 5),
+	(153, 'Azacualpa', 5),
+	(154, 'Cancasque', 5),
+	(155, 'Chalatenango', 5),
+	(156, 'Citalá', 5),
+	(157, 'Comapala', 5),
+	(158, 'Concepción Quezaltepeque', 5),
+	(159, 'Dulce Nombre de María', 5),
+	(160, 'El Carrizal', 5),
+	(161, 'El Paraíso', 5),
+	(162, 'La Laguna', 5),
+	(163, 'La Palma', 5),
+	(164, 'La Reina', 5),
+	(165, 'Las Vueltas', 5),
+	(166, 'Nueva Concepción', 5),
+	(167, 'Nueva Trinidad', 5),
+	(168, 'Nombre de Jesús', 5),
+	(169, 'Ojos de Agua', 5),
+	(170, 'Potonico', 5),
+	(171, 'San Antonio de la Cruz', 5),
+	(172, 'San Antonio Los Ranchos', 5),
+	(173, 'San Fernando (Chalatenango)', 5),
+	(174, 'San Francisco Lempa', 5),
+	(175, 'San Francisco Morazán', 5),
+	(176, 'San Ignacio', 5),
+	(177, 'San Isidro Labrador', 5),
+	(178, 'Las Flores', 5),
+	(179, 'San Luis del Carmen', 5),
+	(180, 'San Miguel de Mercedes', 5),
+	(181, 'San Rafael', 5),
+	(182, 'Santa Rita', 5),
+	(183, 'Tejutla', 5),
+	(184, 'Cojutepeque', 7),
+	(185, 'Candelaria', 7),
+	(186, 'El Carmen (Cuscatlán)', 7),
+	(187, 'El Rosario (Cuscatlán)', 7),
+	(188, 'Monte San Juan', 7),
+	(189, 'Oratorio de Concepción', 7),
+	(190, 'San Bartolomé Perulapía', 7),
+	(191, 'San Cristóbal', 7),
+	(192, 'San José Guayabal', 7),
+	(193, 'San Pedro Perulapán', 7),
+	(194, 'San Rafael Cedros', 7),
+	(195, 'San Ramón', 7),
+	(196, 'Santa Cruz Analquito', 7),
+	(197, 'Santa Cruz Michapa', 7),
+	(198, 'Suchitoto', 7),
+	(199, 'Tenancingo', 7),
+	(200, 'Aguilares', 6),
+	(201, 'Apopa', 6),
+	(202, 'Ayutuxtepeque', 6),
+	(203, 'Cuscatancingo', 6),
+	(204, 'Ciudad Delgado', 6),
+	(205, 'El Paisnal', 6),
+	(206, 'Guazapa', 6),
+	(207, 'Ilopango', 6),
+	(208, 'Mejicanos', 6),
+	(209, 'Nejapa', 6),
+	(210, 'Panchimalco', 6),
+	(211, 'Rosario de Mora', 6),
+	(212, 'San Marcos', 6),
+	(213, 'San Martín', 6),
+	(214, 'San Salvador', 6),
+	(215, 'Santiago Texacuangos', 6),
+	(216, 'Santo Tomás', 6),
+	(217, 'Soyapango', 6),
+	(218, 'Tonacatepeque', 6),
+	(219, 'Zacatecoluca', 8),
+	(220, 'Cuyultitán', 8),
+	(221, 'El Rosario (La Paz)', 8),
+	(222, 'Jerusalén', 8),
+	(223, 'Mercedes La Ceiba', 8),
+	(224, 'Olocuilta', 8),
+	(225, 'Paraíso de Osorio', 8),
+	(226, 'San Antonio Masahuat', 8),
+	(227, 'San Emigdio', 8),
+	(228, 'San Francisco Chinameca', 8),
+	(229, 'San Pedro Masahuat', 8),
+	(230, 'San Juan Nonualco', 8),
+	(231, 'San Juan Talpa', 8),
+	(232, 'San Juan Tepezontes', 8),
+	(233, 'San Luis La Herradura', 8),
+	(234, 'San Luis Talpa', 8),
+	(235, 'San Miguel Tepezontes', 8),
+	(236, 'San Pedro Nonualco', 8),
+	(237, 'San Rafael Obrajuelo', 8),
+	(238, 'Santa María Ostuma', 8),
+	(239, 'Santiago Nonualco', 8),
+	(240, 'Tapalhuaca', 8),
+	(241, 'Cinquera', 9),
+	(242, 'Dolores', 9),
+	(243, 'Guacotecti', 9),
+	(244, 'Ilobasco', 9),
+	(245, 'Jutiapa', 9),
+	(246, 'San Isidro (Cabañas)', 9),
+	(247, 'Sensuntepeque', 9),
+	(248, 'Tejutepeque', 9),
+	(249, 'Victoria', 9),
+	(250, 'Apastepeque', 10),
+	(251, 'Guadalupe', 10),
+	(252, 'San Cayetano Istepeque', 10),
+	(253, 'San Esteban Catarina', 10),
+	(254, 'San Ildefonso', 10),
+	(255, 'San Lorenzo', 10),
+	(256, 'San Sebastián', 10),
+	(257, 'San Vicente', 10),
+	(258, 'Santa Clara', 10),
+	(259, 'Santo Domingo', 10),
+	(260, 'Tecoluca', 10),
+	(261, 'Tepetitán', 10),
+	(262, 'Verapaz', 10);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_orina
 CREATE TABLE IF NOT EXISTS `tbl_orina` (
@@ -1537,7 +2019,7 @@ CREATE TABLE IF NOT EXISTS `tbl_orina` (
   PRIMARY KEY (`idOrina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_orina: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_pacientes
 CREATE TABLE IF NOT EXISTS `tbl_pacientes` (
@@ -1554,7 +2036,12 @@ CREATE TABLE IF NOT EXISTS `tbl_pacientes` (
   PRIMARY KEY (`idPaciente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_pacientes: ~3 rows (aproximadamente)
+INSERT INTO `tbl_pacientes` (`idPaciente`, `nombrePaciente`, `edadPaciente`, `telefonoPaciente`, `duiPaciente`, `nacimientoPaciente`, `direccionPaciente`, `civilPaciente`, `sexoPaciente`, `creadoPaciente`) VALUES
+	(1, 'Juan Antonio Campos', 14, '7458-9623', '11111111-1', '2010-01-25', 'El Transito', 'Soltero/a', 'Masculino', '2024-01-25 21:25:02'),
+	(2, 'Maria del Carmen Alfaro', 29, '7586-2333', '22222222-2', '1995-01-23', 'San Miguel', 'Soltero/a', 'Femenino', '2024-01-25 21:25:02'),
+	(3, 'Adela Maria Romero Cruz', 23, '7326-5499', '33333333-3', '2000-02-01', 'El Transito', 'Soltero/a', 'Femenino', '2024-01-25 21:25:02'),
+	(4, 'Adela Matilde Romero Cruz', 23, '7326-5499', '44444444-4', '2000-02-01', 'El Transito', 'Casado/a', 'Femenino', '2024-01-25 21:25:02');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_paquetes
 CREATE TABLE IF NOT EXISTS `tbl_paquetes` (
@@ -1575,7 +2062,7 @@ CREATE TABLE IF NOT EXISTS `tbl_paquetes` (
   PRIMARY KEY (`idPaquete`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_paquetes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_permisos
 CREATE TABLE IF NOT EXISTS `tbl_permisos` (
@@ -1587,7 +2074,35 @@ CREATE TABLE IF NOT EXISTS `tbl_permisos` (
   PRIMARY KEY (`idPermiso`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_permisos: ~26 rows (aproximadamente)
+INSERT INTO `tbl_permisos` (`idPermiso`, `idMenu`, `idAcceso`, `estadoPermiso`, `fechaPermiso`) VALUES
+	(1, 1, 1, 1, '2021-04-30 02:41:05'),
+	(2, 3, 1, 1, '2021-04-30 02:41:05'),
+	(3, 2, 1, 1, '2021-04-30 04:13:09'),
+	(4, 4, 1, 0, '2021-05-01 01:48:46'),
+	(5, 5, 1, 1, '2021-05-01 01:48:46'),
+	(6, 6, 1, 1, '2021-05-01 01:48:46'),
+	(7, 7, 1, 0, '2021-05-01 01:48:46'),
+	(8, 8, 1, 0, '2021-05-01 01:48:47'),
+	(9, 9, 1, 1, '2021-05-01 01:48:47'),
+	(10, 10, 1, 0, '2021-05-01 01:48:47'),
+	(14, 11, 1, 0, '2021-05-18 23:29:19'),
+	(32, 12, 1, 0, '2021-06-30 20:55:15'),
+	(36, 13, 1, 0, '2021-08-31 20:06:52'),
+	(37, 14, 1, 0, '2021-10-26 22:00:22'),
+	(38, 15, 1, 0, '2021-11-12 20:23:42'),
+	(40, 16, 1, 0, '2022-01-26 20:01:37'),
+	(41, 17, 1, 0, '2022-02-14 22:47:48'),
+	(42, 18, 1, 0, '2022-02-24 20:56:18'),
+	(43, 19, 1, 0, '2022-04-18 20:52:56'),
+	(46, 20, 1, 0, '2022-07-16 22:55:08'),
+	(49, 21, 1, 0, '2022-09-23 20:10:56'),
+	(50, 22, 1, 0, '2022-09-23 20:10:56'),
+	(51, 23, 1, 0, '2023-02-13 21:53:38'),
+	(52, 24, 1, 0, '2023-08-02 22:18:21'),
+	(54, 26, 1, 0, '2023-10-07 19:40:20'),
+	(57, 27, 1, 0, '2023-12-08 22:01:34'),
+	(58, 28, 1, 1, '2024-01-28 20:45:50');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_personal_planilla
 CREATE TABLE IF NOT EXISTS `tbl_personal_planilla` (
@@ -1612,7 +2127,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personal_planilla` (
   PRIMARY KEY (`idEmpleado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_personal_planilla: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_pivote_reactivos
 CREATE TABLE IF NOT EXISTS `tbl_pivote_reactivos` (
@@ -1624,7 +2139,7 @@ CREATE TABLE IF NOT EXISTS `tbl_pivote_reactivos` (
   PRIMARY KEY (`idPivoteReactivo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_pivote_reactivos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_planilla
 CREATE TABLE IF NOT EXISTS `tbl_planilla` (
@@ -1638,7 +2153,7 @@ CREATE TABLE IF NOT EXISTS `tbl_planilla` (
   PRIMARY KEY (`idPlanilla`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_planilla: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_presupuesto
 CREATE TABLE IF NOT EXISTS `tbl_presupuesto` (
@@ -1651,7 +2166,7 @@ CREATE TABLE IF NOT EXISTS `tbl_presupuesto` (
   PRIMARY KEY (`idPresupuesto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_presupuesto: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_presupuesto_externos
 CREATE TABLE IF NOT EXISTS `tbl_presupuesto_externos` (
@@ -1668,7 +2183,7 @@ CREATE TABLE IF NOT EXISTS `tbl_presupuesto_externos` (
   CONSTRAINT `tbl_presupuesto_externos_ibfk_2` FOREIGN KEY (`idPresupuesto`) REFERENCES `tbl_presupuesto` (`idPresupuesto`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_presupuesto_externos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_presupuesto_insumos
 CREATE TABLE IF NOT EXISTS `tbl_presupuesto_insumos` (
@@ -1684,7 +2199,7 @@ CREATE TABLE IF NOT EXISTS `tbl_presupuesto_insumos` (
   CONSTRAINT `tbl_presupuesto_insumos_ibfk_2` FOREIGN KEY (`idPresupuesto`) REFERENCES `tbl_presupuesto` (`idPresupuesto`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_presupuesto_insumos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_procedimientos_salas
 CREATE TABLE IF NOT EXISTS `tbl_procedimientos_salas` (
@@ -1699,7 +2214,7 @@ CREATE TABLE IF NOT EXISTS `tbl_procedimientos_salas` (
   PRIMARY KEY (`idProcedimiento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_procedimientos_salas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_proveedores
 CREATE TABLE IF NOT EXISTS `tbl_proveedores` (
@@ -1715,7 +2230,9 @@ CREATE TABLE IF NOT EXISTS `tbl_proveedores` (
   PRIMARY KEY (`idProveedor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_proveedores: ~0 rows (aproximadamente)
+INSERT INTO `tbl_proveedores` (`idProveedor`, `codigoProveedor`, `empresaProveedor`, `propietarioProveedor`, `nrcProveedor`, `nitProveedor`, `telefonoProveedor`, `emailProveedor`, `direccionProveedor`) VALUES
+	(12, '1000', 'Farmalab', '', '456222', '2222-222222-222-2', '2635-6412', '', 'Col. Flor Blanca, San Salvador');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_quimica_clinica
 CREATE TABLE IF NOT EXISTS `tbl_quimica_clinica` (
@@ -1736,7 +2253,7 @@ CREATE TABLE IF NOT EXISTS `tbl_quimica_clinica` (
   PRIMARY KEY (`idQuimicaClinica`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_quimica_clinica: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_quimica_sanguinea
 CREATE TABLE IF NOT EXISTS `tbl_quimica_sanguinea` (
@@ -1780,7 +2297,7 @@ CREATE TABLE IF NOT EXISTS `tbl_quimica_sanguinea` (
   PRIMARY KEY (`idQuimicaSanguinea`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_quimica_sanguinea: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_responsables
 CREATE TABLE IF NOT EXISTS `tbl_responsables` (
@@ -1799,7 +2316,12 @@ CREATE TABLE IF NOT EXISTS `tbl_responsables` (
   PRIMARY KEY (`idResponsable`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_responsables: ~4 rows (aproximadamente)
+INSERT INTO `tbl_responsables` (`idResponsable`, `idMenor`, `nombreResponsable`, `edadResponsable`, `telefonoResponsable`, `duiResponsable`, `profesionResponsable`, `parentescoResponsable`, `direccionResponsable`, `esResponsable`, `pivoteResponsable`, `creadoResponsable`) VALUES
+	(1, 1, ' Maria del Carmen Campos', 35, '7123-6598', '22222222-2', 'Profesora', 'Madre', ' El Transito', '', 0, '2024-01-13 22:22:36'),
+	(2, 2, ' Carlos Alfaro', 0, '2365-9878', '32165489-9', ' ', 'Padre', ' ', '', 1, '2024-01-16 21:44:31'),
+	(3, 4, ' Rodolfo Alberto Romero', 0, '7695-8431', '06235498-7', '', 'Padre', '', '', 1, '2024-01-25 21:23:56'),
+	(4, 3, '', 0, '', '', '', '', '', '', 1, '2024-01-25 22:51:20');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_salidas_hemo
 CREATE TABLE IF NOT EXISTS `tbl_salidas_hemo` (
@@ -1810,7 +2332,7 @@ CREATE TABLE IF NOT EXISTS `tbl_salidas_hemo` (
   PRIMARY KEY (`idCuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_salidas_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_salidas_limpieza
 CREATE TABLE IF NOT EXISTS `tbl_salidas_limpieza` (
@@ -1821,7 +2343,7 @@ CREATE TABLE IF NOT EXISTS `tbl_salidas_limpieza` (
   PRIMARY KEY (`idCuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_salidas_limpieza: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_sanguineo
 CREATE TABLE IF NOT EXISTS `tbl_sanguineo` (
@@ -1835,7 +2357,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sanguineo` (
   PRIMARY KEY (`idSanguineo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_sanguineo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_seguros
 CREATE TABLE IF NOT EXISTS `tbl_seguros` (
@@ -1847,7 +2369,17 @@ CREATE TABLE IF NOT EXISTS `tbl_seguros` (
   PRIMARY KEY (`idSeguro`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_seguros: ~9 rows (aproximadamente)
+INSERT INTO `tbl_seguros` (`idSeguro`, `nombreSeguro`, `porcentajeSeguro`, `estadoSeguro`, `agregadoSeguro`) VALUES
+	(1, 'Ninguno', 0.00, 1, '0000-00-00 00:00:00'),
+	(2, 'Abank', 20.00, 1, '0000-00-00 00:00:00'),
+	(3, 'Mapfre', 20.00, 1, '0000-00-00 00:00:00'),
+	(4, 'Mi Red', 20.00, 1, '0000-00-00 00:00:00'),
+	(5, 'Paligmed', 20.00, 1, '0000-00-00 00:00:00'),
+	(6, 'RPN', 20.00, 1, '0000-00-00 00:00:00'),
+	(7, 'El tercio', 0.00, 1, '0000-00-00 00:00:00'),
+	(8, 'ISSS', 0.00, 1, '0000-00-00 00:00:00'),
+	(9, 'Empleados', -25.00, 1, '2023-09-26 20:53:50');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_tipo_consulta_lab
 CREATE TABLE IF NOT EXISTS `tbl_tipo_consulta_lab` (
@@ -1857,7 +2389,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tipo_consulta_lab` (
   PRIMARY KEY (`idTipoConsultaLab`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_tipo_consulta_lab: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_tipo_gasto
 CREATE TABLE IF NOT EXISTS `tbl_tipo_gasto` (
@@ -1866,7 +2398,12 @@ CREATE TABLE IF NOT EXISTS `tbl_tipo_gasto` (
   PRIMARY KEY (`idTipoGasto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_tipo_gasto: ~4 rows (aproximadamente)
+INSERT INTO `tbl_tipo_gasto` (`idTipoGasto`, `nombreTipoGasto`) VALUES
+	(1, 'Crédito fiscal inventariado'),
+	(2, 'Crédito fiscal gasto'),
+	(3, 'Gasto facturado'),
+	(4, 'Gasto no facturado');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_tiroideas_libres
 CREATE TABLE IF NOT EXISTS `tbl_tiroideas_libres` (
@@ -1882,7 +2419,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tiroideas_libres` (
   PRIMARY KEY (`idTiroideaLibre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_tiroideas_libres: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_tiroideas_totales
 CREATE TABLE IF NOT EXISTS `tbl_tiroideas_totales` (
@@ -1897,7 +2434,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tiroideas_totales` (
   PRIMARY KEY (`idTiroideaTotal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_tiroideas_totales: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_tolerancia_glucosa
 CREATE TABLE IF NOT EXISTS `tbl_tolerancia_glucosa` (
@@ -1917,7 +2454,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tolerancia_glucosa` (
   PRIMARY KEY (`idToleranciaGlucosa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_tolerancia_glucosa: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_toxoplasma
 CREATE TABLE IF NOT EXISTS `tbl_toxoplasma` (
@@ -1930,7 +2467,7 @@ CREATE TABLE IF NOT EXISTS `tbl_toxoplasma` (
   PRIMARY KEY (`idToxoplasma`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_toxoplasma: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_uso_reactivos
 CREATE TABLE IF NOT EXISTS `tbl_uso_reactivos` (
@@ -1943,7 +2480,7 @@ CREATE TABLE IF NOT EXISTS `tbl_uso_reactivos` (
   PRIMARY KEY (`idUsoReactivo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=376 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_uso_reactivos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_usuarios
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
@@ -1963,7 +2500,20 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   CONSTRAINT `tbl_usuarios_ibfk_2` FOREIGN KEY (`idAcceso`) REFERENCES `tbl_accesos` (`idAcceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_usuarios: ~12 rows (aproximadamente)
+INSERT INTO `tbl_usuarios` (`idUsuario`, `nombreUsuario`, `psUsuario`, `idEmpleado`, `idAcceso`, `codigoVerificacion`, `nivelUsuario`, `estadoUsuario`, `fechaUsuario`) VALUES
+	(1, 'Informatica', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '2f2bb449c2cb83320769d123f0904b5a', 1, 1, '2021-04-30 00:05:52'),
+	(2, 'CARLA ORTEZ', '1312998bad1f4843af2aa489d76cf1d8', 3, 3, '', 0, 1, '2021-05-04 00:17:36'),
+	(3, 'CARLA PAREDES', 'a30619b295a3e17297b73f7f38bd2d06', 4, 3, '', 0, 1, '2021-06-15 22:35:21'),
+	(4, 'CATALINA GOMEZ', '57b14a032b0d6bfeb45b50987bb3bee2', 5, 3, '', 0, 1, '2021-06-15 22:37:21'),
+	(5, 'ELENA CRUZ', '3f7f41fb8e972a91b38d193254e1630f', 6, 4, '', 0, 1, '2021-06-15 22:39:02'),
+	(6, 'ALBA RAMIREZ', '3a467ff8834b9c87e6f569fa2f952b5b', 8, 2, '', 0, 1, '2021-06-24 23:22:11'),
+	(7, 'WENDY SERPAS', 'e10adc3949ba59abbe56e057f20f883e', 9, 2, '', 0, 1, '2021-06-24 23:29:17'),
+	(8, 'JACQUELINNE TREJO', 'b6683b0b0fb3b20575b6fbfa9e90c91c', 7, 2, '', 0, 1, '2021-06-24 23:34:02'),
+	(9, 'PATRICIA GARCIA', 'bbb5ff6dc3826b999a5cf0c2e7b2c889', 10, 2, '', 0, 1, '2021-06-26 02:40:06'),
+	(10, 'CARLOS MARTINEZ', '0eca7c845b519c85ea7dc27a82e3891e', 11, 5, '', 0, 1, '2021-06-29 19:51:00'),
+	(11, 'LABORATORIO', '6e3f560530f160dc58dcd01aabb2e9c2', 12, 7, '', 0, 1, '2021-07-30 20:09:42'),
+	(12, 'SALAS', 'e10adc3949ba59abbe56e057f20f883e', 1, 8, '', 0, 1, '2023-10-04 20:18:28');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_usuario_anuncio
 CREATE TABLE IF NOT EXISTS `tbl_usuario_anuncio` (
@@ -1974,7 +2524,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario_anuncio` (
   PRIMARY KEY (`idUsuarioAnuncio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_usuario_anuncio: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_vales_hemo
 CREATE TABLE IF NOT EXISTS `tbl_vales_hemo` (
@@ -1985,7 +2535,7 @@ CREATE TABLE IF NOT EXISTS `tbl_vales_hemo` (
   PRIMARY KEY (`idVale`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_vales_hemo: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_varios
 CREATE TABLE IF NOT EXISTS `tbl_varios` (
@@ -1999,7 +2549,7 @@ CREATE TABLE IF NOT EXISTS `tbl_varios` (
   PRIMARY KEY (`idVarios`)
 ) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_varios: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla db_centro_medico.tbl_zonas_sv
 CREATE TABLE IF NOT EXISTS `tbl_zonas_sv` (
@@ -2008,7 +2558,12 @@ CREATE TABLE IF NOT EXISTS `tbl_zonas_sv` (
   PRIMARY KEY (`idZona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla db_centro_medico.tbl_zonas_sv: ~4 rows (aproximadamente)
+INSERT INTO `tbl_zonas_sv` (`idZona`, `nombreZona`) VALUES
+	(1, 'Occidental'),
+	(2, 'Central'),
+	(3, 'Paracentral'),
+	(4, 'Oriental');
 
 -- Volcando estructura para disparador db_centro_medico.abonos_empleados
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
