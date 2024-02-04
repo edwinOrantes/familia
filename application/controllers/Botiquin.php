@@ -36,25 +36,24 @@ class Botiquin extends CI_Controller {
 
 	public function index(){
 		// Obteniendo el ultimo codigo
-		$ultimoCodigo = $this->Botiquin_Model->ultimoCodigo();
-        $codigo = $ultimoCodigo->codigo;
-        if($codigo  == null){ 
-            $codigo = 1000; 
-        }else{ 
-            $codigo = $codigo + 1;
-		}
+			$ultimoCodigo = $this->Botiquin_Model->ultimoCodigo();
+			$codigo = $ultimoCodigo->codigo;
+			if($codigo  == null){ 
+				$codigo = 1000; 
+			}else{ 
+				$codigo = $codigo + 1;
+			}
 		// Fin del obtener ultimo codigo
 
 		$data["medicamentos"] = $this->Botiquin_Model->medicamentosBotiquin();
 		$data["clasificaciones"] = $this->Botiquin_Model->obtenerClasificacionMedicamentos();
-		$data["proveedores"] = $this->Proveedor_Model->obtenerProveedores();
+		// $data["proveedores"] = $this->Proveedor_Model->obtenerProveedores();
+		$data["fabricantes"] = $this->Botiquin_Model->obtenerFabricantes();
 		$data["cod"] = $codigo;
-		// $data = array('clasificaciones' => $clasificacionMedicamentos, 'proveedores' => $proveedores, 'cod' => $codigo, 'medicamentos' => $medicamentos);
 
 		$this->load->view('Base/header');
 		$this->load->view('Botiquin/lista_medicamentos', $data);
 		$this->load->view('Base/footer');
-		// echo json_encode($data["medicamentos"]);
     }
     
     public function agregar_medicamento(){
@@ -83,18 +82,7 @@ class Botiquin extends CI_Controller {
 	}
 
 	public function actualizar_medicamento(){
-		$datosA = $this->input->post();
-		
-		$datos["codigoMedicamento"]  = $datosA["codigoMedicamentoA"];
-		//$datos["registroMedicamento"]  = $datosA["registroMedicamentoA"];
-		$datos["nombreMedicamento"]  = $datosA["nombreMedicamentoA"];
-		$datos["idProveedorMedicamento"]  = $datosA["idProveedorMedicamentoA"];
-		$datos["precioCMedicamento"]  = $datosA["precioCMedicamentoA"];
-		$datos["precioVMedicamento"]  = $datosA["precioVMedicamentoA"];
-		$datos["feriadoMedicamento"]  = $datosA["precioVMedicamentoA"];
-		$datos["tipoMedicamento"]  = $datosA["tipoMedicamentoA"];
-		$datos["idClasificacionMedicamento"]  = $datosA["idClasificacionMedicamentoA"];
-		$datos["idMedicamento"]  = $datosA["idMedicamentoA"];
+		$datos = $this->input->post();
 		$bool = $this->Botiquin_Model->actualizarMedicamento($datos);
 		if($bool){
 			$this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
@@ -125,7 +113,7 @@ class Botiquin extends CI_Controller {
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->setCellValue('A1', 'Código');
 		$sheet->setCellValue('B1', 'Nombre');
-		$sheet->setCellValue('C1', 'Proveedor');
+		$sheet->setCellValue('C1', 'Fabricante');
 		$sheet->setCellValue('D1', 'Precio compra');
 		$sheet->setCellValue('E1', 'Tipo');
 		$sheet->setCellValue('F1', 'Clasificación');
@@ -135,7 +123,7 @@ class Botiquin extends CI_Controller {
 		$sheet->setCellValue('J1', 'Cantidad en stock');
 		$sheet->setCellValue('K1', 'Total stock ($)');
 			
-		$datos = $this->Botiquin_Model->obtenerMedicamentos();
+		$datos = $this->Botiquin_Model->medicamentosBotiquin();
 
 		$number = 1;
 		$flag = 2;
@@ -150,7 +138,7 @@ class Botiquin extends CI_Controller {
 
 				$sheet->setCellValue('A'.$flag, $d->codigoMedicamento);
 				$sheet->setCellValue('B'.$flag, $d->nombreMedicamento);
-				$sheet->setCellValue('C'.$flag, $d->empresaProveedor);
+				$sheet->setCellValue('C'.$flag, $d->nombreFabricante);
 				$sheet->setCellValue('D'.$flag, $d->precioCMedicamento);
 				$sheet->setCellValue('E'.$flag, $d->tipoMedicamento);
 				$sheet->setCellValue('F'.$flag, $d->nombreClasificacionMedicamento);
@@ -577,6 +565,61 @@ class Botiquin extends CI_Controller {
 				redirect(base_url()."Botiquin/detalle_factura_compra/".$return."/");
 			}
 		}
-	// Fin IVA retenido
+		// Fin IVA retenido
+		
+		
+		
+	// Fabricantes
+		
+		public function gestion_fabricantes(){
+			$data["fabricantes"] = $this->Botiquin_Model->obtenerFabricantes();
+			$this->load->view("Base/header");
+			$this->load->view("Botiquin/Fabricantes/gestion_fabricantes", $data);
+			$this->load->view("Base/footer");
+		}
+
+		public function guardar_fabricante(){
+			$datos = $this->input->post();
+			$bool = $this->Botiquin_Model->guardarFabricante($datos);
+			if($bool){
+				$this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}else{
+				$this->session->set_flashdata("error","Error al guardar los datos!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}
+
+			// echo json_encode($datos);
+		}
+
+		public function actualizar_fabricante(){
+			$datos = $this->input->post();
+			$bool = $this->Botiquin_Model->actualizarFabricante($datos);
+			if($bool){
+				$this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}else{
+				$this->session->set_flashdata("error","Error al actualizar los datos!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}
+
+			// echo json_encode($datos);
+		}
+
+
+		public function eliminar_fabricante(){
+			$datos = $this->input->post();
+			$bool = $this->Botiquin_Model->eliminarFabricante($datos);
+			if($bool){
+				$this->session->set_flashdata("exito","Los datos fueron eliminados con exito!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}else{
+				$this->session->set_flashdata("error","Error al eliminar los datos!");
+				redirect(base_url()."Botiquin/gestion_fabricantes");
+			}
+
+			// echo json_encode($datos);
+		}
+	// Fabricantes
 
 }

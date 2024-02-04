@@ -56,7 +56,7 @@
                                         <th class="text-center" scope="col">Nombre</th>
                                         <th class="text-center" scope="col">Precio Compra</th>
                                         <th class="text-center" scope="col">Precio Venta</th>
-                                        <th class="text-center" scope="col">S/B</th>
+                                        <th class="text-center" scope="col">Existencia</th>
                                         <th class="text-center" scope="col">Opción</th>
                                     </tr>
                                 </thead>
@@ -73,8 +73,7 @@
 												$id ='"'.$medicamento->idMedicamento.'"';
 												$codigo = '"'.$medicamento->codigoMedicamento.'"';
 												$nombre = '"'.$medicamento->nombreMedicamento.'"';
-												$proveedor = '"'.$medicamento->empresaProveedor .'"';
-												$idproveedor = '"'.$medicamento->idProveedorMedicamento.'"';
+												$idfabricante = '"'.$medicamento->idFabricante.'"';
 												$precioC = '"'.$medicamento->precioCMedicamento.'"';
 												$precioV = '"'.$medicamento->precioVMedicamento.'"';
 												$tipo = '"'.$medicamento->tipoMedicamento.'"';
@@ -112,16 +111,24 @@
 											?>
 										</td>
                                         <td class="text-center">
+											<!-- variable -->
+												<input type="hidden" value="<?php echo $medicamento->idMedicamento; ?>" class="idMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->codigoMedicamento; ?>" class="codigoMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->nombreMedicamento; ?>" class="nombreMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->idFabricante; ?>" class="idFabricante">
+												<input type="hidden" value="<?php echo $medicamento->precioCMedicamento; ?>" class="precioCMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->precioVMedicamento; ?>" class="precioVMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->tipoMedicamento; ?>" class="tipoMedicamento">
+												<input type="hidden" value="<?php echo $medicamento->idClasificacionMedicamento; ?>" class="idClasificacionMedicamento">
+											<!-- variable -->
+
 											<?php
-												echo "<a onclick='verDetalle($id, $codigo, $nombre, $proveedor, $precioC, $precioV, $tipo, $clasif, $stock, $usados)' href='#verMedicamento' data-toggle='modal'><i class='far fa-eye ms-text-primary'></i></a>";
+												// echo "<a onclick='verDetalle($id, $codigo, $nombre, $precioC, $precioV, $tipo, $clasif, $stock, $usados)' href='#verMedicamento' data-toggle='modal'><i class='far fa-eye ms-text-primary'></i></a>";
+												echo "<a href='#actualizarMedicamento' class='actualizarMedicamento' data-toggle='modal'><i class='fas fa-pencil-alt ms-text-success'></i></a>";
 												
 												switch($this->session->userdata('nivel')) {
 													case '1':
-														echo "<a onclick='actualizarMedicamento($id, $codigo, $nombre, $proveedor, $precioC, $precioV, $tipo, $idproveedor, $idclasif)' href='#actualizarMedicamento' data-toggle='modal'><i class='fas fa-pencil-alt ms-text-success'></i></a>";
-														echo "<a onclick='eliminarMedicamento($id)' href='#eliminarMedicamento' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
-													break;
-													case '9':
-														echo "<a onclick='actualizarMedicamento($id, $codigo, $nombre, $proveedor, $precioC, $precioV, $tipo, $idproveedor, $idclasif)' href='#actualizarMedicamento' data-toggle='modal'><i class='fas fa-pencil-alt ms-text-success'></i></a>";
+														echo "<a href='#eliminarMedicamento' class='eliminarMedicamento' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
 													break;
 													default:
 														echo "";
@@ -196,20 +203,20 @@
 										</div>
 									</div>
 									<div class="col-md-6 mb-3">
-										<label for=""><strong>Proveedor</strong></label>
+										<label for=""><strong>Fabricante</strong></label>
 										<div class="input-group">
-                                        <select class="form-control controlInteligente" id="idProveedorMedicamento" name="idProveedorMedicamento" required>
+                                        <select class="form-control controlInteligente" id="idFabricanteMedicamento" name="idFabricanteMedicamento" required>
                                             <option value="">.:: Seleccionar::.</option>
 
                                             <?php
-												foreach ($proveedores as $proveedor) {
+												foreach ($fabricantes as $fabricante) {
 											?>
-                                            <option value="<?php echo $proveedor->idProveedor ?>"><?php echo $proveedor->empresaProveedor ?></option>
+                                            <option value="<?php echo $fabricante->idFabricante ?>"><?php echo $fabricante->nombreFabricante ?></option>
 											<?php } ?>
 
                                         </select>
                                             <div class="invalid-tooltip">
-                                                Ingrese un proveedor.
+                                                Ingrese un fabricante.
                                             </div>
 										</div>
 
@@ -330,7 +337,6 @@
 											<label for=""><strong>Código</strong></label>
 											<div class="input-group">
 												<input type="text" class="form-control" id="codigoMedicamentoAA"  readonly>
-												<input type="hidden" class="form-control" id="codigoMedicamentoA" name="codigoMedicamentoA" required>
 												<div class="invalid-tooltip">
 													Ingrese un código.
 												</div>
@@ -349,20 +355,20 @@
 											</div>
 										</div>
 										<div class="col-md-6 mb-3">
-											<label for=""><strong>Proveedor</strong></label>
+											<label for=""><strong>Fabricante</strong></label>
 											<div class="input-group">
-											<select class="form-control controlInteligente2" id="idProveedorMedicamentoA" name="idProveedorMedicamentoA" required>
+											<select class="form-control controlInteligente2" id="idFabricanteA" name="idFabricanteA" required>
 												<option value="">.:: Seleccionar::.</option>
 
 												<?php
-													foreach ($proveedores as $proveedor) {
+													foreach ($fabricantes as $fabricante) {
 												?>
-												<option value="<?php echo $proveedor->idProveedor ?>"><?php echo $proveedor->empresaProveedor ?></option>
+												<option value="<?php echo $fabricante->idFabricante ?>"><?php echo $fabricante->nombreFabricante ?></option>
 												<?php } ?>
 
 											</select>
 												<div class="invalid-tooltip">
-													Ingrese un proveedor.
+													Ingrese un fabricante.
 												</div>
 											</div>
 
@@ -468,7 +474,7 @@
 <!-- Fin Modal eliminar  datos del Medicamento-->
 
 <script>
-	function verDetalle(id, codigo,nombre, proveedor, precioC, precioV, tipo, clasif, stock, usados){
+	/* function verDetalle(id, codigo,nombre, proveedor, precioC, precioV, tipo, clasif, stock, usados){
 		var html = "";
 				html += '<table class="table table-borderless">';
 					html += '<tr>';
@@ -502,23 +508,28 @@
 			html += '</table>';
 
 			document.getElementById("detalleMedicamento").innerHTML = html;
-	}
+	} */
 
-	function actualizarMedicamento(id, codigo, nombre, proveedor, precioC, precioV, tipo, idproveedor, idclasif){
-		document.getElementById("codigoMedicamentoAA").value = codigo;
-		document.getElementById("codigoMedicamentoA").value = codigo;
-		document.getElementById("nombreMedicamentoA").value = nombre;
-		document.getElementById("idProveedorMedicamentoA").value = idproveedor;
-		document.getElementById("precioCMedicamentoA").value = precioC;
-		document.getElementById("precioVMedicamentoA").value = precioV;
-		document.getElementById("tipoMedicamentoA").value = tipo;
-		document.getElementById("idClasificacionMedicamentoA").value = idclasif;
-		document.getElementById("idMedicamentoA").value = id;
-	}
 
-	function eliminarMedicamento(id){
-		document.getElementById("idMedicamento").value = id;
-	}
+	$(document).on("click", ".actualizarMedicamento", function(e) {
+		e.preventDefault();
+		$("#codigoMedicamentoAA").val($(this).closest('tr').find('.codigoMedicamento').val());
+		$("#nombreMedicamentoA").val($(this).closest('tr').find('.nombreMedicamento').val());
+		$("#idFabricanteA").val($(this).closest('tr').find('.idFabricante').val());
+		$("#precioCMedicamentoA").val($(this).closest('tr').find('.precioCMedicamento').val());
+		$("#precioVMedicamentoA").val($(this).closest('tr').find('.precioVMedicamento').val());
+		$("#tipoMedicamentoA").val($(this).closest('tr').find('.tipoMedicamento').val());
+		$("#idClasificacionMedicamentoA").val($(this).closest('tr').find('.idClasificacionMedicamento').val());
+		$("#idMedicamentoA").val($(this).closest('tr').find('.idMedicamento').val());
+
+	});
+
+
+	$(document).on("click", ".eliminarMedicamento", function(e) {
+		e.preventDefault();
+		$("#idMedicamento").val($(this).closest('tr').find('.idMedicamento').val());
+
+	});
 
 	$(document).ready(function() {
         $(".controlInteligente").select2({

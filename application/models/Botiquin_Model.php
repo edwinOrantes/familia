@@ -47,11 +47,11 @@ class Botiquin_Model extends CI_Model {
 
     public function medicamentosBotiquin(){
         $sql = "SELECT 
-                m.idMedicamento, cm.nombreClasificacionMedicamento, p.empresaProveedor, p.codigoProveedor, p.propietarioProveedor, m.idClasificacionMedicamento, m.usadosMedicamento,
+                m.idMedicamento, cm.nombreClasificacionMedicamento, f.idFabricante, f.nombreFabricante, m.idClasificacionMedicamento, m.usadosMedicamento,
                 m.codigoMedicamento, m.tipoMedicamento, m.nombreMedicamento, m.stockMedicamento, m.idProveedorMedicamento, m.precioCMedicamento, m.precioVMedicamento
                 FROM tbl_medicamentos AS m
                 INNER JOIN tbl_clasificacion_medicamentos as cm on(m.idClasificacionMedicamento = cm.idClasificacionMedicamento)
-                INNER JOIN tbl_proveedores as p on(m.idProveedorMedicamento = p.idProveedor)
+                INNER JOIN tbl_fabricantes AS f ON(m.idFabricante = f.idFabricante)
                 WHERE m.ocultarMedicamento = 0 AND m.pivoteMedicamento = 0";
         $datos = $this->db->query($sql);
         return $datos->result();
@@ -71,8 +71,8 @@ class Botiquin_Model extends CI_Model {
 
     public function actualizarMedicamento($data = null ){ 
         if($data != null){
-            $sql = "UPDATE tbl_medicamentos SET codigoMedicamento = ?, nombreMedicamento = ?,
-            idProveedorMedicamento = ?, precioCMedicamento = ?, precioVMedicamento = ?, feriadoMedicamento = ?, tipoMedicamento = ?,
+            $sql = "UPDATE tbl_medicamentos SET nombreMedicamento = ?,
+            idFabricante = ?, precioCMedicamento = ?, precioVMedicamento = ?, tipoMedicamento = ?,
             idClasificacionMedicamento = ? WHERE idMedicamento = ? ";
             if($this->db->query($sql, $data)){
                 return true;
@@ -95,10 +95,10 @@ class Botiquin_Model extends CI_Model {
         }
     }
 
-    public function eliminarMedicamento($id = null){
-        if ($id != null ) {
-            $sql = "DELETE FROM tbl_medicamentos WHERE idMedicamento = ?";
-            if($this->db->query($sql, $id)){
+    public function eliminarMedicamento($data = null){
+        if ($data!= null ) {
+            $sql = "UPDATE tbl_medicamentos SET ocultarMedicamento = '1' WHERE idMedicamento = ?";
+            if($this->db->query($sql, $data)){
                 return true;
             }else{
                 return false;
@@ -367,5 +367,54 @@ class Botiquin_Model extends CI_Model {
         }
 
     // Detalle de stocks
+
+
+
+    // Fabricantes
+        public function guardarFabricante($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_fabricantes(nombreFabricante, tiempoFabricante) VALUES(?, ?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        public function obtenerFabricantes(){
+            $sql ="SELECT * FROM tbl_fabricantes WHERE estadoFabricante = '1'";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function actualizarFabricante($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_fabricantes SET nombreFabricante = ?, tiempoFabricante = ? WHERE idFabricante = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        public function eliminarFabricante($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_fabricantes SET estadoFabricante = '0' WHERE idFabricante = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fabricantes
 }
 ?> 
