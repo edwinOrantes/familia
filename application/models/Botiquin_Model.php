@@ -25,9 +25,9 @@ class Botiquin_Model extends CI_Model {
 
     public function guardarMedicamento($data = null){
         if($data != null){
-            $sql = "INSERT INTO tbl_medicamentos(codigoMedicamento, nombreMedicamento, idProveedorMedicamento, precioCMedicamento,
-                    precioVMedicamento, tipoMedicamento, idClasificacionMedicamento, ocultarMedicamento, feriadoMedicamento)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO tbl_medicamentos(codigoMedicamento, nombreMedicamento, idFabricante, precioCMedicamento,
+                    precioVMedicamento, descuentoMedicamento, tipoMedicamento, idClasificacionMedicamento, ocultarMedicamento, feriadoMedicamento)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             if($this->db->query($sql, $data)){
                 return true;
             }else{
@@ -39,8 +39,9 @@ class Botiquin_Model extends CI_Model {
     }
 
     public function obtenerMedicamentos(){
-        $sql = "SELECT * FROM tbl_medicamentos as m INNER JOIN tbl_clasificacion_medicamentos as cm on(m.idClasificacionMedicamento = cm.idClasificacionMedicamento)
-                INNER JOIN tbl_proveedores as p on(m.idProveedorMedicamento = p.idProveedor) WHERE m.ocultarMedicamento = 0";
+        $sql = "SELECT * FROM tbl_medicamentos as m 
+                INNER JOIN tbl_clasificacion_medicamentos as cm on(m.idClasificacionMedicamento = cm.idClasificacionMedicamento)
+                WHERE m.ocultarMedicamento = 0";
         $datos = $this->db->query($sql);
         return $datos->result();
     }

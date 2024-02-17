@@ -22,7 +22,6 @@
 <div class="ms-content-wrapper">
 	<div class="row">
 		<div class="col-md-12">
-        
 			<nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-arrow has-gap">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-medkit"></i> Botíquin </a> </li>
@@ -180,7 +179,8 @@
 							<form class="needs-validation" method="post" action="<?php echo base_url()?>Botiquin/guardar_medicamento" novalidate>
 								
                                 <div class="form-row">
-									<div class="col-md-12 mb-3">
+
+									<div class="col-md-6 mb-3">
 										<label for=""><strong>Código</strong></label>
 										<div class="input-group">
 											<input type="text" class="form-control" value=<?php echo $cod; ?> readonly>
@@ -190,9 +190,7 @@
                                             </div>
 										</div>
 									</div>
-								</div>
-                                
-								<div class="form-row">
+
 									<div class="col-md-6 mb-2">
 										<label for=""><strong>Nombre</strong></label>
 										<div class="input-group">
@@ -202,6 +200,7 @@
                                             </div>
 										</div>
 									</div>
+
 									<div class="col-md-6 mb-3">
 										<label for=""><strong>Fabricante</strong></label>
 										<div class="input-group">
@@ -221,9 +220,7 @@
 										</div>
 
 									</div>
-								</div>
 
-								<div class="form-row">
 									<div class="col-md-6 mb-3">
 										<label for=""><strong>Precio compra</strong></label>
 										<div class="input-group">
@@ -233,6 +230,7 @@
                                             </div>
 										</div>
 									</div>
+
 									<div class="col-md-6 mb-3">
 										<label for=""><strong>Precio venta</strong></label>
 										<div class="input-group">
@@ -242,9 +240,17 @@
                                             </div>
 										</div>
 									</div>
-								</div>
 
-                                <div class="form-row">
+									<div class="col-md-6 mb-3">
+										<label for=""><strong>Descuento empleados(%)</strong></label>
+										<div class="input-group">
+											<input type="text" value="0" class="form-control" id="descuentoMedicamento" name="descuentoMedicamento" placeholder="Porcentaje de descuento, ej. 10" required>
+                                            <div class="invalid-tooltip">
+                                                Ingrese el porcentaje de descuento para empleados.
+                                            </div>
+										</div>
+									</div>
+
 									<div class="col-md-6 mb-3">
 										<label for=""><strong>Tipo</strong></label>
                                         <select class="form-control" id="tipoMedicamento" name="tipoMedicamento" required>
@@ -258,6 +264,7 @@
                                             Selecciona un tipo de medicamento.
                                         </div>
 									</div>
+
 									<div class="col-md-6 mb-3">
 										<label for="validationCustom08"><strong>Clasificación</strong></label>
 										<select class="form-control controlInteligente" id="idClasificacionMedicamento" name="idClasificacionMedicamento" required>
@@ -274,6 +281,7 @@
                                             Selecciona una clasificación.
                                         </div>
 									</div>
+
 								</div>
 
 								<div class="text-center">
