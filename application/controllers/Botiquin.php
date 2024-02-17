@@ -57,11 +57,10 @@ class Botiquin extends CI_Controller {
     }
     
     public function agregar_medicamento(){
-		$this->load->view('Base/header');
-		
 		$proveedores = $this->Proveedor_Model->obtenerProveedores();
 		$medicamentos = $this->Botiquin_Model->obtenerMedicamentos();
 		$data = array('proveedores' => $proveedores, 'medicamentos' => $medicamentos);
+		$this->load->view('Base/header');
 		$this->load->view('Botiquin/agregar_medicamento', $data);
 		$this->load->view('Base/footer');
 	}
