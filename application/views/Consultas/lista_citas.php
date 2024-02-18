@@ -66,7 +66,7 @@
                                                 <?php
                                                     echo "<a  title='Ver boleta de cobro' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
                                                     echo "<a  title='Ver boleta de cobro' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-times ms-text-primary'></i></a>";
-                                                    echo "<a  title='Ver boleta de cobro' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-file ms-text-primary'></i></a>";
+                                                    echo "<a  title='Ver hoja de cobro' target='blank' href='".base_url()."Hoja/detalle_hoja/".$cita->hojaCobro."/'><i class='fas fa-file ms-text-primary'></i></a>";
                                                 ?>
                                             </td>
                                         </tr>

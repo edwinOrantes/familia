@@ -2270,4 +2270,43 @@ class Hoja extends CI_Controller {
 		}
 	}
 	// Descargos desde stocks
+
+
+
+	public function actualizar_forma_pago(){
+		$datos = $this->input->post();
+		$corre = $this->Hoja_Model->correlativoHoja($datos['idHojaCobro']);
+		if($corre->correlativoSalidaHoja == 0){
+			$resp = $this->Hoja_Model->cambiarFormaPago($datos);
+			$params = urlencode(base64_encode(serialize($datos)));
+			if($resp){
+				redirect(base_url()."Hoja/agregar_cambio_precio/".$params)	;
+			}else{
+				$this->session->set_flashdata("error","Error al cambiar la forma de pago");
+				redirect(base_url()."Hoja/detalle_hoja/".$datos['idHojaCobro']."/");
+			}
+		}else{
+			$this->session->set_flashdata("error","Este proceso no se puede llevar a cabo!");
+			redirect(base_url()."Hoja/detalle_hoja/".$datos['idHojaCobro']."/")	;
+		}
+
+		// echo json_encode($datos);
+	}
+
+	public function agregar_cambio_precio($params = null){
+		$hoja = unserialize(base64_decode(urldecode($params))); // Parametros necesarios
+		$medicamentos = $this->Hoja_Model->medicamentosHoja($hoja['idHojaCobro']);
+		$pivote = $hoja["formaPago"]; //0 efectivo
+		$aumento = $pivote == 0 ? $aumento = 0 : $aumento = 0.05 ;
+
+		foreach ($medicamentos as $row) {
+			// echo $row->idHojaInsumo." ".$row->cantidadInsumo." ".$row->precioInsumo." ".$row->descuentoUnitario."<br>";
+			$aumento_unitario = $row->precioInsumo * $aumento;
+			$nuevo_precio = ($row->precioInsumo - $row->aumentoUnitario) + ($row->precioInsumo * $aumento);
+			$this->Hoja_Model->agregarDescuento($row->idHojaInsumo, $nuevo_precio, $aumento_unitario);
+		}
+		$this->session->set_flashdata("exito","Se cambio la forma de pago!");
+		redirect(base_url()."Hoja/detalle_hoja/".$hoja['idHojaCobro']."/")	;
+		
+	}
 }

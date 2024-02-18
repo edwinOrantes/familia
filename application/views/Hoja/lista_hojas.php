@@ -18,7 +18,6 @@
 							if($this->session->userdata("id_usuario_h") != 11){
 								echo '<span class="badge badge-dark badge-square">Saldada</span> ';
 								echo ' <span class="badge badge-danger badge-square">Pendiente</span> ';
-								echo ' <span class="badge badge-warning badge-square">Cancelará médico</span> ';
 
 							}
 						?>

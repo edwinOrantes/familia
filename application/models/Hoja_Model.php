@@ -43,7 +43,7 @@ class Hoja_Model extends CI_Model {
                 $sql = "SELECT 
                         hc.idHoja, hc.codigoHoja, hc.fechaHoja, hc.credito_fiscal, hc.tipoHoja, hc.totalHoja, hc.estadoHoja, 
                         hc.salidaHoja, hc.diagnosticoHoja, hc.correlativoSalidaHoja, hc.anulada, hc.paraHoja,
-                        hc.descuentoHoja, hc.detalleAnulada, p.idPaciente, p.nombrePaciente, p.edadPaciente, 
+                        hc.descuentoHoja, hc.detalleAnulada, hc.formaPago, p.idPaciente, p.nombrePaciente, p.edadPaciente, 
                         p.direccionPaciente, p.duiPaciente, m.nombreMedico, h.idHabitacion, h.numeroHabitacion
                         FROM tbl_hoja_cobro as hc INNER JOIN tbl_pacientes as p
                         ON(hc.idPaciente = p.idPaciente) INNER JOIN tbl_medicos as m on(hc.idMedico = m.idMedico)
@@ -56,7 +56,32 @@ class Hoja_Model extends CI_Model {
             }
         }
 
+        public function cambiarFormaPago($data = null){
+            if ($data != null){
+                $sql = "UPDATE tbl_hoja_cobro SET formaPago = ? WHERE idHoja = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
 
+
+        public function agregarDescuento($row = null, $precio = null, $desc = null){
+            $sql = "UPDATE tbl_hoja_insumos SET aumentoUnitario = '$desc', precioInsumo = '$precio' WHERE idHojaInsumo = '$row' ";
+            $this->db->query($sql);
+        }
+
+        public function correlativoHoja($id = null){
+            if($id != null){
+                $sql = "SELECT hc.correlativoSalidaHoja FROM tbl_hoja_cobro AS hc WHERE hc.idHoja = '$id'";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
 
 
 
@@ -94,6 +119,7 @@ class Hoja_Model extends CI_Model {
                 return false;
             }
         }
+
 
         /* public function guardarHoja($data = null){
             if ($data["hoja"] != null) {
@@ -386,7 +412,8 @@ class Hoja_Model extends CI_Model {
         public function medicamentosHoja($id = null){
             if($id != null){
                 $sql = "SELECT hi.idHojaInsumo, m.nombreMedicamento, m.idMedicamento, m.stockMedicamento, m.usadosMedicamento, hi.precioInsumo,
-                        hi.cantidadInsumo, hi.descuentoUnitario, hi.fechaInsumo, hi.pivoteStock, m.tipoMedicamento, m.pivoteMedicamento FROM tbl_hoja_insumos as hi INNER JOIN tbl_medicamentos as m
+                        hi.cantidadInsumo, hi.descuentoUnitario, hi.aumentoUnitario, hi.fechaInsumo, hi.pivoteStock, m.tipoMedicamento, m.pivoteMedicamento
+                        FROM tbl_hoja_insumos as hi INNER JOIN tbl_medicamentos as m
                         ON(hi.idInsumo = m.idMedicamento) WHERE hi.idHoja = '$id' AND hi.eliminado = '0'";
                 $datos = $this->db->query($sql, $id);
                 return $datos->result();

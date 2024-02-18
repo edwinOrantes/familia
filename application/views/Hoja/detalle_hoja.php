@@ -21,7 +21,7 @@
 
 <!-- Contenido principal -->
 <?php
-
+    $precioFinal = 0; // Para el precio del medicamento en modal de agregar
     // Total de la hoja de cobro.
         $totalMedicamentos = 0;
         $totalExternos = 0;
@@ -200,6 +200,7 @@
                                             if( $this->session->userdata("acceso_h") == 10 || $this->session->userdata("acceso_h") == 1 || $this->session->userdata("acceso_h") == 2){
                                         ?>
                                             <a href="#consumidorFinal" data-toggle="modal" class="btn btn-primary text-white"><i class="fa fa-file"></i> Consumidor final</a>
+                                          
                                         <?php } ?>
                                     <!-- Fin seccion solo cajera -->
                                     
@@ -430,7 +431,7 @@
                                                             <?php } ?>
 
                                                             <tr id="totalMedicamentos">
-                                                                <td colspan="4" class="text-right"><strong>TOTAL INSUMOS Y MEDICAMENTOS</strong></td>
+                                                                <td colspan="3" class="text-right"><strong>TOTAL INSUMOS Y MEDICAMENTOS</strong></td>
                                                                 <td class="text-center">
                                                                     <!-- <label id="lblTotalMedicamentos">$ <?php //echo $totalMedicamentos; ?></label> -->
                                                                     <label><strong>
@@ -561,13 +562,14 @@
                         
                             <?php
                                 echo '<a href="#editarPaciente" id="user-flotante" data-toggle="modal" class="menu-item" title="Actualizar datos del paciente" data-toggle="modal"><i class="fa fa-user-edit"></i></a>';
-
+                                if($paciente->correlativoSalidaHoja == 0 ){
+                                    echo '<a href="#editarFormaPago" id="user-flotante" data-toggle="modal" class="menu-item" title="Cambiar forma de pago" data-toggle="modal"><i class="fa fa-solid fa-money-bill"></i></a>';
+                                }
                             ?>
                             <!-- <a href="#boletaInformativa" data-toggle="modal" class="menu-item  btn-sm" title="Boleta informativa"><i class="fa fa-file-pdf"></i></a> -->
                             <!-- <a href="#datosPaciente" data-toggle="modal" class="menu-item btn-sm" title="Actualizar información de paciente"><i class="fa fa-user-edit"></i></a> -->
                             
 
-                            <a href="#" class="menu-item"></a>
                             <a href="#" class="menu-item"></a>
                             <a href="#" class="menu-item"></a>
                             <a href="#" class="menu-item"></a>  
@@ -628,7 +630,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $precioFinal = 0;
+                                                    
                                                     foreach ($medicamentos as $medicamento) {
                                                         if($medicamento->ocultarMedicamento == 0){
                                                             $precioFinal = 0;
@@ -636,6 +638,11 @@
                                                             $nombre ='"'.$medicamento->nombreMedicamento.'"';
                                                             $stock ='"'.$medicamento->stockMedicamento.'"';
                                                             $usados = '"'.$medicamento->usadosMedicamento.'"';
+                                                            if($paciente->paraHoja == "Paciente"){
+                                                                $precioFinal = $medicamento->precioVMedicamento;
+                                                            }else{
+                                                                $precioFinal = $medicamento->precioVMedicamento - ($medicamento->precioVMedicamento * ($medicamento->descuentoMedicamento/100));
+                                                            }
                                          
                                                 ?>
                                                 <tr class="filaMedicamento">
@@ -671,7 +678,7 @@
                                                         <input type="hidden" value="<?php echo $medicamento->nombreMedicamento; ?>" id="test" class="form-control nombreM" />
                                                         <input type="hidden" value="<?php echo $medicamento->stockMedicamento; ?>" id="test" class="form-control stockM" />
                                                         <input type="hidden" value="<?php echo $medicamento->usadosMedicamento; ?>" id="test" class="form-control usadosM" />
-                                                        <input type="text" value="<?php  echo $medicamento->precioVMedicamento; ?>" id="test" class="form-control precioM" />
+                                                        <input type="text" value="<?php  echo $precioFinal; ?>" id="test" class="form-control precioM" />
                                                     </td>
                                                     <td>
                                                         <!-- <?php
@@ -1505,6 +1512,60 @@
                                                 <input type="hidden" class="form-control" id="returnHoja" name="returnHoja" required>
                                                 <input type="hidden" value="<?php echo $paciente->idHoja; ?>" id="idHojaCobro" name="idHojaCobro">
                                                 <button type="submit" class="btn btn-primary has-icon"><i class="fa fa-save"></i> Actualizar paciente </button>
+                                                <button type="reset" class="btn btn-default has-icon" data-dismiss="modal"><i class=" fa fa-times"></i> Cancelar </button>
+                                            </div>
+                                        
+                                        </form>
+                                    <!-- Fin -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>                                    
+    <!-- Fin editar paciente -->
+
+    <!-- Modal para editar paciente -->
+        <div class="modal fade" id="editarFormaPago" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog ms-modal-dialog-width">
+                <div class="modal-content ms-modal-content-width">
+                    <div class="modal-header ms-modal-header-radius-0">
+                        <h4 class="modal-title text-white">Cambiar forma de pago</h4>
+                        <!-- <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button> -->
+                    </div>
+                    <div class="modal-body p-0 text-left">
+                        <div class="col-xl-12 col-md-12">
+                            <div class="ms-panel ms-panel-bshadow-none">
+                                <div class="ms-panel-body">
+                                    <!-- Inicio -->
+                                        <form class="needs-validation" method="post" action="<?php echo base_url()?>Hoja/actualizar_forma_pago" novalidate>
+						
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label for=""><strong>Forma de pago</strong></label>
+                                                    <select  class="form-control" id="formaPago" name="formaPago" required>
+                                                        <option value="">..::Seleccionar::..</option>
+                                                        <?php
+                                                            if($paciente->formaPago == 0){
+                                                                echo '<option value="1">Tarjeta de crédito/débito</option>';
+                                                            }else{
+                                                                echo '<option value="0">Efectivo</option>';
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                    <div class="invalid-tooltip">
+                                                        Debes seleccionar la forma de pago.
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group text-center mt-3">
+                                                <input type="hidden" value="<?php echo $paciente->idHoja; ?>" id="idHojaCobro" name="idHojaCobro">
+                                                <button type="submit" class="btn btn-primary has-icon"><i class="fa fa-save"></i> Cambiar </button>
                                                 <button type="reset" class="btn btn-default has-icon" data-dismiss="modal"><i class=" fa fa-times"></i> Cancelar </button>
                                             </div>
                                         

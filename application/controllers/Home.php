@@ -55,30 +55,30 @@ class Home extends CI_Controller {
 			switch ($datos["datos"]->idAcceso) {
 				case 1:
 					// redirect(base_url()."Usuarios/dashboard");
-					redirect(base_url()."Hoja/");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 				case 8:
-					redirect(base_url()."Consultas/consultas_pendientes");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 					
 				case 5:
-					redirect(base_url()."Usuarios/dashboard");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 
 				case 9:
-					redirect(base_url()."Usuarios/dashboard");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 				
 				case 15:
-					redirect(base_url()."Botiquin/precios_medicamentos/");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 
 				case 16:
-					redirect(base_url()."InsumosLab/agregar_compra/");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 					
 				default:
-					redirect(base_url()."Hoja/");
+					redirect(base_url()."Paciente/agregar_pacientes");
 					break;
 			}
 		}
