@@ -147,25 +147,6 @@ class Reportes_Model extends CI_Model {
                         WHERE hc.anulada = 0 AND hc.fechaHoja BETWEEN '$i' AND '$f' ".$str." ORDER BY hc.codigoHoja";
                 break;
         }
-            
-        
-        /* if($flag == 4){
-            // Pendientes
-            $sql = "SELECT p.nombrePaciente, m.nombreMedico, hc.* FROM tbl_hoja_cobro AS hc 
-                INNER JOIN tbl_pacientes as p ON(hc.idPaciente = p.idPaciente) INNER JOIN tbl_medicos AS m ON(hc.idMedico = m.idMedico)
-                WHERE hc.fechaHoja BETWEEN '$i' AND '$f' AND (hc.salidaHoja = '' OR hc.correlativoSalidaHoja = 0)  ORDER BY hc.idHoja";
-        }else{
-            if($flag == 5){
-                // Saldadas
-                $sql = "SELECT p.nombrePaciente, m.nombreMedico, hc.* FROM tbl_hoja_cobro AS hc 
-                INNER JOIN tbl_pacientes as p ON(hc.idPaciente = p.idPaciente) INNER JOIN tbl_medicos AS m ON(hc.idMedico = m.idMedico)
-                WHERE hc.correlativoSalidaHoja > 0 AND hc.salidaHoja BETWEEN '$i' AND '$f' ".$str." ORDER BY hc.codigoHoja";
-            }else{
-                $sql = "SELECT p.nombrePaciente, m.nombreMedico, hc.* FROM tbl_hoja_cobro AS hc 
-                INNER JOIN tbl_pacientes as p ON(hc.idPaciente = p.idPaciente) INNER JOIN tbl_medicos AS m ON(hc.idMedico = m.idMedico)
-                WHERE hc.fechaHoja BETWEEN '$i' AND '$f' ".$str." ORDER BY hc.codigoHoja";
-            }
-        } */
         $datos = $this->db->query($sql);
         return $datos->result();
     }
@@ -406,7 +387,7 @@ class Reportes_Model extends CI_Model {
         return $datos->row();
     }
 
-    public function liquidarAbonos($data = null){
+    /*  public function liquidarAbonos($data = null){
         if($data != null){
             $abonos = $data["abonos"];
             $liquidacion = $data["liquidacion"];
@@ -420,7 +401,7 @@ class Reportes_Model extends CI_Model {
         }else{
             return false;
         }
-    }
+    } */
 
     public function validarPaquete($id = null){
         $sql = "SELECT hc.idHoja, hc.fechaHoja, hc.salidaHoja, hc.codigoHoja, hc.anulada, hc.tipoHoja, hc.descuentoHoja, hc.esPaquete, hc.totalPaquete,

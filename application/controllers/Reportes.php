@@ -72,7 +72,6 @@ class Reportes extends CI_Controller {
 		$sheet->setCellValue('D1', 'Paciente');
 		$sheet->setCellValue('E1', 'Doctor');
 		$sheet->setCellValue('F1', 'Monto');
-		$sheet->setCellValue('G1', 'Tipo');
 		$sheet->getStyle('A1:G1')->getFont()->setSize(8);
 		$border = [
 			'borders' => [
@@ -82,7 +81,7 @@ class Reportes extends CI_Controller {
 				],
 			],
 		];
-		$sheet->getStyle('A1:G1')->applyFromArray($border);
+		$sheet->getStyle('A1:F1')->applyFromArray($border);
 		$datos = $this->Reportes_Model->externosHoja($datos["hojaInicio"], $datos["hojaFin"]);
 		$number = 1;
 		$flag = 2;
@@ -98,16 +97,10 @@ class Reportes extends CI_Controller {
 				$sheet->setCellValue('E'.$flag, $d->nombreExterno);
 				$sheet->setCellValue('F'.$flag, ($d->cantidadExterno * $d->precioExterno));
 				$sheet->getStyle('F'.$flag)->getNumberFormat()->setFormatCode(PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_CURRENCY_USD_SIMPLE);
-				if($d->porPagos == 1 && $d->esPaquete == 0){
-					$sheet->setCellValue('G'.$flag, "Banco");
-					$totalHonorariosP += ($d->cantidadExterno * $d->precioExterno); // Sumando honorarios en hojas de cobro
-				}else{
-					$sheet->setCellValue('G'.$flag, '---');
-					$totalHonorariosH += ($d->cantidadExterno * $d->precioExterno); // Sumando honorarios en paquetes
-				}
+				$totalHonorariosP += ($d->cantidadExterno * $d->precioExterno); // Sumando honorarios en hojas de cobro
 
-				$sheet->getStyle('A'.$flag.':G'.$flag)->getFont()->setSize(8);
-                $sheet->getStyle('A'.$flag.':G'.$flag)->applyFromArray($border);
+				$sheet->getStyle('A'.$flag.':F'.$flag)->getFont()->setSize(8);
+                $sheet->getStyle('A'.$flag.':F'.$flag)->applyFromArray($border);
 
 				$flag = $flag+1;
 				$number = $number+1;
@@ -117,17 +110,6 @@ class Reportes extends CI_Controller {
 		$sheet->setCellValue('E'.$flag, "Total");
 		$sheet->setCellValue('F'.$flag, number_format($totalHonorariosH + $totalHonorariosP, 2));
 		$sheet->getStyle('F'.$flag)->getNumberFormat()->setFormatCode(PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_CURRENCY_USD_SIMPLE);
-		$flag++;
-		$sheet->setCellValue('E'.$flag, "Por abonos");
-		$sheet->setCellValue('F'.$flag, number_format($totalHonorariosP, 2));
-		$sheet->getStyle('F'.$flag)->getNumberFormat()->setFormatCode(PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_CURRENCY_USD_SIMPLE);
-		$flag++;
-		$sheet->setCellValue('E'.$flag, "Cuentas normales");
-		$sheet->setCellValue('F'.$flag, number_format($totalHonorariosH, 2));
-		$sheet->getStyle('F'.$flag)->getNumberFormat()->setFormatCode(PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_CURRENCY_USD_SIMPLE);
-
-		/* $sheet->getStyle('A'.$flag.':G'.$flag)->getFont()->setSize(8);
-		$sheet->getStyle('A'.$flag.':G'.$flag)->applyFromArray($border); */
 		
 		$styleThinBlackBorderOutline = [
 					'borders' => [
@@ -138,16 +120,15 @@ class Reportes extends CI_Controller {
 					],
 				];
 		//Font BOLD
-		$sheet->getStyle('A1:G1')->getFont()->setBold(true);		
+		$sheet->getStyle('A1:F1')->getFont()->setBold(true);		
 
 		//Custom width for Individual Columns
-		$sheet->getColumnDimension('A')->setWidth('6');
+		$sheet->getColumnDimension('A')->setWidth('9');
 		$sheet->getColumnDimension('B')->setWidth('9');
 		$sheet->getColumnDimension('C')->setWidth('9');
 		$sheet->getColumnDimension('D')->setWidth('25');
 		$sheet->getColumnDimension('E')->setWidth('30');
 		$sheet->getColumnDimension('F')->setWidth('10');
-		$sheet->getColumnDimension('G')->setWidth('10');
 
 		$curdate = date('d-m-Y H:i:s');
 		$writer = new Xlsx($spreadsheet);
@@ -224,11 +205,11 @@ class Reportes extends CI_Controller {
 	}
 
 	public function generar_rx_laboratorio_salida(){
-		echo '<script>
-				if (window.history.replaceState) { // verificamos disponibilidad
-					window.history.replaceState(null, null, window.location.href);
-				}
-			</script>';
+		 echo '<script>
+		 		if (window.history.replaceState) { // verificamos disponibilidad
+		 			window.history.replaceState(null, null, window.location.href);
+		 		}
+		 	</script>';
 		$datos = $this->input->post();
 		if(sizeof($datos) > 0){
 		// Recibo
@@ -253,7 +234,7 @@ class Reportes extends CI_Controller {
 						<table width="100%">
 							<tr>
 								<td width="33%"><strong>{DATE j-m-Y}</strong></td>
-								<td width="33%" align="center"><strong>{PAGENO}/{nbpg}</strong></td>
+								<td width="33%" align="center"></td>
 								<td width="33%" style="text-align: right;"><strong>Reporte de Laboratorio, RX y Ultras</strong></td>
 							</tr>
 						</table>');
@@ -459,8 +440,7 @@ class Reportes extends CI_Controller {
 		if(sizeof($datos) > 0){
 			$inicio = $datos['hojaInicio'];
 			$fin = $datos['hojaFin'];
-			$data1["hojas"] = $this->Reportes_Model->obtenerResumenHoja($inicio, $fin);
-			$data2["abonos"] = $this->Reportes_Model->abonosLiquidar();
+			$data["hojas"] = $this->Reportes_Model->obtenerResumenHoja($inicio, $fin);
 			
 			
 			// Reporte PDF
@@ -526,7 +506,7 @@ class Reportes extends CI_Controller {
 				$mpdf->watermarkTextAlpha = 0.1;
 				$mpdf->SetDisplayMode('fullpage');
 				//$mpdf->AddPage('L'); //Voltear Hoja
-				$html = $this->load->view("Reportes/liquidacion_caja_pdf",$data1,true); // Cargando hoja de estilos
+				$html = $this->load->view("Reportes/liquidacion_caja_pdf",$data,true); // Cargando hoja de estilos
 				$mpdf->WriteHTML($html);
 				$mpdf->SetHTMLHeader('<div id="cabecera" class="clearfix">
 					<div id="lateral">
@@ -560,23 +540,9 @@ class Reportes extends CI_Controller {
 						<tbody><tbody>
 					</table>'
 				);
-				// Para mostrar abonos
-				if(sizeof($data2["abonos"]) > 0){
-					$mpdf->AddPage();
-					$html2 = $this->load->view("Reportes/liquidacion_abonos_pdf",$data2,true); // Cargando hoja de estilos
-					$mpdf->WriteHTML($html2);
-				}
-
-
 				$mpdf->Output('liquidacion_caja.pdf', 'I');
 				//$this->detalle_facturas_excell($inicio, $fin); // Fila para obtener el detalle en excel
 			// Fin reporte PDF
-
-			$liquidar["abonos"] = $data2["abonos"];
-			$liquidar["liquidacion"] = $datos["liquidacion"];
-			$this->Reportes_Model->liquidarAbonos($liquidar);
-			
-			// echo json_encode($data1);
 		}else{
 			$this->session->set_flashdata("error","No se permite el reenvio de datos");
 			redirect(base_url()."Reportes/liquidacion_caja");
@@ -738,6 +704,8 @@ class Reportes extends CI_Controller {
 			$this->session->set_flashdata("error","No se permite el reenvio de datos");
 			redirect(base_url()."Reportes/cobros_pacientes");
 		}
+
+		// echo json_encode($datos);
 		
 	}
 

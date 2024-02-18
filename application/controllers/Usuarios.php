@@ -11,7 +11,7 @@ class Usuarios extends CI_Controller {
         $this->load->model("Hoja_Model");
         $this->load->model("Gastos_Model");
         $this->load->model("Reportes_Model");
-        // $this->load->model("Herramientas_Model");
+        $this->load->model("Herramientas_Model");
 		if (!$this->session->has_userdata('valido')){
 			$this->session->set_flashdata("error", "Debes iniciar sesión");
 			redirect(base_url());

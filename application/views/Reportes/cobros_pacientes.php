@@ -75,7 +75,6 @@
                                                 <option value="3"> Todos </option>
                                                 <option value="4"> Pendientes </option>
 												<option value="5"> Saldadas </option>
-												<option value="6"> El Tercio </option>
                                             </select>
 											<div class="invalid-tooltip">
 												Debes seleccionar la fecha final.

@@ -137,7 +137,7 @@
                             <td style="color: #fff; text-align: center; font-weight: bold">Total</td>
                             <td style="color: #fff; text-align: center; font-weight: bold">Externos</td>
                             <td style="color: #fff; text-align: center; font-weight: bold">Total Hoja</td>
-                            <td style="color: #fff; text-align: center; font-weight: bold">CF</td>
+                            <!-- <td style="color: #fff; text-align: center; font-weight: bold">CF</td> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -223,13 +223,7 @@
                                     <td>$ <?php echo number_format(($serv + $oserv), 2); ?></td>
                                     <td>$ <?php echo number_format($ext, 2); ?></td>
                                     <td>$ <?php echo number_format(($med + $matme + $serv + $oserv + $ext), 2); ?></td>
-                                    <td>
-                                        <?php 
-                                            //if($persona->tipoFactura == 2){
-                                                echo $persona->credito_fiscal;
-                                            //}
-                                        ?>
-                                    </td>
+                                    <!-- <td> <?php  echo $persona->credito_fiscal;  ?> </td> -->
                                 </tr>
                         <?php } ?>
                         <tr>
@@ -242,7 +236,7 @@
                             <td>$ <?php echo number_format(($servGlobal + $oservGlobal), 2); ?></td>
                             <td>$ <?php echo number_format($extGlobal, 2); ?></td>
                             <td>$ <?php echo number_format(($medGlobal + $matmeGlobal + $servGlobal + $oservGlobal + $extGlobal), 2); ?></td>
-                            <td></td>
+                            <!-- <td></td> -->
                         </tr>
                     </tbody>
                 </table>

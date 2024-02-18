@@ -87,9 +87,9 @@
                     <thead>
                         <tr style="background-color: #007bff">
                             <td style="color: #fff; text-align: center; font-weight: bold">RECIBO</td>
-                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="8" >INGRESO</td>
-                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="8" >AMBULATORIO</td>
-                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="6" >TOTALES</td>
+                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="5" >INGRESO</td>
+                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="5" >AMBULATORIO</td>
+                            <td style="color: #fff; text-align: center; font-weight: bold" colspan="3" >TOTALES</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,24 +99,15 @@
                             <td><strong>Lab</strong></td>
                             <td><strong>RX</strong></td>
                             <td><strong>Ultras</strong></td>
-                            <td><strong>Hemo.</strong></td>
-                            <td><strong>Dietas</strong></td>
-                            <td><strong>Refri.</strong></td>
                             <td><strong>Neto</strong></td>
                             <td><strong>Total</strong></td>
                             <td><strong>Lab</strong></td>
                             <td><strong>RX</strong></td>
                             <td><strong>Ultra</strong></td>
-                            <td><strong>Hemo.</strong></td>
-                            <td><strong>Dietas</strong></td>
-                            <td><strong>Refri.</strong></td>
                             <td><strong>Neto</strong></td>
                             <td><strong>Lab</strong></td>
                             <td><strong>RX</strong></td>
                             <td><strong>Ultras</strong></td>
-                            <td><strong>Hemo.</strong></td>
-                            <td><strong>Dietas</strong></td>
-                            <td><strong>Refri.</strong></td>
                         </tr>
                         <?php
                             $totalGlobalI = 0;
@@ -127,12 +118,6 @@
                             $rxGlobalA = 0;
                             $ultrasGlobalI = 0;
                             $ultrasGlobalA = 0;
-                            $hemodialisisGlobalI = 0;
-                            $hemodialisisGlobalA = 0;
-                            $dietaGlobalI = 0;
-                            $dietaGlobalA = 0;
-                            $refrigeriosGlobalI = 0;
-                            $refrigeriosGlobalA = 0;
                             foreach ($hojasCerradas as $hoja) {
                                 if($hoja->anulada == 0 && $hoja->correlativoSalidaHoja > 0){
                         ?>
@@ -169,15 +154,6 @@
                                                 case '3':
                                                     $totalUltras += ($examen->cantidadInsumo * $examen->precioInsumo);
                                                     break;
-                                                case '4':
-                                                    $totalHemodialisis += ($examen->cantidadInsumo * $examen->precioInsumo);
-                                                    break;
-                                                case '5':
-                                                    $totalDietas += ($examen->cantidadInsumo * $examen->precioInsumo);
-                                                    break;
-                                                case '6':
-                                                    $totalRefrigerios += ($examen->cantidadInsumo * $examen->precioInsumo);
-                                                    break;
                                             }
                                             $totalNeto += ($examen->cantidadInsumo * $examen->precioInsumo);
                                         }
@@ -190,21 +166,12 @@
                                         $laboratorioGlobalI += $totalLab;
                                         $rxGlobalI += $totalRX;
                                         $ultrasGlobalI += $totalUltras;
-                                        $hemodialisisGlobalI += $totalHemodialisis;
-                                        $dietaGlobalI += $totalDietas;
-                                        $refrigeriosGlobalI += $totalRefrigerios;
                                 ?>
                                 <td>$<?php echo number_format($totalHoja, 2); ?></td>                                
                                 <td>$<?php echo number_format($totalLab, 2); ?></td>
                                 <td>$<?php echo number_format($totalRX, 2); ?></td>
                                 <td>$<?php echo number_format($totalUltras, 2); ?></td>
-                                <td>$<?php echo number_format($totalHemodialisis, 2); ?></td>
-                                <td>$<?php echo number_format($totalDietas, 2); ?></td>
-                                <td>$<?php echo number_format($totalRefrigerios, 2); ?></td>
                                 <td>$<?php echo number_format(($totalHoja - $totalNeto), 2); ?></td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
@@ -216,13 +183,7 @@
                                         $laboratorioGlobalA += $totalLab;
                                         $rxGlobalA += $totalRX;
                                         $ultrasGlobalA += $totalUltras;
-                                        $hemodialisisGlobalA += $totalHemodialisis;
-                                        $dietaGlobalA += $totalDietas;
-                                        $refrigeriosGlobalA += $totalRefrigerios;
                                 ?>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
                                 <td>---</td>
@@ -232,18 +193,12 @@
                                 <td>$<?php echo number_format($totalLab, 2); ?></td>
                                 <td>$<?php echo number_format($totalRX, 2); ?></td>
                                 <td>$<?php echo number_format($totalUltras, 2); ?></td>
-                                <td>$<?php echo number_format($totalHemodialisis, 2); ?></td>
-                                <td>$<?php echo number_format($totalDietas, 2); ?></td>
-                                <td>$<?php echo number_format($totalRefrigerios, 2); ?></td>
                                 <td>$<?php echo number_format(($totalHoja - $totalNeto), 2); ?></td>
                                 <?php } ?>
                                 <!-- Fin de validacion de tipo de hoja -->
                                 <td>$<?php echo $totalLab; ?></td>
                                 <td>$<?php echo $totalRX; ?></td>
                                 <td>$<?php echo $totalUltras; ?></td>
-                                <td>$<?php echo number_format($totalHemodialisis, 2); ?></td>
-                                <td>$<?php echo number_format($totalDietas, 2); ?></td>
-                                <td>$<?php echo number_format($totalRefrigerios, 2); ?></td>
                             </tr>
 
                         <?php 
@@ -256,26 +211,17 @@
                             <td><strong>$<?php echo number_format($laboratorioGlobalI, 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($rxGlobalI, 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($ultrasGlobalI, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($hemodialisisGlobalI, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($dietaGlobalI, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($refrigeriosGlobalI, 2); ?></strong></td>
 
-                            <td><strong>$<?php echo number_format(($totalGlobalI - ($laboratorioGlobalI + $rxGlobalI + $ultrasGlobalI + $hemodialisisGlobalI + $dietaGlobalI + $refrigeriosGlobalI)), 2); ?></strong></td>
+                            <td><strong>$<?php echo number_format(($totalGlobalI - ($laboratorioGlobalI + $rxGlobalI + $ultrasGlobalI)), 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($totalGlobalA, 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($laboratorioGlobalA, 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($rxGlobalA, 2); ?></strong></td>
                             <td><strong>$<?php echo number_format($ultrasGlobalA, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($hemodialisisGlobalA, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($dietaGlobalA, 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format($refrigeriosGlobalA, 2); ?></strong></td>
 
-                            <td><strong>$<?php echo number_format(($totalGlobalA - ($laboratorioGlobalA + $rxGlobalA + $ultrasGlobalA + $hemodialisisGlobalA+ $dietaGlobalA + $refrigeriosGlobalA)), 2); ?></strong></td>
+                            <td><strong>$<?php echo number_format(($totalGlobalA - ($laboratorioGlobalA + $rxGlobalA + $ultrasGlobalA)), 2); ?></strong></td>
                             <td><strong>$<?php echo number_format(($laboratorioGlobalI + $laboratorioGlobalA), 2); ?></strong></td>
                             <td><strong>$<?php echo number_format(($rxGlobalI + $rxGlobalA), 2); ?></strong></td>
                             <td><strong>$<?php echo number_format(($ultrasGlobalI + $ultrasGlobalA), 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format(($hemodialisisGlobalI + $hemodialisisGlobalA), 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format(($dietaGlobalI + $dietaGlobalA), 2); ?></strong></td>
-                            <td><strong>$<?php echo number_format(($refrigeriosGlobalI + $refrigeriosGlobalA), 2); ?></strong></td>
                         </tr>
 
                     </tbody>

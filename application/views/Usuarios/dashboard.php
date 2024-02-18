@@ -46,14 +46,44 @@
                 </div>
             </a>
         </div>
-        
+
         <div class="col-xl-4 col-md-4 col-sm-6">
+            <a href="<?php echo base_url(); ?>Gastos/detalle_cuentas_gastos/<?php echo $i; ?>/<?php echo $f; ?>" target="_blank">
+            <!-- <a href="#"> -->
+                <div class="ms-card card-linkedin ms-widget ms-infographics-widget carrerita">
+                    <div class="ms-card-body media">
+                        <div class="media-body">
+                        <h6>Gastos</h6>
+                        <p class="ms-card-change">$ <?php echo number_format(($totalGastos), 2); ?></p>
+                        </div>
+                    </div>
+                    <i class="fas fa-file-invoice-dollar ms-icon-mr text-white fa-sm"></i>
+                </div>
+
+            </a>
+        </div>
+        
+        <!-- <div class="col-xl-4 col-md-4 col-sm-6">
             <a href="#">
                 <div class="ms-card card-linkedin ms-widget ms-infographics-widget carrerita">
                     <div class="ms-card-body media">
                         <div class="media-body">
                         <h6>Facturación mensual</h6>
                         <p class="ms-card-change">$ <?php echo number_format(($facturado), 2); ?></p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chart-line ms-icon-mr text-white fa-sm"></i>
+                </div>
+            </a>
+        </div> -->
+
+        <div class="col-xl-4 col-md-4 col-sm-6">
+            <a href="#">
+                <div class="ms-card card-linkedin ms-widget ms-infographics-widget carrerita">
+                    <div class="ms-card-body media">
+                        <div class="media-body">
+                        <h6>Ingresos - Gastos</h6>
+                        <p class="ms-card-change">$ <?php echo number_format((($totalIngresos + $totalAmbulatorio) - $facturado), 2); ?></p> 
                         </div>
                     </div>
                     <i class="fas fa-chart-line ms-icon-mr text-white fa-sm"></i>
@@ -75,22 +105,8 @@
             </a>
         </div>
 
+        
 
-        <div class="col-xl-4 col-md-4 col-sm-6">
-            <a href="<?php echo base_url(); ?>Gastos/detalle_cuentas_gastos/<?php echo $i; ?>/<?php echo $f; ?>" target="_blank">
-            <!-- <a href="#"> -->
-                <div class="ms-card card-linkedin ms-widget ms-infographics-widget carrerita">
-                    <div class="ms-card-body media">
-                        <div class="media-body">
-                        <h6>Gastos</h6>
-                        <p class="ms-card-change">$ <?php echo number_format(($totalGastos), 2); ?></p>
-                        </div>
-                    </div>
-                    <i class="fas fa-file-invoice-dollar ms-icon-mr text-white fa-sm"></i>
-                </div>
-
-            </a>
-        </div>
     </div>
     
     <div>

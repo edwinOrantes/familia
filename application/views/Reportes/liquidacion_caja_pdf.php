@@ -69,7 +69,6 @@
 <?php
     $totalISBMGlobal = 0;
     $totalCostoGlobal = 0;
-    $totalAbonadoGlobal = 0;
 ?>
 
 
@@ -87,27 +86,18 @@
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Médico</th>
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Hospital</th>
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Externos</th>
-                            <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Subtotal</th>
-                            <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Abonado</th>
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">Total</th>
-                            <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">C/F</th>
+                            <!-- <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px">C/F</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $globalMedicamentosH = 0;
-                            $globalMedicamentosP = 0;
-                            $globalExternosH = 0;
-                            $globalExternosP = 0;
+                            $globalMedicamentos = 0;
+                            $globalExternos = 0;
                             foreach ($hojas as $datos_hoja) {
                                 if($datos_hoja->anulada == 0){
-                                    if($datos_hoja->porPagos == 0 || $datos_hoja->esPaquete == 1){
-                                        echo "<tr>";
-                                    }else{
-                                        echo "<tr style='background: #EFCBD0;'>";
-                                    }
                         ?>
-                        <!-- <tr> -->
+                        <tr>
                             <td style="font-size: 8px"><?php echo $datos_hoja->fechaHoja; ?></td>
                             <td style="font-size: 8px"><?php echo $datos_hoja->salidaHoja; ?></td>
                             <td style="font-size: 8px"><?php echo $datos_hoja->codigoHoja; ?></td>
@@ -118,65 +108,44 @@
                                 //////////////////////////////////////////////////////////////
                                     $totalHospital = 0;
                                     $totalExterno = 0;
-                                    $totalAbonado = 0;
-
-                                    $totalHospital  += ($datos_hoja->medicamentos - $datos_hoja->descuentoHoja);
-                                    $totalExterno  += $datos_hoja->externos;
-                                    $totalAbonado  += @$datos_hoja->abonado;
                                     
-                                //////////////////////////////////////////////////////////////
-
-                                echo number_format(($totalHospital), 2);
-                            ?></td> 
-                            <td style="font-size: 8px">$ <?php echo number_format($totalExterno, 2); ?></td>  
-                            <td style="font-size: 8px">$ <?php echo number_format(($totalHospital + $totalExterno), 2); ?></td>  
-                            <td style="font-size: 8px">$ <?php echo number_format($totalAbonado, 2); ?></td>
-                            <td style="font-size: 8px">$ <?php echo number_format(($totalHospital + $totalExterno) - $totalAbonado, 2); ?></td>
-                            <td style="font-size: 8px"><?php echo $datos_hoja->credito_fiscal; ?></td>
-                        </tr>
-                        <?php   
-                                    if($datos_hoja->porPagos == 0 || $datos_hoja->esPaquete == 1){
-                                        $globalMedicamentosH += $totalHospital;
-                                        $globalExternosH += $totalExterno;
-                                    }else{
-                                        if($datos_hoja->porPagos == 1){
-                                            $globalMedicamentosP += $totalHospital;
-                                            $globalExternosP += $totalExterno;
-                                            $totalAbonadoGlobal += $totalAbonado;
+                                    $medicamentos = $this->Reportes_Model->obtenerMedicamentos($datos_hoja->idHoja);
+                                    if(sizeof($medicamentos) > 0){
+                                        foreach ($medicamentos as $hoja) {
+                                            $totalHospital  += ($hoja->cantidadInsumo * $hoja->precioInsumo);
+                                           
                                         }
                                     }
+
+                                    $externos = $this->Reportes_Model->obtenerExternos($datos_hoja->idHoja);
+                                    if(sizeof($externos) > 0){
+                                        foreach ($externos as $hoja) {
+                                            $totalExterno  += ($hoja->cantidadExterno * $hoja->precioExterno);
+                                           
+                                        }
+                                    }
+
+                                //////////////////////////////////////////////////////////////
+
+                                echo number_format(($totalHospital - $datos_hoja->descuentoHoja), 2);
+                            ?></td> 
+                            <td style="font-size: 8px">$ <?php echo number_format($totalExterno, 2); ?></td>  
+                            <td style="font-size: 8px">$ <?php echo number_format(($totalHospital + $totalExterno - $datos_hoja->descuentoHoja), 2); ?></td>  
+                            <!-- <td style="font-size: 8px"><?php echo $datos_hoja->credito_fiscal; ?></td>   -->
+                        </tr>
+                        <?php
+                                $globalMedicamentos += ($totalHospital - $datos_hoja->descuentoHoja);
+                                $globalExternos += $totalExterno;
                                 }
                             }
                         ?>
-
-                        <tr>
-                            <td style="font-size: 8px" colspan="6"><strong>CUENTAS POR ABONOS</strong></td>
-                            <td style="font-size: 8px; text-decoration:line-through">$ <?php echo number_format($globalMedicamentosP, 2); ?></td> 
-                            <td style="font-size: 8px; text-decoration:line-through">$ <?php echo number_format($globalExternosP, 2); ?></td> 
-                            <td style="font-size: 8px; text-decoration:line-through">$ <?php echo number_format(($globalMedicamentosP + $globalExternosP), 2); ?></td>
-                            <td style="font-size: 8px; text-decoration:line-through">$ <?php echo number_format($totalAbonadoGlobal, 2); ?></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosP + $globalExternosP) - $totalAbonadoGlobal, 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong></strong></td> 
-                        </tr>
                         
                         <tr>
-                            <td style="font-size: 8px" colspan="6"><strong>TOTAl DIA</strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format($globalMedicamentosH, 2); ?></strong></td> 
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format($globalExternosH, 2); ?></strong></td> 
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosH + $globalExternosH), 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(0, 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosH + $globalExternosH), 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong></strong></td> 
-                        </tr>
-
-                        <tr>
-                            <td style="font-size: 8px" colspan="6"><strong>TOTAl</strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosH + $globalMedicamentosP), 2); ?></strong></td> 
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format($globalExternosH + $globalExternosP, 2); ?></strong></td> 
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosH + $globalExternosH) + ($globalMedicamentosP + $globalExternosP), 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format($totalAbonadoGlobal, 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentosH + $globalExternosH) + ($globalMedicamentosP + $globalExternosP) - $totalAbonadoGlobal, 2); ?></strong></td>
-                            <td style="font-size: 8px"><strong></strong></td> 
+                            <td style="font-size: 8px" colspan="6"><strong>TOTAL</strong></td>
+                            <td style="font-size: 8px"><strong>$ <?php echo number_format($globalMedicamentos, 2); ?></strong></td> 
+                            <td style="font-size: 8px"><strong>$ <?php echo number_format($globalExternos, 2); ?></strong></td> 
+                            <td style="font-size: 8px"><strong>$ <?php echo number_format(($globalMedicamentos + $globalExternos), 2); ?></strong></td> 
+                            <!-- <td style="font-size: 8px"><strong></strong></td>  -->
                         </tr>
 
                     </tbody>
