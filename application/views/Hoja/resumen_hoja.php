@@ -1,6 +1,6 @@
 <style>
     body{
-        background-image: url('public/img/test3_bg.jpg') ;
+        /* background-image: url('public/img/test3_bg.jpg') ; */
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -136,7 +136,7 @@
 <div class="detalle">
     <table class="tabla_detalle">
         <thead>
-            <tr style="background-color: rgba(11, 153, 208, 1);">
+            <tr style="background-color: rgba(7, 84, 128, 1);">
                 <th style="color: #ffffff">NOMBRE</th>
                 <th style="color: #ffffff">CANTIDAD</th>
                 <th style="color: #ffffff">PRECIO</th>
@@ -149,7 +149,7 @@
             <?php
                 if($m == 1){
             ?>
-                <tr style="border: 1px solid #000; background-color: rgba(11, 153, 208, 1);">
+                <tr style="border: 1px solid #000; background-color: rgba(7, 84, 128, 1);">
                     <th colspan="4" style="padding-left: 10x; color: #ffffff; text-align: center"> MEDICAMENTOS</th>
                     <!-- <th colspan="3" style="padding: 5x; color: #ffffff"></th> -->
                 </tr>
@@ -182,7 +182,7 @@
             <?php
                 if($mm == 1){
             ?>
-            <tr style="border: 1px solid #000; background-color: rgba(11, 153, 208, 1);">
+            <tr style="border: 1px solid #000; background-color: rgba(7, 84, 128, 1);">
                 <th colspan="4" style="padding-left: 10x; color: #ffffff; text-align: center">MATERIALES MEDICOS</th>
                 <!-- <th colspan="3" style="padding: 5x; color: #ffffff; text-align: center"></th> -->
             </tr>
@@ -216,7 +216,7 @@
             <?php
                 if($s == 1){
             ?>
-            <tr style="border: 1px solid #000; background-color: rgba(11, 153, 208, 1);">
+            <tr style="border: 1px solid #000; background-color: rgba(7, 84, 128, 1);">
                 <th colspan="4" style="padding-left: 10x; color: #ffffff; text-align: center">SERVICIOS</th>
                 <!-- <th colspan="3" style="padding: 5x;color: #ffffff; text-align: center"></th> -->
             </tr>
@@ -251,7 +251,7 @@
             <?php
                 if($os == 1){
             ?>
-            <tr style="border: 1px solid #000; background-color: rgba(11, 153, 208, 1);">
+            <tr style="border: 1px solid #000; background-color: rgba(7, 84, 128, 1);">
                 <th colspan="4" style="padding-left: 10x; color: #ffffff; text-align: center ">OTROS SERVICIOS</th>
                 <!-- <th colspan="3" style="padding: 5x; color: #ffffff; text-align: center "></th> -->
             </tr>
@@ -291,7 +291,7 @@
             <?php
                 if(sizeof($externosHoja) > 0){
             ?>
-            <tr style="border: 1px solid #000; background-color: rgba(11, 153, 208, 1);">
+            <tr style="border: 1px solid #000; background-color: rgba(7, 84, 128, 1);">
                 <th colspan="4" style="padding-left: 10x;color: #ffffff; text-align: center">COBROS EXTERNOS</th>
                 <!-- <th colspan="3" style="padding: 5x;color: #ffffff; text-align: center"></th> -->
             </tr>
@@ -342,7 +342,7 @@
             echo '<h5>Detalle de abonos</h5>';
             echo '<table class="tabla_detalle">
                     <thead>
-                        <tr style="background-color: rgba(11, 153, 208, 1);">
+                        <tr style="background-color: rgba(7, 84, 128, 1);">
                             <th>#</th>
                             <th>FECHA</th>
                             <th>MONTO</th>

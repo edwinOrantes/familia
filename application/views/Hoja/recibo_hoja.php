@@ -1,7 +1,7 @@
 <style>
     body{
         
-        background-image: url('public/img/test3_bg.jpg') ;
+        /* background-image: url('public/img/test3_bg.jpg') ; */
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -159,7 +159,7 @@
     <table class="tabla_detalle">
         <thead>
             
-                <tr style="color: #fff; background-color: rgba(11, 153, 208, 1);">
+                <tr style="color: #fff; background-color: rgba(7, 84, 128, 1);">
                     <th style="color: #ffffff; padding: 2px">CANTIDAD</th>
                     <th style="color: #ffffff; padding: 2px">DESCRIPCION</th>
                     <th style="color: #ffffff; padding: 2px">PRECIO</th>

@@ -34,7 +34,7 @@ class Gastos extends CI_Controller {
 		$this->load->model("Proveedor_Model");
 		$this->load->model("Medico_Model");
 		$this->load->model("Externos_Model");
-		// $this->load->model("Pendientes_Model");
+		$this->load->model("Pendientes_Model");
 	}
 
 	public function index(){
@@ -456,88 +456,35 @@ class Gastos extends CI_Controller {
 				$recibo["forma"] = $datos["pagoGasto"];
 				if(isset($datos["chequeGasto"])){
 					$recibo["cheque"] = $datos["chequeGasto"];
+					$recibo["bancoGasto"] = $datos["bancoGasto"];
+					$recibo["cuentaGasto"] = $datos["cuentaGasto"];
 				}else{
 					$recibo["cheque"] = "";
+					$recibo["bancoGasto"] = "";
+					$recibo["cuentaGasto"] = "";
 				}
 				$recibo["efectuoGasto"] = $datos["efectuoGasto"];
 				//$this->recibo_gasto($recibo);
 			// Fin datos del recibo
 
 
-			if(isset($datos["chequeGasto"])){
-				// Cuenta por pagar
-					$porPagar["idProveedor"] = $datos["idProveedorGasto"]; 
-					$porPagar["fechaCuenta"] = $datos["fechaGasto"];
-					// Para cuando es un proveedor
-					if($datos["entidadGasto"] == 1){
-						$porPagar["nrcCuenta"] = "---"; 
-					}else{
-						$prov = $this->Gastos_Model->obtenerProveedor($datos["idProveedorGasto"]);
-						$porPagar["nrcCuenta"] = $prov->nrcProveedor; 
-					}
-					
-					// Fin para cuando es un proveedor
-
-					$porPagar["facturaCuenta"] = "---"; 
-					$porPagar["plazoCuenta"] = "30"; 
-					$porPagar["subtotalCuenta"] = $datos["montoGasto"]; 
-					$porPagar["ivaCuenta"] = "0"; 
-					$porPagar["perivaCuenta"] = "0"; 
-					$porPagar["totalCuenta"] = $datos["montoGasto"]; 
-					$porPagar["estadoCuentaPagar"] = "1";
-					if($datos["entidadGasto"] == 1){
-						$porPagar["pivote"] = "1"; 
-					}else{
-						$porPagar["pivote"] = "0"; 
-					}
-
-					$cuentaXPagar = $this->Pendientes_Model->guardarCuentaPagar($porPagar);  //Guardando cuenta por pagar
-
-					// Ordenando datos del gasto
-						$gasto["tipoGasto"] = $datos["tipoGasto"];
-						$gasto["montoGasto"] = $datos["montoGasto"];
-						$gasto["entregadoGasto"] = $datos["entregadoGasto"];
-						$gasto["idCuentaGasto"] = $datos["idCuentaGasto"];
-						$gasto["fechaGasto"] = $datos["fechaGasto"];
-						$gasto["entidadGasto"] = $datos["entidadGasto"];
-						$gasto["idProveedorGasto"] = $datos["idProveedorGasto"];
-						$gasto["pagoGasto"] = $datos["pagoGasto"];
-						$gasto["numeroGasto"] = $datos["chequeGasto"];
-						$gasto["bancoGasto"] = $datos["bancoGasto"];
-						$gasto["cuentaGasto"] = $datos["cuentaGasto"];
-						$gasto["descripcionGasto"] = $datos["descripcionGasto"];
-						$gasto["codigoGasto"] = $datos["codigoGasto"];
-						$gasto["flagGasto"] = '1';
-						$gasto["efectuoGasto"] = $datos["efectuoGasto"];
-					// Fin datos del gasto
-
-					$data["gasto"] = $gasto;
-					$data["cuentas"] = $cuentaXPagar;
-					$id = $this->Pendientes_Model->saldarCuentas($data); // Retorna el Id del gasto.
-					if($id > 0){
-						$this->Gastos_Model->actualizarCuentaXPagar($cuentaXPagar, $id);
-						$this->session->set_flashdata("exito","Los datos se guardaron con exito'");
-						redirect(base_url()."Gastos/imprimir_recibo/".$id."/".$datos["idProveedorGasto"]."/".$entidadGasto."/1");
-					}else{
-						$this->session->set_flashdata("error","Error al guardar los datos");
-						redirect(base_url()."CuentasPendientes/cuentas_por_pagar");
-					}
-				//Fin cuenta por pagar
+			$bool = $this->Gastos_Model->guardarGasto($datos);
+			if($bool){
+				//$this->session->set_flashdata("exito","El gasto se registro con exito!");
+				$this->recibo_gasto($recibo);
+				//redirect(base_url()."Gastos/recibo_gasto");
 			}else{
-				$bool = $this->Gastos_Model->guardarGasto($datos);
-				if($bool){
-					//$this->session->set_flashdata("exito","El gasto se registro con exito!");
-					$this->recibo_gasto($recibo);
-					//redirect(base_url()."Gastos/recibo_gasto");
-				}else{
-					$this->session->set_flashdata("error","Error al registrar el gasto!");
-					redirect(base_url()."Gastos/control_gastos");
-				}
+				$this->session->set_flashdata("error","Error al registrar el gasto!");
+				redirect(base_url()."Gastos/control_gastos");
 			}
+
+			// echo json_encode($recibo);
 		}else{
 			$this->session->set_flashdata("error","No se permite el reenvio de datos");
 			redirect(base_url()."Gastos/control_gastos");
 		}
+
+		// echo json_encode($datos);
 	}
 
 	// Funcion para obtener de forma asincrona el tipo de entidad
@@ -572,7 +519,7 @@ class Gastos extends CI_Controller {
 				]);
 			//$mpdf->setFooter('');
 			//$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Centro Médico, El Tránsito");
 			$mpdf->SetAuthor("Edwin Orantes");
 			$mpdf->showWatermarkText = false;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
@@ -584,8 +531,7 @@ class Gastos extends CI_Controller {
 				<div class="cabecera" style="font-family: Times New Roman">
 					<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
 					<div class="title_cabecera">
-						<h4>HOSPITAL ORELLANA, USULUTAN</h4>
-						<h5>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</h5>
+						<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
 					</div>
 					
 					<div class="subtitle_cabecera">
@@ -648,8 +594,7 @@ class Gastos extends CI_Controller {
 				<div class="cabecera">
 					<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
 					<div class="title_cabecera">
-						<h4>HOSPITAL ORELLANA, USULUTAN</h4>
-						<h5>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</h5>
+						<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
 					</div>
 				</div>
 			');

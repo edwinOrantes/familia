@@ -65,8 +65,8 @@ class Gastos_Model extends CI_Model {
     public function guardarGasto($data = null){
         if($data != null){
             if(isset($data["chequeGasto"])){
-                $sql = "INSERT INTO tbl_gastos(tipoGasto, montoGasto, entregadoGasto, idCuentaGasto, fechaGasto, entidadGasto, idProveedorGasto, pagoGasto, numeroGasto, descripcionGasto, codigoGasto, efectuoGasto)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO tbl_gastos(tipoGasto, montoGasto, entregadoGasto, idCuentaGasto, fechaGasto, entidadGasto, idProveedorGasto, pagoGasto, numeroGasto, bancoGasto, cuentaGasto, descripcionGasto, codigoGasto, efectuoGasto)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             }else{
                 $sql = "INSERT INTO tbl_gastos(tipoGasto, montoGasto, entregadoGasto, idCuentaGasto, fechaGasto, entidadGasto, idProveedorGasto, pagoGasto, descripcionGasto, codigoGasto, efectuoGasto)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

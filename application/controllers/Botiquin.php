@@ -390,13 +390,13 @@ class Botiquin extends CI_Controller {
 			$mpdf->SetHTMLFooter('
 				<table width="100%">
 					<tr>
-						<td width="33%">{DATE j-m-Y}</td>
-						<td width="33%" align="center">{PAGENO}/{nbpg}</td>
-						<td width="33%" style="text-align: right;">Detalle de compra</td>
+						<td width="33%"></td>
+						<td width="33%" align="center"></td>
+						<td width="33%" style="text-align: right;"><strong>Detalle de compra</strong></td>
 					</tr>
 				</table>');
 			$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Centro Médico, El Tránsito");
 			$mpdf->SetAuthor("Edwin Orantes");
 			//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
 			$mpdf->showWatermarkText = true;

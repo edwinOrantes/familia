@@ -660,20 +660,21 @@ class Hoja extends CI_Controller {
 				]);
 			//$mpdf->setFooter('');
 			//$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Centro Médico, El Tránsito");
 			$mpdf->SetAuthor("Edwin Orantes");
 			$mpdf->showWatermarkText = false;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
 			$mpdf->watermarkTextAlpha = 0.1;
 			$mpdf->SetDisplayMode('fullpage');
 			//$mpdf->AddPage('L'); //Voltear Hoja
+
+
 			$html = $this->load->view('Hoja/resumen_hoja', $data ,true); // Cargando hoja de estilos
 			$mpdf->SetHTMLHeader('
 				<div class="cabecera" style="font-family: Times New Roman">
 					<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
 					<div class="title_cabecera">
-						<h4>HOSPITAL ORELLANA, USULUTAN</h4>
-						<h5>Sexta calle oriente, #8, Usulután, El Salvador, PBX: 2606-6673</h5>
+						<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
 					</div>
 					
 					<div class="subtitle_cabecera">
@@ -711,7 +712,7 @@ class Hoja extends CI_Controller {
 			// FOOTER MALO EN TEORIA
 			$mpdf->SetHTMLFooter('
 				<div class="numeracion" style="font-family: Times New Roman">
-					<div class="numeracion_izquierda"><strong>Pagina {PAGENO}/{nb}</strong></div>
+					<div class="numeracion_izquierda"><strong></strong></div>
 					<div class="numeracion_derecha"><strong>Total cuenta $'.number_format($totalGlobal, 2).'</strong></div>
 				</div>
 			');
@@ -782,7 +783,7 @@ class Hoja extends CI_Controller {
 					]);
 				//$mpdf->setFooter('');
 				//$mpdf->SetProtection(array('print'));
-				$mpdf->SetTitle("Hospital Orellana, Usulutan");
+				$mpdf->SetTitle("Centro Médico, El Tránsito");
 				$mpdf->SetAuthor("Edwin Orantes");
 				$mpdf->showWatermarkText = false;
 				$mpdf->watermark_font = 'DejaVuSansCondensed';
@@ -794,8 +795,7 @@ class Hoja extends CI_Controller {
 					<div class="cabecera" style="font-family: Times New Roman">
 						<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
 						<div class="title_cabecera">
-							<h4>HOSPITAL ORELLANA, USULUTAN</h4>
-							<h5>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</h5>
+							<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
 						</div>
 						
 						<div class="subtitle_cabecera">
@@ -1197,16 +1197,16 @@ class Hoja extends CI_Controller {
 
 		// Metodos para seleccionar el nuevo medicamento en hoja de cobro
 		// Obteniendo DUI de paciente para validad
-		public function obtener_medicamento(){
-			if($this->input->is_ajax_request()){
-				$id =$this->input->get("id");
-				$data = $this->Hoja_Model->obtenerMedicamento(trim($id));
-				echo json_encode($data);
+			public function obtener_medicamento(){
+				if($this->input->is_ajax_request()){
+					$id =$this->input->get("id");
+					$data = $this->Hoja_Model->obtenerMedicamento(trim($id));
+					echo json_encode($data);
+				}
+				else{
+					echo "Error...";
+				}
 			}
-			else{
-				echo "Error...";
-			}
-		}
 	
 	// Conectandose a otra DB
 		/* public function test(){

@@ -77,10 +77,7 @@
     <div id="principal">
         <table style="text-align: center;">
             <tr>
-                <td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-            </tr>
-            <tr>
-                <td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX: 2606-6673</strong></td>
+                <td><strong style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</strong></td>
             </tr>
         </table>
     </div>
@@ -126,7 +123,7 @@
             <div class="detalle">
                 <table cellspacing="0" cellpadding="5">
                     <thead>
-                        <tr style="background-color: #007bff; color: #fff">
+                        <tr style="background-color: rgba(7, 84, 128, 1); color: #fff">
                             <td style="color: #fff"><strong>Lote</strong></td>
                             <td style="color: #fff"><strong>Fecha vencimiento</strong></td>
                             <td style="color: #fff"><strong>Medicamento</strong></td>
