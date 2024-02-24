@@ -13,15 +13,7 @@
 			<div class="ms-panel">
 				<div class="ms-panel-header ms-panel-custome">
                     <div class="col-md-6"><h6>Lista de hojas de cobro</h6></div>
-                    <div class="col-md-6 text-right">
-						<?php
-							if($this->session->userdata("id_usuario_h") != 11){
-								echo '<span class="badge badge-dark badge-square">Saldada</span> ';
-								echo ' <span class="badge badge-danger badge-square">Pendiente</span> ';
-
-							}
-						?>
-					</div>
+                    <div class="col-md-6 text-right"> </div>
 				</div>
 				<div class="ms-panel-body">
 					<div class="row">
@@ -38,7 +30,6 @@
                                         <th class="text-center" scope="col">Médico</th>
                                         <th class="text-center" scope="col">Habitación</th>
                                         <th class="text-center" scope="col">Fecha de ingreso</th>
-                                        <th class="text-center" scope="col">Seguro</th>
                                         <th class="text-center" scope="col">Opción</th>
                                     </tr>
                                 </thead>
@@ -92,22 +83,9 @@
 										<td class="text-center"><?php echo $hoja->numeroHabitacion; ?></td>
 										<td class="text-center"><?php echo $hoja->fechaHoja; ?></td>
 										<td class="text-center">
-											<?php
-												if($hoja->seguroHoja > 1){
-													echo '<span class="badge badge-success">'.$hoja->nombreSeguro.'</span>';
-												}else{
-													echo '<span class="badge badge-info">N/A</span>';
-												}
-											?>
-										</td>
-										<td class="text-center">
 										<?php
 											if ($hoja->estadoHoja == 1) {
 												echo "<a href='#editarHoja' onclick='editaHoja($id, $fecha, $habitacion, $medico, $tipo, $destino)' data-toggle='modal' title='Editar detalle de la hoja'><i class='fas fa-edit ms-text-primary'></i></a>";
-												if($hoja->tipoHoja == "Ambulatorio"){
-													echo "<a href='#editarHoja2' onclick='editaHoja2($id, $edad, $pac)' data-toggle='modal' title='Cambiar paciente'><i class='fas fa-user ms-text-primary'></i></a>";
-												}
-												
 												echo "<a href='".base_url()."Hoja/detalle_hoja/".$hoja->idHoja."/' title='Agregar detalle'><i class='fas fa-file-signature ms-text-primary'></i></a>";
 											}else{
 												echo "<a href='".base_url()."Hoja/detalle_hoja/".$hoja->idHoja."/' title='Ver detalle'><i class='far fa-eye ms-text-primary'></i></a>";
@@ -250,65 +228,6 @@
 <!-- Fin Modal editar fechas de hojas-->
 
 
-<!-- Modal para editar fechas de hojas-->
-	<div class="modal fade" id="editarHoja2" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog ms-modal-dialog-width">
-			<div class="modal-content ms-modal-content-width">
-				<div class="modal-header  ms-modal-header-radius-0">
-					<h4 class="modal-title text-white"></i> Datos de la hoja</h4>
-					<button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
-				</div>
-
-				<div class="modal-body p-0 text-left">
-					<div class="col-xl-12 col-md-12">
-						<div class="ms-panel ms-panel-bshadow-none">
-							<div class="ms-panel-body">
-								<form class="needs-validation" id="frmHpjaCobro" method="post" action="<?php echo base_url() ?>Hoja/actualizar_paciente_hoja" novalidate>
-									
-									<div class="form-row">
-										<div class="col-md-12">
-											<label for=""><strong>Paciente: </strong></label>
-											<div class="input-group">
-												<input type="text" class="form-control" id="pacienteHoja" name="nombrePaciente" required>
-												<div class="invalid-tooltip">
-													Debes ingresar el nombre del paciente.
-												</div>
-											</div>
-										</div>
-										
-									</div>
-
-									<div class="form-row">
-										<div class="col-md-12">
-											<label for=""><strong>Edad:</strong></label>
-											<div class="input-group">
-												<input type="number" class="form-control" id="edadHoja" name="edadPaciente" required>
-												<div class="invalid-tooltip">
-													Debes ingresar la edad del paciente.
-												</div>
-											</div>
-										</div>
-										
-									</div>
-
-									<input type="hidden" class="form-control" id="idHoja2" name="idHoja" required>
-									<div class="text-center">
-										<button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar paciente</button>
-										<button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
-									</div>
-								</form>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-<!-- Fin Modal editar fechas de hojas-->
-
-
 <script>
 	$(document).ready(function() {
 		$(".controlInteligente").select2({
@@ -326,13 +245,6 @@
 		$("#destinoHoja").val(destino);
 		$("#procedimienotoHoja").val(destino);
 		// console.log(id, fecha, habitacion, medico, tipo, destino);
-
-	}
-
-	function editaHoja2(id, edad, paciente){
-		$("#idHoja2").val(id);
-		$("#pacienteHoja").val(paciente);
-		$("#edadHoja").val(edad);
 
 	}
 

@@ -71,21 +71,18 @@
     <div id="principal">
         <table style="text-align: center;">
             <tr>
-                <td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-            </tr>
-            <tr>
-                <td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
+                <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
             </tr>
         </table>
     </div>
 </div>
 <div class="contenedor">
     <div class="medicamentos">
-        <p style="margin-top: 0px;"><strong>REPORTE DE RX Y LABORATORIO</strong></p>
+        <p style="margin-top: 0px;"><strong>REPORTE DE RX, USG Y LABORATORIO</strong></p>
             <div class="detalle">
                 <table cellspacing="0" cellpadding="5">
                     <thead>
-                        <tr style="background-color: #007bff">
+                        <tr style="background-color: #075480">
                             <td style="color: #fff; text-align: center; font-weight: bold">RECIBO</td>
                             <td style="color: #fff; text-align: center; font-weight: bold" colspan="5" >INGRESO</td>
                             <td style="color: #fff; text-align: center; font-weight: bold" colspan="5" >AMBULATORIO</td>

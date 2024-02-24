@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-medkit"></i> Botíquin </a> </li>
                     <li class="breadcrumb-item"><a href="#">Lista medicamentos</a></li>
                 </ol>

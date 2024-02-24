@@ -710,12 +710,7 @@ class Hoja extends CI_Controller {
 			');
 						
 			// FOOTER MALO EN TEORIA
-			$mpdf->SetHTMLFooter('
-				<div class="numeracion" style="font-family: Times New Roman">
-					<div class="numeracion_izquierda"><strong></strong></div>
-					<div class="numeracion_derecha"><strong>Total cuenta $'.number_format($totalGlobal, 2).'</strong></div>
-				</div>
-			');
+			$mpdf->SetHTMLFooter();
 			$mpdf->WriteHTML($html);
 			$mpdf->Output('resumen_hoja_cobro.pdf', 'I');
 			// echo json_encode($data);

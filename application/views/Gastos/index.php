@@ -23,7 +23,7 @@
 		<div class="col-md-12">
 
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-tasks"></i> Gastos</a> </li>
                     <li class="breadcrumb-item"><a href="#">Lista de cuentas de gastos</a></li>
                 </ol>

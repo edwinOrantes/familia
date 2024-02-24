@@ -63,7 +63,7 @@
     }
 
     .tabla_detalle thead tr th,
-    tbody tr td {
+    .tabla_detalle tbody tr td {
         border-width: 1px;
         border-style: solid;
         border-color: #000;
@@ -199,54 +199,3 @@
         </tr>
     </table>
 </div>
-
-<?php
-    if(isset($flag)){
-    if($flag == 1){
-?>
-<div style="margin-top: 500px;">
-    
-    <div style="padding-top: 400px;">
-        <div class="medicamentos">
-            <div class="detalle">
-                <table cellspacing="0" cellpadding="5">
-                    <thead>
-                        <tr style="background-color: #007bff; color: #fff">
-                            <td style="color: #fff"><strong>Fecha</strong></td>
-                            <td style="color: #fff"><strong>Factura</strong></td>
-                            <td style="color: #fff"><strong>Proveedor</strong></td>
-                            <td style="color: #fff"><strong>Cheque</strong></td>
-                            <td style="color: #fff"><strong>Monto</strong></td>
-                        </tr>
-                        <?php
-                            $totalCuentas = 0;
-                            foreach ($cuentasPagar as $cuentas) {
-                                $totalCuentas += $cuentas->totalCuentaPagar;
-                        ?>
-                        <tr>
-                            <td><?php echo $cuentas->fechaCuentaPagar; ?></td>
-                            <td><?php echo $cuentas->facturaCuentaPagar; ?></td>
-                            <td><?php echo $cuentas->descripcionGasto; ?></td>
-                            <td><?php echo $cuentas->numeroGasto; ?></td>
-                            <td>$ <?php echo number_format($cuentas->totalCuentaPagar, 2); ?></td>
-                        </tr>
-                        <?php } ?> 
-
-                        <tr>
-                            <td colspan="4" style="text-align: right;"><strong>Total: </strong></td>
-                            <td><strong>$ <?php echo number_format($totalCuentas, 2); ?></strong></td>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<?php
-    }}
-?>

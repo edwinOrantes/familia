@@ -4,7 +4,7 @@
 		<div class="col-md-12">
 
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap has-bg">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-file-word"></i> Hospital </a> </li>
                     <li class="breadcrumb-item active"><a href="#">Agregar hoja de cobro</a></li>
                 </ol>

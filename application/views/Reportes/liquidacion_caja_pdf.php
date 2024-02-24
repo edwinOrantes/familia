@@ -77,7 +77,7 @@
             <div class="detalle">
                 <table class="tabla_detalle">
                     <thead>
-                        <tr style="background-color: #007bff; color: #fff;">
+                        <tr style="background-color: #075480; color: #fff;">
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px"> Fecha Ingreso </th>
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px"> Fecha Egreso </th>
                             <th style="color: #fff; border: 1px solid #000; padding-top: 2px; padding-bottom: 2px; font-size: 8px"> Código Hoja </th>

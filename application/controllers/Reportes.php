@@ -313,125 +313,6 @@ class Reportes extends CI_Controller {
 		// echo json_encode($datos);
 	}
 
-	/* // Version anterior
-	public function liquidacion_caja_excel(){
-		$datos = $this->input->post();
-		if(sizeof($datos) > 0){
-			$inicio = $datos['hojaInicio'];
-			$fin = $datos['hojaFin'];
-			$data1["hojas"] = $this->Reportes_Model->obtenerResumenHoja($inicio, $fin);
-			$data2["abonos"] = $this->Reportes_Model->abonosLiquidar();
-			// Reporte PDF
-				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-				$mpdf = new \Mpdf\Mpdf([
-					'margin_left' => 15,
-					'margin_right' => 15,
-					'margin_top' => 50,
-					'margin_bottom' => 30,
-					'margin_header' => 15,
-					'margin_footer' => 23
-				]);
-				//$mpdf->setFooter('{PAGENO}');
-				$mpdf->SetHTMLHeader('<div id="cabecera" class="clearfix">
-					<div id="lateral">
-						<p><img src="'.base_url().'public/img/logo.jpg" alt="" width="225"></p>
-					</div>
-				
-					<div id="principal">
-						<table style="text-align: center;">
-							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-							</tr>
-							<tr>
-								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
-							</tr>
-						</table>
-						
-					</div>
-					</div>
-					<p style="margin-top: 0px; text-align: center"><strong>LIQUIDACION DE CAJA -CUENTAS</strong></p>
-					<table class="" style="width: 100%">
-						<thead>
-							<tr>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; width: 100px"> USUARIO: </th>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; text-transform: uppercase">'.$this->session->userdata('empleado_h').'</th>
-							</tr>
-							<tr>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; width: 100px"> FECHA: </th>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left">'.date('Y-m-d').'</th>
-							</tr>
-						</thead>
-						<tbody><tbody>
-					</table>'
-				);
-
-				$mpdf->SetHTMLFooter('
-					<table width="100%">
-						<tr>
-							<td width="33%" style="font-weight: bold; font-size: 12px;">'.date("Y-m-d").'</td>
-							<td width="33%" align="center" style="font-weight: bold; font-size: 12px;">{PAGENO}/{nbpg}</td>
-							<td width="33%" style="font-weight: bold; font-size: 12px; text-align: right;">Liquidación de caja</td>
-						</tr>
-					</table>');
-
-				$mpdf->SetProtection(array('print'));
-				$mpdf->SetTitle("Hospital Orellana, Usulutan");
-				$mpdf->SetAuthor("Edwin Orantes");
-				// $mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-				$mpdf->showWatermarkText = true;
-				$mpdf->watermark_font = 'DejaVuSansCondensed';
-				$mpdf->watermarkTextAlpha = 0.1;
-				$mpdf->SetDisplayMode('fullpage');
-				//$mpdf->AddPage('L'); //Voltear Hoja
-				$html = $this->load->view("Reportes/liquidacion_caja_pdf",$data1,true); // Cargando hoja de estilos
-				$mpdf->WriteHTML($html);
-				$mpdf->SetHTMLHeader('<div id="cabecera" class="clearfix">
-					<div id="lateral">
-						<p><img src="'.base_url().'public/img/logo.jpg" alt="" width="225"></p>
-					</div>
-				
-					<div id="principal">
-						<table style="text-align: center;">
-							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-							</tr>
-							<tr>
-								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
-							</tr>
-						</table>
-						
-					</div>
-					</div>
-					<p style="margin-top: 0px; text-align: center"><strong>LIQUIDACION DE CAJA -ABONOS</strong></p>
-					<table class="" style="width: 100%">
-						<thead>
-							<tr>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; width: 100px"> USUARIO: </th>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; text-transform: uppercase">'.$this->session->userdata('empleado_h').'</th>
-							</tr>
-							<tr>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left; width: 100px"> FECHA: </th>
-								<th style="padding-top: 2px; padding-bottom: 2px; font-size: 9px; text-align: left">'.date('Y-m-d').'</th>
-							</tr>
-						</thead>
-						<tbody><tbody>
-					</table>'
-				);
-				$mpdf->AddPage();
-				$html2 = $this->load->view("Reportes/liquidacion_abonos_pdf",$data2,true); // Cargando hoja de estilos
-				$mpdf->WriteHTML($html2);
-
-				$mpdf->Output('liquidacion_caja.pdf', 'I');
-				//$this->detalle_facturas_excell($inicio, $fin); // Fila para obtener el detalle en excel
-			// Fin reporte PDF
-			// echo json_encode($data);
-		
-
-		}else{
-			$this->session->set_flashdata("error","No se permite el reenvio de datos");
-			redirect(base_url()."Reportes/liquidacion_caja");
-		}
-	} */
 
 	// Version nueva
 	public function liquidacion_caja_excel($params = null){
@@ -463,16 +344,13 @@ class Reportes extends CI_Controller {
 					<div id="principal">
 						<table style="text-align: center;">
 							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-							</tr>
-							<tr>
-								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
+								<td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
 							</tr>
 						</table>
 						
 					</div>
 					</div>
-					<p style="margin-top: 0px; text-align: center"><strong>LIQUIDACION DE CAJA -CUENTAS</strong></p>
+					<p style="margin-top: 0px; text-align: center"><strong>LIQUIDACION DE CAJA</strong></p>
 					<table class="" style="width: 100%">
 						<thead>
 							<tr>
@@ -739,7 +617,7 @@ class Reportes extends CI_Controller {
 							<tr>
 								<td width="33%"><strong>{DATE j-m-Y}</strong></td>
 								<td width="33%" align="center"><strong>{PAGENO}/{nbpg}</strong></td>
-								<td width="33%" style="text-align: right;"><strong>Reporte de Laboratorio, RX y Ultras</strong></td>
+								<td width="33%" style="text-align: right;"><strong>Reporte cobros</strong></td>
 							</tr>
 						</table>');
 					// $mpdf->SetProtection(array('print'));
@@ -977,70 +855,13 @@ class Reportes extends CI_Controller {
 		$this->load->view("Base/footer");
 	}
 
-	// generar_detalle_gastos EN PDF
-		/* public function generar_detalle_gastos(){
-			echo '<script>
-					if (window.history.replaceState) { // verificamos disponibilidad
-						window.history.replaceState(null, null, window.location.href);
-					}
-				</script>';
-			$datos = $this->input->post();
-			if(sizeof($datos) > 0){
-			// Detalle
-				if ($datos['fechaInicio'] > $datos['fechaFin']) {
-					$this->session->set_flashdata("error","La fecha de inicio no puede ser mayor o igual a la fecha fin");
-					redirect(base_url()."Reportes/detalle_gastos");
-				}else{
-					$data["gastos"] = $this->Gastos_Model->obtenerGastos($datos['fechaInicio'], $datos['fechaFin']);
-					$data["inicio"] = $datos['fechaInicio'];
-					$data["fin"] = $datos['fechaFin'];
-					// Factura
-						$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-						$mpdf = new \Mpdf\Mpdf([
-							'margin_left' => 15,
-							'margin_right' => 15,
-							'margin_top' => 15,
-							'margin_bottom' => 25,
-							'margin_header' => 10,
-							'margin_footer' => 10
-						]);
-						//$mpdf->setFooter('{PAGENO}');
-						$mpdf->SetHTMLFooter('
-							<table width="100%">
-								<tr>
-									<td width="33%"><strong>{DATE j-m-Y}</strong></td>
-									<td width="33%" align="center"><strong>{PAGENO}/{nbpg}</strong></td>
-									<td width="33%" style="text-align: right;"><strong>Reporte de Gastos</strong></td>
-								</tr>
-							</table>');
-						$mpdf->SetProtection(array('print'));
-						$mpdf->SetTitle("Hospital Orellana, Usulutan");
-						$mpdf->SetAuthor("Edwin Orantes");
-						//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-						$mpdf->showWatermarkText = true;
-						$mpdf->watermark_font = 'DejaVuSansCondensed';
-						$mpdf->watermarkTextAlpha = 0.1;
-						$mpdf->SetDisplayMode('fullpage');
-						$mpdf->AddPage('L'); //Voltear Hoja
 
-						$html = $this->load->view('Reportes/detalle_gastos_pdf', $data,true); // Cargando hoja de estilos
-
-						$mpdf->WriteHTML($html);
-						$mpdf->Output('detalle_compra.pdf', 'I');
-
-			
-				}
-			}else{
-				$this->session->set_flashdata("error","No se permite el reenvio de datos");
-				redirect(base_url()."Reportes/detalle_gastos");
-			}
-		} */
 	public function generar_detalle_gastos(){
-		/* echo '<script>
+		echo '<script>
 				if (window.history.replaceState) { // verificamos disponibilidad
 					window.history.replaceState(null, null, window.location.href);
 				}
-		</script>'; */
+		</script>';
 		$datos = $this->input->post();
 		
 		if(sizeof($datos) > 0){

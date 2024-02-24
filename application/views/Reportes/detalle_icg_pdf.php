@@ -89,10 +89,7 @@
     <div id="principal">
         <table style="text-align: center;">
             <tr>
-                <td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-            </tr>
-            <tr>
-                <td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
+                <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
             </tr>
         </table>
     </div>
@@ -182,7 +179,7 @@
                 }
                 ?>
                 <!-- Detalle Ingresos -->
-                    <tr style="background-color: #409cff">
+                    <tr style="background-color: #075480">
                         <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">DETALLE DE INGRESOS</td>
                         <td style="color: #fff;"><strong>$<?php echo number_format(($totalGlobalI + $totalGlobalA), 2); ?></strong></td>
                     </tr>
@@ -259,7 +256,7 @@
 
                         if ($totalCostos > 0) {
                         ?>
-                            <tr style="background-color: #409cff">
+                            <tr style="background-color: #075480">
                                 <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">DETALLE DE COSTOS</td>
                                 <td style="color: #fff;"><strong>$<?php echo number_format($totalCostos, 2); ?></strong></td>
                             </tr>
@@ -289,7 +286,7 @@
                         if ($totalGastos > 0) {
                         
                         ?>
-                        <tr style="background-color: #409cff">
+                        <tr style="background-color: #075480">
                             <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">DETALLE DE GASTOS</td>
                             <td style="color: #fff;"><strong>$<?php echo number_format($totalGastos, 2); ?></strong></td>
                         </tr>
@@ -307,7 +304,7 @@
 
                     <!-- Totales -->
 
-                        <tr style="background-color: #409cff">
+                        <tr style="background-color: #075480">
                             <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">TOTAL COSTOS Y GASTOS</td>
                             <td style="color: #fff;"><strong>$<?php echo number_format(($totalCostos + $totalGastos), 2); ?></strong></td>
                         </tr>
@@ -317,12 +314,12 @@
                             <td><strong></strong> &nbsp; </td>
                         </tr>
 
-                        <tr style="background-color: #409cff">
+                        <tr style="background-color: #075480">
                             <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">TOTAL GENERAL</td>
                             <td style="color: #fff;"><strong>$<?php echo number_format(($totalCostos + $totalGastos), 2); ?></strong></td>
                         </tr>
 
-                        <tr style="background-color: #409cff">
+                        <tr style="background-color: #075480">
                             <td style="color: #fff; text-align: left; font-weight: bold" colspan="3">UTILIDAD MENSUAL</td>
                             <td style="color: #fff;"><strong>$<?php echo number_format(($totalGlobalI + $totalGlobalA) - ($totalCostos + $totalGastos), 2); ?></strong></td>
                         </tr>

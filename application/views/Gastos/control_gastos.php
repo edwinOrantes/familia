@@ -30,7 +30,7 @@
         <div class="col-md-12">
 
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap has-bg">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page"> <a href="#"><i class="fa fa-tasks"></i> Gastos</a> </li>
                     <li class="breadcrumb-item active"><a href="#">Control de gastos</a></li>
                 </ol>

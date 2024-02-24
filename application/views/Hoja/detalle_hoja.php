@@ -196,12 +196,12 @@
                                     ?>
 
                                     <!-- Seccion mostrada solo a cajera -->
-                                        <?php
+                                        <!-- <?php
                                             if( $this->session->userdata("acceso_h") == 10 || $this->session->userdata("acceso_h") == 1 || $this->session->userdata("acceso_h") == 2){
                                         ?>
                                             <a href="#consumidorFinal" data-toggle="modal" class="btn btn-primary text-white"><i class="fa fa-file"></i> Consumidor final</a>
                                           
-                                        <?php } ?>
+                                        <?php } ?> -->
                                     <!-- Fin seccion solo cajera -->
                                     
                                     <a href="<?php echo base_url(); ?>Hoja/recibo_hoja/<?php echo $paciente->idHoja; ?>" class="btn btn-primary btnRecibo" target="_blank"><i class="fa fa-print"></i> Recibo</a>
