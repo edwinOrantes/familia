@@ -598,11 +598,10 @@ class Laboratorio_Model extends CI_Model {
 
         public function historialConsultas(){
             $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico, m.nombreMedico, cl.idConsultaLaboratorio, 
-                    cl.codigoConsulta, cl.fechaConsultaLaboratorio, cl.tipoConsulta, tcl.nombreTipoConsultaLab FROM
+                    cl.codigoConsulta, cl.fechaConsultaLaboratorio FROM
                     tbl_consulta_laboratorio as cl 
                     INNER JOIN tbl_pacientes AS p ON(cl.idPaciente = p.idPaciente) 
                     INNER JOIN tbl_medicos AS m ON(cl.idMedico = m.idMedico)
-                    INNER JOIN tbl_tipo_consulta_lab AS tcl ON(tcl.idTipoConsultaLab = cl.tipoConsulta)
                     ORDER BY cl.idConsultaLaboratorio DESC LIMIT 100 ";
             $datos = $this->db->query($sql);
             return $datos->result();

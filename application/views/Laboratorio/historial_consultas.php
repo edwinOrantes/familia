@@ -24,7 +24,7 @@
 		<div class="col-md-12">
 
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
+                <ol class="breadcrumb ">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-file-word"></i> Laboratorio </a> </li>
                     <li class="breadcrumb-item"><a href="#">Examenes</a></li>
                 </ol>
@@ -46,7 +46,6 @@
                                         <th class="text-center" scope="col">#</th>
                                         <th class="text-center" scope="col">Paciente</th>
                                         <th class="text-center" scope="col">Médico</th>
-                                        <th class="text-center" scope="col">Destino</th>
                                         <th class="text-center" scope="col">Fecha</th>
                                         <th class="text-center" scope="col">Opción</th>
                                     </tr>
@@ -65,7 +64,6 @@
                                         <td class="text-center"><?php echo $paciente->codigoConsulta; ?></td>
                                         <td class="text-center"><?php echo $paciente->nombrePaciente; ?></td>
                                         <td class="text-center"><?php echo $paciente->nombreMedico; ?></td>
-                                        <td class="text-center"><span class="badge badge-success"><?php echo $paciente->nombreTipoConsultaLab; ?></span></td>
                                         <td class="text-center"><?php echo substr($paciente->fechaConsultaLaboratorio, 0, 10); ?></td>
 										<td class="text-center">
                                             <?php

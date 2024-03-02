@@ -38,10 +38,30 @@ class Botiquin_Model extends CI_Model {
         }
     }
 
+    public function guardarMedida($data = null){
+        if($data != null){
+            $sql = "INSERT INTO tbl_medidas(nombreMedida, cantidadMedida, unidadMedida)
+                    VALUES(?, ?, ?)";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
     public function obtenerMedicamentos(){
         $sql = "SELECT * FROM tbl_medicamentos as m 
                 INNER JOIN tbl_clasificacion_medicamentos as cm on(m.idClasificacionMedicamento = cm.idClasificacionMedicamento)
                 WHERE m.ocultarMedicamento = 0";
+        $datos = $this->db->query($sql);
+        return $datos->result();
+    }
+
+    public function obtenerMedidas(){
+        $sql = "SELECT * FROM tbl_medidas WHERE estadoMedida = 1";
         $datos = $this->db->query($sql);
         return $datos->result();
     }
@@ -75,6 +95,30 @@ class Botiquin_Model extends CI_Model {
             $sql = "UPDATE tbl_medicamentos SET nombreMedicamento = ?,
             idFabricante = ?, precioCMedicamento = ?, precioVMedicamento = ?, tipoMedicamento = ?,
             idClasificacionMedicamento = ? WHERE idMedicamento = ? ";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    public function actualizarMedida($data = null ){ 
+        if($data != null){
+            $sql = "UPDATE tbl_medidas SET nombreMedida = ?, cantidadMedida = ?, unidadMedida = ?
+             WHERE idMedida = ? ";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    public function eliminarMedida($data = null ){ 
+        if($data != null){
+            $sql = "UPDATE tbl_medidas SET estadoMedida = 0
+             WHERE idMedida = ? ";
             if($this->db->query($sql, $data)){
                 return true;
             }else{

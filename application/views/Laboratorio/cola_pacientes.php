@@ -65,8 +65,8 @@
                                         <td class="text-center"><?php echo $paciente->duiPaciente; ?></td>
                                         <td class="text-center"><?php echo $paciente->telefonoPaciente; ?></td>
 										<td class="text-center">
-
-                                            <a href="#crearConsulta" data-toggle="modal" title="Crear consulta" class="text-primary"><i class="fas fa-file-export"></i></a>
+											<input type="hidden" value="<?php echo $paciente->idPaciente; ?>" class="idPaciente">
+                                            <a href="#crearConsulta" data-toggle="modal" title="Crear consulta" class="text-primary crearConsulta"><i class="fas fa-file-export"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -146,7 +146,7 @@
 										</div>
 									</div>
 									
-									<input type="hidden" value="<?php echo $paciente->idPaciente; ?>" class="form-control" id="idPaciente" name="idPaciente" required>
+									<input type="hidden" value="" class="form-control" id="idPaciente" name="idPaciente" required>
 									<input type="hidden" value="<?php echo $paciente->idHoja; ?>" class="form-control" id="idHoja" name="idHoja" required>
 									<div class="text-center">
 										<button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Crear consulta </button>
@@ -164,14 +164,19 @@
 <!-- Fin Modal editar datos del paciente-->
 
 <script>
-    function editarPaciente(id, nombre,edad, medico, idConsultaLaboratorio){
+   /*  function editarPaciente(id, nombre,edad, medico, idConsultaLaboratorio){
         document.getElementById("idPaciente").value =  id;
         document.getElementById("nombrePaciente").value =  nombre;
         document.getElementById("edadPaciente").value =  edad;
         document.getElementById("medicoHoja").value =  medico;
         document.getElementById("idConsultaLaboratorio").value = idConsultaLaboratorio;
 		// console.log(id, nombre,edad, medico, idConsultaLaboratorio);
-    }
+    } */
+
+	$(document).on("click", ".crearConsulta", function(e) {
+		e.preventDefault();
+		$("#idPaciente").val($(this).closest('tr').find('.idPaciente').val());
+	});
 
 	$(document).ready(function() {
 		$("#tabla-consultas").DataTable({

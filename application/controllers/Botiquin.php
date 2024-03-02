@@ -55,6 +55,7 @@ class Botiquin extends CI_Controller {
 		$this->load->view('Botiquin/lista_medicamentos', $data);
 		$this->load->view('Base/footer');
     }
+
     
     public function agregar_medicamento(){
 		$proveedores = $this->Proveedor_Model->obtenerProveedores();
@@ -79,6 +80,7 @@ class Botiquin extends CI_Controller {
 
 		// echo json_encode($datos);
 	}
+
 
 	public function actualizar_medicamento(){
 		$datos = $this->input->post();
@@ -106,6 +108,51 @@ class Botiquin extends CI_Controller {
 		}
 		// echo json_encode($datos);
 	}
+
+	public function guardar_medida(){
+		$datos = $this->input->post();
+		
+		$bool = $this->Botiquin_Model->guardarMedida($datos);
+		if($bool){
+			$this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}else{
+			$this->session->set_flashdata("error","Error al guardar los datos!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}
+
+		// echo json_encode($datos);
+	}
+
+	public function actualizar_medida(){
+		$datos = $this->input->post();
+		
+		$bool = $this->Botiquin_Model->actualizarMedida($datos);
+		if($bool){
+			$this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}else{
+			$this->session->set_flashdata("error","Error al actualizar los datos!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}
+
+		// echo json_encode($datos);
+	}
+
+	public function eliminar_medida(){
+		$datos = $this->input->post();
+		$bool = $this->Botiquin_Model->eliminarMedida($datos);
+		if($bool){
+			$this->session->set_flashdata("exito","Los datos fueron eliminados con exito!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}else{
+			$this->session->set_flashdata("error","Error al eliminar los datos!");
+			redirect(base_url()."Botiquin/gestion_medidas");
+		}
+
+		// echo json_encode($datos);
+	}
+
 
 	public function medicamentos_excel(){
 		$spreadsheet = new Spreadsheet();
@@ -209,6 +256,15 @@ class Botiquin extends CI_Controller {
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output');
 	}
+
+
+	public function gestion_medidas(){
+		$data["medidas"] = $this->Botiquin_Model->obtenerMedidas();
+		$this->load->view('Base/header');
+		$this->load->view('Botiquin/lista_medidas', $data);
+		$this->load->view('Base/footer');
+    }
+
 
 	public function guardar_compra(){
 		$datos = $this->input->post();
