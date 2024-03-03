@@ -77,23 +77,10 @@ class Laboratorio extends CI_Controller {
         public function detalle_consulta($id){
             $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
             $data["consulta"] = $id;
-            /* 
+            
             $data["examenes"] = $this->Laboratorio_Model->obtenerExamenes();
             $data["examenesRealizados"] = $this->Laboratorio_Model->obtenerExamenesRealizados($id);
-            $data["totalHojaLaboratorio"] = $this->Laboratorio_Model->totalHojaLaboratorio($id);
             $data["consulta"] = $id;
-            foreach ($data["examenesRealizados"] as $examen) {
-                $datos = [
-                    "idExamen" => $examen->idExamen,
-                    "tipoExamen" => $examen->tipoExamen,
-                    "examenes" => $examen->examenes,
-                    "idConsulta" => $examen->idConsultaLaboratorio,
-                    "filaDetalle" => $examen->idDetalleConsulta
-                ];
-                $datosOnline[] = $datos;
-            }
-            $data["datosOnline"] = $datosOnline;
-            */
 
             $this->load->view("Base/header");
             $this->load->view("Laboratorio/detalle_examenes", $data);
@@ -252,7 +239,7 @@ class Laboratorio extends CI_Controller {
                         </tr>
                     </table>');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -293,7 +280,7 @@ class Laboratorio extends CI_Controller {
                         </tr>
                     </table>');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -556,7 +543,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -652,7 +639,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -731,7 +718,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -767,155 +754,19 @@ class Laboratorio extends CI_Controller {
         // Examen de quimica sanguinea
             public function guardar_quimica_sanguinea(){
                 $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarQuimicaSanguinea($datos);
+                $examen = $resp["idQuimicaSanguinea"];
+                $consulta = $resp["idDetalleConsulta"];
                 
-                $c = $datos["consulta"];
-                $examenes = array();
-                $reactivos = array();
-                // Analizando existencia de examenes
-                    if($datos["glucosa"] != ""){
-                        array_push($examenes, 688);
-                        array_push($reactivos, 688);
-                    }
-                    if($datos["posprandial"] != ""){
-                        array_push($examenes, 689);
-                        array_push($reactivos, 689);
-                    }
-                    if($datos["colesterol"] != ""){
-                        array_push($examenes, 666);
-                        array_push($reactivos, 666);
-                    }
-                    if($datos["trigliceridos"] != ""){
-                        array_push($examenes, 727);
-                        array_push($reactivos, 727);
-                    }
-                    if($datos["colesterolHDL"] != ""){
-                        array_push($examenes, 670);
-                        array_push($reactivos, 670);
-                    }
-                    if($datos["colesterolLDL"] != ""){
-                        array_push($examenes, 671);
-                        array_push($reactivos, 671);
-                    }
-                    if($datos["acidoUrico"] != ""){
-                        array_push($examenes, 657);
-                        array_push($reactivos, 657);
-                    }
-                    if($datos["urea"] != ""){
-                        array_push($examenes, 684);
-                        array_push($reactivos, 684); // De aqui se saca Urea y Nitrogeno Ureico
-                    }
-                    if($datos["nitrogenoUreico"] != ""){
-                        array_push($examenes, 678);
-                    }
-                    if($datos["creatinina"] != ""){
-                        array_push($examenes, 672);
-                        array_push($reactivos, 672);
-                    }
-                    if($datos["amilasa"] != ""){
-                        array_push($examenes, 659);
-                        array_push($reactivos, 659);
-                    }
-                    if($datos["lipasa"] != ""){
-                        array_push($examenes, 707);
-                        array_push($reactivos, 707);
-                    }
-                    if($datos["fosfatasaAlcalina"] != ""){
-                        array_push($examenes, 721);
-                        array_push($reactivos, 721);
-                    }
-                    if($datos["tgp"] != ""){
-                        array_push($examenes, 715);
-                        array_push($reactivos, 715);
-                    }
-                    if($datos["tgo"] != ""){
-                        array_push($examenes, 714);
-                        array_push($reactivos, 714);
-                    }
-                    if($datos["hba1c"] != ""){
-                        array_push($examenes, 665);
-                        array_push($reactivos, 665);
-                    }
-                    if($datos["proteinaTotal"] != ""){
-                        array_push($examenes, 709);
-                        array_push($reactivos, 709);
-                    }
-                    if($datos["albumina"] != ""){
-                        array_push($examenes, 692);
-                        array_push($reactivos, 692);
-                    }
-                    if($datos["biliTotal"] != ""){
-                        array_push($examenes, 663);
-                        array_push($reactivos, 663);
-                    }
-                    if($datos["sodioQuimicaClinica"] != "" || $datos["potasioQuimicaClinica"] != "" || $datos["cloroQuimicaClinica"] != ""){
-                        array_push($reactivos, 961);
-                    }
-                    if($datos["sodioQuimicaClinica"] != "" && $datos["potasioQuimicaClinica"] != "" && $datos["cloroQuimicaClinica"] != ""){
-                        array_push($examenes, 679);
-                    }else{
-                        if($datos["sodioQuimicaClinica"] != ""){
-                            array_push($examenes, 1059);
-                        }
-                        if($datos["potasioQuimicaClinica"] != ""){
-                            array_push($examenes, 1060);
-                        }
-                        if($datos["cloroQuimicaClinica"] != ""){
-                            array_push($examenes, 540);
-                        }
-                    }
-                    if($datos["magnesioQuimicaClinica"] != ""){
-                        array_push($examenes, 705);
-                        array_push($reactivos, 705);
-                    }
-                    if($datos["calcioQuimicaClinica"] != ""){
-                        array_push($examenes, 693);
-                        array_push($reactivos, 693);
-                    }
-                    if($datos["fosforoQuimicaClinica"] != ""){
-                        array_push($examenes, 686);
-                        array_push($reactivos, 686);
-                    }
-                    if($datos["cpkMbQuimicaClinica"] != ""){
-                        array_push($examenes, 725);
-                        array_push($reactivos, 725);
-                    }
-                    if($datos["cpkTQuimicaClinica"] != ""){
-                        array_push($examenes, 726);
-                        array_push($reactivos, 726);
-                    }
-                    if($datos["ldhQuimicaClinica"] != ""){
-                        array_push($examenes, 1074);
-                        array_push($reactivos, 1074);
-                    }
-                    if($datos["troponinaQuimicaClinica"] != ""){
-                        array_push($examenes, 728);
-                        array_push($reactivos, 728);
-                    }
-                    
-                    // echo json_encode($examenes);
-                // Fin analizando existencia de examenes
-                if(sizeof($examenes) > 0){
-                    $data["examenes"] = $examenes;
-                    $datos["examenSolicitado"] = $examenes[0];
-
-                    $resp = $this->Laboratorio_Model->guardarQuimicaSanguinea($datos);
-                    $examen = $resp["idQuimicaSanguinea"];
-                    $consulta = $resp["idDetalleConsulta"];
-                    $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes 
-                    
-                    if($resp != 0){
-                        $this->descuentosReactivos($reactivos, $examen, 6); // Ejecutando descuentos de stock
-                        $this->session->set_flashdata("exito","Los datos del examen fueron guardados con exito!");
-                        redirect(base_url()."Laboratorio/quimica_sanguinea_pdf_b/$examen/");
-                    }else{
-                        $this->session->set_flashdata("error","Error al guardar los datos del examen!");
-                        redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                    }
-
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos del examen fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/quimica_sanguinea_pdf/$examen/");
                 }else{
-                    $this->session->set_flashdata("error","No seleccionaste ningun examen!");
+                    $this->session->set_flashdata("error","Error al guardar los datos del examen!");
                     redirect(base_url()."Laboratorio/detalle_consulta/$c/");
                 }
+
+                // echo json_encode($datos);
             }
 
             public function quimica_sanguinea_pdf($id){
@@ -942,7 +793,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1024,7 +875,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1143,7 +994,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1263,7 +1114,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1360,7 +1211,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1441,7 +1292,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1529,7 +1380,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1612,7 +1463,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1694,7 +1545,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1775,7 +1626,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1859,7 +1710,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -1943,7 +1794,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -2030,7 +1881,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -2118,7 +1969,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -2203,7 +2054,7 @@ class Laboratorio extends CI_Controller {
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
                     //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
@@ -2266,7 +2117,7 @@ class Laboratorio extends CI_Controller {
             $datos = $this->Laboratorio_Model->obtenerConsultas($i, $f);
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
-            $sheet->setCellValue('A1', 'HOSPITAL CLINICA ORELLANA');
+            $sheet->setCellValue('A1', 'CENTRO MEDICO LA FAMILIA');
             $sheet->mergeCells('A1:E1');
             // Centrando horizontalmente.
                 $centrar = [
@@ -2284,11 +2135,10 @@ class Laboratorio extends CI_Controller {
             $sheet->setCellValue('C2', 'Examenes');
             $sheet->setCellValue('D2', 'Efectuados');
             $sheet->setCellValue('E2', 'Total');
-            $sheet->setCellValue('F2', 'Pedido por');
 
             // Poniendo en negritas
-                $sheet->getStyle('A1:F1')->getFont()->setBold(true);	
-                $sheet->getStyle('A2:F2')->getFont()->setBold(true);	
+                $sheet->getStyle('A1:E1')->getFont()->setBold(true);	
+                $sheet->getStyle('A2:E2')->getFont()->setBold(true);	
             // Fin poner negritas
             $flag = 3;
             $index=1;
@@ -2305,25 +2155,6 @@ class Laboratorio extends CI_Controller {
                 foreach ($detalleConsulta as $detalle) {
 
                     $cadenaDetalle .= $detalle->examenes;
-
-                    /* // Sacando totales por rubro
-                        switch ($fila->tipoConsulta) {
-                            case '1':
-                                $hospital++;
-                            break;
-                            case '2':
-                                $isbm++;
-                            break;
-                            case '3':
-                                $urologica++;
-                            break;
-                            
-                            default:
-                                $hospital++;
-                            break;
-                        }
-                    // Fin totales por rubro */
-
 
                     $totalExamenes = $this->Laboratorio_Model->detalleExamenesRealizados($detalle->idDetalleConsulta);
                     foreach ($totalExamenes as $detalleConsumido) {
@@ -2342,23 +2173,6 @@ class Laboratorio extends CI_Controller {
                 $sheet->getStyle('C'.$flag)->getAlignment()->setWrapText(true);
                 $sheet->setCellValue('D'.$flag, $efectuados);
                 $sheet->setCellValue('E'.$flag, $consumidoPaciente);
-
-                switch ($fila->tipoConsulta) {
-                    case '1':
-                        $sheet->setCellValue('F'.$flag, "Hospital Orellana");
-                    break;
-                    case '2':
-                        $sheet->setCellValue('F'.$flag, "ISBM");
-                    break;
-                    case '3':
-                        $sheet->setCellValue('F'.$flag, "Clinica Urologica");
-                    break;
-                    
-                    default:
-                        $sheet->setCellValue('F'.$flag, "Hospital Orellana");
-                    break;
-                }
-                
                 
                 $efectuados = 0;
                 $index++;
@@ -2372,74 +2186,6 @@ class Laboratorio extends CI_Controller {
             $sheet->getColumnDimension('C')->setWidth(100);
             $sheet->getColumnDimension('D')->setWidth(15);
             $sheet->getColumnDimension('E')->setWidth(15);
-            $sheet->getColumnDimension('F')->setWidth(25);
-
-            /* Abrir nueva hoja de trabajo */
-
-                /* $sheet->getColumnDimension('A')->setWidth(25);
-                $sheet->getColumnDimension('B')->setWidth(25);
-                $sheet->getColumnDimension('C')->setWidth(25);
-                $sheet->getColumnDimension('D')->setWidth(25);
-                $sheet->getColumnDimension('E')->setWidth(25); */
-
-                /* $spreadsheet = new Spreadsheet();
-                $sheet = $spreadsheet->getActiveSheet();
-                $sheet->setCellValue('A1', 'Examen Realizado');
-                $sheet->setCellValue('B1', 'Cantidad');
-                $sheet->setCellValue('C1', 'Precio');
-                $sheet->setCellValue('D1', 'Total');
-
-                $sheet->getStyle('A1:D1')->getFont()->setBold(true);		
-
-                //Custom width for Individual Columns
-                $sheet->getColumnDimension('A')->setAutoSize(true);
-                $sheet->getColumnDimension('B')->setAutoSize(true);
-                $sheet->getColumnDimension('C')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('E')->setWidth(25);
-
-
-                $spreadsheet->createSheet();
-                // Zero based, so set the second tab as active sheet
-                $spreadsheet->setActiveSheetIndex(1);
-                $sheet = $spreadsheet->getActiveSheet()->setTitle('ISBM');
-                $sheet->setCellValue('A1', 'Examen Realizado');
-                $sheet->setCellValue('B1', 'Cantidad');
-                $sheet->setCellValue('C1', 'Precio');
-                $sheet->setCellValue('D1', 'Total');
-
-                $sheet->getStyle('A1:D1')->getFont()->setBold(true);		
-
-                //Custom width for Individual Columns
-                $sheet->getColumnDimension('A')->setAutoSize(true);
-                $sheet->getColumnDimension('B')->setAutoSize(true);
-                $sheet->getColumnDimension('C')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('E')->setWidth(25);
-
-                $spreadsheet->createSheet();
-                // Zero based, so set the second tab as active sheet
-                $spreadsheet->setActiveSheetIndex(2);
-                $sheet = $spreadsheet->getActiveSheet()->setTitle('Urologica');
-                $sheet->setCellValue('A1', 'Examen Realizado');
-                $sheet->setCellValue('B1', 'Cantidad');
-                $sheet->setCellValue('C1', 'Precio');
-                $sheet->setCellValue('D1', 'Total');
-
-                $sheet->getStyle('A1:D1')->getFont()->setBold(true);		
-
-                //Custom width for Individual Columns
-                $sheet->getColumnDimension('A')->setAutoSize(true);
-                $sheet->getColumnDimension('B')->setAutoSize(true);
-                $sheet->getColumnDimension('C')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('D')->setAutoSize(true);
-                $sheet->getColumnDimension('E')->setWidth(25);
-                */
-            /* Fin abrir nueva hoja de trabajo */
-
 
             $curdate = date('d-m-Y H:i:s');
             $writer = new Xlsx($spreadsheet);
@@ -2716,7 +2462,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2752,7 +2498,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2791,7 +2537,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2826,7 +2572,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2861,7 +2607,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2896,7 +2642,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2931,7 +2677,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2966,7 +2712,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -2984,7 +2730,7 @@ class Laboratorio extends CI_Controller {
 
         }
 
-        public function quimica_sanguinea_pdf_b($id){
+        /* public function quimica_sanguinea_pdf_b($id){
             $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_quimica_sanguinea", "idQuimicaSanguinea ", 6);
             $data['sanguinea'] = $this->Laboratorio_Model->detalleExamen($id, 6);
             
@@ -3001,7 +2747,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3011,13 +2757,13 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->AddPage('L'); //Voltear Hoja
 
                 $html = $this->load->view('base/header', $data,true); 
-                $html = $this->load->view('Laboratorio/bn/quimica_sanguinea_pdf_b', $data,true); // Cargando hoja de estilos
+                $html = $this->load->view('Laboratorio/quimica_sanguinea_pdf', $data,true); // Cargando hoja de estilos
 
                 $mpdf->WriteHTML($html);
                 $mpdf->Output('examen_quimica_sanguinea.pdf', 'I');
             
 
-        }
+        } */
 
         public function bacteriologia_pdf_b($id){
             $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_bacteriologia", "idBacteriologia", 2);
@@ -3035,7 +2781,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3067,7 +2813,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3102,7 +2848,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3140,7 +2886,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3178,7 +2924,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3215,7 +2961,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3251,7 +2997,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3286,7 +3032,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
@@ -3329,7 +3075,7 @@ class Laboratorio extends CI_Controller {
                 //$mpdf->setFooter('{PAGENO}');
                 $mpdf->SetHTMLFooter('');
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;

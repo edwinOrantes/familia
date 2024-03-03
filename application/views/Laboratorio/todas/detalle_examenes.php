@@ -131,7 +131,7 @@
                                 $idDC ='"'.$examen->idDetalleConsulta.'"'; // Id detalle de la consulta.
                         ?>
                         <tr>
-                            <td class="text-center"><?php echo $examen->examenes; ?></td>
+                            <td class="text-center"><?php echo $examen->nombreExamen; ?></td>
                             <td class="text-center"><?php echo substr($examen->fechaDetalleConsulta, 0, 10); ?></td>
                             <td class="text-center"><?php echo $examen->horaDetalleConsulta; ?></td>
                             <td class="text-center">

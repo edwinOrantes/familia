@@ -2,7 +2,7 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background-image: url('public/img/test2_bg.jpg') ;
+        /* background-image: url('public/img/test2_bg.jpg') ; */
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -103,13 +103,7 @@
         <div id="principal">
             <table style="text-align: center; margin-left: 20px">
                 <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">LABORATORIO CLINICO</strong></td>
-                </tr>
-                <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">Sexta calle oriente, #8, Usulután, El Salvador,</strong></td>
-                </tr>
-                <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">PBX 2606-6673, C.S.S.P. N° 2150</strong></td>
+                    <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, <br> frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
                 </tr>
             </table>
         </div>

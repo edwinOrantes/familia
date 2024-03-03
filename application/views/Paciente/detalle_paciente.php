@@ -89,8 +89,8 @@
                                                     <td class="text-center"><?php echo $expediente->nombreMedico; ?></td>
                                                     <td class="text-center"><?php echo $expediente->fechaHoja; ?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url(); ?>Hoja/detalle_hoja/<?php echo $expediente->idHoja; ?>/" class="text-info" target="blank"><i class="fas fa-file"></i></a>
-                                                        <a href="<?php echo base_url(); ?>Hoja/resumen_hoja/<?php echo $expediente->idHoja; ?>/" class="text-info" target="blank"><i class="fas fa-file-pdf"></i></a>
+                                                        <a href="<?php echo base_url(); ?>Hoja/detalle_hoja/<?php echo $expediente->idHoja; ?>/" title="Ver hoja de cobro" class="text-info" target="blank"><i class="fas fa-file"></i></a>
+                                                        <a href="<?php echo base_url(); ?>Hoja/resumen_hoja/<?php echo $expediente->idHoja; ?>/" title="Ver resumen de hoja de cobro" class="text-info" target="blank"><i class="fas fa-file-pdf"></i></a>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

@@ -65,8 +65,16 @@
                                         <td class="text-center"><?php echo $paciente->duiPaciente; ?></td>
                                         <td class="text-center"><?php echo $paciente->telefonoPaciente; ?></td>
 										<td class="text-center">
+											<input type="hidden" value="<?php echo $paciente->idCola; ?>" class="idCola">
 											<input type="hidden" value="<?php echo $paciente->idPaciente; ?>" class="idPaciente">
-                                            <a href="#crearConsulta" data-toggle="modal" title="Crear consulta" class="text-primary crearConsulta"><i class="fas fa-file-export"></i></a>
+											<?php
+												if($paciente->consultaGenerada > 0){
+													echo '<a href="'.base_url().'Laboratorio/detalle_consulta/'.$paciente->consultaGenerada.'/" title="Crear consulta" class="text-success"><i class="fas fa-arrow-right"></i></a>';
+												}else{
+													echo '<a href="#crearConsulta" data-toggle="modal" title="Crear consulta" class="text-primary crearConsulta"><i class="fas fa-file-export"></i></a>';
+												}
+											?>
+                                            
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -148,6 +156,7 @@
 									
 									<input type="hidden" value="" class="form-control" id="idPaciente" name="idPaciente" required>
 									<input type="hidden" value="<?php echo $paciente->idHoja; ?>" class="form-control" id="idHoja" name="idHoja" required>
+									<input type="hidden" value="" class="form-control" id="idCola" name="idCola" required>
 									<div class="text-center">
 										<button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Crear consulta </button>
 									</div>
@@ -176,6 +185,7 @@
 	$(document).on("click", ".crearConsulta", function(e) {
 		e.preventDefault();
 		$("#idPaciente").val($(this).closest('tr').find('.idPaciente').val());
+		$("#idCola").val($(this).closest('tr').find('.idCola').val());
 	});
 
 	$(document).ready(function() {

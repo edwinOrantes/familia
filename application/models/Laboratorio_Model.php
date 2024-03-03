@@ -16,7 +16,9 @@ class Laboratorio_Model extends CI_Model {
     }
 
     public function colaPacientes(){
-        $sql = "SELECT p.idPaciente, hc.idHoja, p.nombrePaciente, p.edadPaciente, p.duiPaciente, p.telefonoPaciente, DATE(cl.fechaCola) AS fecha, TIME(cl.fechaCola) AS hora FROM tbl_cola_laboratorio AS cl
+        $sql = "SELECT p.idPaciente, hc.idHoja, p.nombrePaciente, p.edadPaciente, p.duiPaciente, p.telefonoPaciente, 
+        cl.idCola, cl.consultaGenerada, DATE(cl.fechaCola) AS fecha, TIME(cl.fechaCola) AS hora
+        FROM tbl_cola_laboratorio AS cl
         INNER JOIN tbl_hoja_cobro AS hc ON(cl.idHoja = hc.idHoja)
         INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente) LIMIT 200";
         $datos = $this->db->query($sql);
@@ -25,8 +27,8 @@ class Laboratorio_Model extends CI_Model {
 
     public function guardarConsulta($data = null){
         if($data != null){
-            $sql = "INSERT INTO tbl_consulta_laboratorio(codigoConsulta, fechaConsulta, idMedico, idPaciente, idHoja)
-                    VALUES(?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO tbl_consulta_laboratorio(codigoConsulta, fechaConsulta, idMedico, idPaciente, idHoja, idCola)
+                    VALUES(?, ?, ?, ?, ?, ?)";
             if($this->db->query($sql, $data)){
                 $idConsulta = $this->db->insert_id();
                 return $idConsulta;
@@ -248,12 +250,11 @@ class Laboratorio_Model extends CI_Model {
                 INNER JOIN tbl_medicos as m ON(hc.idMedico = m.idMedico) INNER JOIN tbl_medicamentos AS med ON(dc.examenSolicitado = med.idMedicamento) 
                 WHERE dc.idExamen = '$id' AND dc.tipoExamen = '$tipo' ";
             */
-            $sql = "SELECT med.nombreMedicamento, cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, dc.fechaDetalleConsulta, dc.horaDetalleConsulta,
+            $sql = "SELECT cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, dc.fechaDetalleConsulta, dc.horaDetalleConsulta,
                     dc.examenes, m.nombreMedico FROM $tabla AS i INNER JOIN tbl_detalle_consulta AS dc ON(i.$flag = dc.idExamen)
                     INNER JOIN tbl_consulta_laboratorio as cl ON(dc.idConsultaLaboratorio = cl.idConsultaLaboratorio) 
                     INNER JOIN tbl_pacientes as p ON(cl.idPaciente = p.idPaciente)
                     INNER JOIN tbl_medicos as m ON(cl.idMedico = m.idMedico) 
-                    INNER JOIN tbl_medicamentos AS med ON(dc.examenSolicitado = med.idMedicamento) 
                     WHERE dc.idExamen = '$id' AND dc.tipoExamen = '$tipo'";
             $datos = $this->db->query($sql);
             return $datos->row();
@@ -328,9 +329,11 @@ class Laboratorio_Model extends CI_Model {
         }
 
         public function obtenerExamenesRealizados($id){
-            $sql = "SELECT cl.idConsultaLaboratorio, m.nombreMedicamento, m.precioVMedicamento, dc.idDetalleConsulta, dc.idExamen, dc.horaDetalleConsulta, dc.fechaDetalleConsulta, dc.tipoExamen, dc.examenes
-            FROM tbl_consulta_laboratorio AS cl INNER JOIN tbl_detalle_consulta AS dc on(cl.idConsultaLaboratorio = dc.idConsultaLaboratorio) INNER JOIN tbl_medicamentos AS m 
-            ON(dc.examenSolicitado = m.idMedicamento) WHERE cl.idConsultaLaboratorio = '$id' ";
+            $sql = "SELECT dc.nombreExamen, cl.idConsultaLaboratorio, dc.idDetalleConsulta, dc.idExamen, 
+                    dc.horaDetalleConsulta, dc.fechaDetalleConsulta, dc.tipoExamen, dc.examenes
+                    FROM tbl_consulta_laboratorio AS cl 
+                    INNER JOIN tbl_detalle_consulta AS dc on(cl.idConsultaLaboratorio = dc.idConsultaLaboratorio) 
+                    WHERE cl.idConsultaLaboratorio = '$id' ";
             $datos = $this->db->query($sql);
             return $datos->result();
         }
@@ -608,12 +611,11 @@ class Laboratorio_Model extends CI_Model {
         }
 
         public function busquedaHistorial($str = null){
-            $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico, m.nombreMedico, cl.codigoConsulta, 
-                    cl.fechaConsultaLaboratorio, tcl.nombreTipoConsultaLab
+            $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico,
+                    m.nombreMedico, cl.codigoConsulta, cl.fechaConsultaLaboratorio
                     FROM tbl_consulta_laboratorio as cl 
                     INNER JOIN tbl_pacientes AS p ON(cl.idPaciente = p.idPaciente)
                     INNER JOIN tbl_medicos AS m ON(cl.idMedico = m.idMedico)
-                    INNER JOIN tbl_tipo_consulta_lab AS tcl ON(tcl.idTipoConsultaLab = cl.tipoConsulta)
                     WHERE p.nombrePaciente LIKE '%$str%'";
             $datos = $this->db->query($sql);
             return $datos->result();
@@ -851,19 +853,20 @@ class Laboratorio_Model extends CI_Model {
                 if($data != null){
                     $idConsulta = $data["consulta"];
                     $solicitado = $data["examenSolicitado"];
+                    unset($data["examenSolicitado"]);
                     unset($data["consulta"]);
 
-                    $sql = "INSERT INTO tbl_quimica_sanguinea(examenSolicitado, glucosaQS, posprandialQS, colesterolQS, trigliceridosQS, colesterolHDLQS, colesterolLDLQS, acidoUricoQS, ureaQS,
+                    $sql = "INSERT INTO tbl_quimica_sanguinea(glucosaQS, posprandialQS, colesterolQS, trigliceridosQS, colesterolHDLQS, colesterolLDLQS, acidoUricoQS, ureaQS,
                             nitrogenoQS, creatininaQS, amilasaQS, lipasaQS, fosfatasaQS, tgpQS, tgoQS, hba1cQS, proteinaTotalQS, albuminaQS, globulinaQS, relacionAGQS, bilirrubinaTQS,
                             bilirrubinaDQS, bilirrubinaIQS, sodioQuimicaClinica, potasioQuimicaClinica, cloroQuimicaClinica, magnesioQuimicaClinica, calcioQuimicaClinica, fosforoQuimicaClinica, cpkTQuimicaClinica,
                             cpkMbQuimicaClinica, ldhQuimicaClinica, troponinaQuimicaClinica, notaQS)
-                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                     if($this->db->query($sql, $data)){
                         $idExamen = $this->db->insert_id();
                         $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, examenSolicitado, horaDetalleConsulta )
-                                VALUES('$idConsulta', '$idExamen', '6', '$solicitado', '$hora')"; 
+                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                                    VALUES('$idConsulta', '$idExamen', '6', '$hora', 'Quimica sanguinea')"; 
                         $this->db->query($sqlDC);
                         $idDetalleConsulta = $this->db->insert_id();
                         $datos = array('idQuimicaSanguinea' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
