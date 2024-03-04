@@ -47,6 +47,7 @@
         padding: 5px;
         text-align: left;
         font-size: 12px;
+        border: 1px solid #075480;
     }
 
     .medicamentos{
@@ -57,6 +58,7 @@
         padding: 2px !important;
         font-size: 12px;
         color: #000000;
+        border: 1px solid #075480;
     }
 
     #tablaPaciente{
@@ -86,6 +88,7 @@
         color: #fff;
         padding: 5px 40px 5px 40px;
         height: 30px;
+        border: 1px solid #075480;
     }
 
     .detalle .table tr td{
@@ -110,7 +113,7 @@
     </div>
     <div class="contenedor">
         <div class="medicamentos">
-            <div style="border: 2px solid #0b88c9; padding-top: 10px; padding-bottom: 15px;">
+            <div style="border: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
                 <div class="">
                     <table id="tablaPaciente" cellspacing=10>
                         <tr>
@@ -130,11 +133,11 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #0b88c9; margin-top: 25px"><strong>RESULTADOS EXAMEN QUIMICA SANGUINEA</p>
+            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>RESULTADOS EXAMEN QUIMICA SANGUINEA</p>
             <div class="detalle">
                 <table class="table">
                     <thead>
-                        <tr style="background: #0b88c9;">
+                        <tr style="background: #075480;">
                             <th> Parametro </th>
                             <th> Resultado </th>
                             <th> Unidades </th>

@@ -91,16 +91,6 @@ class Laboratorio extends CI_Controller {
 
         }
 
-
-
-
-
-
-
-
-
-
-
         public function agregar_examen(){
             $data['medicos'] = $this->Medico_Model->obtenerMedicos();
             $data['pacientes'] = $this->Paciente_Model->obtenerPacientes();
@@ -124,6 +114,268 @@ class Laboratorio extends CI_Controller {
 
             // echo json_encode($data);
         }
+
+        
+        // Examen de quimica sanguinea
+            public function guardar_quimica_sanguinea(){
+                $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarQuimicaSanguinea($datos);
+                $examen = $resp["idQuimicaSanguinea"];
+                $consulta = $resp["idDetalleConsulta"];
+                
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos del examen fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/quimica_sanguinea_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos del examen!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
+                }
+
+                // echo json_encode($datos);
+            }
+
+            public function quimica_sanguinea_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_quimica_sanguinea", "idQuimicaSanguinea ", 6);
+                $data['sanguinea'] = $this->Laboratorio_Model->detalleExamen($id, 6);
+                
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 20,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/quimica_sanguinea_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('examen_quimica_sanguinea.pdf', 'I');
+                
+
+            }
+
+            public function actualizar_quimica_sanguinea(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                $bool = $this->Laboratorio_Model->actualizarQuimicaSanguinea($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+
+                // echo json_encode($datos);
+            }
+        // Fin quimica sanguinea
+
+        // Examen de Orina
+            public function guardar_orina(){
+                $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarOrina($datos);
+                $examen = $resp["idOrina"];
+                $consulta = $resp["idDetalleConsulta"];
+
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/orina_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos!");
+                    redirect(base_url()."Laboratorio/historial_examenes/");
+                }
+
+                // echo json_encode($datos);
+            }
+
+            public function orina_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_orina", "idOrina", 13);
+                $data['orina'] = $this->Laboratorio_Model->detalleExamen($id, 13);
+                /* var_dump($data['cabecera']);
+                echo "<br>___________________________________________________________________________________<br>";
+                var_dump($data['orina']); */
+
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 15,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/orina_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('orina_pdf.pdf', 'I');
+                
+
+            }
+
+            public function actualizar_orina(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                 
+                 $bool = $this->Laboratorio_Model->actualizarOrina($datos);
+                 if($bool){
+                     $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                     redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                 }else{
+                     $this->session->set_flashdata("error","Error al actualizar los datos!");
+                     redirect(base_url()."Laboratorio/");
+                 }
+                // echo json_encode($datos);
+            }
+        // Fin Orina
+
+        
+        // Examenes Hematologia
+        public function guardar_hematologia(){
+            $datos = $this->input->post();
+            $resp = $this->Laboratorio_Model->guardarHematologia($datos);
+            $examen = $resp["idHematologia"];
+            $consulta = $resp["idDetalleConsulta"];
+            if($resp != 0){
+                $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                redirect(base_url()."Laboratorio/hematologia_pdf/$examen/");
+            }else{
+                $this->session->set_flashdata("error","Error al guardar los datos!");
+                redirect(base_url()."Laboratorio/historial_examenes/");
+            }
+
+            // echo json_encode($datos);
+        }
+
+        public function hematologia_pdf($id){
+            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_hematologia", "idHematologia", 12);
+            $data['hematologia'] = $this->Laboratorio_Model->detalleExamen($id, 12);
+            // var_dump($data['cabecera']);
+            // echo "<br>___________________________________________________________________________________<br>";
+            //var_dump($data['hematologia']);
+
+            // Factura
+                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
+                $mpdf = new \Mpdf\Mpdf([
+                    'margin_left' => 15,
+                    'margin_right' => 15,
+                    'margin_top' => 15,
+                    'margin_bottom' => 25,
+                    'margin_header' => 10,
+                    'margin_footer' => 25
+                ]);
+                //$mpdf->setFooter('{PAGENO}');
+                $mpdf->SetHTMLFooter('
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480">
+                                <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
+                            </td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                        </tr>
+                    </table>');
+                $mpdf->SetProtection(array('print'));
+                $mpdf->SetTitle("Centro Médico La Familia");
+                $mpdf->SetAuthor("Edwin Orantes");
+                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+                $mpdf->showWatermarkText = true;
+                $mpdf->watermark_font = 'DejaVuSansCondensed';
+                $mpdf->watermarkTextAlpha = 0.1;
+                $mpdf->SetDisplayMode('fullpage');
+                //$mpdf->AddPage('L'); //Voltear Hoja
+
+                $html = $this->load->view('base/header', $data,true); 
+                $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('hematologia_pdf.pdf', 'I');
+            // Fin
+
+        }
+
+        public function actualizar_hematologia(){
+            $datos = $this->input->post();
+            $resp = $datos["consulta"];
+            unset($datos["consulta"]);
+            $bool = $this->Laboratorio_Model->actualizarHematologia($datos);
+            if($bool){
+                $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+            }else{
+                $this->session->set_flashdata("error","Error al actualizar los datos!");
+                redirect(base_url()."Laboratorio/");
+            }
+            // echo json_encode($datos);
+        }
+    // Fin Hematologia
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public function guardar_inmunologia(){
             $datos = $this->input->post();
@@ -165,20 +417,19 @@ class Laboratorio extends CI_Controller {
 
         public function eliminar_examen(){
             $datos = $this->input->post();
-            // echo json_encode($datos);
-            //$this->reintegroStock($datos["idExamen"], $datos["tipoExamen"]);
             $resp = $datos["consulta"];
             unset($datos["consulta"]);
             
             $bool = $this->Laboratorio_Model->eliminarExamen($datos);
             if($bool){
-                $this->reintegroStock($datos["idExamen"], $datos["tipoExamen"]);
                 $this->session->set_flashdata("exito","Los datos fueron eliminados con exito!");
                 redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
             }else{
                 $this->session->set_flashdata("error","Error al eliminar los datos!");
                 redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
             }
+
+            // echo json_encode($datos);
         }
 
         public function guardar_bacteriologia(){
@@ -233,9 +484,9 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetHTMLFooter('
                     <table width="100%">
                         <tr>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
                 $mpdf->SetProtection(array('print'));
@@ -274,9 +525,9 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetHTMLFooter('
                     <table width="100%">
                         <tr>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
                 $mpdf->SetProtection(array('print'));
@@ -537,9 +788,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -633,9 +884,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -712,9 +963,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -751,80 +1002,6 @@ class Laboratorio extends CI_Controller {
             }
         // Fin quimica clinica
 
-        // Examen de quimica sanguinea
-            public function guardar_quimica_sanguinea(){
-                $datos = $this->input->post();
-                $resp = $this->Laboratorio_Model->guardarQuimicaSanguinea($datos);
-                $examen = $resp["idQuimicaSanguinea"];
-                $consulta = $resp["idDetalleConsulta"];
-                
-                if($resp != 0){
-                    $this->session->set_flashdata("exito","Los datos del examen fueron guardados con exito!");
-                    redirect(base_url()."Laboratorio/quimica_sanguinea_pdf/$examen/");
-                }else{
-                    $this->session->set_flashdata("error","Error al guardar los datos del examen!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                }
-
-                // echo json_encode($datos);
-            }
-
-            public function quimica_sanguinea_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_quimica_sanguinea", "idQuimicaSanguinea ", 6);
-                $data['sanguinea'] = $this->Laboratorio_Model->detalleExamen($id, 6);
-                
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 20,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/quimica_sanguinea_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('examen_quimica_sanguinea.pdf', 'I');
-                
-
-            }
-
-            public function actualizar_quimica_sanguinea(){
-                $datos = $this->input->post();
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarQuimicaSanguinea($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                     redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin quimica sanguinea
 
         // Examen de Cropologia
             public function guardar_cropologia(){
@@ -869,9 +1046,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -988,9 +1165,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1108,9 +1285,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1205,9 +1382,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1286,9 +1463,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1327,175 +1504,6 @@ class Laboratorio extends CI_Controller {
 
         // Fin PSA
 
-        // Examenes Hematologia
-            public function guardar_hematologia(){
-                $datos = $this->input->post();
-                $data["examenes"] = $datos["examenSolicitado"];
-                $examenes = $datos["examenSolicitado"];
-                $datos["examenSolicitado"] = $data["examenes"][0];
-                $resp = $this->Laboratorio_Model->guardarHematologia($datos);
-
-                $examen = $resp["idHematologia"];
-                $consulta = $resp["idDetalleConsulta"];
-                $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes 
-
-                if($resp != 0){
-                    $this->descuentosReactivos($examenes, $examen, 12); // Ejecutando descuentos de stock
-                    $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                    redirect(base_url()."Laboratorio/hematologia_pdf_b/$examen/");
-                }else{
-                    $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                    redirect(base_url()."Laboratorio/historial_examenes/");
-                }
-
-                // echo json_encode($datos);
-            }
-
-            public function hematologia_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_hematologia", "idHematologia", 12);
-                $data['hematologia'] = $this->Laboratorio_Model->detalleExamen($id, 12);
-                // var_dump($data['cabecera']);
-                // echo "<br>___________________________________________________________________________________<br>";
-                //var_dump($data['hematologia']);
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 15,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9">
-                                    <strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</strong>
-                                </td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('hematologia_pdf.pdf', 'I');
-                // Fin
-
-            }
-
-            public function actualizar_hematologia(){
-                $datos = $this->input->post();
-                // var_dump($datos);
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarHematologia($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin Hematologia
-
-        // Examen de Orina
-            public function guardar_orina(){
-                $datos = $this->input->post();
-                $data["examenes"] = $datos["examenSolicitado"];
-                $examenes = $datos["examenSolicitado"];
-                $datos["examenSolicitado"] = $data["examenes"][0];
-                $resp = $this->Laboratorio_Model->guardarOrina($datos);
-
-                $examen = $resp["idOrina"];
-                $consulta = $resp["idDetalleConsulta"];
-                $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes 
-
-                if($resp != 0){
-                    $this->descuentosReactivos($examenes, $examen, 13); // Ejecutando descuentos de stock
-                    $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                    redirect(base_url()."Laboratorio/orina_pdf_b/$examen/");
-                }else{
-                    $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                    redirect(base_url()."Laboratorio/historial_examenes/");
-                }
-            }
-
-            public function orina_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_orina", "idOrina", 13);
-                $data['orina'] = $this->Laboratorio_Model->detalleExamen($id, 13);
-                /* var_dump($data['cabecera']);
-                echo "<br>___________________________________________________________________________________<br>";
-                var_dump($data['orina']); */
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 15,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/orina_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('orina_pdf.pdf', 'I');
-                
-
-            }
-
-            public function actualizar_orina(){
-                $datos = $this->input->post();
-                // echo json_encode($datos);
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarOrina($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin Orina
 
         // Examen de Hisopado Nasal
             public function guardar_hisopado(){
@@ -1539,9 +1547,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1620,9 +1628,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1704,9 +1712,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1788,9 +1796,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1875,9 +1883,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -1963,9 +1971,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));
@@ -2048,9 +2056,9 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetHTMLFooter('
                         <table width="100%">
                             <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                             </tr>
                         </table>');
                     $mpdf->SetProtection(array('print'));

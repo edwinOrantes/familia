@@ -49,18 +49,18 @@
     <div class="row">
         <div class="col-md-2 pl-4">
             <div class="text-center">
+                <a href="#cropologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Coprologia </strong> </a>
+                <a href="#orina" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Orina </strong> </a>
+                <a href="#hematologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Hematología </strong> </a>
+                <a href="#quimicaSanguinea" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Química sanguinea </strong> </a>
+                <a href="#sanguineo" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tipeo sanguineo </strong> </a>
+                <a href="#coagulacion" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Pruebas de coagulación </strong> </a>
+                <a href="#varios" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Varios </strong> </a>
                 <!-- <a href='#inmunologia' data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Inmunologia </strong> </a> -->
                 <!-- <a href="#bacteriologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Bacteriologia </strong> </a> -->
-                <a href="#coagulacion" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Pruebas de coagulación </strong> </a>
-                <a href="#sanguineo" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tipeo sanguineo </strong> </a>
-                <a href="#quimicaSanguinea" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Química sanguinea </strong> </a>
-                <a href="#cropologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Coprologia </strong> </a>
                 <!-- <a href="#tiroideasLibres" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tiroideas libres </strong> </a> -->
                 <!-- <a href="#tiroideasTotales" data-toggle='modal'class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tiroideas totales </strong> </a> -->
-                <a href="#varios" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Varios </strong> </a>
                 <!-- <a href="#psaTotal" data-toggle='modal'  class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> PSA Total </strong> </a> -->
-                <a href="#hematologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Hematología </strong> </a>
-                <a href="#orina" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Orina </strong> </a>
                 <!-- <a href="#hisopadoNasal" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Hisopado nasal </strong> </a> -->
                 <!-- <a href="#espermograma" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Espermograma </strong> </a> -->
                 <!-- <a href="#examenCreatinina" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> D. Creatinina </strong> </a> -->
@@ -195,13 +195,11 @@
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                                         break;
                                         case '12':
-                                            echo '<a href="'.base_url().'Laboratorio/hematologia_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/hematologia_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#hematologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 12)' ><i class='fas fa-edit ms-text-success'></i></a>";
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                                         break;
                                         case '13':
-                                            echo '<a href="'.base_url().'Laboratorio/orina_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/orina_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#orinaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 13)' ><i class='fas fa-edit ms-text-success'></i></a>";
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
@@ -666,92 +664,6 @@
         </div>
     <!-- Fin Modal para examen Tipeo sanguineo-->
 
-    <!-- Modal para examen química clínica-->
-        <!-- <div class="modal fade" id="quimicaClinica" tabindex="-1" role="dialog" awhria-hidden="true">
-            <div class="modal-dialog ms-modal-dialog-width">
-                <div class="modal-content ms-modal-content-width">
-                    <div class="modal-header  ms-modal-header-radius-0">
-                        <h4 class="modal-title text-white"> Química clínica</h4>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
-                    </div>
-
-                    <div class="modal-body p-0 text-left">
-                        <div class="col-xl-12 col-md-12">
-                            <div class="ms-panel ms-panel-bshadow-none">
-                                <div class="ms-panel-body">
-                                    <div class="">
-
-                                        <form class="needs-validation frmData" id="frmQuimicaClinica" method="post" action="<?php echo base_url() ?>Laboratorio/guardar_quimica_clinica" novalidate>
-                                            <table class="table table-borderless">
-                                                <thead></thead>
-                                                <tbody class="text-left">
-
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="3">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="form-group">
-                                                                <select name="quimicaClinicaSolicitado[]" id="" class="controlInteligente5 form-control" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Sodio (136-148 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinica"></td>
-                                                        <td class="menosPadding"><strong> Potasio (3.5-5.3 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinica"></td>
-                                                        <td class="menosPadding"><strong> Cloro (98-107 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinica"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Magnesio (1.3-2.9 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="magnesioQuimicaClinica" id="magnesioQuimicaClinica"></td>
-                                                        <td class="menosPadding"></td>
-                                                        <td class="menosPadding"><strong> Fosforo (Vn: 2.5-5.0 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="fosforoQuimicaClinica" id="fosforoQuimicaClinica"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> CPK Total (0-195 U/L) </strong><br><input type="text" class="form-control menosHeight" name="cpkTQuimicaClinica" id="cpkTQuimicaClinica"></td>
-                                                        <td class="menosPadding"></td>
-                                                        <td class="menosPadding"><strong> CPK MB (menor a 24U/L) </strong><br><input type="text" class="form-control menosHeight" name="cpkMbQuimicaClinica" id="cpkMbQuimicaClinica"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> LDH (230-460 U/L) </strong><br><input type="text" class="form-control menosHeight" name="ldhQuimicaClinica" id="ldhQuimicaClinica"></td>
-                                                        <td class="menosPadding"><strong> Creatinina (0.5-1.4 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="creatininaQuimicaClinica" id="creatininaQuimicaClinica"></td>
-                                                        <td class="menosPadding"><strong> Troponina I (0.01-15.0 ng/ml) </strong><br><input type="text" class="form-control menosHeight" name="troponinaQuimicaClinica" id="troponinaQuimicaClinica"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="3"><strong> Comentarios </strong><br><textarea class="form-control menosHeight" name="comentariosQuimicaClinica" id="comentariosQuimicaClinica" cols="88"></textarea></td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                            <div class="text-center">
-                                                <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
-                                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Guardar examen</button>
-                                                <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
-    <!-- Fin Modal para examen química clínica-->
-
     <!-- Modal para examen sanguinea-->
         <div class="modal fade" id="quimicaSanguinea" tabindex="-1" role="dialog" awhria-hidden="true">
             <div class="modal-dialog ms-modal-dialog-width">
@@ -862,105 +774,6 @@
             </div>
         </div>
     <!-- Fin Modal para examen sanguinea-->
-
-    <!-- Modal para examen química clinica-->
-        <!-- <div class="modal fade" data-backdrop="static" data-keyboard="false" id="quimicaClinica" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog ms-modal-dialog-width">
-                <div class="modal-content ms-modal-content-width">
-                    <div class="modal-header  ms-modal-header-radius-0">
-                        <h4 class="modal-title text-white"> Química Clinica</h4>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
-                    </div>
-
-                    <div class="modal-body p-0 text-left">
-                        <div class="col-xl-12 col-md-12">
-                            <div class="ms-panel ms-panel-bshadow-none">
-                                <div class="ms-panel-body">
-                                    <div class="">
-
-                                        <form class="needs-validation" id="frmInmunologia" method="post" action="<?php echo base_url() ?>Laboratorio/guardar_quimica_clinica" novalidate>
-                                            <table class="table table-borderless">
-                                                <thead></thead>
-                                                <tbody class="text-left">
-                                                    
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <select name="examenSolicitado" id="" class="controlInteligente6">
-                                                                <?php
-                                                                    foreach ($examenes as $examen) {
-                                                                ?>
-                                                                    <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Glucosa (60-110 mg/dl)</strong><br><input type="text" name="glucosa" id="glucosa"></td>
-                                                        <td class="menosPadding"><strong> Colesterol ( < de 200 mg/dl)</strong><br><input type="text" name="colesterol" id="colesterol"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Triglicéridos ( < de 150 mg/dl)</strong><br><input type="text" name="trigliceridos" id="trigliceridos" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Colesterol HDL ( > de 35 mg/dl) </strong><br><input type="text" name="colesterolHDL" id="colesterolHDL"></td>
-                                                        <td class="menosPadding"><strong> Colesterol LDL ( < 130 mg/dl)</strong><br><input type="text" name="colesterolLDL" id="colesterolLDL"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Ácido úrico (2.4-7.0 mg/dl) </strong><br><input type="text" name="acidoUrico" id="acidoUrico" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Urea ( 15-45 mg/dl)</strong><br><input type="text" name="urea" id="urea"></td>
-                                                        <td class="menosPadding"><strong> Nitrógeno ureico ( 5-25 mg/dl)</strong><br><input type="text" name="nitrogenoUreico" id="nitrogenoUreico"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Creatinina ( 0.5-1.4 mg/dl)</strong><br><input type="text" name="creatinina" id="creatinina" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Amilasa ( VN: menor de 90 U/L)</strong><br><input type="text" name="amilasa" id="amilasa"></td>
-                                                        <td class="menosPadding"><strong> Lipasa ( VN: menor de 38 U/L)</strong><br><input type="text" name="lipasa" id="lipasa"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Fosfatasa alcalina ( Hasta 275 U/L)</strong><br><input type="text" name="fosfatasaAlcalina" id="fosfatasaAlcalina" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> TGP ( VN: 1-40 U/L)</strong><br><input type="text" name="tgp" id="tgp"></td>
-                                                        <td class="menosPadding"><strong> TGO ( VN: 1-38 U/L)</strong><br><input type="text" name="tgo" id="tgo"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> HBA1C ( VN: 4.5-6.5% )</strong><br><input type="text" name="hba1c" id="hba1c" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Proteina total (VN: 6.6-8.3 g/dL)</strong><br><input type="text" name="proteinaTotal" id="proteinaTotal"></td>
-                                                        <td class="menosPadding"><strong> Albúmina (VN: 3.5-5.0 g/dL)</strong><br><input type="text" name="albumina" id="albumina"></td>
-                                                        <td class="menosPadding"><strong> Globulina (VN: 2-3.5 g/dL) </strong><br><input type="text" name="globulina" id="globulina"></td>
-                                                        <td class="menosPadding"><strong> Relación A/G: 1.2 a 2.2 </strong><br><input type="text" name="relacionAG" id="relacionAG"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Bili. Total (VN: hasta 1.1 mg/dl)</strong><br><input type="text" name="biliTotal" id="biliTotal"></td>
-                                                        <td class="menosPadding"><strong> Bili. directa (VN: hasta 0.25 mg/dl)</strong><br><input type="text" name="biliDirecta" id="biliDirecta"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Bilirrubina indirecta </strong><br><input type="text" name="biliIndirecta" id="cloro" size="47"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="4"><strong> Comentarios </strong><br><textarea name="nota" id="nota" cols="96"></textarea></td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                            <div class="text-center">
-                                                <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
-                                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Guardar examen</button>
-                                                <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
-    <!-- Fin Modal para examen química clinica-->
 
     <!-- Modal para examen cropologia-->
         <div class="modal fade" id="cropologia" tabindex="-1" role="dialog" awhria-hidden="true">
@@ -1489,30 +1302,6 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-                                                    
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <select name="examenSolicitado[]" id="" class="controlInteligente12 form-control" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                            if($examen->idMedicamento == 698){
-                                                                                echo '<option value="'.$examen->idMedicamento.'" selected>'.$examen->nombreMedicamento.'</option>';
-                                                                            }else{
-                                                                                echo '<option value="'.$examen->idMedicamento.'">'.$examen->nombreMedicamento.'</option>';
-                                                                            }
-                                                                        }
-                                                                    ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Eritrocitos (4-6 millones)</strong><br><input type="text" class="form-control menosHeight" name="eritrocitosHematologia" id="eritrocitosHematologia"></td>
                                                         <td class="menosPadding"><strong> Hematócrito (37-45 %)</strong><br><input type="text" class="form-control menosHeight" name="hematocritoHematologia" id="hematocritoHematologia"></td>
@@ -1608,78 +1397,54 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-                                                    
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-grup">
-                                                                <select name="examenSolicitado[]" id="" class="controlInteligente13 form-control" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                            if($examen->idMedicamento == 682){
-                                                                                echo '<option value="'.$examen->idMedicamento.'" selected>'.$examen->nombreMedicamento.'</option>';
-                                                                            }else{
-                                                                                echo '<option value="'.$examen->idMedicamento.'">'.$examen->nombreMedicamento.'</option>';
-                                                                            }
-                                                                        }
-                                                                    ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
+                                                    <tr class="text-center alert-primary">
+                                                        <td colspan="4">EXAMEN FISICO QUIMICO</td>
                                                     </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Color </strong><br><input type="text" class="form-control menosHeight" name="colorOrina" id="colorOrina"></td>
-                                                        <td class="menosPadding"><strong> Urobilinógeno </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="urobilinogenoOrina" id="colesterol"></td>
-                                                    </tr>
-
-                                                    <tr>
                                                         <td class="menosPadding"><strong> Aspecto </strong><br><input type="text" class="form-control menosHeight" name="aspectoOrina" id="aspectoOrina"></td>
-                                                        <td class="menosPadding"><strong> Cuerpos cetónicos </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="cuerposCetonicosOrina" id="cuerposCetonicosOrina"></td>
-                                                    </tr>
-                                                    
-                                                    <tr>
+                                                        <td class="menosPadding"><strong> Reacción </strong><br><input type="text" class="form-control menosHeight" name="reaccionOrina" id="reaccionOrina"></td>
                                                         <td class="menosPadding"><strong> Densidad </strong><br><input type="text" class="form-control menosHeight" name="densidadOrina" id="densidadOrina"></td>
-                                                        <td class="menosPadding"><strong> Cilindros </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="cilindrosOrina" id="cilindrosOrina"></td>
                                                     </tr>
                                                     
                                                     <tr>
                                                         <td class="menosPadding"><strong> pH </strong><br><input type="text" class="form-control menosHeight" name="phOrina" id="phOrina"></td>
-                                                        <td class="menosPadding"><strong> Hematíes </strong><br><input type="text" class="form-control menosHeight" name="hematiesOrina" id="hematiesOrina"></td>
-                                                    </tr>
-
-                                                    <tr>
                                                         <td class="menosPadding"><strong> Proteínas </strong><br><input value="NEGATIVO" type="text" class="form-control menosHeight" name="proteinasOrina" id="proteinasOrina"></td>
-                                                        <td class="menosPadding"><strong> Leucocitos </strong><br><input type="text" class="form-control menosHeight" name="leucocitosOrina" id="leucocitosOrina"></td>
-                                                    </tr>
-
-                                                    <tr>
                                                         <td class="menosPadding"><strong> Glucosa </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="glucosaOrina" id="glucosaOrina"></td>
-                                                        <td class="menosPadding"><strong> Células Epiteliales </strong><br><input type="text" class="form-control menosHeight" name="celulasEpitelialesOrina" id="celulasEpitelialesOrina"></td>
-                                                    </tr>
+                                                        <td class="menosPadding"><strong> Pigmentos Biliares </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="pigBilaOrina" id="pigBilaOrina"></td>
 
-                                                    <tr>
+                                                    </tr>
+                                                    
+                                                    <tr class="">
                                                         <td class="menosPadding"><strong> Sangre oculta </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="sangreOcultaOrina" id="sangreOcultaOrina"></td>
-                                                        <td class="menosPadding"><strong> Cristales </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="cristalesOrina" id="cristalesOrina"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Bilirrubina </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="bilirrubinaOrina" id="bilirrubinaOrina"></td>
-                                                        <td class="menosPadding"><strong> Parasitológico </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="parasitologicoOrina" id="parasitologicoOrina"></td>
-                                                    </tr>
-
-                                                    <tr>
                                                         <td class="menosPadding"><strong> Nitrito </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="nitritoOrina" id="nitritoOrina"></td>
-                                                        <td class="menosPadding"><strong> Bacterias </strong><br><input type="text" class="form-control menosHeight" name="bacteriasOrina" id="bacteriasOrina"></td>
+                                                        <td class="menosPadding"><strong> Cuerpos cetónicos </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="cuerposCetonicosOrina" id="cuerposCetonicosOrina"></td>
+                                                        <td class="menosPadding"><strong> Acidos biliares </strong><br><input type="text" class="form-control menosHeight" name="acidosBilOrina" id="acidosBilOrina"></td>
+                                                    </tr>
+
+                                                    <tr class="text-center alert-primary">
+                                                        <td colspan="4">EXAMEN MICROSCOPICO</td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Grumos leucocitarios </strong><br><input type="text" value="" class="form-control menosHeight" name="grumosOrina" id="grumosOrina"></td>
-                                                        <td class="menosPadding"><strong> Filamento mucoide </strong><br><input type="text" class="form-control menosHeight" name="filamentoOrina" id="filamentoOrina"></td>
+                                                        <td class="menosPadding"><strong> Granulosos </strong><br><input type="text" class="form-control menosHeight" name="granulososOrina" id="granulososOrina"></td>
+                                                        <td class="menosPadding"><strong> Cilindros leucocitarios </strong><br><input type="text" class="form-control menosHeight" name="cilindrosLeuOrina" id="cilindrosLeuOrina"></td>
+                                                        <td class="menosPadding"><strong> Cilindros hialinos </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="cilindrosOrina" id="cilindrosOrina"></td>
+                                                        <td class="menosPadding"><strong> Otros cilindros </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="oCilindrosOrina" id="oCilindrosOrina"></td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td class="menosPadding"><strong> Leucocitos </strong><br><input type="text" class="form-control menosHeight" name="leucocitosOrina" id="leucocitosOrina"></td>
+                                                        <td class="menosPadding"><strong> Hematíes </strong><br><input type="text" class="form-control menosHeight" name="hematiesOrina" id="hematiesOrina"></td>
+                                                        <td class="menosPadding"><strong> Células Epiteliales </strong><br><input type="text" class="form-control menosHeight" name="celulasEpitelialesOrina" id="celulasEpitelialesOrina"></td>
+                                                        <td class="menosPadding"><strong> Elementos minerales </strong><br><input type="text" class="form-control menosHeight" name="elemMineralesOrina" id="elemMineralesOrina"></td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td class="menosPadding"><strong> Bacterias </strong><br><input type="text" class="form-control menosHeight" name="bacteriasOrina" id="bacteriasOrina"></td>
+                                                        <td class="menosPadding"><strong> Levaduras  </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="levaduraOrina" id="levaduraOrina"></td>
+                                                        <td class="menosPadding"><strong> Otros </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="otrosOrina" id="otrosOrina"></td>
+                                                        <td></td>
                                                     </tr>
 
                                                     <tr>
@@ -2685,94 +2450,6 @@
         </div>
     <!-- Fin Modal para examen Tipeo sanguineo-->
 
-    <!-- Modal para examen química clínica-->
-        <!-- <div class="modal fade" data-backdrop="static" data-keyboard="false" id="quimicaClinicaActualizar" tabindex="-1" role="dialog" awhria-hidden="true">
-            <div class="modal-dialog ms-modal-dialog-width">
-                <div class="modal-content ms-modal-content-width">
-                    <div class="modal-header  ms-modal-header-radius-0">
-                        <h4 class="modal-title text-white"> Química clínica</h4>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
-                    </div>
-
-                    <div class="modal-body p-0 text-left">
-                        <div class="col-xl-12 col-md-12">
-                            <div class="ms-panel ms-panel-bshadow-none">
-                                <div class="ms-panel-body">
-                                    <div class="">
-
-                                        <form class="needs-validation" id="frmQuimicaClinica" method="post" action="<?php echo base_url() ?>Laboratorio/actualizar_quimica_clinica" novalidate>
-                                            <table class="table table-borderless">
-                                                <thead></thead>
-                                                <tbody class="text-left">
-
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="3">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="form-group">
-                                                                <select name="quimicaClinicaSolicitado" id="quimicaClinicaSolicitadoActualizar" class="controlInteligenteU5 form-control" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Sodio (136-148 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Potasio (3.5-5.3 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Cloro (98-107 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinicaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Magnesio (1.3-2.9 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="magnesioQuimicaClinica" id="magnesioQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"></td>
-                                                        <td class="menosPadding"><strong> Fosforo (Vn: 2.5-5.0 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="fosforoQuimicaClinica" id="fosforoQuimicaClinicaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> CPK Total (0-195 U/L) </strong><br><input type="text" class="form-control menosHeight" name="cpkTQuimicaClinica" id="cpkTQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"></td>
-                                                        <td class="menosPadding"><strong> CPK MB (menor a 24U/L) </strong><br><input type="text" class="form-control menosHeight" name="cpkMbQuimicaClinica" id="cpkMbQuimicaClinicaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> LDH (230-460 U/L) </strong><br><input type="text" class="form-control menosHeight" name="ldhQuimicaClinica" id="ldhQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Creatinina (0.5-1.4 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="creatininaQuimicaClinica" id="creatininaQuimicaClinicaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Troponina I (0.01-15.0 ng/ml) </strong><br><input type="text" class="form-control menosHeight" name="troponinaQuimicaClinica" id="troponinaQuimicaClinicaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="3"><strong> Comentarios </strong><br><textarea class="form-control menosHeight" name="comentariosQuimicaClinica" id="comentariosQuimicaClinicaActualizar" cols="88"></textarea></td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                            <div class="text-center">
-                                                <input type="hidden" name="idQuimicaClinica" id="idQuimicaClinica">
-                                                <input type="hidden" name="idDetalleConsulta" id="idDetalleConsultaQC">
-                                                <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
-                                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar examen</button>
-                                                <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
-    <!-- Fin Modal para examen química clínica-->
-
     <!-- Modal para examen sanguinea-->
         <div class="modal fade" data-backdrop="static" data-keyboard="false" id="quimicaSanguineaActualizar" tabindex="-1" role="dialog" awhria-hidden="true">
             <div class="modal-dialog ms-modal-dialog-width">
@@ -2793,23 +2470,6 @@
                                                 <thead></thead>
                                                 <tbody class="text-left">
                                                     <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <select name="quimicaSanguineaSolicitado" id="quimicaSanguineaSolicitadoActualizar" class="controlInteligenteU6 form-control" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
                                                     <tr>
                                                         <td class="menosPadding"><strong> Glucosa (60-110 mg/dl)</strong><br><input type="text" name="glucosa" class="form-control menosHeight" id="glucosaActualizar"></td>
                                                         <td class="menosPadding"><strong> Glucosa P. (140 mg/dl)</strong><br><input type="text" name="posprandial" class="form-control menosHeight" id="posprandialActualizar"></td>
@@ -3421,25 +3081,6 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-                                                    
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <select name="examenSolicitado" id="hematologiaSolicitadoActualizar" class="controlInteligenteU12 form-control" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
 
                                                     <tr>
                                                         <td class="menosPadding"><strong> Eritrocitos (4-6 millones)</strong><br><input type="text" class="form-control menosHeight" name="eritrocitosHematologia" id="eritrocitosHematologiaActualizar"></td>
@@ -3520,7 +3161,7 @@
     <!-- Fin Modal para examen Hematologia-->
 
     <!-- Modal para examen Orina-->
-        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="orinaActualizar" tabindex="-1" role="dialog" awhria-hidden="true">
+        <div class="modal fade" id="orinaActualizar" tabindex="-1" role="dialog" awhria-hidden="true">
             <div class="modal-dialog ms-modal-dialog-width">
                 <div class="modal-content ms-modal-content-width">
                     <div class="modal-header  ms-modal-header-radius-0">
@@ -3534,91 +3175,71 @@
                                 <div class="ms-panel-body">
                                     <div class="">
 
-                                        <form class="needs-validation" id="frmOrina" method="post" action="<?php echo base_url() ?>Laboratorio/actualizar_orina" novalidate>
+                                        <form class="needs-validation frmData" id="frmOrina" method="post" action="<?php echo base_url() ?>Laboratorio/actualizar_orina" novalidate>
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-                                                    
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-grup">
-                                                                <select name="examenSolicitado" id="orinaSolicitadoActualizar" class="controlInteligenteU13 form-control" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
+                                                    <tr class="text-center alert-primary">
+                                                        <td colspan="4">EXAMEN FISICO QUIMICO</td>
                                                     </tr>
-
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Color </strong><br><input type="text" class="form-control menosHeight" name="colorOrina" id="colorOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Urobilinógeno </strong><br><input type="text" class="form-control menosHeight" name="urobilinogenoOrina" id="urobilinogenoOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Aspecto </strong><br><input type="text" class="form-control menosHeight" name="aspectoOrina" id="aspectoOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Cuerpos cetónicos </strong><br><input type="text" class="form-control menosHeight" name="cuerposCetonicosOrina" id="cuerposCetonicosOrinaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Color </strong><br><input type="text" class="form-control menosHeight" name="colorOrina" id="colorOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Aspecto </strong><br><input type="text" class="form-control menosHeight" name="aspectoOrina" id="aspectoOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Reacción </strong><br><input type="text" class="form-control menosHeight" name="reaccionOrina" id="reaccionOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Densidad </strong><br><input type="text" class="form-control menosHeight" name="densidadOrina" id="densidadOrinaU"></td>
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Densidad </strong><br><input type="text" class="form-control menosHeight" name="densidadOrina" id="densidadOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Cilindros </strong><br><input type="text" class="form-control menosHeight" name="cilindrosOrina" id="cilindrosOrinaActualizar"></td>
+                                                        <td class="menosPadding"><strong> pH </strong><br><input type="text" class="form-control menosHeight" name="phOrina" id="phOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Proteínas </strong><br><input value="NEGATIVO" type="text" class="form-control menosHeight" name="proteinasOrina" id="proteinasOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Glucosa </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="glucosaOrina" id="glucosaOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Pigmentos Biliares </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="pigBilaOrina" id="pigBilaOrinaU"></td>
+
+                                                    </tr>
+                                                    
+                                                    <tr class="">
+                                                        <td class="menosPadding"><strong> Sangre oculta </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="sangreOcultaOrina" id="sangreOcultaOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Nitrito </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="nitritoOrina" id="nitritoOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Cuerpos cetónicos </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="cuerposCetonicosOrina" id="cuerposCetonicosOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Acidos biliares </strong><br><input type="text" class="form-control menosHeight" name="acidosBilOrina" id="acidosBilOrinaU"></td>
+                                                    </tr>
+
+                                                    <tr class="text-center alert-primary">
+                                                        <td colspan="4">EXAMEN MICROSCOPICO</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="menosPadding"><strong> Granulosos </strong><br><input type="text" class="form-control menosHeight" name="granulososOrina" id="granulososOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Cilindros leucocitarios </strong><br><input type="text" class="form-control menosHeight" name="cilindrosLeuOrina" id="cilindrosLeuOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Cilindros hialinos </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="cilindrosOrina" id="cilindrosOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Otros cilindros </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="oCilindrosOrina" id="oCilindrosOrinaU"></td>
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td class="menosPadding"><strong> pH </strong><br><input type="text" class="form-control menosHeight" name="phOrina" id="phOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Hematíes </strong><br><input type="text" class="form-control menosHeight" name="hematiesOrina" id="hematiesOrinaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Leucocitos </strong><br><input type="text" class="form-control menosHeight" name="leucocitosOrina" id="leucocitosOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Hematíes </strong><br><input type="text" class="form-control menosHeight" name="hematiesOrina" id="hematiesOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Células Epiteliales </strong><br><input type="text" class="form-control menosHeight" name="celulasEpitelialesOrina" id="celulasEpitelialesOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Elementos minerales </strong><br><input type="text" class="form-control menosHeight" name="elemMineralesOrina" id="elemMineralesOrinaU"></td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td class="menosPadding"><strong> Bacterias </strong><br><input type="text" class="form-control menosHeight" name="bacteriasOrina" id="bacteriasOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Levaduras  </strong><br><input type="text" value="NEGATIVO" class="form-control menosHeight" name="levaduraOrina" id="levaduraOrinaU"></td>
+                                                        <td class="menosPadding"><strong> Otros </strong><br><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name="otrosOrina" id="otrosOrinaU"></td>
+                                                        <td></td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Proteínas </strong><br><input type="text" class="form-control menosHeight" name="proteinasOrina" id="proteinasOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Leucocitos </strong><br><input type="text" class="form-control menosHeight" name="leucocitosOrina" id="leucocitosOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Glucosa </strong><br><input type="text" class="form-control menosHeight" name="glucosaOrina" id="glucosaOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Células Epiteliales </strong><br><input type="text" class="form-control menosHeight" name="celulasEpitelialesOrina" id="celulasEpitelialesOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Sangre oculta </strong><br><input type="text" class="form-control menosHeight" name="sangreOcultaOrina" id="sangreOcultaOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Cristales </strong><br><input type="text" class="form-control menosHeight" name="cristalesOrina" id="cristalesOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Bilirrubina </strong><br><input type="text" class="form-control menosHeight" name="bilirrubinaOrina" id="bilirrubinaOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Parasitológico </strong><br><input type="text" class="form-control menosHeight" name="parasitologicoOrina" id="parasitologicoOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Nitrito </strong><br><input type="text" class="form-control menosHeight" name="nitritoOrina" id="nitritoOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Bacterias </strong><br><input type="text" class="form-control menosHeight" name="bacteriasOrina" id="bacteriasOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding"><strong> Grumos leucocitarios </strong><br><input type="text" value="" class="form-control menosHeight" name="grumosOrina" id="grumosOrinaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Filamento mucoide </strong><br><input type="text" class="form-control menosHeight" name="filamentoOrina" id="filamentoOrinaActualizar"></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="menosPadding" colspan="4"><strong> Observaciones </strong><br><textarea name="observacionesOrina" id="observacionesOrinaActualizar" class="form-control menosHeight disableSelect"></textarea></td>
+                                                        <td class="menosPadding" colspan="4"><strong> Observaciones </strong><br><textarea name="observacionesOrina" id="observacionesOrinaU" class="form-control menosHeight disableSelect"></textarea></td>
                                                     </tr>
 
                                                 </tbody>
                                             </table>
                                             <div class="text-center">
-                                                <input type="hidden" name="idOrina" id="idOrina">
-                                                <input type="hidden" name="idDetalleConsulta" id="idDetalleConsultaO">
-                                                <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
-                                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar examen</button>
+                                                <input type="text" name="idOrina" id="idOrina">
+                                                <input type="text" name="idDetalleConsulta" id="idDetalleConsultaO">
+                                                <input type="text" name="consulta" value="<?php echo $consulta; ?>">
+                                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar</button>
                                                 <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
                                             </div>
                                         </form>
@@ -4108,134 +3729,6 @@
 
 <script>
     $(document).ready(function() {
-        // Agregar
-            $(".controlInteligente").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#inmunologia")
-            });
-            $(".controlInteligente2").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#bacteriologia")
-            });
-            $(".controlInteligente3").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#coagulacion")
-            });
-            $(".controlInteligente4").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#sanguineo")
-            });
-            $(".controlInteligente5").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#quimicaClinica")
-            });
-            $(".controlInteligente6").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#quimicaSanguinea")
-            });
-            $(".controlInteligente7").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#cropologia")
-            });
-            $(".controlInteligente8").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#tiroideasLibres")
-            });
-            $(".controlInteligente9").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#tiroideasTotales")
-            });
-            $(".controlInteligente10").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#varios")
-            });
-            $(".controlInteligente11").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#psaTotal")
-            });
-            $(".controlInteligente12").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#hematologia")
-            });
-            $(".controlInteligente13").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#orina")
-            });
-            $(".controlInteligente14").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#espermograma")
-            });
-            $(".controlInteligente15").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#examenCreatinina")
-            });
-            
-        //Fin Agregar
-        
-        // Actualizar
-            $(".controlInteligenteU").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#inmunologiaActualizar")
-            });
-            $(".controlInteligenteU2").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#bacteriologiaActualizar")
-            });
-
-            $(".controlInteligenteU3").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#coagulacionActualizar")
-            });
-            $(".controlInteligenteU4").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#sanguineoActualizar")
-            });
-            $(".controlInteligenteU5").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#quimicaClinicaActualizar")
-            });
-            $(".controlInteligenteU6").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#quimicaSanguineaActualizar")
-            });
-            $(".controlInteligenteU7").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#cropologiaActualizar")
-            });
-            $(".controlInteligenteU8").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#tiroideaLibreActualizar")
-            });
-            $(".controlInteligenteU9").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#tiroideasTotalesActualizar")
-            });
-            $(".controlInteligenteU10").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#variosActualizar")
-            });
-            $(".controlInteligenteU11").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#psaTotalActualizar")
-            });
-            $(".controlInteligenteU12").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#hematologiaActualizar")
-            });
-            $(".controlInteligenteU12").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#hematologiaActualizar")
-            });
-            $(".controlInteligenteU13").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#orinaActualizar")
-            });
-            $(".controlInteligenteU14").select2({
-                theme: "bootstrap4",
-                dropdownParent: $("#hisopadoNasalActualizar")
-            });
-            
-        // Fin Actualizar
 
         // Pivote para liberar examenes varios
             $("#pivoteExamen").click(function() {
@@ -4500,32 +3993,31 @@
                                 case 13:
                                     $("#idOrina").val(registro[i]["idOrina"]);
                                     $("#idDetalleConsultaO").val(registro[i]["idDetalleConsulta"]);
-                                    $("#orinaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#colorOrinaActualizar").val(registro[i]["colorOrina"]);
-                                    $("#urobilinogenoOrinaActualizar").val(registro[i]["urobilinogenoOrina"]);
-                                    $("#aspectoOrinaActualizar").val(registro[i]["aspectoOrina"]);
-                                    $("#cuerposCetonicosOrinaActualizar").val(registro[i]["cuerposCetonicosOrina"]);
-                                    $("#densidadOrinaActualizar").val(registro[i]["densidadOrina"]);
-                                    $("#cilindrosOrinaActualizar").val(registro[i]["cilindrosOrina"]);
-                                    $("#phOrinaActualizar").val(registro[i]["phOrina"]);
-                                    $("#hematiesOrinaActualizar").val(registro[i]["hematiesOrina"]);
-                                    $("#proteinasOrinaActualizar").val(registro[i]["proteinasOrina"]);
-                                    $("#leucocitosOrinaActualizar").val(registro[i]["leucocitosOrina"]);
-                                    $("#glucosaOrinaActualizar").val(registro[i]["glucosaOrina"]);
-                                    $("#celulasEpitelialesOrinaActualizar").val(registro[i]["celulasEpitelialesOrina"]);
-                                    $("#sangreOcultaOrinaActualizar").val(registro[i]["sangreOcultaOrina"]);
-                                    $("#cristalesOrinaActualizar").val(registro[i]["cristalesOrina"]);
-                                    $("#bilirrubinaOrinaActualizar").val(registro[i]["bilirrubinaOrina"]);
-                                    $("#parasitologicoOrinaActualizar").val(registro[i]["parasitologicoOrina"]);
-                                    $("#nitritoOrinaActualizar").val(registro[i]["nitritoOrina"]);
-                                    $("#bacteriasOrinaActualizar").val(registro[i]["bacteriasOrina"]);
+                                    $("#colorOrinaU").val(registro[i]["colorOrina"]);
+                                    $("#aspectoOrinaU").val(registro[i]["aspectoOrina"]);
+                                    $("#reaccionOrinaU").val(registro[i]["reaccionOrina"]);
+                                    $("#densidadOrinaU").val(registro[i]["densidadOrina"]);
+                                    $("#phOrinaU").val(registro[i]["phOrina"]);
+                                    $("#proteinasOrinaU").val(registro[i]["proteinasOrina"]);
+                                    $("#glucosaOrinaU").val(registro[i]["glucosaOrina"]);
+                                    $("#pigBilaOrinaU").val(registro[i]["pigBilaOrina"]);
+                                    $("#sangreOcultaOrinaU").val(registro[i]["sangreOcultaOrina"]);
+                                    $("#nitritoOrinaU").val(registro[i]["nitritoOrina"]);
+                                    $("#cuerposCetonicosOrinaU").val(registro[i]["cuerposCetonicosOrina"]);
+                                    $("#acidosBilOrinaU").val(registro[i]["acidosBilOrina"]);
+                                    $("#granulososOrinaU").val(registro[i]["granulososOrina"]);
+                                    $("#cilindrosLeuOrinaU").val(registro[i]["cilindrosLeuOrina"]);
+                                    $("#cilindrosOrinaU").val(registro[i]["cilindrosOrina"]);
+                                    $("#oCilindrosOrinaU").val(registro[i]["oCilindrosOrina"]);
+                                    $("#leucocitosOrinaU").val(registro[i]["leucocitosOrina"]);
+                                    $("#hematiesOrinaU").val(registro[i]["hematiesOrina"]);
+                                    $("#celulasEpitelialesOrinaU").val(registro[i]["celulasEpitelialesOrina"]);
+                                    $("#elemMineralesOrinaU").val(registro[i]["elemMineralesOrina"]);
+                                    $("#bacteriasOrinaU").val(registro[i]["bacteriasOrina"]);
+                                    $("#levaduraOrinaU").val(registro[i]["levaduraOrina"]);
+                                    $("#otrosOrinaU").val(registro[i]["otrosOrina"]);
+                                    $("#observacionesOrinaO").val(registro[i]["observacionesOrina"]);
 
-                                    $("#grumosOrinaActualizar").val(registro[i]["grumosOrina"]);
-                                    $("#filamentoOrinaActualizar").val(registro[i]["filamentoOrina"]);
-
-                                    
-                                    
-                                    $("#observacionesOrinaActualizar").val(registro[i]["observacionesOrina"]);
                                 break;
                                 case 14:
                                     $("#idHisopadoNasal").val(registro[i]["idHisopadoNasal"]);

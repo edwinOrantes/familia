@@ -2,7 +2,7 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background-image: url('public/img/test2_bg.jpg') ;
+        /* background-image: url('public/img/test2_bg.jpg') ; */
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -57,6 +57,7 @@
         padding: 2px !important;
         font-size: 12px;
         color: #000000;
+        border: 1px solid #075480;
     }
 
     #tablaPaciente{
@@ -85,10 +86,11 @@
         color: #fff;
         padding: 5px 40px 5px 40px;
         height: 30px;
+        border: 1px solid #075480;
     }
 
     .detalle .table tr td{
-        height: 27px;
+        height: 23px;
     }
 </style>
 
@@ -102,13 +104,7 @@
         <div id="principal">
             <table style="text-align: center; margin-left: 20px">
                 <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">LABORATORIO CLINICO</strong></td>
-                </tr>
-                <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">Sexta calle oriente, #8, Usulután, El Salvador,</strong></td>
-                </tr>
-                <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">PBX 2606-6673, C.S.S.P. N° 2150</strong></td>
+                    <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, <br> frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
                 </tr>
             </table>
         </div>
@@ -116,7 +112,7 @@
     <div class="contenedor">
         <div class="medicamentos">
             
-            <div style="border: 2px solid #0b88c9; padding-top: 10px; padding-bottom: 15px;">
+            <div style="border: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
                 <div class="">
                     <table id="tablaPaciente" cellspacing=10>
                         <tr>
@@ -137,11 +133,11 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #0b88c9"><strong>RESULTADO EXAMEN ORINA</strong></p>
+            <p style="font-size: 12px; color: #075480"><strong>RESULTADO EXAMEN ORINA</strong></p>
             <div class="detalle">
                 <table class="table">
                     <thead>
-                        <tr style="background: #0b88c9;">
+                        <tr style="background: #075480;">
                             <th> Parametro </th>
                             <th> Resultado </th>
                             <th> Unidades </th>
@@ -152,7 +148,7 @@
                         
                         // Analisis fisico quimico
                             echo  '<tr>
-                                    <td style="text-align: center; background: rgba(0, 123, 255, 0.1);" colspan=4><strong>Análisis Fisico-Quimico </strong></td>
+                                    <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Fisico-Quimico </strong></td>
                                 </tr>';
                             if($orina->colorOrina != ""){
                                 echo '<tr>
@@ -165,6 +161,13 @@
                                 echo '<tr>
                                         <td><strong class="">Aspecto</strong></td>
                                         <td style="text-align: center;">'.$orina->aspectoOrina.'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($orina->reaccionOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Reacción</strong></td>
+                                        <td style="text-align: center;">'.$orina->reaccionOrina.'</td>
                                         <td style="text-align: center;">-</td>
                                     </tr>';
                             }
@@ -186,14 +189,21 @@
                                 echo '<tr>
                                         <td><strong class="">Proteínas</strong></td>
                                         <td style="text-align: center;">'.$orina->proteinasOrina.'</td>
-                                        <td style="text-align: center;">mg/dl</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
                             if($orina->glucosaOrina != ""){
                                 echo '<tr>
                                         <td><strong class="">Glucosa</strong></td>
                                         <td style="text-align: center;">'.$orina->glucosaOrina.'</td>
-                                        <td style="text-align: center;">mg/dl</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($orina->pigBilaOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Pigmentos biliares</strong></td>
+                                        <td style="text-align: center;">'.$orina->pigBilaOrina.'</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
                             if($orina->sangreOcultaOrina != ""){
@@ -203,24 +213,10 @@
                                         <td style="text-align: center;">-</td>
                                     </tr>';
                             }
-                            if($orina->bilirrubinaOrina != ""){
-                                echo '<tr>
-                                        <td><strong class="">Bilirrubina</strong></td>
-                                        <td style="text-align: center;">'.$orina->bilirrubinaOrina.'</td>
-                                        <td style="text-align: center;">mg/dl</td>
-                                    </tr>';
-                            }
                             if($orina->nitritoOrina != ""){
                                 echo '<tr>
                                         <td><strong class="">Nitrito</strong></td>
                                         <td style="text-align: center;">'.$orina->nitritoOrina.'</td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>';
-                            }
-                            if($orina->urobilinogenoOrina != ""){
-                                echo '<tr>
-                                        <td><strong class="">Urobilinógeno</strong></td>
-                                        <td style="text-align: center;">'.$orina->urobilinogenoOrina.'</td>
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
@@ -231,32 +227,63 @@
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
+
+                            if($orina->acidosBilOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Acidos biliares</strong></td>
+                                        <td style="text-align: center;">'.$orina->acidosBilOrina.'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            
                         // Analisis fisico quimico
                         // Analisis microscopico
                             echo  '<tr>
-                                    <td style="text-align: center; background: rgba(0, 123, 255, 0.1);" colspan=4><strong>Análisis Microscopico </strong></td>
+                                    <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Microscopico </strong></td>
                                 </tr>';
+                            if($orina->granulososOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Granulosos</strong></td>
+                                        <td style="text-align: center;">'.$orina->granulososOrina.'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($orina->cilindrosLeuOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Cilindros luicocitarios</strong></td>
+                                        <td style="text-align: center;">'.$orina->cilindrosLeuOrina.'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
                             if($orina->cilindrosOrina != ""){
                                 echo '<tr>
                                         <td><strong class="">Cilindros</strong></td>
                                         <td style="text-align: center;">'.$orina->cilindrosOrina.'</td>
-                                        <td style="text-align: center;">x campo</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
-                            if($orina->hematiesOrina != ""){
+                            if($orina->oCilindrosOrina != ""){
                                 echo '<tr>
-                                        <td><strong class="">Hematíes</strong></td>
-                                        <td style="text-align: center;">'.$orina->hematiesOrina.'</td>
-                                        <td style="text-align: center;">x campo</td>
+                                        <td><strong class="">Otros cilindros</strong></td>
+                                        <td style="text-align: center;">'.$orina->oCilindrosOrina.'</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
                             if($orina->leucocitosOrina != ""){
                                 echo '<tr>
                                         <td><strong class="">Leucocitos</strong></td>
                                         <td style="text-align: center;">'.$orina->leucocitosOrina.'</td>
-                                        <td style="text-align: center;">x campo</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
+                            if($orina->hematiesOrina != ""){
+                                echo '<tr>
+                                        <td><strong class="">Hematíes</strong></td>
+                                        <td style="text-align: center;">'.$orina->hematiesOrina.'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+
                             if($orina->celulasEpitelialesOrina != ""){
                                 echo '<tr>
                                         <td><strong class="">Células epiteliales</strong></td>
@@ -264,17 +291,11 @@
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
-                            if($orina->cristalesOrina != ""){
+
+                            if($orina->elemMineralesOrina != ""){
                                 echo '<tr>
-                                        <td><strong class="">Cristales</strong></td>
-                                        <td style="text-align: center;">'.$orina->cristalesOrina.'</td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>';
-                            }
-                            if($orina->parasitologicoOrina != ""){
-                                echo '<tr>
-                                        <td><strong class="">Parasitológico</strong></td>
-                                        <td style="text-align: center;">'.$orina->parasitologicoOrina.'</td>
+                                        <td><strong class="">Elementos minerales</strong></td>
+                                        <td style="text-align: center;">'.$orina->elemMineralesOrina.'</td>
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
@@ -285,17 +306,18 @@
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
-                            if($orina->grumosOrina != ""){
+                            if($orina->levaduraOrina != ""){
                                 echo '<tr>
-                                        <td><strong class="">Grumos leucocitarios</strong></td>
-                                        <td style="text-align: center;">'.$orina->grumosOrina.'</td>
-                                        <td style="text-align: center;">x campo</td>
+                                        <td><strong class="">Levadura</strong></td>
+                                        <td style="text-align: center;">'.$orina->levaduraOrina.'</td>
+                                        <td style="text-align: center;">-</td>
                                     </tr>';
                             }
-                            if($orina->filamentoOrina != ""){
+
+                            if($orina->otrosOrina != ""){
                                 echo '<tr>
-                                        <td><strong class="">Filamento mucoide</strong></td>
-                                        <td style="text-align: center;">'.$orina->filamentoOrina.'</td>
+                                        <td><strong class="">Otros</strong></td>
+                                        <td style="text-align: center;">'.$orina->otrosOrina.'</td>
                                         <td style="text-align: center;"></td>
                                     </tr>';
                             }
