@@ -49,6 +49,291 @@ class Laboratorio_Model extends CI_Model {
         return $datos->row();
     }
 
+    // Datos para el examen de sanguineo
+        public function guardarSanguineo($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                unset($data["consulta"]);
+
+                $sql = "INSERT INTO tbl_sanguineo(muestraSanguineo, grupoSanguineo, factorSanguineo, duSanguineo)
+                        VALUES(?, ?, ?, ?)";
+
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                            VALUES('$idConsulta', '$idExamen', '4', '$hora', 'Tipeo sanguineo')"; 
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idSanguineo' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarSanguineo($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                unset($data["idDetalleConsulta"]);
+                $sql = "UPDATE tbl_sanguineo SET muestraSanguineo = ?, grupoSanguineo = ?, factorSanguineo = ?,
+                        duSanguineo = ? WHERE idSanguineo = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examen sanguineo
+
+
+
+    // Datos para los examen de orina
+        public function guardarOrina($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                unset($data["consulta"]);
+
+                $sql = "INSERT INTO tbl_orina(colorOrina, aspectoOrina, reaccionOrina, densidadOrina, phOrina, proteinasOrina, glucosaOrina, pigBilaOrina, 
+                        sangreOcultaOrina, nitritoOrina, cuerposCetonicosOrina, acidosBilOrina, granulososOrina, cilindrosLeuOrina,
+                        cilindrosOrina, oCilindrosOrina, leucocitosOrina, hematiesOrina, celulasEpitelialesOrina, elemMineralesOrina, 
+                        bacteriasOrina, levaduraOrina, otrosOrina, observacionesOrina)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                            VALUES('$idConsulta', '$idExamen', '13', '$hora', 'Orina')";
+
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idOrina' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarOrina($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                unset($data["idDetalleConsulta"]);
+                $sql = "UPDATE tbl_orina SET colorOrina = ?, aspectoOrina = ?, reaccionOrina = ?, densidadOrina = ?, phOrina = ?, proteinasOrina = ?,
+                                glucosaOrina = ?, pigBilaOrina = ?, sangreOcultaOrina = ?, nitritoOrina = ?, cuerposCetonicosOrina = ?, 
+                                acidosBilOrina = ?, granulososOrina = ?, cilindrosLeuOrina = ?, cilindrosOrina = ?, oCilindrosOrina = ?,
+                                leucocitosOrina = ?, hematiesOrina = ?, celulasEpitelialesOrina = ?, elemMineralesOrina = ?, bacteriasOrina = ?,
+                                levaduraOrina = ?, otrosOrina = ?, observacionesOrina = ?
+                        WHERE idOrina = ? ";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examene de orina
+
+
+    // Datos para los examen de hematologia
+        public function guardarHematologia($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                unset($data["consulta"]);
+                $sql = "INSERT INTO tbl_hematologia(eritrocitosHematologia, hematocritoHematologia, hemoglobinaHematologia,
+                        vgmHematologia, hgmHematologia, chgmHematologia, leucocitosHematologia, neutrofHematologia, neutrofBandHematologia,
+                        linfocitosHematologia, eosinofilosHematologia, monocitosHematologia, basofilosHematologia, blastosHematologia,
+                        reticulocitosHematologia, eritrosedHematologia, plaquetasHematologia, gotaGruesaHematologia, rojaHematologia, 
+                        blancaHematologia, plaquetariaHematologia, observacionesHematologia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                            VALUES('$idConsulta', '$idExamen', '12', '$hora', 'Hematologia')";
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idHematologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarHematologia($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                unset($data["idDetalleConsulta"]);
+                $sql = "UPDATE tbl_hematologia SET eritrocitosHematologia = ?, hematocritoHematologia = ?, hemoglobinaHematologia = ?,
+                        vgmHematologia = ?, hgmHematologia = ?, chgmHematologia = ?, leucocitosHematologia = ?, neutrofHematologia = ?, neutrofBandHematologia = ?, 
+                        linfocitosHematologia = ?, eosinofilosHematologia = ?, monocitosHematologia = ?, basofilosHematologia = ?, blastosHematologia = ?,
+                        reticulocitosHematologia = ?, eritrosedHematologia = ?, plaquetasHematologia = ?, gotaGruesaHematologia = ?, rojaHematologia = ?,
+                        blancaHematologia = ?, plaquetariaHematologia = ?, observacionesHematologia = ? WHERE idHematologia = ? ";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examene de hematologia
+
+    
+    // Datos para el examen de coagulacion
+        public function guardarCoagulacion($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                unset($data["consulta"]);
+
+                $sql = "INSERT INTO tbl_coagulacion(tiempoProtombina, tiempoTromboplastina, fibrinogeno, inr, tiempoSangramiento, tiempoCoagulacion, observacion) 
+                        VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                              VALUES('$idConsulta', '$idExamen', '3', '$hora', 'Coagulación')"; 
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idCoagulacion' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarCoagulacion($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                unset($data["idDetalleConsulta"]);
+                $sql = "UPDATE tbl_coagulacion SET tiempoProtombina = ?, tiempoTromboplastina = ?, fibrinogeno = ?,
+                        inr = ?, tiempoSangramiento = ?, tiempoCoagulacion = ?, observacion = ? WHERE idCoagulacion = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examen coagulacion
+
+    // Datos para el examen de cropologia
+        public function guardarCropologia($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                $solicitado = $data["examenSolicitado"];
+                unset($data["consulta"]);
+
+                $sql = "INSERT INTO tbl_cropologia(colorCropologia, consistenciaCropologia, mucusCropologia, hematiesCropologia, leucocitosCropologia,
+                        ascarisCropologia, hymenolepisCropologia, uncinariasCropologia, tricocefalosCropologia, larvaStrongyloides, histolyticaQuistes,
+                        histolyticaTrofozoitos, coliQuistes, coliTrofozoitos, giardiaQuistes, giardiaTrofozoitos, blastocystisQuistes, blastocystisTrofozoitos,
+                        tricomonasQuistes, tricomonasTrofozoitos, mesnilliQuistes, mesnilliTrofozoitos, nanaQuistes, nanaTrofozoitos, restosMacroscopicos, 
+                        restosMicroscopicos, observacionesCropologia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                            VALUES('$idConsulta', '$idExamen', '7', '$hora', 'Coprologia')"; 
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idCropologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarCropologia($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                unset($data["idDetalleConsulta"]);
+                $sql = "UPDATE tbl_cropologia SET colorCropologia = ?, consistenciaCropologia = ?, mucusCropologia = ?,
+                        hematiesCropologia = ?, leucocitosCropologia = ?, ascarisCropologia = ?, hymenolepisCropologia = ?, 
+                        uncinariasCropologia = ?, tricocefalosCropologia = ?, larvaStrongyloides = ?, histolyticaQuistes = ?, 
+                        histolyticaTrofozoitos = ?, coliQuistes = ?, coliTrofozoitos = ?, giardiaQuistes = ?, giardiaTrofozoitos = ?, 
+                        blastocystisQuistes = ?, blastocystisTrofozoitos = ?, tricomonasQuistes = ?, tricomonasTrofozoitos = ?, 
+                        mesnilliQuistes = ?, mesnilliTrofozoitos = ?, nanaQuistes = ?, nanaTrofozoitos = ?, restosMacroscopicos = ?, 
+                        restosMicroscopicos = ?, observacionesCropologia = ? WHERE idCropologia = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examen cropologia
+
+    // Datos para los examenes varios
+        public function guardarVarios($data = null){
+            if($data != null){
+                $idConsulta = $data["consulta"];
+                $examen = $data["examenSolicitadoLibre"];
+                unset($data["consulta"]);
+
+                $sql = "INSERT INTO tbl_varios(examenSolicitado, muestraVarios, resultadoVarios, valorNormalVarios, observacionesVarios)
+                        VALUES(?, ?, ?, ?, ?)";
+                if($this->db->query($sql, $data)){
+                    $idExamen = $this->db->insert_id();
+                    $hora = date('h:i:s a', time());
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
+                            VALUES('$idConsulta', '$idExamen', '10', '$hora', '$examen')"; 
+                    $this->db->query($sqlDC);
+                    $idDetalleConsulta = $this->db->insert_id();
+                    $datos = array('idVarios' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
+                    return $datos;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }
+
+        public function actualizarVarios($data = null){
+            if($data != null){
+                $detalle =  $data["idDetalleConsulta"];
+                $examen =  $data["examenSolicitado"];
+                unset($data["idDetalleConsulta"]);
+                unset($data["examenSolicitado"]);
+                $sql = "UPDATE tbl_varios SET muestraVarios = ?, resultadoVarios = ?, valorNormalVarios = ?,
+                        observacionesVarios = ? WHERE idVarios = ? ";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    // Fin examenes varios
+
     
 
 
@@ -358,159 +643,6 @@ class Laboratorio_Model extends CI_Model {
             return $datos->result();
         }
 
-        
-        // Datos para el examen de sanguineo
-            public function guardarSanguineo($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    $solicitado = $data["sanguineoSolicitado"];
-                    unset($data["consulta"]);
-
-                    $sql = "INSERT INTO tbl_sanguineo(examenSolicitado, muestraSanguineo, grupoSanguineo, factorSanguineo, duSanguineo)
-                            VALUES(?, ?, ?, ?, ?)";
-
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, examenSolicitado, horaDetalleConsulta )
-                                VALUES('$idConsulta', '$idExamen', '4', '$solicitado', '$hora')"; 
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idSanguineo' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                        return $idExamen;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarSanguineo($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    $examen =  $data["sanguineoSolicitado"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_sanguineo SET examenSolicitado = ?, muestraSanguineo = ?, grupoSanguineo = ?, factorSanguineo = ?,
-                            duSanguineo = ? WHERE idSanguineo = ?";
-                    if($this->db->query($sql, $data)){
-                        $sql2 = "UPDATE tbl_detalle_consulta SET examenSolicitado = '$examen' WHERE idDetalleConsulta = '$detalle'";
-                        if($this->db->query($sql2)){
-                            return true;
-                        }else{
-                            return false;
-                        }
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examen sanguineo
-
-        
-
-        // Datos para los examen de orina
-            public function guardarOrina($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    unset($data["consulta"]);
-
-                    $sql = "INSERT INTO tbl_orina(colorOrina, aspectoOrina, reaccionOrina, densidadOrina, phOrina, proteinasOrina, glucosaOrina, pigBilaOrina, 
-                            sangreOcultaOrina, nitritoOrina, cuerposCetonicosOrina, acidosBilOrina, granulososOrina, cilindrosLeuOrina,
-                            cilindrosOrina, oCilindrosOrina, leucocitosOrina, hematiesOrina, celulasEpitelialesOrina, elemMineralesOrina, 
-                            bacteriasOrina, levaduraOrina, otrosOrina, observacionesOrina)
-                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                            
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta , nombreExamen)
-                                VALUES('$idConsulta', '$idExamen', '13', '$hora', 'Orina')";
-
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idOrina' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarOrina($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_orina SET colorOrina = ?, aspectoOrina = ?, reaccionOrina = ?, densidadOrina = ?, phOrina = ?, proteinasOrina = ?,
-                                    glucosaOrina = ?, pigBilaOrina = ?, sangreOcultaOrina = ?, nitritoOrina = ?, cuerposCetonicosOrina = ?, 
-                                    acidosBilOrina = ?, granulososOrina = ?, cilindrosLeuOrina = ?, cilindrosOrina = ?, oCilindrosOrina = ?,
-                                    leucocitosOrina = ?, hematiesOrina = ?, celulasEpitelialesOrina = ?, elemMineralesOrina = ?, bacteriasOrina = ?,
-                                    levaduraOrina = ?, otrosOrina = ?, observacionesOrina = ?
-                            WHERE idOrina = ? ";
-                    if($this->db->query($sql, $data)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examene de orina
-
-        
-        // Datos para los examen de hematologia
-            public function guardarHematologia($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    unset($data["consulta"]);
-                    $sql = "INSERT INTO tbl_hematologia(eritrocitosHematologia, hematocritoHematologia, hemoglobinaHematologia,
-                            vgmHematologia, hgmHematologia, chgmHematologia, leucocitosHematologia, neutrofHematologia, neutrofBandHematologia,
-                            linfocitosHematologia, eosinofilosHematologia, monocitosHematologia, basofilosHematologia, blastosHematologia,
-                            reticulocitosHematologia, eritrosedHematologia, plaquetasHematologia, gotaGruesaHematologia, rojaHematologia, 
-                            blancaHematologia, plaquetariaHematologia, observacionesHematologia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                                  VALUES('$idConsulta', '$idExamen', '12', '$hora', 'Hematologia')";
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idHematologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarHematologia($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_hematologia SET eritrocitosHematologia = ?, hematocritoHematologia = ?, hemoglobinaHematologia = ?,
-                            vgmHematologia = ?, hgmHematologia = ?, chgmHematologia = ?, leucocitosHematologia = ?, neutrofHematologia = ?, neutrofBandHematologia = ?, 
-                            linfocitosHematologia = ?, eosinofilosHematologia = ?, monocitosHematologia = ?, basofilosHematologia = ?, blastosHematologia = ?,
-                            reticulocitosHematologia = ?, eritrosedHematologia = ?, plaquetasHematologia = ?, gotaGruesaHematologia = ?, rojaHematologia = ?,
-                            blancaHematologia = ?, plaquetariaHematologia = ?, observacionesHematologia = ? WHERE idHematologia = ? ";
-                    if($this->db->query($sql, $data)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examene de hematologia
-
         public function actualizarInmunologia($data = null){
             if($data != null){
                     $detalle =  $data["idDetalleConsulta"];
@@ -735,55 +867,6 @@ class Laboratorio_Model extends CI_Model {
             return $datos->result();
         }
 
-        // Datos para el examen de coagulacion
-            public function guardarCoagulacion($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    $solicitado = $data["coagulacionSolicitado"];
-                    unset($data["consulta"]);
-
-                    $sql = "INSERT INTO tbl_coagulacion(examenSolicitado, tiempoProtombina, tiempoTromboplastina, fibrinogeno, inr, tiempoSangramiento,
-                            tiempoCoagulacion, observacion) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, examenSolicitado, horaDetalleConsulta )
-                                VALUES('$idConsulta', '$idExamen', '3', '$solicitado', '$hora')"; 
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idCoagulacion' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarCoagulacion($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    $examen =  $data["coagulacionSolicitado"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_coagulacion SET examenSolicitado = ?, tiempoProtombina = ?, tiempoTromboplastina = ?, fibrinogeno = ?,
-                            inr = ?, tiempoSangramiento = ?, tiempoCoagulacion = ?, observacion = ? WHERE idCoagulacion = ?";
-                    if($this->db->query($sql, $data)){
-                        $sql2 = "UPDATE tbl_detalle_consulta SET examenSolicitado = '$examen' WHERE idDetalleConsulta = '$detalle'";
-                        if($this->db->query($sql2)){
-                            return true;
-                        }else{
-                            return false;
-                        }
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examen coagulacion
 
 
         // Datos para el examen de quimica clinica
@@ -892,63 +975,6 @@ class Laboratorio_Model extends CI_Model {
             }
         // Fin examen quimica sanguinea
 
-        // Datos para el examen de cropologia
-            public function guardarCropologia($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    $solicitado = $data["examenSolicitado"];
-                    unset($data["consulta"]);
-
-                    $sql = "INSERT INTO tbl_cropologia(examenSolicitado, colorCropologia, consistenciaCropologia, mucusCropologia, hematiesCropologia, leucocitosCropologia,
-                            ascarisCropologia, hymenolepisCropologia, uncinariasCropologia, tricocefalosCropologia, larvaStrongyloides, histolyticaQuistes,
-                            histolyticaTrofozoitos, coliQuistes, coliTrofozoitos, giardiaQuistes, giardiaTrofozoitos, blastocystisQuistes, blastocystisTrofozoitos,
-                            tricomonasQuistes, tricomonasTrofozoitos, mesnilliQuistes, mesnilliTrofozoitos, nanaQuistes, nanaTrofozoitos, restosMacroscopicos, 
-                            restosMicroscopicos, observacionesCropologia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, examenSolicitado, horaDetalleConsulta )
-                                VALUES('$idConsulta', '$idExamen', '7', '$solicitado', '$hora')"; 
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idCropologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarCropologia($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    $examen =  $data["cropologiaSolicitado"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_cropologia SET examenSolicitado = ?, colorCropologia = ?, consistenciaCropologia = ?, mucusCropologia = ?,
-                            hematiesCropologia = ?, leucocitosCropologia = ?, ascarisCropologia = ?, hymenolepisCropologia = ?, 
-                            uncinariasCropologia = ?, tricocefalosCropologia = ?, larvaStrongyloides = ?, histolyticaQuistes = ?, 
-                            histolyticaTrofozoitos = ?, coliQuistes = ?, coliTrofozoitos = ?, giardiaQuistes = ?, giardiaTrofozoitos = ?, 
-                            blastocystisQuistes = ?, blastocystisTrofozoitos = ?, tricomonasQuistes = ?, tricomonasTrofozoitos = ?, 
-                            mesnilliQuistes = ?, mesnilliTrofozoitos = ?, nanaQuistes = ?, nanaTrofozoitos = ?, restosMacroscopicos = ?, 
-                            restosMicroscopicos = ?, observacionesCropologia = ? WHERE idCropologia = ?";
-                    if($this->db->query($sql, $data)){
-                        $sql2 = "UPDATE tbl_detalle_consulta SET examenSolicitado = '$examen' WHERE idDetalleConsulta = '$detalle'";
-                        if($this->db->query($sql2)){
-                            return true;
-                        }else{
-                            return false;
-                        }
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examen cropologia
 
         // Datos para las pruebas tiroideas libres
             public function guardarTiroideaLibre($data = null){
@@ -1048,54 +1074,7 @@ class Laboratorio_Model extends CI_Model {
             }
         // Fin tiroides totales
 
-        // Datos para los examenes varios
-            public function guardarVarios($data = null){
-                if($data != null){
-                    $idConsulta = $data["consulta"];
-                    $solicitado = $data["examenSolicitado"];
-                    unset($data["consulta"]);
-
-                    $sql = "INSERT INTO tbl_varios(examenSolicitado, muestraVarios, resultadoVarios, valorNormalVarios, observacionesVarios)
-                            VALUES(?, ?, ?, ?, ?)";
-                    if($this->db->query($sql, $data)){
-                        $idExamen = $this->db->insert_id();
-                        $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, examenSolicitado, horaDetalleConsulta )
-                                VALUES('$idConsulta', '$idExamen', '10', '$solicitado', '$hora')"; 
-                        $this->db->query($sqlDC);
-                        $idDetalleConsulta = $this->db->insert_id();
-                        $datos = array('idVarios' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
-                        return $datos;
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-
-            public function actualizarVarios($data = null){
-                if($data != null){
-                    $detalle =  $data["idDetalleConsulta"];
-                    $examen =  $data["examenSolicitado"];
-                    unset($data["idDetalleConsulta"]);
-                    $sql = "UPDATE tbl_varios SET examenSolicitado = ?, muestraVarios = ?, resultadoVarios = ?, valorNormalVarios = ?,
-                            observacionesVarios = ? WHERE idVarios = ? ";
-                    if($this->db->query($sql, $data)){
-                        $sql2 = "UPDATE tbl_detalle_consulta SET examenSolicitado = '$examen' WHERE idDetalleConsulta = '$detalle'";
-                        if($this->db->query($sql2)){
-                            return true;
-                        }else{
-                            return false;
-                        }
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }
-        // Fin examenes varios
+        
 
         // Datos para examen psa
             public function guardarPSA($data = null){

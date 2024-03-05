@@ -135,14 +135,11 @@
                                         break;
 
                                         case '3':
-                                            echo '<a href="'.base_url().'Laboratorio/coagulacion_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/coagulacion_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#coagulacionActualizar' data-toggle='modal' onclick='actualizar($idExamen, 3)' ><i class='fas fa-edit ms-text-success'></i></a>";
-                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                                         break;
 
                                         case '4':
-                                            echo '<a href="'.base_url().'Laboratorio/sanguineo_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/sanguineo_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#sanguineoActualizar' data-toggle='modal' onclick='actualizar($idExamen, 4)' ><i class='fas fa-edit ms-text-success'></i></a>";
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
@@ -161,7 +158,6 @@
                                         break;
 
                                         case '7':
-                                            echo '<a href="'.base_url().'Laboratorio/cropologia_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/cropologia_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#cropologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 7)' ><i class='fas fa-edit ms-text-success'></i></a>";
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
@@ -182,7 +178,6 @@
                                         break;
                                     
                                         case '10':
-                                            echo '<a href="'.base_url().'Laboratorio/varios_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
                                             echo '<a href="'.base_url().'Laboratorio/varios_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
                                             echo "<a href='#variosActualizar' data-toggle='modal' onclick='actualizar($idExamen, 10)' ><i class='fas fa-edit ms-text-success'></i></a>";
                                             // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
@@ -532,26 +527,6 @@
                                                 <thead></thead>
                                                 <tbody class="text-left">
 
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="3">
-                                                            <input type="text" name="coagulacionSolicitado" value="" >
-                                                            <!-- <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <select name="coagulacionSolicitado[]" value="" id="coagulacionSolicitado" class="controlInteligente3 form-control menosHeight" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div> -->
-                                                        </td>
-                                                    </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Tiempo de protombina</strong><br><input type="text" class="form-control menosHeight" name="tiempoProtombina" id="tiempoProtombina"><p class="text-primary" style="font-size:12px">Valor normal: 10-14 segundos</p></td>
                                                         <td class="menosPadding"><strong> Tiempo parcial de tromboplastina</strong><br><input type="text" class="form-control menosHeight" name="tiempoTromboplastina" id="tiempoTromboplastina"><p class="text-primary" style="font-size:12px">Valor normal: 20-33 segundos</p></td>
@@ -609,30 +584,6 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="3">
-                                                            <input type="text" name="sanguineoSolicitado" value="" >
-                                                            <!-- <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <select name="sanguineoSolicitado[]" id="" class="controlInteligente4 form-control" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                            if($examen->idMedicamento == 724){
-                                                                                echo '<option value="'.$examen->idMedicamento.'" selected>'.$examen->nombreMedicamento.'</option>';
-                                                                            }else{
-                                                                                echo '<option value="'.$examen->idMedicamento.'">'.$examen->nombreMedicamento.'</option>';
-                                                                            }
-                                                                        }
-                                                                    ?>
-                                                                </select>
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div> -->
-                                                        </td>
-                                                    </tr>
 
                                                     <tr>
                                                         <td class="menosPadding"><strong> Muestra</strong><br><input type="text" value="Sangre" class="form-control menosHeight" name="muestraSanguineo" id="muestraSanguineo"></td>
@@ -790,33 +741,7 @@
                                 <div class="ms-panel-body">
                                     <div class="">
                                         <form class="needs-validation frmData" id="frmInmunologia" method="post" action="<?php echo base_url() ?>Laboratorio/guardar_cropologia" novalidate>
-                                            <div class="row" style="margin-top: -20px;">
-                                                <div class="col-md-12">
-                                                    <table class="table table-borderless">
-                                                        <tr style="display: none;">
-                                                            <td class="menosPadding" colspan="4">
-                                                                <strong>Exámen realizado</strong><br>
-                                                                <div class="input-group">
-                                                                    <select name="examenSolicitado[]" id="" class="form-control controlInteligente7" multiple="multiple" required>
-                                                                        <option value="">:: Seleccionar::</option>
-                                                                        <?php
-                                                                            foreach ($examenes as $examen) {
-                                                                                if($examen->idMedicamento == 683){
-                                                                                    echo '<option value="'.$examen->idMedicamento.'" selected>'.$examen->nombreMedicamento.'</option>';
-                                                                                }else{
-                                                                                    echo '<option value="'.$examen->idMedicamento.'">'.$examen->nombreMedicamento.'</option>';
-                                                                                }
-                                                                            }
-                                                                        ?>
-                                                                    </select>
-                                                                    <div class="invalid-tooltip">
-                                                                        Seleccione un tipo de examen.
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
+                                            <div class="row" style="margin-top: 0px;">
                                                 <div class="col-md-4" class="border" style="margin-top: -20px;">
                                                     <table>
                                                         <thead></thead>
@@ -1161,16 +1086,8 @@
                                                     <tr>
                                                         <td class="menosPadding" colspan="4">
                                                             <strong>Exámen realizado</strong><br>
-                                                            <input type="text" class="form-control menosHeight" name="examenSolicitadoLibre" id="detalleLibre" style="display: none;">
+                                                            <input type="text" class="form-control menosHeight" name="examenSolicitadoLibre" id="detalleLibre">
                                                             <div class="input-group" id="ocultarSelectVarios">
-                                                                <select name="examenSolicitado[]" id="controlInteligente10" class="controlInteligente10" multiple="multiple" required>
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
                                                                 <div class="invalid-tooltip">
                                                                     Seleccione un tipo de examen.
                                                                 </div>
@@ -2324,26 +2241,6 @@
                                                 <thead></thead>
                                                 <tbody class="text-left">
 
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="3">
-                                                        <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <input type="text" name="coagulacionSolicitado" id="coagulacionSolicitadoA">
-                                                                <!-- <select name="coagulacionSolicitado" id="coagulacionSolicitadoA" class="controlInteligenteU3 form-control menosHeight">
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select> -->
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Tiempo de protombina</strong><br><input type="text" class="form-control menosHeight" name="tiempoProtombina" id="tiempoProtombinaA"><p class="text-primary" style="font-size:12px">Valor normal: 10-14 segundos</p></td>
                                                         <td class="menosPadding"><strong> Tiempo parcial de tromboplastina</strong><br><input type="text" class="form-control menosHeight" name="tiempoTromboplastina" id="tiempoTromboplastinaA"><p class="text-primary" style="font-size:12px">Valor normal: 20-33 segundos</p></td>
@@ -2403,21 +2300,6 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="3">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <select name="sanguineoSolicitado" id="sanguineoSolicitadoA" class="controlInteligenteU4">
-                                                                <option value="">:: Seleccionar ::</option>
-                                                                <?php
-                                                                    foreach ($examenes as $examen) {
-                                                                ?>
-                                                                    <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Muestra</strong><br><input type="text" class="form-control menosHeight" name="muestraSanguineo" id="muestraSanguineoA"></td>
                                                         <td class="menosPadding"><strong> Grupo sanguíneo</strong><br><input type="text" class="form-control menosHeight" name="grupoSanguineo" id="grupoSanguineoA"></td>
@@ -2575,28 +2457,8 @@
                                 <div class="ms-panel-body">
                                     <div class="">
                                         <form class="needs-validation" id="frmCropologia" method="post" action="<?php echo base_url() ?>Laboratorio/actualizar_cropologia" novalidate>
-                                            <div class="row" style="margin-top: -20px;">
+                                            <div class="row" style="margin-top: 0px;">
                                                 <div class="col-md-12">
-                                                    <table class="table table-borderless">
-                                                        <tr style="display: none">
-                                                            <td class="menosPadding" colspan="4">
-                                                                <strong>Exámen realizado</strong><br>
-                                                                <div class="input-group">
-                                                                    <select name="cropologiaSolicitado" id="cropologiaSolicitadoActualizar" class="form-control controlInteligenteU7" required>
-                                                                        <option value="">:: Seleccionar::</option>
-                                                                        <?php
-                                                                            foreach ($examenes as $examen) {
-                                                                        ?>
-                                                                            <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                        <?php } ?>
-                                                                    </select>
-                                                                    <div class="invalid-tooltip">
-                                                                        Seleccione un tipo de examen.
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
                                                 </div>
                                                 <div class="col-md-4" class="border" style="margin-top: -20px;">
                                                     <table>
@@ -2936,27 +2798,6 @@
                                             <table class="table table-borderless">
                                                 <thead></thead>
                                                 <tbody class="text-left">
-                                                    
-                                                    <tr style="display: none;">
-                                                        <td class="menosPadding" colspan="4">
-                                                            <strong>Exámen realizado</strong><br>
-                                                            <div class="input-group">
-                                                                <input type="text" name="examenSolicitado" id="variosSolicitadoActualizar">
-                                                                <!-- <select name="examenSolicitado" id="variosSolicitadoActualizar" class="controlInteligenteU10">
-                                                                    <option value="">:: Seleccionar ::</option>
-                                                                    <?php
-                                                                        foreach ($examenes as $examen) {
-                                                                    ?>
-                                                                        <option value="<?php echo $examen->idMedicamento; ?>"><?php echo $examen->nombreMedicamento; ?></option>
-                                                                    <?php } ?>
-                                                                </select> -->
-                                                                <div class="invalid-tooltip">
-                                                                    Seleccione un tipo de examen.
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
                                                     <tr>
                                                         <td class="menosPadding"><strong> Muestra </strong><br><input type="text" class="form-control menosHeight" name="muestraVarios" id="muestraVariosActualizar"></td>
                                                     </tr>

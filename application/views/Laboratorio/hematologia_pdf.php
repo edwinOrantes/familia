@@ -122,6 +122,9 @@
                 <tr>
                     <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, <br> frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
                 </tr>
+                <tr>
+                    <td><h5 style="line-height: 20px">C.S.S.P. N° 2059</h5></td>
+                </tr>
             </table>
         </div>
     </div>

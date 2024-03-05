@@ -160,7 +160,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -240,7 +239,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -275,84 +273,392 @@ class Laboratorio extends CI_Controller {
 
         
         // Examenes Hematologia
-        public function guardar_hematologia(){
-            $datos = $this->input->post();
-            $resp = $this->Laboratorio_Model->guardarHematologia($datos);
-            $examen = $resp["idHematologia"];
-            $consulta = $resp["idDetalleConsulta"];
-            if($resp != 0){
-                $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
-                redirect(base_url()."Laboratorio/hematologia_pdf/$examen/");
-            }else{
-                $this->session->set_flashdata("error","Error al guardar los datos!");
-                redirect(base_url()."Laboratorio/historial_examenes/");
+            public function guardar_hematologia(){
+                $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarHematologia($datos);
+                $examen = $resp["idHematologia"];
+                $consulta = $resp["idDetalleConsulta"];
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/hematologia_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos!");
+                    redirect(base_url()."Laboratorio/historial_examenes/");
+                }
+
+                // echo json_encode($datos);
             }
 
-            // echo json_encode($datos);
-        }
+            public function hematologia_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_hematologia", "idHematologia", 12);
+                $data['hematologia'] = $this->Laboratorio_Model->detalleExamen($id, 12);
+                // var_dump($data['cabecera']);
+                // echo "<br>___________________________________________________________________________________<br>";
+                //var_dump($data['hematologia']);
 
-        public function hematologia_pdf($id){
-            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_hematologia", "idHematologia", 12);
-            $data['hematologia'] = $this->Laboratorio_Model->detalleExamen($id, 12);
-            // var_dump($data['cabecera']);
-            // echo "<br>___________________________________________________________________________________<br>";
-            //var_dump($data['hematologia']);
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 15,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480">
+                                    <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
+                                </td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
 
-            // Factura
-                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
-                $mpdf = new \Mpdf\Mpdf([
-                    'margin_left' => 15,
-                    'margin_right' => 15,
-                    'margin_top' => 15,
-                    'margin_bottom' => 25,
-                    'margin_header' => 10,
-                    'margin_footer' => 25
-                ]);
-                //$mpdf->setFooter('{PAGENO}');
-                $mpdf->SetHTMLFooter('
-                    <table width="100%">
-                        <tr>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #075480">
-                                <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
-                            </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                        </tr>
-                    </table>');
-                $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Centro Médico La Familia");
-                $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                $mpdf->showWatermarkText = true;
-                $mpdf->watermark_font = 'DejaVuSansCondensed';
-                $mpdf->watermarkTextAlpha = 0.1;
-                $mpdf->SetDisplayMode('fullpage');
-                //$mpdf->AddPage('L'); //Voltear Hoja
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
 
-                $html = $this->load->view('base/header', $data,true); 
-                $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('hematologia_pdf.pdf', 'I');
+                // Fin
 
-                $mpdf->WriteHTML($html);
-                $mpdf->Output('hematologia_pdf.pdf', 'I');
-            // Fin
-
-        }
-
-        public function actualizar_hematologia(){
-            $datos = $this->input->post();
-            $resp = $datos["consulta"];
-            unset($datos["consulta"]);
-            $bool = $this->Laboratorio_Model->actualizarHematologia($datos);
-            if($bool){
-                $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-            }else{
-                $this->session->set_flashdata("error","Error al actualizar los datos!");
-                redirect(base_url()."Laboratorio/");
             }
-            // echo json_encode($datos);
-        }
-    // Fin Hematologia
+
+            public function actualizar_hematologia(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                $bool = $this->Laboratorio_Model->actualizarHematologia($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+                // echo json_encode($datos);
+            }
+        // Fin Hematologia
+
+        // Examen de sanguineo
+            public function guardar_sanguineo(){
+                $datos = $this->input->post();
+                $c = $datos["consulta"];
+                $resp = $this->Laboratorio_Model->guardarSanguineo($datos);
+                $examen = $resp["idSanguineo"];
+                $consulta = $resp["idDetalleConsulta"];
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/sanguineo_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
+                } 
+
+                // echo json_encode($datos);
+            }
+
+            public function sanguineo_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_sanguineo", "idSanguineo", 4);
+                $data['sanguineo'] = $this->Laboratorio_Model->detalleExamen($id, 4);
+                
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 20,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/sanguineo_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('examen_sanguineo.pdf', 'I');
+                
+
+            }
+
+            public function actualizar_sanguineo(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                
+                $bool = $this->Laboratorio_Model->actualizarSanguineo($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+
+                // echo json_encode($datos);
+            }
+        // Fin sanguineo
+
+        
+        // Examen de Coagulacion
+            public function guardar_coagulacion(){
+                $datos = $this->input->post();
+                $c = $datos["consulta"];
+                $resp = $this->Laboratorio_Model->guardarCoagulacion($datos);
+                $examen = $resp["idCoagulacion"];
+                $consulta = $resp["idDetalleConsulta"];
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/coagulacion_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
+                }
+                // echo json_encode($datos);
+            }
+
+            public function coagulacion_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_coagulacion", "idCoagulacion", 3);
+                $data['coagulacion'] = $this->Laboratorio_Model->detalleExamen($id, 3);
+
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 20,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/coagulacion_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('examen_coagulacion.pdf', 'I');
+                
+
+            }
+
+            public function actualizar_coagulacion(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                $bool = $this->Laboratorio_Model->actualizarCoagulacion($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+                // echo json_encode($datos);
+            }
+        // Fin coagulacion
+
+        // Examen de Cropologia
+            public function guardar_cropologia(){
+                $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarCropologia($datos);
+                $examen = $resp["idCropologia"];
+                $consulta = $resp["idDetalleConsulta"];
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/cropologia_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos!");
+                    redirect(base_url()."Laboratorio/historial_examenes/");
+                }
+
+                // echo json_encode($datos);
+            }
+
+            public function cropologia_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_cropologia", "idCropologia", 7);
+                $data['cropologia'] = $this->Laboratorio_Model->detalleExamen($id, 7);
+                
+
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 15,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/cropologia_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('examen_cropologia.pdf', 'I');
+                // Fin
+                
+
+            }
+
+            public function actualizar_cropologia(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                $bool = $this->Laboratorio_Model->actualizarCropologia($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+
+                // echo json_encode($datos);
+            }
+        // Fin Cropologia
+
+        // Examenes varios
+            public function guardar_varios(){
+                $datos = $this->input->post();
+                $resp = $this->Laboratorio_Model->guardarVarios($datos);
+                
+                $examen = $resp["idVarios"];
+                $consulta = $resp["idDetalleConsulta"];
+                if($resp != 0){
+                    $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
+                    redirect(base_url()."Laboratorio/varios_pdf/$examen/");
+                }else{
+                    $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
+                    redirect(base_url()."Laboratorio/historial_examenes/");
+                }
+
+                // echo json_encode($datos);
+            }
+
+            public function varios_pdf($id){
+                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_varios", "idVarios", 10);
+                $data['varios'] = $this->Laboratorio_Model->detalleExamen($id, 10);
+
+                // Factura
+                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                    $mpdf = new \Mpdf\Mpdf([
+                        'margin_left' => 15,
+                        'margin_right' => 15,
+                        'margin_top' => 15,
+                        'margin_bottom' => 25,
+                        'margin_header' => 10,
+                        'margin_footer' => 25
+                    ]);
+                    //$mpdf->setFooter('{PAGENO}');
+                    $mpdf->SetHTMLFooter('
+                        <table width="100%">
+                            <tr>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                            </tr>
+                        </table>');
+                    $mpdf->SetProtection(array('print'));
+                    $mpdf->SetTitle("Centro Médico La Familia");
+                    $mpdf->SetAuthor("Edwin Orantes");
+                    $mpdf->showWatermarkText = true;
+                    $mpdf->watermark_font = 'DejaVuSansCondensed';
+                    $mpdf->watermarkTextAlpha = 0.1;
+                    $mpdf->SetDisplayMode('fullpage');
+                    //$mpdf->AddPage('L'); //Voltear Hoja
+
+                    $html = $this->load->view('base/header', $data,true); 
+                    $html = $this->load->view('Laboratorio/varios_pdf', $data,true); // Cargando hoja de estilos
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('varios_pdf.pdf', 'I');
+                // Factura
+                
+
+                //  echo json_encode($data);
+
+            }
+
+            public function actualizar_varios(){
+                $datos = $this->input->post();
+                $resp = $datos["consulta"];
+                unset($datos["consulta"]);
+                $bool = $this->Laboratorio_Model->actualizarVarios($datos);
+                if($bool){
+                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
+                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
+                }else{
+                    $this->session->set_flashdata("error","Error al actualizar los datos!");
+                    redirect(base_url()."Laboratorio/");
+                }
+
+                // echo json_encode($datos);
+            }
+
+        // Fin varios
 
 
 
@@ -492,7 +798,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -533,7 +838,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -719,210 +1023,8 @@ class Laboratorio extends CI_Controller {
             }
         }
 
-        // Examen de Coagulacion
-            public function guardar_coagulacion(){
-                $datos = $this->input->post();
-                $c = $datos["consulta"];
-                
-                $examenes = array();
-                // Analizando existencia de examenes
-                    if($datos["tiempoProtombina"] != ""){
-                        array_push($examenes, 858);
-                    }
-                    if($datos["tiempoTromboplastina"] != ""){
-                        array_push($examenes, 859);
-                    }
-                    if($datos["fibrinogeno"] != ""){
-                        array_push($examenes, 685);
-                    }
-                    if($datos["inr"] != ""){
-                        array_push($examenes, 1023);
-                    }
-                    if($datos["tiempoSangramiento"] != ""){
-                        array_push($examenes, 723);
-                    }
-                    if($datos["tiempoCoagulacion"] != ""){
-                        array_push($examenes, 722);
-                    }
-                // Fin analizando existencia de examenes
-
-                if(sizeof($examenes) > 0){
-                    $data["examenes"] = $examenes;
-                    $datos["coagulacionSolicitado"] = $data["examenes"][0];
-                    $resp = $this->Laboratorio_Model->guardarCoagulacion($datos);
-
-                    $examen = $resp["idCoagulacion"];
-                    $consulta = $resp["idDetalleConsulta"];
-                    $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes
-                    
-                    if($resp != 0){
-                        $this->descuentosReactivos($examenes, $examen, 3); // Ejecutando descuentos de stock
-                        $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                        redirect(base_url()."Laboratorio/coagulacion_pdf_b/$examen/");
-                    }else{
-                        $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                        redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                    }
-                }else{
-                    $this->session->set_flashdata("error","No seleccionaste ningun examen!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                }
-                
-            }
-
-            public function coagulacion_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_coagulacion", "idCoagulacion", 3);
-                $data['coagulacion'] = $this->Laboratorio_Model->detalleExamen($id, 3);
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 20,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/coagulacion_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('examen_coagulacion.pdf', 'I');
-                
-
-            }
-
-            public function actualizar_coagulacion(){
-                $datos = $this->input->post();
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarCoagulacion($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin coagulacion
-
-        // Examen de sanguineo
-            public function guardar_sanguineo(){
-                $datos = $this->input->post();
-                
-                $c = $datos["consulta"];
-                
-                $examenes = array();
-                // Analizando existencia de examenes
-                    if($datos["factorSanguineo"] != ""){
-                        array_push($examenes, 724);
-                    }
-                    if($datos["duSanguineo"] != ""){
-                        array_push($examenes, 861);
-                    }
-                // Fin analizando existencia de examenes
-                if(sizeof($examenes) > 0){
-                    $data["examenes"] = $examenes;
-                    $datos["sanguineoSolicitado"] = $data["examenes"][0];
-                    $resp = $this->Laboratorio_Model->guardarSanguineo($datos);
-
-                    $examen = $resp["idSanguineo"];
-                    $consulta = $resp["idDetalleConsulta"];
-                    $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes
-                    if($resp != 0){
-                        $this->descuentosReactivos($examenes, $examen, 4); // Ejecutando descuentos de stock
-                        $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                        redirect(base_url()."Laboratorio/sanguineo_pdf_b/$examen/");
-                    }else{
-                        $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                        redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                    } 
-                }else{
-                    $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$c/");
-                } 
 
 
-            }
-
-            public function sanguineo_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_sanguineo", "idSanguineo", 4);
-                $data['sanguineo'] = $this->Laboratorio_Model->detalleExamen($id, 4);
-                
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 20,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/sanguineo_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('examen_sanguineo.pdf', 'I');
-                
-
-            }
-
-            public function actualizar_sanguineo(){
-                $datos = $this->input->post();
-                $resp = $datos["consulta"];
-                var_dump($datos);
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarSanguineo($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin sanguineo
 
         // Examen de quimica clinica
             public function guardar_quimica_clinica(){
@@ -971,7 +1073,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1001,90 +1102,6 @@ class Laboratorio extends CI_Controller {
                 }
             }
         // Fin quimica clinica
-
-
-        // Examen de Cropologia
-            public function guardar_cropologia(){
-                $datos = $this->input->post();
-                $data["examenes"] = $datos["examenSolicitado"];
-                $examenes = $datos["examenSolicitado"];
-                $datos["examenSolicitado"] = $data["examenes"][0];
-
-                $resp = $this->Laboratorio_Model->guardarCropologia($datos);
-
-                $examen = $resp["idCropologia"];
-                $consulta = $resp["idDetalleConsulta"];
-                $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes 
-
-
-                if($resp != 0){
-                    $this->descuentosReactivos($examenes, $examen, 7); // Ejecutando descuentos de stock
-                    $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                    redirect(base_url()."Laboratorio/cropologia_pdf_b/$examen/");
-                }else{
-                    $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                    redirect(base_url()."Laboratorio/historial_examenes/");
-                }
-            }
-
-            public function cropologia_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_cropologia", "idCropologia", 7);
-                $data['cropologia'] = $this->Laboratorio_Model->detalleExamen($id, 7);
-                
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 15,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/cropologia_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('examen_cropologia.pdf', 'I');
-                // Fin
-                
-
-            }
-
-            public function actualizar_cropologia(){
-                $datos = $this->input->post();
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarCropologia($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-        // Fin Cropologia
 
         // Examen de Tiroideas libres
             public function guardar_tiroidea_libre(){
@@ -1173,7 +1190,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1293,7 +1309,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1326,101 +1341,7 @@ class Laboratorio extends CI_Controller {
 
         // Fin Tiroideas Totales
 
-        // Examenes varios
-            public function guardar_varios(){
-                $datos = $this->input->post();
-                $valores = array();
-                if(isset($datos["examenSolicitadoLibre"]) && $datos["examenSolicitadoLibre"] != ""){
-                    $examen = $datos["examenSolicitadoLibre"];
-                    $exa["newExamen"] = $this->Laboratorio_Model->agregarNuevoExamen($examen);
-                    $data["examenes"] = array($exa["newExamen"]);
-                    // $data = array($exa);
-                    $valores["examenSolicitado"] = $data["examenes"][0];
-                    $valores["muestraVarios"] = $datos["muestraVarios"];
-                    $valores["resultadoVarios"] = $datos["resultadoVarios"];
-                    $valores["valorNormalVarios"] = $datos["valorNormalVarios"];
-                    $valores["observacionesVarios"] = $datos["observacionesVarios"];
-                    $valores["consulta"] = $datos["consulta"];
-                    $resp = $this->Laboratorio_Model->guardarVarios($valores);
-                    unset($datos["examenSolicitadoLibre"]);
-                }else{
-                    unset($datos["examenSolicitadoLibre"]);
-                    $data["examenes"] = $datos["examenSolicitado"];
-                    $examenes = $datos["examenSolicitado"];
-                    $datos["examenSolicitado"] = $data["examenes"][0];
-                    $resp = $this->Laboratorio_Model->guardarVarios($datos);
-                }
-                $examen = $resp["idVarios"];
-                $consulta = $resp["idDetalleConsulta"];
-                $resp2 = $this->Laboratorio_Model->guardarExamenes($data, $consulta); //guardando todos los examenes 
-               // var_dump($resp2);
-                if($resp != 0){
-                    $this->descuentosReactivos($examenes, $examen, 10); // Ejecutando descuentos de stock
-                    $this->session->set_flashdata("exito","Los datos de la hoja de cobro fueron guardados con exito!");
-                    redirect(base_url()."Laboratorio/varios_pdf_b/$examen/");
-                }else{
-                   $this->session->set_flashdata("error","Error al guardar los datos de la hoja de cobro!");
-                   redirect(base_url()."Laboratorio/historial_examenes/");
-                }
-            }
-
-            public function varios_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_varios", "idVarios", 10);
-                $data['varios'] = $this->Laboratorio_Model->detalleExamen($id, 10);
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 15,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/varios_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('varios_pdf.pdf', 'I');
-                
-
-            }
-
-            public function actualizar_varios(){
-                $datos = $this->input->post();
-                $resp = $datos["consulta"];
-                unset($datos["consulta"]);
-                $bool = $this->Laboratorio_Model->actualizarVarios($datos);
-                if($bool){
-                    $this->session->set_flashdata("exito","Los datos fueron actualizados con exito!");
-                    redirect(base_url()."Laboratorio/detalle_consulta/$resp/");
-                }else{
-                    $this->session->set_flashdata("error","Error al actualizar los datos!");
-                    redirect(base_url()."Laboratorio/");
-                }
-            }
-
-        // Fin varios
+        
 
         // Examenes PSA
             public function guardar_psa(){
@@ -1471,7 +1392,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1555,7 +1475,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1636,7 +1555,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1720,7 +1638,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1804,7 +1721,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1891,7 +1807,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -1979,7 +1894,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -2064,7 +1978,6 @@ class Laboratorio extends CI_Controller {
                     $mpdf->SetProtection(array('print'));
                     $mpdf->SetTitle("Centro Médico La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -2472,7 +2385,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2508,7 +2420,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2547,7 +2458,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2582,7 +2492,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2617,7 +2526,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2652,7 +2560,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2687,7 +2594,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2722,7 +2628,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2757,7 +2662,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2791,7 +2695,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2823,7 +2726,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2858,7 +2760,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2896,7 +2797,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2934,7 +2834,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -2971,7 +2870,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -3007,7 +2905,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -3042,7 +2939,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -3085,7 +2981,6 @@ class Laboratorio extends CI_Controller {
                 $mpdf->SetProtection(array('print'));
                 $mpdf->SetTitle("Centro Médico La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                //$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;

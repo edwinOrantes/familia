@@ -2,7 +2,7 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background-image: url('public/img/test2_bg.jpg') ;
+        /* background-image: url('public/img/test2_bg.jpg') ; */
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -47,6 +47,7 @@
         padding: 5px;
         text-align: left;
         font-size: 12px;
+        border: 1px solid #075480;
     }
 
     .medicamentos{
@@ -56,6 +57,7 @@
     .medicamentos .detalle table tr td{
         padding: 2px !important;
         font-size: 12px;
+        border: 1px solid #075480;
         color: #000000;
     }
 
@@ -102,13 +104,10 @@
         <div id="principal">
             <table style="text-align: center; margin-left: 20px">
                 <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">LABORATORIO CLINICO</strong></td>
+                    <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, <br> frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
                 </tr>
                 <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">Sexta calle oriente, #8, Usulután, El Salvador,</strong></td>
-                </tr>
-                <tr>
-                    <td><strong style="font-size: 14px; color: #0b88c9">PBX 2606-6673, C.S.S.P. N° 2150</strong></td>
+                    <td><h5 style="line-height: 20px">C.S.S.P. N° 2059</h5></td>
                 </tr>
             </table>
         </div>
@@ -116,7 +115,7 @@
     <div class="contenedor">
         <div class="medicamentos">
             
-            <div style="border: 2px solid #0b88c9; padding-top: 10px; padding-bottom: 15px;">
+            <div style="border: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
                 <div class="">
                     <table id="tablaPaciente" cellspacing=10>
                         <tr>
@@ -137,11 +136,11 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #0b88c9; margin-top: 25px"><strong>EXAMEN TIPEO SANGUINEO Y FACTOR RH</strong></p>
+            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>EXAMEN TIPEO SANGUINEO Y FACTOR RH</strong></p>
             <div class="detalle">
                 <table class="table">
                     <thead>
-                        <tr style="background: #0b88c9;">
+                        <tr style="background: #075480;">
                             <th> Parametro </th>
                             <th> Resultado </th>
                         </tr>

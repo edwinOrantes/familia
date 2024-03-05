@@ -160,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `tbl_bitacora` (
   `descripcionBitacora` text NOT NULL,
   `fechaBitacora` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idBitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=979 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=980 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~25 rows (aproximadamente)
 INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `fechaBitacora`) VALUES
 	(954, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:12'),
 	(955, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:36'),
@@ -188,7 +188,8 @@ INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `f
 	(975, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-02-20 20:08:56'),
 	(976, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-02-23 16:57:01'),
 	(977, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-03-02 14:44:57'),
-	(978, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-03-04 14:25:38');
+	(978, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-03-04 14:25:38'),
+	(979, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-03-05 14:48:07');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cargos
 CREATE TABLE IF NOT EXISTS `tbl_cargos` (
@@ -304,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `tbl_coagulacion` (
   `observacion` varchar(25) NOT NULL,
   `fechaCreacion` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idCoagulacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_coagulacion: ~0 rows (aproximadamente)
 
@@ -548,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cropologia` (
   `observacionesCropologia` text NOT NULL,
   `fechaCropologia` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idCropologia`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_cropologia: ~0 rows (aproximadamente)
 
@@ -821,13 +822,14 @@ CREATE TABLE IF NOT EXISTS `tbl_detalle_consulta` (
   `horaDetalleConsulta` text NOT NULL,
   `examenes` text NOT NULL,
   PRIMARY KEY (`idDetalleConsulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_detalle_consulta: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_detalle_consulta: ~4 rows (aproximadamente)
 INSERT INTO `tbl_detalle_consulta` (`idDetalleConsulta`, `idConsultaLaboratorio`, `idExamen`, `tipoExamen`, `nombreExamen`, `examenSolicitado`, `fechaDetalleConsulta`, `horaDetalleConsulta`, `examenes`) VALUES
 	(300, 13, 37, 6, 'Quimica sanguinea', 0, '2024-03-04 14:32:13', '08:32:13 am', ''),
 	(302, 13, 19, 13, 'Orina', 0, '2024-03-04 15:41:50', '09:41:50 am', ''),
-	(305, 13, 15, 12, 'Hematologia', 0, '2024-03-04 16:45:15', '10:45:15 am', '');
+	(305, 13, 15, 12, 'Hematologia', 0, '2024-03-04 16:45:15', '10:45:15 am', ''),
+	(310, 14, 139, 10, 'Testing', 0, '2024-03-05 16:11:06', '10:11:06 am', '');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_detalle_planilla
 CREATE TABLE IF NOT EXISTS `tbl_detalle_planilla` (
@@ -2143,9 +2145,9 @@ CREATE TABLE IF NOT EXISTS `tbl_orina` (
   `observacionesOrina` text NOT NULL,
   `fechaOrina` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idOrina`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_orina: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_orina: ~2 rows (aproximadamente)
 INSERT INTO `tbl_orina` (`idOrina`, `examenSolicitado`, `colorOrina`, `aspectoOrina`, `reaccionOrina`, `densidadOrina`, `phOrina`, `proteinasOrina`, `glucosaOrina`, `pigBilaOrina`, `sangreOcultaOrina`, `nitritoOrina`, `cuerposCetonicosOrina`, `acidosBilOrina`, `granulososOrina`, `cilindrosLeuOrina`, `cilindrosOrina`, `oCilindrosOrina`, `leucocitosOrina`, `hematiesOrina`, `celulasEpitelialesOrina`, `elemMineralesOrina`, `bacteriasOrina`, `levaduraOrina`, `otrosOrina`, `observacionesOrina`, `fechaOrina`) VALUES
 	(19, 0, 'c', 'a', 'r', 'd', 'p', 'p', 'g', 'p', 's', 'n', 'c', 'a', 'g', 'c', 'c', 'o', 'l', 'h', 'c', 'e', 'b', 'l', 'o', 'Obser', '2024-03-04 15:41:50');
 
@@ -2489,7 +2491,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sanguineo` (
   `duSanguineo` varchar(25) NOT NULL,
   `fechaSanguineo` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idSanguineo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_sanguineo: ~0 rows (aproximadamente)
 
@@ -2674,16 +2676,18 @@ CREATE TABLE IF NOT EXISTS `tbl_vales_hemo` (
 -- Volcando estructura para tabla db_centro_medico.tbl_varios
 CREATE TABLE IF NOT EXISTS `tbl_varios` (
   `idVarios` int(11) NOT NULL AUTO_INCREMENT,
-  `examenSolicitado` int(11) NOT NULL,
+  `examenSolicitado` text NOT NULL,
   `muestraVarios` varchar(25) NOT NULL,
   `resultadoVarios` text NOT NULL,
   `valorNormalVarios` varchar(25) NOT NULL,
   `observacionesVarios` text NOT NULL,
   `fechaVarios` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idVarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_varios: ~0 rows (aproximadamente)
+INSERT INTO `tbl_varios` (`idVarios`, `examenSolicitado`, `muestraVarios`, `resultadoVarios`, `valorNormalVarios`, `observacionesVarios`, `fechaVarios`) VALUES
+	(139, 'Testing', '5', '4', '3', '2', '2024-03-05 16:11:06');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_zonas_sv
 CREATE TABLE IF NOT EXISTS `tbl_zonas_sv` (
