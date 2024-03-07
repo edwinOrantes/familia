@@ -46,6 +46,7 @@
                                 <th class="text-center">Edad</th>
                                 <th class="text-center">Telefono</th>
                                 <th class="text-center">Médico</th>
+                                <th class="text-center">Llegada</th>
                                 <th class="text-center">Acción</th>
                             </tr>
                             </thead>
@@ -62,10 +63,11 @@
                                             <td class="text-center"><?php echo $cita->edadPaciente; ?> Años</td>
                                             <td class="text-center"><?php echo $cita->telefonoPaciente; ?></td>
                                             <td class="text-center"><?php echo $cita->nombreMedico; ?></td>
+                                            <td class="text-center"><?php echo date("h:i:s A", strtotime($cita->hora)); ?></td>
                                             <td class="text-center">
                                                 <?php
-                                                    echo "<a  title='Ver boleta de cobro' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
-                                                    echo "<a  title='Ver boleta de cobro' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-times ms-text-primary'></i></a>";
+                                                    echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
+                                                    echo "<a title='Ver historial del paciente' target='blank' href='".base_url()."Paciente/detalle_paciente/".$cita->idPaciente."'><i class='fas fa-eye ms-text-primary'></i></a>";
                                                     echo "<a  title='Ver hoja de cobro' target='blank' href='".base_url()."Hoja/detalle_hoja/".$cita->hojaCobro."/'><i class='fas fa-file ms-text-primary'></i></a>";
                                                 ?>
                                             </td>

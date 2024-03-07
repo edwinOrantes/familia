@@ -91,6 +91,19 @@ class Laboratorio extends CI_Controller {
 
         }
 
+        public function detalle_consulta_historial($id){
+            $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
+            $data["examenesRealizados"] = $this->Laboratorio_Model->obtenerExamenesRealizados($id);
+
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/historial_examenes", $data);
+            $this->load->view("Base/footer"); 
+
+            // echo json_encode($data);
+
+
+        }
+
         public function agregar_examen(){
             $data['medicos'] = $this->Medico_Model->obtenerMedicos();
             $data['pacientes'] = $this->Paciente_Model->obtenerPacientes();
@@ -1009,6 +1022,8 @@ class Laboratorio extends CI_Controller {
             $this->load->view("Base/footer");
             // echo json_encode($data);
         }
+
+        
 
         public function actualizar_paciente(){
             $datos = $this->input->post();

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Hospital Orellana</title>
+    <title>CMLF</title>
     <!-- Iconic Fonts -->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <!-- Bootstrap core CSS -->
@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>public/highcharts/css/style.css">
 
     <!-- Favicon -->
-	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>public/tema/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>public/tema/login/images/icons/favicon.ico"">
     <script src="<?php echo base_url(); ?>public/tema/assets/js/jquery-3.3.1.min.js"></script>
 
     <!-- Scripts para highcharts -->

@@ -35,6 +35,8 @@ class Paciente extends CI_Controller {
 		$this->load->model("Medico_Model");
 		$this->load->model("Usuarios_Model");
 		$this->load->model("Hoja_Model");
+		$this->load->model("Laboratorio_Model");
+		$this->load->model("Consultas_Model");
 	}
 
 	public function agregar_pacientes(){
@@ -105,9 +107,13 @@ class Paciente extends CI_Controller {
 	public function detalle_paciente($id){
 		$data["paciente"] = $this->Paciente_Model->detallePaciente($id);
 		$data["expedientes"] = $this->Paciente_Model->hojasPaciente($id);
+		$data["laboratorio"] = $this->Laboratorio_Model->historialConsultasXPaciente($id);
+		$data["consultas"] = $this->Consultas_Model->consultasPorPaciente($id);
 		$this->load->view('Base/header');
 		$this->load->view('Paciente/detalle_paciente', $data);
-		$this->load->view('Base/footer'); 
+		$this->load->view('Base/footer');
+
+		// echo json_encode($data["consultas"]);
 	}
 
 	// Municipios de El Salvador

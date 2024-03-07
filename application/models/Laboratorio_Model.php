@@ -334,6 +334,29 @@ class Laboratorio_Model extends CI_Model {
         }
     // Fin examenes varios
 
+    public function historialConsultas(){
+        $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico, m.nombreMedico, cl.idConsultaLaboratorio, 
+                cl.codigoConsulta, cl.fechaConsultaLaboratorio FROM
+                tbl_consulta_laboratorio as cl 
+                INNER JOIN tbl_pacientes AS p ON(cl.idPaciente = p.idPaciente) 
+                INNER JOIN tbl_medicos AS m ON(cl.idMedico = m.idMedico)
+                ORDER BY cl.idConsultaLaboratorio DESC LIMIT 100 ";
+        $datos = $this->db->query($sql);
+        return $datos->result();
+    }
+
+    public function historialConsultasXPaciente($id = null){
+        $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico, m.nombreMedico, cl.idConsultaLaboratorio, 
+                cl.codigoConsulta, DATE(cl.fechaConsultaLaboratorio) AS fecha, TIME(cl.fechaConsultaLaboratorio) AS hora FROM
+                tbl_consulta_laboratorio as cl 
+                INNER JOIN tbl_pacientes AS p ON(cl.idPaciente = p.idPaciente) 
+                INNER JOIN tbl_medicos AS m ON(cl.idMedico = m.idMedico)
+                WHERE p.idPaciente = '$id'
+                ORDER BY cl.idConsultaLaboratorio DESC";
+        $datos = $this->db->query($sql);
+        return $datos->result();
+    }
+
     
 
 
@@ -772,16 +795,7 @@ class Laboratorio_Model extends CI_Model {
             }
         }
 
-        public function historialConsultas(){
-            $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico, m.nombreMedico, cl.idConsultaLaboratorio, 
-                    cl.codigoConsulta, cl.fechaConsultaLaboratorio FROM
-                    tbl_consulta_laboratorio as cl 
-                    INNER JOIN tbl_pacientes AS p ON(cl.idPaciente = p.idPaciente) 
-                    INNER JOIN tbl_medicos AS m ON(cl.idMedico = m.idMedico)
-                    ORDER BY cl.idConsultaLaboratorio DESC LIMIT 100 ";
-            $datos = $this->db->query($sql);
-            return $datos->result();
-        }
+        
 
         public function busquedaHistorial($str = null){
             $sql = "SELECT cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, m.idMedico,
