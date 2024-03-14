@@ -305,7 +305,7 @@
 </div>
 
 <?php
-	$conn = mysqli_connect("localhost", "root", "", "db_hospital_orellana");
+	$conn = mysqli_connect("localhost", "root", "", "db_centro_medico");
 	// $conn = mysqli_connect("192.168.1.253", "admin", "admin1234", "db_hospital_orellana");
 	if (!$conn){die("Connection failed: " . mysqli_connect_error());}
 	else{
