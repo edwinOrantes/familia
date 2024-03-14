@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 mt-1">
+        <div class="col-md-8 mt-1">
             <div class="alert-primary table-responsive bordeContenedor pt-3 pl-3">
                 <form action="" method="">
                     <table class="table table-borderless">
@@ -267,6 +267,46 @@
 
             </div>
 
+        </div>
+
+        <div class="col-md-2">
+            <div class="ms-panel ms-panel-fh">
+                <div class="ms-panel-header">
+                    <h6>Otras</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="accordion" id="accordionExample3">
+                        <?php
+                            $flag = 1;
+                            foreach ($historial as $row) {
+                        ?>
+                            <div class="card">
+                                <div class="card-header collapsed" data-toggle="collapse" role="button" data-target="#fechas<?php echo $flag; ?>" aria-expanded="false" aria-controls="fechas<?php echo $flag; ?>">
+                                    <span class="has-icon"> <i class="far fa-calendar"></i> <?php echo $row->fecha; ?> </span>
+                                </div>
+                                <div id="fechas<?php echo $flag; ?>" class="collapse" data-parent="#accordionExample3" style="">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <?php
+                                                $examenes = $this->Laboratorio_Model->historialRealizado($row->fecha, $paciente->idPaciente);
+                                                foreach ($examenes as $fila) {
+                                                    echo '<tr>
+                                                            <td><a href="">'.$fila->nombreExamen.'</a></td>
+                                                        </tr>';
+                                                }
+                                            ?>
+                                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                            $flag++;
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

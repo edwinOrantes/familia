@@ -20,7 +20,9 @@ class Laboratorio_Model extends CI_Model {
         cl.idCola, cl.consultaGenerada, DATE(cl.fechaCola) AS fecha, TIME(cl.fechaCola) AS hora
         FROM tbl_cola_laboratorio AS cl
         INNER JOIN tbl_hoja_cobro AS hc ON(cl.idHoja = hc.idHoja)
-        INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente) LIMIT 200";
+        INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+        GROUP BY p.idPaciente
+        LIMIT 200";
         $datos = $this->db->query($sql);
         return $datos->result();
     }
@@ -40,7 +42,7 @@ class Laboratorio_Model extends CI_Model {
     
     public function detalleConsulta($id){
         $sql = "SELECT 
-                cl.idConsultaLaboratorio, p.nombrePaciente, p.edadPaciente, cl.codigoConsulta, cl.fechaConsulta, m.nombreMedico
+                cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, cl.codigoConsulta, cl.fechaConsulta, m.nombreMedico
                 FROM tbl_consulta_laboratorio AS cl
                 INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
                 INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
@@ -563,6 +565,24 @@ class Laboratorio_Model extends CI_Model {
                     FROM tbl_consulta_laboratorio AS cl 
                     INNER JOIN tbl_detalle_consulta AS dc on(cl.idConsultaLaboratorio = dc.idConsultaLaboratorio) 
                     WHERE cl.idConsultaLaboratorio = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function fechasVisitas($id = null, $fecha = null){
+            $sql = "SELECT DISTINCT(cl.fechaConsulta) AS fecha FROM tbl_consulta_laboratorio AS cl
+                    WHERE cl.idPaciente = '$id' AND cl.fechaConsulta != '$fecha' ";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function historialRealizado($fecha = null, $p = null){
+            $sql = "SELECT cl.fechaConsulta, dc.nombreExamen, cl.idPaciente, cl.idConsultaLaboratorio, dc.idDetalleConsulta, dc.idExamen, 
+                    dc.horaDetalleConsulta, dc.fechaDetalleConsulta, dc.tipoExamen, dc.examenes
+                    FROM tbl_consulta_laboratorio AS cl 
+                    INNER JOIN tbl_detalle_consulta AS dc on(cl.idConsultaLaboratorio = dc.idConsultaLaboratorio) 
+                    WHERE cl.fechaConsulta = '$fecha' AND cl.idPaciente = '$p'
+                    ORDER BY cl.fechaConsulta ASC";
             $datos = $this->db->query($sql);
             return $datos->result();
         }

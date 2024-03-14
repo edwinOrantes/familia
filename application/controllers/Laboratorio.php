@@ -80,14 +80,14 @@ class Laboratorio extends CI_Controller {
             
             $data["examenes"] = $this->Laboratorio_Model->obtenerExamenes();
             $data["examenesRealizados"] = $this->Laboratorio_Model->obtenerExamenesRealizados($id);
+            $data["historial"] = $this->Laboratorio_Model->fechasVisitas($data["paciente"]->idPaciente, $data["paciente"]->fechaConsulta);
             $data["consulta"] = $id;
 
             $this->load->view("Base/header");
             $this->load->view("Laboratorio/detalle_examenes", $data);
             $this->load->view("Base/footer"); 
 
-            // echo json_encode($data);
-
+            // echo json_encode($data["historial"]);
 
         }
 
