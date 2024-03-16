@@ -24,7 +24,7 @@
 		<div class="col-md-12">
 
 			<nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-users"></i> Usuarios </a> </li>
                     <li class="breadcrumb-item"><a href="#">Gestión de usuarios</a></li>
                 </ol>
@@ -172,7 +172,6 @@
 										<div class="input-group">
 											<select class="form-control" id="accesoUsuario" name="accesoUsuario" required>
 												<option value="">.:: Seleccionar ::.</option>
-												<option value="">.:: Seleccionar ::.</option>
 												<?php
 													foreach ($accesos as $acceso) {
 												?>
@@ -181,6 +180,25 @@
 											</select>
                                             <div class="invalid-tooltip">
                                                 Ingrese un acceso para el usuario.
+                                            </div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="col-md-12">
+										<label for=""><strong>Médico</strong></label>
+										<div class="input-group">
+											<select class="form-control" id="medicoUsuario" name="medicoUsuario" required>
+												<option value="0">.:: Seleccionar ::.</option>
+												<?php
+													foreach ($medicos as $row) {
+												?>
+												<option value="<?php echo $row->idMedico; ?>"><?php echo $row->nombreMedico; ?></option>
+												<?php } ?>
+											</select>
+                                            <div class="invalid-tooltip">
+                                                Ingrese el valor solicitado.
                                             </div>
 										</div>
 									</div>

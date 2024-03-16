@@ -30,6 +30,7 @@ class Empleado extends CI_Controller {
 		}
 		$this->load->model("Paciente_Model");
 		$this->load->model("Empleado_Model");
+		$this->load->model("Medico_Model");
 	}
 
     public function index(){
@@ -58,12 +59,29 @@ class Empleado extends CI_Controller {
 		$datos = $this->input->post();
 		$bool = $this->Empleado_Model->guardarEmpleado($datos);
 		if($bool){
+			if($datos["emedEmpleado"] == 1){
+				$medico["nombreMedico"] = $datos["nombreEmpleado"]." ".$datos["apellidoEmpleado"];
+				$medico["especialidadMedico"] = "";
+				$medico["telefonoMedico"] = $datos["telefonoEmpleado"];
+				$medico["direccionMedico"] = $datos["direccionEmpleado"];
+	
+				$externo["medico"] = $medico["nombreMedico"];
+				$externo["tipoEntidad"] = 1;
+				$externo["descripcionExterno"] = "Para pago de honorarios";
+				// Creando un solo arreglo
+					$data["medico"] = $medico;
+					$data["externo"] = $externo;
+				// Creando un solo arreglo
+				$bool = $this->Medico_Model->guardarMedico($data);
+			}
 			$this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
 			redirect(base_url()."Empleado/");
 		}else{
 			$this->session->set_flashdata("error","Hubo un error al guardar los datos!");
 			redirect(base_url()."Empleado/");
 		}
+
+		// echo json_encode($datos);
 	}
 
     public function lista_empleados(){
@@ -86,6 +104,8 @@ class Empleado extends CI_Controller {
 			$this->session->set_flashdata("error","Hubo un error al actualizar los datos!");
 			redirect(base_url()."Empleado/lista_empleados");
 		}
+
+		// echo json_encode($datos);
 		
 	}
 

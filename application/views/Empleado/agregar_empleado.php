@@ -1,21 +1,21 @@
 <?php if($this->session->flashdata("exito")):?>
-<script type="text/javascript">
-$(document).ready(function() {
-    toastr.remove();
-    toastr.options.positionClass = "toast-top-center";
-    toastr.success('<?php echo $this->session->flashdata("exito")?>', 'Aviso!');
-});
-</script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-center";
+        toastr.success('<?php echo $this->session->flashdata("exito")?>', 'Aviso!');
+    });
+    </script>
 <?php endif; ?>
 
 <?php if($this->session->flashdata("error")):?>
-<script type="text/javascript">
-$(document).ready(function() {
-    toastr.remove();
-    toastr.options.positionClass = "toast-top-center";
-    toastr.error('<?php echo $this->session->flashdata("error")?>', 'Aviso!');
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            toastr.remove();
+            toastr.options.positionClass = "toast-top-center";
+            toastr.error('<?php echo $this->session->flashdata("error")?>', 'Aviso!');
+        });
+    </script>
 <?php endif; ?>
 
 <!-- Body Content Wrapper -->
@@ -24,7 +24,7 @@ $(document).ready(function() {
         <div class="col-md-12">
 
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-arrow has-gap">
+                <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-user"></i> Empleado</a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">Agregar empleado</a></li>
@@ -121,15 +121,6 @@ $(document).ready(function() {
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for=""><strong>NIT</strong></label>
-                                <input type="text" class="form-control" data-mask="9999-999999-999-9" id="nitEmpleado"
-                                    name="nitEmpleado" placeholder="NIT del empleado" required>
-                                <div class="invalid-tooltip">
-                                    Debes ingresar el DUI del empleado.
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for=""><strong>Estado civil</strong></label>
                                 <select class="form-control" id="estadoEmpleado" name="estadoEmpleado" required>
                                     <option value=""> .:: Seleccionar ::.</option>
@@ -142,9 +133,6 @@ $(document).ready(function() {
                                 </div>
                             </div>
 
-                        </div>
-
-                        <div class="row">
                             <div class="form-group col-md-4">
                                 <label for=""><strong>Fecha de nacimiento</strong></label>
                                 <input type="date" class="form-control" id="nacimientoEmpleado"
@@ -154,42 +142,31 @@ $(document).ready(function() {
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label for=""><strong>Departamento</strong></label>
-                                <select class="form-control" id="departamentoEmpleado" name="departamentoEmpleado"
-                                    required>
-                                    <option value="">.:: Seleccionar empleado ::.
-                                    <option>
-                                        <?php
-                                        foreach ($departamentos as $departamento) {
-                                    ?>
-                                    <option value="<?php echo $departamento->idDepartamento?>">
-                                        <?php echo $departamento->nombreDepartamento?></option>
-
-                                    <?php } ?>
-                                </select>
-                                <div class="invalid-tooltip">
-                                    Debes seleccionar el departamento del empleado.
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for=""><strong>Municipio</strong> </label>
-                                <select class="form-control" id="municipioEmpleado" name="municipioEmpleado" required>
-                                    <option value=""> .:: Seleccionar ::.</option>
-                                    <option value="">A</option>
-                                    <option value="">B</option>
-                                    <option value="">C</option>
-                                </select>
-                                <div class="invalid-tooltip">
-                                    Debes seleccionar el municipio del empleado.
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md-8">
+
+                            <div class="form-group col-md-6">
+                                <label for=""><strong>Ingreso al hospita</strong> </label>
+                                <input type="date" class="form-control" id="ingresoEmpleado" name="ingresoEmpleado"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    Debes la fecha en que empezo atrabajar el empleado.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for=""><strong>Tipo</strong> </label>
+                                <select class="form-control" id="emedEmpleado" name="emedEmpleado" required>
+                                    <option value="0">Empleado</option>
+                                    <option value="1">Médico</option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Selecciona el tipo de empleado.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
                                 <label for=""><strong>Dirección completa</strong></label>
                                 <input type="text" class="form-control" id="direccionEmpleado" name="direccionEmpleado"
                                     required>
@@ -198,14 +175,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label for=""><strong>Ingreso al hospita</strong> </label>
-                                <input type="date" class="form-control" id="ingresoEmpleado" name="ingresoEmpleado"
-                                    required>
-                                <div class="invalid-tooltip">
-                                    Debes la fecha en que empezo atrabajar el empleado.
-                                </div>
-                            </div>
+                           
 
                         </div>
 

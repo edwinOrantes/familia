@@ -29,7 +29,7 @@ class Usuarios_Model extends CI_Model {
 
     public function guardarUsuario($data = null){
         if($data != null){
-            $sql = "INSERT INTO tbl_usuarios(nombreUsuario, psUsuario, idEmpleado, idAcceso) VALUES(?, ?, ?, ?)";
+            $sql = "INSERT INTO tbl_usuarios(nombreUsuario, psUsuario, idEmpleado, idAcceso, idMedico) VALUES(?, ?, ?, ?, ?)";
             if($this->db->query($sql, $data)){
                 return true;
             }else{

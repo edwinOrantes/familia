@@ -3,8 +3,8 @@ class Empleado_Model extends CI_Model {
 
      // Obtener empleados
      public function obtenerEmpleados(){
-        $sql = "SELECT * FROM tbl_empleados as e INNER JOIN tbl_cargos as c ON(e.cargoEmpleado = c.idCargo) INNER JOIN tbl_municipios_sv as m
-                ON(e.municipioEmpleado=m.idMunicipio) INNER JOIN tbl_departamentos_sv as d ON(m.idDepartamento=d.idDepartamento)";
+        $sql = "SELECT * FROM tbl_empleados as e 
+                INNER JOIN tbl_cargos as c ON(e.cargoEmpleado = c.idCargo)";
         $datos = $this->db->query($sql);
         return $datos->result();
     }
@@ -18,8 +18,9 @@ class Empleado_Model extends CI_Model {
     // Guardar un empleados
     public function guardarEmpleado($data = null){
         if ($data != null) {
-            $sql = "INSERT INTO tbl_empleados(nombreEmpleado, apellidoEmpleado, edadEmpleado, telefonoEmpleado, cargoEmpleado, sexoEmpleado, duiEmpleado, nitEmpleado, estadoEmpleado, nacimientoEmpleado, departamentoEmpleado, municipioEmpleado, direccionEmpleado, ingresoEmpleado)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO tbl_empleados(nombreEmpleado, apellidoEmpleado, edadEmpleado, telefonoEmpleado, cargoEmpleado, sexoEmpleado, duiEmpleado, 
+                                              estadoEmpleado, nacimientoEmpleado, ingresoEmpleado, tipoEmpleado, direccionEmpleado)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             if ($this->db->query($sql, $data)) {
                 return true;
             }else{
@@ -32,19 +33,10 @@ class Empleado_Model extends CI_Model {
 
     public function actualizarEmpleado($data = null){
         if($data != null){
-    
-            if(isset($data['municipioEmpleado'])){
-                $sql = "UPDATE tbl_empleados SET nombreEmpleado = ?, apellidoEmpleado = ?, edadEmpleado = ?, telefonoEmpleado = ?,
-                        cargoEmpleado = ?, sexoEmpleado = ?, duiEmpleado = ?, nitEmpleado = ?, estadoEmpleado = ?, nacimientoEmpleado = ?,
-                        departamentoEmpleado = ?, municipioEmpleado = ?, direccionEmpleado = ?, ingresoEmpleado = ?
-                            WHERE idEmpleado = ?";
-            }else{
-                unset($data["departamentoEmpleado"]);
-                $sql = "UPDATE tbl_empleados SET nombreEmpleado = ?, apellidoEmpleado = ?, edadEmpleado = ?, telefonoEmpleado = ?,
-                        cargoEmpleado = ?, sexoEmpleado = ?, duiEmpleado = ?, nitEmpleado = ?, estadoEmpleado = ?, nacimientoEmpleado = ?,
-                        direccionEmpleado = ?, ingresoEmpleado = ?
-                        WHERE idEmpleado = ?";
-            }
+            $sql = "UPDATE tbl_empleados SET nombreEmpleado = ?, apellidoEmpleado = ?, edadEmpleado = ?, telefonoEmpleado = ?,
+                    cargoEmpleado = ?, sexoEmpleado = ?, duiEmpleado = ?, estadoEmpleado = ?, nacimientoEmpleado = ?,
+                    ingresoEmpleado = ?, direccionEmpleado = ?
+                    WHERE idEmpleado = ?";
             if($this->db->query($sql, $data)){
                 return true;
             }else{

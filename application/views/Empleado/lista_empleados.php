@@ -71,13 +71,8 @@ $(document).ready(function() {
                                           $cargoN = '"'.$empleado->nombreCargo.'"';
                                           $sexo = '"'.$empleado->sexoEmpleado.'"';
                                           $dui = '"'.$empleado->duiEmpleado.'"';
-                                          $nit = '"'.$empleado->nitEmpleado.'"';
                                           $estado = '"'.$empleado->estadoEmpleado.'"';
                                           $nacimiento = '"'.$empleado->nacimientoEmpleado.'"';
-                                          $departamento = '"'.$empleado->departamentoEmpleado .'"';
-                                          $departamentoN = '"'.$empleado->nombreDepartamento .'"';
-                                          $municipio = '"'.$empleado->municipioEmpleado .'"';
-                                          $municipioN = '"'.$empleado->nombreMunicipio .'"';
                                           $direccion = '"'.$empleado->direccionEmpleado.'"';
                                           $ingreso = '"'.$empleado->ingresoEmpleado.'"';
 
@@ -92,8 +87,8 @@ $(document).ready(function() {
                                         </td>
                                         <td class="text-center">
                                             <?php
-                                               echo "<a onclick='verEmpleado($id, $nombre, $apellido, $edad, $telefono, $cargoN, $sexo, $dui, $nit, $estado, $nacimiento, $departamentoN, $municipioN, $direccion, $ingreso)' href='#verEmpleado' data-toggle='modal'><i class='far fa-eye ms-text-primary'></i></a>";
-                                               echo "<a onclick='actualizarEmpleado($id, $nombre, $apellido, $edad, $telefono, $cargo, $sexo, $dui, $nit, $estado, $nacimiento, $departamento, $municipio, $direccion, $ingreso)' href='#actualizarEmpleado' data-toggle='modal'><i class='fas fa-edit ms-text-success'></i></a>";
+                                            //    echo "<a onclick='verEmpleado($id, $nombre, $apellido, $edad, $telefono, $cargoN, $sexo, $dui, $nit, $estado, $nacimiento, $direccion, $ingreso)' href='#verEmpleado' data-toggle='modal'><i class='far fa-eye ms-text-primary'></i></a>";
+                                               echo "<a onclick='actualizarEmpleado($id, $nombre, $apellido, $edad, $telefono, $cargo, $sexo, $dui, $estado, $nacimiento, $direccion, $ingreso)' href='#actualizarEmpleado' data-toggle='modal'><i class='fas fa-edit ms-text-success'></i></a>";
                                                echo "<a onclick='eliminarEmpleado($id)' href='#eliminarEmpleado' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                                             ?>
                                         </td>
@@ -141,7 +136,7 @@ $(document).ready(function() {
     <div class="modal-dialog ms-modal-dialog-width">
         <div class="modal-content ms-modal-content-width">
             <div class="modal-header  ms-modal-header-radius-0">
-                <h4 class="modal-title text-white"></i> Datos del médico</h4>
+                <h4 class="modal-title text-white"></i> Datos del empleado</h4>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span
                         aria-hidden="true" class="text-white">&times;</span></button>
             </div>
@@ -230,14 +225,6 @@ $(document).ready(function() {
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for=""><strong>NIT</strong></label>
-                                        <input type="text" class="form-control" data-mask="9999-999999-999-9" id="nitEmpleado" name="nitEmpleado" placeholder="NIT del empleado" required>
-                                        <div class="invalid-tooltip">
-                                            Debes ingresar el DUI del empleado.
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-md-4">
                                         <label for=""><strong>Estado civil</strong></label>
                                         <select class="form-control" id="estadoEmpleado" name="estadoEmpleado" required>
                                             <option value=""> .:: Seleccionar ::.</option>
@@ -250,9 +237,6 @@ $(document).ready(function() {
                                         </div>
                                     </div>
 
-                                </div>
-
-                                <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for=""><strong>Fecha de nacimiento</strong></label>
                                         <input type="date" class="form-control" id="nacimientoEmpleado" name="nacimientoEmpleado" required>
@@ -262,39 +246,13 @@ $(document).ready(function() {
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for=""><strong>Departamento</strong></label>
-                                        <select class="form-control" id="departamentoEmpleado" name="departamentoEmpleado" required>
-                                            <option value="">.:: Seleccionar empleado ::.
-                                            <option>
-                                                <?php
-                                        foreach ($departamentos as $departamento) {
-                                    ?>
-                                            <option value="<?php echo $departamento->idDepartamento?>">
-                                                <?php echo $departamento->nombreDepartamento?></option>
-
-                                            <?php } ?>
-                                        </select>
+                                        <label for=""><strong>Ingreso al hospita</strong> </label>
+                                        <input type="date" class="form-control" id="ingresoEmpleado" name="ingresoEmpleado" required>
                                         <div class="invalid-tooltip">
-                                            Debes seleccionar el departamento del empleado.
+                                            Debes la fecha en que empezo atrabajar el empleado.
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-4">
-                                        <label for=""><strong>Municipio</strong> </label>
-                                        <select class="form-control" id="municipioEmpleado" name="municipioEmpleado" required>
-                                            <option value=""> .:: Seleccionar ::.</option>
-                                            <option value="">A</option>
-                                            <option value="">B</option>
-                                            <option value="">C</option>
-                                        </select>
-                                        <div class="invalid-tooltip">
-                                            Debes seleccionar el municipio del empleado.
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
                                     <div class="form-group col-md-8">
                                         <label for=""><strong>Dirección completa</strong></label>
                                         <input type="text" class="form-control" id="direccionEmpleado" name="direccionEmpleado" required>
@@ -302,26 +260,11 @@ $(document).ready(function() {
                                             Debes ingresar dirección del empleado.
                                         </div>
                                     </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label for=""><strong>Ingreso al hospita</strong> </label>
-                                        <input type="date" class="form-control" id="ingresoEmpleado" name="ingresoEmpleado" required>
-                                        <input type="hidden" class="form-control" id="idEmpleado" name="idEmpleado" placeholder="Nombre del empleado" required>
-
-                                        <div class="invalid-tooltip">
-                                            Debes la fecha en que empezo atrabajar el empleado.
-                                        </div>
-                                    </div>
-
                                 </div>
 
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-primary has-icon"><i class="fa fa-save"></i>
-                                        Actualizar
-                                    </button>
-                                    <button type="button" class="btn btn-default has-icon"><i class=" fa fa-times"></i>
-                                        Cancelar
-                                    </button>
+                                <input type="hidden" class="form-control" id="idEmpleado" name="idEmpleado" placeholder="Nombre del empleado" required>
+                                    <button type="submit" class="btn btn-primary has-icon"><i class="fa fa-save"></i> Actualizar </button>
                                 </div>
 
                             </form>
@@ -417,7 +360,7 @@ function verEmpleado(id, nombre, apellido, edad, telefono, cargo, sexo, dui, nit
     document.getElementById('detalleMedico').innerHTML = html;
 }
 
-function actualizarEmpleado(id, nombre, apellido, edad, telefono, cargo, sexo, dui, nit, estado, nacimiento, departamento, municipio, direccion, ingreso) {
+function actualizarEmpleado(id, nombre, apellido, edad, telefono, cargo, sexo, dui,estado, nacimiento, direccion, ingreso) {
     $("#idEmpleado").val(id);
     $("#nombreEmpleado").val(nombre);
     $("#apellidoEmpleado").val(apellido);
@@ -426,13 +369,10 @@ function actualizarEmpleado(id, nombre, apellido, edad, telefono, cargo, sexo, d
     $("#cargoEmpleado").val(cargo);
     $("#sexoEmpleado").val(sexo);
     $("#duiEmpleado").val(dui);
-    $("#nitEmpleado").val(nit);
     $("#estadoEmpleado").val(estado);
     $("#nacimientoEmpleado").val(nacimiento);
-    $("#departamentoEmpleado").val(departamento);
-    $("#municipioEmpleado").val(municipio);
-    $("#direccionEmpleado").val(direccion);
     $("#ingresoEmpleado").val(ingreso);
+    $("#direccionEmpleado").val(direccion);
 
 }
 

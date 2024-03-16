@@ -33,8 +33,7 @@ class Medico extends CI_Controller {
 	}
 
 	public function index(){
-		$medicos = $this->Medico_Model->obtenerMedicos();
-		$data = array('medicos' => $medicos);
+		$data["medicos"] = $this->Medico_Model->obtenerMedicos();
 		$this->load->view('Base/header');
 		$this->load->view('Medico/lista_medicos', $data);
 		$this->load->view('Base/footer');
