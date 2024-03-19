@@ -50,3 +50,17 @@
         });
     });
 /* Off canvas */
+
+// cambio de medida
+    $(document).on("change", ".unidadMedida", function(e) {
+        e.preventDefault();
+        $(this).closest('tr').find('.cantidadM').val(1);
+        var multiplo = $(this).val();
+        var cantidad = $(this).closest('tr').find('.cantidadM').val();
+        if(multiplo == 1){ 
+            $(this).closest('tr').find('.cantidadM').val(multiplo);
+        }else{
+            $(this).closest('tr').find('.cantidadM').val(cantidad * multiplo);
+        }
+    });
+// cambio de medida

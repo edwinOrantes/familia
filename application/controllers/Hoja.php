@@ -32,6 +32,7 @@ class Hoja extends CI_Controller {
 			$data["medicamentos"] = $this->Botiquin_Model->obtenerMedicamentos();
 			$data["externos"] = $this->Externos_Model->obtenerExternos();
 			$data["seguros"] = $this->Hoja_Model->segurosActivos();
+			
 			$codigo = $this->Hoja_Model->codigoHoja(); // Ultimo codigo de hoja
 			$cod = 0;
 			if($codigo->codigoHoja == NULL ){
@@ -162,7 +163,7 @@ class Hoja extends CI_Controller {
 			$data["medicamentos"] = $this->Botiquin_Model->obtenerMedicamentos();
 			$data["externos"] = $this->Externos_Model->obtenerExternos();
 			$data["responsable"] = $this->Paciente_Model->obtenerResponsable($data["paciente"]->idPaciente);
-			// $data["seguros"] = $this->Hoja_Model->segurosActivos();
+			$data["medidas"] = $this->Botiquin_Model->obtenerMedidas();
 			
 			// Detalles de la hoja
 				$data["externosHoja"] = $this->Hoja_Model->externosHoja($id);

@@ -52,34 +52,39 @@ class Home extends CI_Controller {
 				$data["descripcionBitacora"] = "El usuario: ".$this->session->userdata('usuario_h')." Ha iniciado sesión";
 				$this->Usuarios_Model->insertarBitacora($data);
 			// Mandando a cada usuario a su respectivo lugar
-			switch ($datos["datos"]->idAcceso) {
-				case 1:
-					// redirect(base_url()."Usuarios/dashboard");
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
-				case 8:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
-					
-				case 5:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
 
-				case 9:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
-				
-				case 15:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
-
-				case 16:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
+			if($datos["datos"]->idMedico > 0){
+				redirect(base_url()."Consultas/");
+			}else{
+				switch ($datos["datos"]->idAcceso) {
+					case 1:
+						// redirect(base_url()."Usuarios/dashboard");
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+					case 8:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+						
+					case 5:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+	
+					case 9:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
 					
-				default:
-					redirect(base_url()."Paciente/agregar_pacientes");
-					break;
+					case 15:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+	
+					case 16:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+						
+					default:
+						redirect(base_url()."Paciente/agregar_pacientes");
+						break;
+				}
 			}
 		}
 		else{
@@ -87,7 +92,7 @@ class Home extends CI_Controller {
 			redirect(base_url());
 		} 
 
-
+		// echo json_encode($datos);
 			
 	}
 

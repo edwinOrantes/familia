@@ -1,22 +1,22 @@
 <!-- Scripts PHP para avisos -->
-<?php if($this->session->flashdata("exito")):?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            toastr.remove();
-            toastr.options.positionClass = "toast-top-center";
-            toastr.success('<?php echo $this->session->flashdata("exito")?>', 'Aviso!');
-        });
-    </script>
+    <?php if($this->session->flashdata("exito")):?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                toastr.remove();
+                toastr.options.positionClass = "toast-top-center";
+                toastr.success('<?php echo $this->session->flashdata("exito")?>', 'Aviso!');
+            });
+        </script>
     <?php endif; ?>
 
     <?php if($this->session->flashdata("error")):?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            toastr.remove();
-            toastr.options.positionClass = "toast-top-center";
-            toastr.error('<?php echo $this->session->flashdata("error")?>', 'Aviso!');
-        });
-    </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                toastr.remove();
+                toastr.options.positionClass = "toast-top-center";
+                toastr.error('<?php echo $this->session->flashdata("error")?>', 'Aviso!');
+            });
+        </script>
     <?php endif; ?>
 
 <!-- Contenido principal -->
@@ -617,98 +617,88 @@
                                             
                                         ?>
 
-                                        <table id="" class="table table-striped thead-primary w-100 tabla-medicamentos">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center" scope="col">Código</th>
-                                                    <th class="text-center" scope="col">Nombre</th>
-                                                    <!-- <th class="text-center" scope="col">Existencia</th> -->
-                                                    <th class="text-center" scope="col">Precio</th>
-                                                    <th class="text-center" scope="col">Cantidad</th>
-                                                    <th class="text-center" scope="col">Opción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                    
-                                                    foreach ($medicamentos as $medicamento) {
-                                                        if($medicamento->ocultarMedicamento == 0){
-                                                            $precioFinal = 0;
-                                                            $id ='"'.$medicamento->idMedicamento.'"';
-                                                            $nombre ='"'.$medicamento->nombreMedicamento.'"';
-                                                            $stock ='"'.$medicamento->stockMedicamento.'"';
-                                                            $usados = '"'.$medicamento->usadosMedicamento.'"';
-                                                            if($paciente->paraHoja == "Paciente"){
-                                                                $precioFinal = $medicamento->precioVMedicamento;
-                                                            }else{
-                                                                $precioFinal = $medicamento->precioVMedicamento - ($medicamento->precioVMedicamento * ($medicamento->descuentoMedicamento/100));
-                                                            }
-                                         
-                                                ?>
-                                                <tr class="filaMedicamento">
-                                                    <td class="text-center" scope="row"><?php echo $medicamento->codigoMedicamento; ?></td>
-                                                    <td class="text-center" scope="row"><?php echo $medicamento->nombreMedicamento; ?></td>
-
-                                                    <!-- <td class="text-center" scope="row">
-                                                        <?php
-                                                            if($medicamento->stockMedicamento == 0){
-                                                                switch ($medicamento->tipoMedicamento) {
-                                                                    case 'Servicios':
-                                                                        echo '<span class="badge badge-gradient-info">Servicio</span>';
-                                                                        break;
-                                                                    case 'Otros servicios':
-                                                                        echo '<span class="badge badge-gradient-info">Otros servicios</span>';
-                                                                        break;
-                                                                    
-                                                                    default:
-                                                                        echo '<span class="badge badge-gradient-danger">Sin stock</span>';
-                                                                        break;
-                                                                }
-                                                            }else{
-                                                                echo $medicamento->stockMedicamento;
-                                                            }
-                                                        ?>
-                                                    </td> -->
-
-                                                    <td class="text-center" scope="row">
-                                                        <?php 
-                                                        //echo number_format($medicamento->precioVMedicamento, 2);
-                                                        ?>
-                                                        <input type="hidden" value="<?php echo $medicamento->idMedicamento; ?>" id="test" class="form-control idM" />
-                                                        <input type="hidden" value="<?php echo $medicamento->nombreMedicamento; ?>" id="test" class="form-control nombreM" />
-                                                        <input type="hidden" value="<?php echo $medicamento->stockMedicamento; ?>" id="test" class="form-control stockM" />
-                                                        <input type="hidden" value="<?php echo $medicamento->usadosMedicamento; ?>" id="test" class="form-control usadosM" />
-                                                        <input type="text" value="<?php  echo $precioFinal; ?>" id="test" class="form-control precioM" />
-                                                    </td>
-                                                    <td>
-                                                        <!-- <?php
-                                                            // if($medicamento->stockMedicamento == 0){
-                                                            //     echo '';
-                                                            // }else{
-                                                            //     echo '<input type="text" value="1" id="test" class="form-control cantidadM" />';
-                                                            // }
-                                                        ?> -->
-                                                        <input type="text" value="1" id="test" class="form-control cantidadM" />
-                                                        <input type="hidden" value="<?php echo $paciente->idHoja?>" id="test" class="form-control hojaHM" />
-                                                        <input type="hidden" value="<?php echo $paciente->fechaHoja?>" id="test" class="form-control fechaHM" />
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <?php
-                                                            if($medicamento->stockMedicamento > 0){
-                                                                echo "<a class='ocultarAgregar agregarMedicamento' title='Agregar a la lista'><i class='fa fa-plus ms-text-primary addMed'></i></a>";
-                                                            }else{
-                                                                if($medicamento->tipoMedicamento != "Servicios" && $medicamento->tipoMedicamento != "Otros servicios"){
-                                                                    //echo '<span class="badge badge-gradient-danger">Sin stock</span>';
+                                            <table id="" class="table table-striped thead-primary w-100 tabla-medicamentos">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" scope="col">Código</th>
+                                                        <th class="text-center" scope="col">Nombre</th>
+                                                        <th class="text-center" scope="col">Medida</th>
+                                                        <th class="text-center" scope="col">Precio</th>
+                                                        <th class="text-center" scope="col">Cantidad</th>
+                                                        <th class="text-center" scope="col">Opción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                        
+                                                        foreach ($medicamentos as $medicamento) {
+                                                            if($medicamento->ocultarMedicamento == 0){
+                                                                $precioFinal = 0;
+                                                                $id ='"'.$medicamento->idMedicamento.'"';
+                                                                $nombre ='"'.$medicamento->nombreMedicamento.'"';
+                                                                $stock ='"'.$medicamento->stockMedicamento.'"';
+                                                                $usados = '"'.$medicamento->usadosMedicamento.'"';
+                                                                if($paciente->paraHoja == "Paciente"){
+                                                                    $precioFinal = $medicamento->precioVMedicamento;
                                                                 }else{
-                                                                    echo "<a class='ocultarAgregar agregarMedicamento' title='Agregar a la lista'><i class='fa fa-plus ms-text-primary addMed'></i></a>";
+                                                                    $precioFinal = $medicamento->precioVMedicamento - ($medicamento->precioVMedicamento * ($medicamento->descuentoMedicamento/100));
                                                                 }
-                                                            }
-                                                        ?>
-                                                    </td>
-                                                </tr>
-                                                <?php   } } ?>
-                                            </tbody>
-                                        </table>
+                                            
+                                                    ?>
+                                                    <tr class="filaMedicamento">
+                                                        <td class="text-center" scope="row"><?php echo $medicamento->codigoMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><?php echo $medicamento->nombreMedicamento; ?></td>
+
+                                                        <td class="text-center" scope="row">
+                                                            <select id="medida" class="form-control unidadMedida">
+                                                                <option value="1">---</option>
+                                                                <?php
+                                                                    foreach ($medidas as $row) {
+                                                                        echo '<option value='.$row->cantidadMedida.'>'.$row->nombreMedida.'('.$row->cantidadMedida.')</option>';
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </td>
+
+                                                        <td class="text-center" scope="row">
+                                                            <?php 
+                                                            //echo number_format($medicamento->precioVMedicamento, 2);
+                                                            ?>
+                                                            <input type="hidden" value="<?php echo $medicamento->idMedicamento; ?>" id="test" class="form-control idM" />
+                                                            <input type="hidden" value="<?php echo $medicamento->nombreMedicamento; ?>" id="test" class="form-control nombreM" />
+                                                            <input type="hidden" value="<?php echo $medicamento->stockMedicamento; ?>" id="test" class="form-control stockM" />
+                                                            <input type="hidden" value="<?php echo $medicamento->usadosMedicamento; ?>" id="test" class="form-control usadosM" />
+                                                            <input type="text" value="<?php  echo $precioFinal; ?>" id="test" class="form-control precioM" />
+                                                        </td>
+                                                        <td>
+                                                            <!-- <?php
+                                                                // if($medicamento->stockMedicamento == 0){
+                                                                //     echo '';
+                                                                // }else{
+                                                                //     echo '<input type="text" value="1" id="test" class="form-control cantidadM" />';
+                                                                // }
+                                                            ?> -->
+                                                            <input type="text" value="1" id="test" class="form-control cantidadM" />
+                                                            <input type="hidden" value="<?php echo $paciente->idHoja?>" id="test" class="form-control hojaHM" />
+                                                            <input type="hidden" value="<?php echo $paciente->fechaHoja?>" id="test" class="form-control fechaHM" />
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php
+                                                                if($medicamento->stockMedicamento > 0){
+                                                                    echo "<a class='ocultarAgregar agregarMedicamento' title='Agregar a la lista'><i class='fa fa-plus ms-text-primary addMed'></i></a>";
+                                                                }else{
+                                                                    if($medicamento->tipoMedicamento != "Servicios" && $medicamento->tipoMedicamento != "Otros servicios"){
+                                                                        //echo '<span class="badge badge-gradient-danger">Sin stock</span>';
+                                                                    }else{
+                                                                        echo "<a class='ocultarAgregar agregarMedicamento' title='Agregar a la lista'><i class='fa fa-plus ms-text-primary addMed'></i></a>";
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php   } } ?>
+                                                </tbody>
+                                            </table>
                                         <?php
                                                     }else{
                                                         echo '<div class="alert alert-danger">
@@ -2528,7 +2518,7 @@
     let tableDT;
 
     $(function() {
-        start = $('#comienzo');
+        /* start = $('#comienzo');
         start.addClass('cell-focus');
 
         document.onkeydown = checkKey;
@@ -2576,7 +2566,7 @@
 
         function deleteInput(e) {
             console.log(start)
-        }
+        } */
 
         $("#tblMedicamentos tr").on('click', function(e) {
             if ($(e.target).closest('td')) {

@@ -40,7 +40,7 @@ class Usuarios extends CI_Controller {
 
     public function guardar_usuario(){
         $datos = $this->input->post();
-        /* $datos["psUsuario"] = md5($datos["psUsuario"]);
+        $datos["psUsuario"] = md5($datos["psUsuario"]);
         $bool = $this->Usuarios_Model->guardarUsuario($datos);
 		if($bool){
 			$this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
@@ -48,9 +48,9 @@ class Usuarios extends CI_Controller {
 		}else{
 			$this->session->set_flashdata("error","Hubo un error al guardar los datos!");
 			redirect(base_url()."Usuarios/gestion_usuarios");
-		} */
+		}
 
-		echo json_encode($datos);
+		// echo json_encode($datos);
     }
 
     public function actualizar_usuario(){

@@ -280,6 +280,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center" scope="col">Nombre</th>
+                                                    <th class="text-center" scope="col">Medida</th>
                                                     <th class="text-center" scope="col">Cantidad</th>
                                                     <th class="text-center" scope="col"> Precio </th>
                                                     <th class="text-center" scope="col"> Descuento </th>
@@ -299,6 +300,16 @@
                                                         $stock = '"' . $medicamento->stockMedicamento . '"';
                                                 ?>
                                                         <tr>
+                                                            <td class="text-center" scope="row">
+                                                                <select id="medida" class="form-control unidadMedida">
+                                                                    <option value="1">---</option>
+                                                                    <?php
+                                                                        foreach ($medidas as $row) {
+                                                                            echo '<option value='.$row->cantidadMedida.'>'.$row->nombreMedida.'('.$row->cantidadMedida.')</option>';
+                                                                        }
+                                                                    ?>
+                                                                </select>
+                                                            </td>
                                                             <td class="text-center" scope="row"><?php echo $medicamento->nombreMedicamento ?></td>
                                                             <td class="text-center precio">
                                                                 <input type="text" class="cantidadM form-control menosHeight" value="1">
@@ -455,7 +466,6 @@
         </div>
     </div>
 <!-- Fin Modal eliminar  datos del medicamento-->
-
 
 <!-- Modal para actualizar datos de medicamentos-->
     <div class="modal fade" id="editarFactura" tabindex="-1" role="dialog" aria-hidden="true">
@@ -619,6 +629,21 @@
     function saldar(id) {
         document.getElementById("idSaldar").value = id;
     }
+
+    // cambio de medida
+        $(document).on("change", ".unidadMedida", function(e) {
+            e.preventDefault();
+            $(this).closest('tr').find('.cantidadM').val(1);
+            var multiplo = $(this).val();
+            var cantidad = $(this).closest('tr').find('.cantidadM').val();
+            if(multiplo == 1){ 
+                $(this).closest('tr').find('.cantidadM').val(multiplo);
+            }else{
+                $(this).closest('tr').find('.cantidadM').val(cantidad * multiplo);
+            }
+        });
+    // cambio de medida
+
 </script>
 
 <script>

@@ -74,9 +74,11 @@ class Usuarios_Model extends CI_Model {
 
     public function validarUsuario($data = null){
 		if ($data != null){
-			$sql = "SELECT u.idUsuario, u.nombreUsuario, u.psUsuario, u.idAcceso, u.codigoVerificacion, u.nivelUsuario, e.idEmpleado, e.nombreEmpleado, e.apellidoEmpleado,
-                    a.nombreAcceso, e.nacimientoEmpleado FROM tbl_usuarios as u INNER JOIN tbl_empleados as e ON(u.idEmpleado = e.idEmpleado) INNER JOIN 
-                    tbl_accesos AS a ON(u.idAcceso = a.idAcceso)  WHERE nombreUsuario = ? AND psUsuario = ? AND u.estadoUsuario = '1' ";
+			$sql = "SELECT u.idUsuario, u.nombreUsuario, u.psUsuario, u.idAcceso, u.codigoVerificacion, u.nivelUsuario, 
+                    u.idMedico, e.idEmpleado, e.nombreEmpleado, e.apellidoEmpleado, a.nombreAcceso, e.nacimientoEmpleado 
+                    FROM tbl_usuarios as u INNER JOIN tbl_empleados as e ON(u.idEmpleado = e.idEmpleado) 
+                    INNER JOIN tbl_accesos AS a ON(u.idAcceso = a.idAcceso) 
+                    WHERE nombreUsuario = ? AND psUsuario = ? AND u.estadoUsuario = '1' ";
 			$datos = $this->db->query($sql, $data);
 			if ($datos->num_rows() > 0){
 				return array("estado" => 1, "datos" => $datos->row());

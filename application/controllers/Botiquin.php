@@ -299,11 +299,13 @@ class Botiquin extends CI_Controller {
 		$data["medicamentos"] = $this->Botiquin_Model->medicamentosFactura($id);
 		$data["listaMedicamentos"] = $this->Botiquin_Model->obtenerMedicamentos();
 		$data["proveedores"] = $this->Proveedor_Model->obtenerProveedores();
+		$data["medidas"] = $this->Botiquin_Model->obtenerMedidas();
 		
 		$this->load->view('Base/header');
 		$this->load->view('Botiquin/detalle_compras', $data);
-		$this->load->view('Base/footer'); 
+		$this->load->view('Base/footer');
 
+		// echo json_encode($data);
 
 	}
 
