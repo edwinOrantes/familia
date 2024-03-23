@@ -76,10 +76,7 @@
     <div id="principal">
         <table style="text-align: center;">
             <tr>
-                <td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
-            </tr>
-            <tr>
-                <td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
+                <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
             </tr>
         </table>
     </div>

@@ -411,7 +411,6 @@
         // alert(motivo);
     });
 
-
      $(document).on('change', '#tipoConsulta', function (event) {
         event.preventDefault();
         var tipo = $(this).val();
@@ -442,4 +441,9 @@
         }); */
 
     });
+
+    /* $('.controlInteligente').select2({
+        theme: "bootstrap4",
+        dropdownParent: $(".ms-content-wrapper")
+    }); */
 </script>

@@ -180,9 +180,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -239,9 +239,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -376,9 +376,9 @@ class Reportes extends CI_Controller {
 					</table>');
 
 				$mpdf->SetProtection(array('print'));
-				$mpdf->SetTitle("Hospital Orellana, Usulutan");
+				$mpdf->SetTitle("Centro Médico, La Familia");
 				$mpdf->SetAuthor("Edwin Orantes");
-				// $mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+				// $mpdf->SetWatermarkText("Centro Médico, La Familia");
 				$mpdf->showWatermarkText = true;
 				$mpdf->watermark_font = 'DejaVuSansCondensed';
 				$mpdf->watermarkTextAlpha = 0.1;
@@ -394,7 +394,7 @@ class Reportes extends CI_Controller {
 					<div id="principal">
 						<table style="text-align: center;">
 							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
+								<td><strong>Centro Médico, La Familia</strong></td>
 							</tr>
 							<tr>
 								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
@@ -524,6 +524,8 @@ class Reportes extends CI_Controller {
 		$this->load->view("Base/header");
 		$this->load->view("Reportes/cobros_pacientes", $data);
 		$this->load->view("Base/footer");
+
+		// echo json_encode($data["medicos"])
 	}
 
 	public function generar_cobros_pacientes(){
@@ -560,9 +562,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -621,9 +623,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					// $mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -685,9 +687,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -731,7 +733,7 @@ class Reportes extends CI_Controller {
 						]);
 					//$mpdf->setFooter('');
 					//$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
 					$mpdf->showWatermarkText = false;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
@@ -1134,9 +1136,9 @@ class Reportes extends CI_Controller {
 							</tr>
 						</table>');
 					$mpdf->SetProtection(array('print'));
-					$mpdf->SetTitle("Hospital Orellana, Usulutan");
+					$mpdf->SetTitle("Centro Médico, La Familia");
 					$mpdf->SetAuthor("Edwin Orantes");
-					//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+					//$mpdf->SetWatermarkText("Centro Médico, La Familia");
 					$mpdf->showWatermarkText = true;
 					$mpdf->watermark_font = 'DejaVuSansCondensed';
 					$mpdf->watermarkTextAlpha = 0.1;
@@ -1739,7 +1741,7 @@ class Reportes extends CI_Controller {
 					<div id="principal">
 						<table style="text-align: center;">
 							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
+								<td><strong>Centro Médico, La Familia</strong></td>
 							</tr>
 							<tr>
 								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>
@@ -1774,9 +1776,9 @@ class Reportes extends CI_Controller {
 					</table>');
 
 				$mpdf->SetProtection(array('print'));
-				$mpdf->SetTitle("Hospital Orellana, Usulutan");
+				$mpdf->SetTitle("Centro Médico, La Familia");
 				$mpdf->SetAuthor("Edwin Orantes");
-				// $mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+				// $mpdf->SetWatermarkText("Centro Médico, La Familia");
 				$mpdf->showWatermarkText = true;
 				$mpdf->watermark_font = 'DejaVuSansCondensed';
 				$mpdf->watermarkTextAlpha = 0.1;
@@ -1792,7 +1794,7 @@ class Reportes extends CI_Controller {
 					<div id="principal">
 						<table style="text-align: center;">
 							<tr>
-								<td><strong>HOSPITAL ORELLANA, USULUTAN</strong></td>
+								<td><strong>Centro Médico, La Familia</strong></td>
 							</tr>
 							<tr>
 								<td><strong>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</strong></td>

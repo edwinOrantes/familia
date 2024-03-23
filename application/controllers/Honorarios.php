@@ -131,7 +131,7 @@ class Honorarios extends CI_Controller {
             $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
             $drawing->setName('HCO');
             $drawing->setDescription('HCO');
-            $drawing->setPath('./public/img/logo2.png'); /* put your path and image here */
+            $drawing->setPath('./public/img/logo.jpg'); /* put your path and image here */
             $drawing->setCoordinates('A1');
             $drawing->setWidthAndHeight(210, 215);
             $drawing->setOffsetX(110);
@@ -140,9 +140,9 @@ class Honorarios extends CI_Controller {
             $drawing->setWorksheet($spreadsheet->getActiveSheet());
         // Fin cargar imagen
 
-        $sheet->setCellValue('E2', 'HOSPITAL ORELLANA, USULUTAN');
+        $sheet->setCellValue('E2', 'Centro Médico, La Familia');
         $sheet->mergeCells('E2:J2');
-        $sheet->setCellValue('E3', 'Sexta calle oriente #8, Usulutan, El Salvador');
+        $sheet->setCellValue('E3', 'Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298');
         $sheet->mergeCells('E3:J3');
 
         $derecha = [
@@ -428,9 +428,9 @@ class Honorarios extends CI_Controller {
 				');
 
 			$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Centro Médico, La Familia");
 			$mpdf->SetAuthor("Edwin Orantes");
-			// $mpdf->SetWatermarkText("Hospital Orellana, Usulutan"); //Para agragar marca de agua
+			// $mpdf->SetWatermarkText("Centro Médico, La Familia"); //Para agragar marca de agua
 			$mpdf->showWatermarkText = true;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
 			$mpdf->watermarkTextAlpha = 0.1;
@@ -516,9 +516,9 @@ class Honorarios extends CI_Controller {
                     ');
         
                     $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                    $mpdf->SetTitle("Centro Médico, La Familia");
                     $mpdf->SetAuthor("Edwin Orantes");
-                    // $mpdf->SetWatermarkText("Hospital Orellana, Usulutan"); //Para agragar marca de agua
+                    // $mpdf->SetWatermarkText("Centro Médico, La Familia"); //Para agragar marca de agua
                     $mpdf->showWatermarkText = true;
                     $mpdf->watermark_font = 'DejaVuSansCondensed';
                     $mpdf->watermarkTextAlpha = 0.1;
@@ -562,7 +562,7 @@ class Honorarios extends CI_Controller {
                 $drawing->setWorksheet($spreadsheet->getActiveSheet());
             // Fin cargar imagen
     
-            $sheet->setCellValue('E2', 'HOSPITAL ORELLANA, USULUTAN');
+            $sheet->setCellValue('E2', 'Centro Médico, La Familia');
             $sheet->mergeCells('E2:J2');
             $sheet->setCellValue('E3', 'Sexta calle oriente #8, Usulutan, El Salvador');
             $sheet->mergeCells('E3:J3');
@@ -742,9 +742,9 @@ class Honorarios extends CI_Controller {
                 $mpdf->SetHTMLFooter('');
 
                 $mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico, La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
-                // $mpdf->SetWatermarkText("Hospital Orellana, Usulutan"); //Para agragar marca de agua
+                // $mpdf->SetWatermarkText("Centro Médico, La Familia"); //Para agragar marca de agua
                 $mpdf->showWatermarkText = true;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
                 $mpdf->watermarkTextAlpha = 0.1;
@@ -986,9 +986,9 @@ class Honorarios extends CI_Controller {
 				');
 
 			$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Centro Médico, La Familia");
 			$mpdf->SetAuthor("Edwin Orantes");
-			// $mpdf->SetWatermarkText("Hospital Orellana, Usulutan"); //Para agragar marca de agua
+			// $mpdf->SetWatermarkText("Centro Médico, La Familia"); //Para agragar marca de agua
 			$mpdf->showWatermarkText = true;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
 			$mpdf->watermarkTextAlpha = 0.1;
@@ -1198,7 +1198,7 @@ class Honorarios extends CI_Controller {
                     ]);
                 
                 //$mpdf->SetProtection(array('print'));
-                $mpdf->SetTitle("Hospital Orellana, Usulutan");
+                $mpdf->SetTitle("Centro Médico, La Familia");
                 $mpdf->SetAuthor("Edwin Orantes");
                 $mpdf->showWatermarkText = false;
                 $mpdf->watermark_font = 'DejaVuSansCondensed';
@@ -1210,7 +1210,7 @@ class Honorarios extends CI_Controller {
                     <div class="cabecera">
                         <div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
                         <div class="title_cabecera">
-                            <h4>HOSPITAL ORELLANA, USULUTAN</h4>
+                            <h4>Centro Médico, La Familia</h4>
                             <h5>Sexta calle oriente, #8, Usulután, El Salvador, PBX 2606-6673</h5>
                         </div>
                     </div>

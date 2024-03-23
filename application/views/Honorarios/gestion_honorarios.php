@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-arrow has-gap">
+                        <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"> <a href="#"><i class="fa fa-users"></i> Honorarios </a> </li>
                             <li class="breadcrumb-item"><a href="#">Honorarios pendientes</a></li>
                         </ol>
@@ -39,7 +39,7 @@
                         }
                     ?>
                     
-                    <a href="#facturadosFecha" class="btn btn-outline-primary" data-toggle="modal"><i class="fa fa-file"></i> Facturados</a>
+                    <!-- <a href="#facturadosFecha" class="btn btn-outline-primary" data-toggle="modal"><i class="fa fa-file"></i> Facturados</a> -->
                 </div>
             </div>
 			<div class="ms-panel">

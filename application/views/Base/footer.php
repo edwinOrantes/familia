@@ -362,7 +362,7 @@
 
 	<script src="<?php echo base_url(); ?>public/js/funciones.js"></script>
 
-	<script src="<?php echo base_url(); ?>public/tema/assets/js/select2.min.js"></script>
+	
 
 	<!-- Dashboard -->
 	<script src="<?php echo base_url(); ?>public/tema/assets/js/dashboard.js"> </script>		
