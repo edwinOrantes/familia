@@ -41,11 +41,12 @@ class Paciente extends CI_Controller {
 
 	public function agregar_pacientes(){
 		$data["departamentos"] = $this->Paciente_Model->obtenerDepartamentos();
+		$data["municipios"] = $this->Paciente_Model->allMunicipios();
 		$data["medicos"] = $this->Medico_Model->obtenerMedicos();
 		$this->load->view('Base/header');
 		$this->load->view('Paciente/agregar_paciente', $data);
 		$this->load->view('Base/footer');
-		// echo json_encode($data);
+		// echo json_encode($data["municipios"]);
     }
     
     public function lista_pacientes(){
@@ -141,6 +142,8 @@ class Paciente extends CI_Controller {
 			$paciente["edadPaciente"] = $datos["edadPaciente"];
 			$paciente["civilPaciente"] = $datos["civilPaciente"];
 			$paciente["sexoPaciente"] = $datos["sexoPaciente"];
+			$paciente["departamentoPaciente"] = $datos["departamentoPaciente"];
+			$paciente["municipioPaciente"] = $datos["municipioPaciente"];
 			$paciente["direccionPaciente"] = $datos["direccionPaciente"];
 			$paciente["idPaciente"] = $datos["idPaciente"];
 		//Pacientes

@@ -95,8 +95,7 @@ $(document).ready(function(){
                     if (registro.length > 0)
                     {
                         var municipio = "";
-                        for (var i = 0; i < registro.length; i++) 
-                        {
+                        for (var i = 0; i < registro.length; i++){
                             municipio += "<option value='"+ registro[i]["idMunicipio"] +"'>"+ registro[i]["nombreMunicipio"] +"</option>";
                         }
                         $("#municipioPaciente").append(municipio);

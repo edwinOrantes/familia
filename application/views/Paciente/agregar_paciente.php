@@ -121,12 +121,43 @@
                             </div>
                         </div>
 
-                        <div class="row mt-3">
+                        <div  class="row mt-3">
+                            <div class="form-group col-md-4 col-sm-12 cl-lg-4">
+                                <label for="">Departamento</label>
+                                <select class="form-control" id="departamentoPaciente" name="departamentoPaciente" required>
+                                    <option value="">.:: Seleccionar ::.</option>
+                                    <?php
+                                        foreach ($departamentos as $departamento) {
+                                    ?>
+                                            <option value="<?php echo $departamento->idDepartamento?>"><?php echo $departamento->nombreDepartamento?></option>
 
-                            <div class="form-group col-md-12">
-                                <label for=""><strong>Dirección</strong></label>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Debes seleccionar el departamento del paciente.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-12 cl-lg-4">
+                                <label for="">Municipio </label>
+                                <select class="form-control" id="municipioPaciente" name="municipioPaciente" required>
+                                    <option value="">Elija una opción</option>
+                                    <?php
+                                        foreach ($municipios as $row) {
+                                    ?>
+                                        <option value="<?php echo $row->idMunicipio; ?>"><?php echo $row->nombreMunicipio; ?></option>
+
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Debes seleccionar el municipio del paciente.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for=""><strong>Colonia/Cantón</strong></label>
                                 <!-- <input type="text" class="form-control" id="direccionPaciente" name="direccionPaciente" required> -->
-                                <textarea class="form-control" id="direccionPaciente" name="direccionPaciente" required rows="3"></textarea>
+                                <input type="text" class="form-control" id="direccionPaciente" name="direccionPaciente" required>
                                 <div class="invalid-tooltip">
                                     Debes ingresar dirección del paciente.
                                 </div>
@@ -249,6 +280,8 @@
             $("#edadPaciente").val(""); 
             $("#civilPaciente").val(""); 
             $("#sexoPaciente").val(""); 
+            $("#departamentoPaciente").val();
+            $("#municipioPaciente").val();
             $("#direccionPaciente").val("");
             $("#idResponsable").val("0");
 
@@ -262,6 +295,7 @@
                     if (Object.keys(registro).length > 0){
                         if(registro.estado == 1){
                             var datos = registro.datos;
+                            $("#municipioPaciente").prop('disabled', false);
                             // Paciente
                                 $("#idPaciente").val(datos["idPaciente"]);
                                 $("#nombrePaciente").val(datos["nombrePaciente"]);
@@ -269,7 +303,9 @@
                                 $("#telefonoPaciente").val(datos["telefonoPaciente"]); 
                                 $("#edadPaciente").val(datos["edadPaciente"]); 
                                 $("#civilPaciente").val(datos["civilPaciente"]); 
-                                $("#sexoPaciente").val(datos["sexoPaciente"]); 
+                                $("#sexoPaciente").val(datos["sexoPaciente"]);
+                                $("#departamentoPaciente").val(datos["departamentoPaciente"]);
+                                $("#municipioPaciente").val(datos["municipioPaciente"]);
                                 $("#direccionPaciente").val(datos["direccionPaciente"]);
                                 // Paciente
                                 

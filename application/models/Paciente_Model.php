@@ -8,10 +8,17 @@ class Paciente_Model extends CI_Model {
         return $datos->result();
     }
 
-    // Obtener municipios
+    // Obtener municipio
     public function obtenerMunicipios($id = null){
-        $sql = "SELECT * FROM tbl_municipios_sv WHERE idDepartamento=?";
+        $sql = "SELECT * FROM tbl_municipios_sv WHERE idDepartamento = ?";
         $datos = $this->db->query($sql, $id);
+        return $datos->result();
+    }
+
+    // Obtener municipios
+    public function allMunicipios(){
+        $sql = "SELECT * FROM tbl_municipios_sv";
+        $datos = $this->db->query($sql);
         return $datos->result();
     }
 
@@ -38,8 +45,8 @@ class Paciente_Model extends CI_Model {
     public function guardarPaciente($data = null){
         if ($data != null) {
             $sql = "INSERT INTO tbl_pacientes(duiPaciente, nombrePaciente, nacimientoPaciente, telefonoPaciente, edadPaciente,
-                    civilPaciente, sexoPaciente, direccionPaciente)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                    civilPaciente, sexoPaciente, departamentoPaciente, municipioPaciente, direccionPaciente)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             if ($this->db->query($sql, $data)) {
                 $paciente = $this->db->insert_id(); // Id de la hoja de cobro
                 return $paciente;
@@ -56,7 +63,7 @@ class Paciente_Model extends CI_Model {
         if($data != null){
 
             $sql = "UPDATE tbl_pacientes SET duiPaciente = ?, nombrePaciente= ?, nacimientoPaciente= ?, telefonoPaciente= ?, edadPaciente= ?, 
-                            civilPaciente = ?, sexoPaciente= ?, direccionPaciente= ?
+                            civilPaciente = ?, sexoPaciente= ?, departamentoPaciente = ?, municipioPaciente = ?, direccionPaciente= ?
                     WHERE idPaciente = ?";
                    
             if($this->db->query($sql, $data)){
