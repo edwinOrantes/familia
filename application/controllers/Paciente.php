@@ -103,8 +103,6 @@ class Paciente extends CI_Controller {
 		// echo json_encode($paciente);
 	}
 
-
-
 	public function detalle_paciente($id){
 		$data["paciente"] = $this->Paciente_Model->detallePaciente($id);
 		$data["expedientes"] = $this->Paciente_Model->hojasPaciente($id);
@@ -232,7 +230,7 @@ class Paciente extends CI_Controller {
 	}
 
 
-	public function motivo_paciente($param = null){
+	/* public function motivo_paciente($param = null){
 		$data["paciente"] = $this->Paciente_Model->detallePaciente($param);
 		$data["medicos"] = $this->Medico_Model->obtenerMedicos();
 		$data["habitaciones"] = $this->Paciente_Model->obtenerHabitaciones2();
@@ -251,6 +249,57 @@ class Paciente extends CI_Controller {
 		$this->load->view('Base/footer');
 
 		// echo json_encode($data);
+	} */
+
+	public function motivo_paciente($param = null){
+		$existe_hoja = $this->Hoja_Model->existeHoja($param, date('Y-m-d'));
+		if(is_null($existe_hoja)){
+			// Crear hoja cobro
+				$codigo = $this->Hoja_Model->codigoHoja(); // Ultimo codigo de hoja
+				$cod = 0;
+				if($codigo->codigoHoja == NULL ){
+					$cod = 1000;
+				}else{
+					$cod = ($codigo->codigoHoja + 1);
+				}
+				$hoja["codigo"] = $cod;
+				$hoja["tipo"] = "Ambulatoria";
+				$hoja["idMedico"] = 1;
+				$hoja["fecha"] = date('Y-m-d');
+				$hoja["destino"] = 0;
+				$hoja["habitacion"] = 1;
+				$hoja["para"] = "";
+				$hoja["paciente"] = $param;
+				$idHoja = $this->Hoja_Model->guardarHoja($hoja);
+				if($idHoja > 0){
+					// Datos para bitacora -Anular externo cuenta
+						$bitacora["idCuenta"] = $idHoja ;
+						$bitacora["idUsuario"] = $this->session->userdata('id_usuario_h');
+						$bitacora["usuario"] = $this->session->userdata('usuario_h');
+						$bitacora["descripcionBitacora"] = "Creo la hoja de cobro a nombre del paciente: ";
+					// Fin datos para bitacora -Anular externo cuenta
+					$this->Usuarios_Model->insertarMovimientoHoja($bitacora); // Capturando movimiento de la hoja de cobro
+				}
+			// Crear hoja cobro
+		}else{
+			$idHoja = $existe_hoja->idHoja;
+		}
+
+		
+		$data["paciente"] = $this->Paciente_Model->detallePaciente($param);
+		$data["examenes"] = $this->Paciente_Model->obtenerExamenes();
+		$data["medicos"] = $this->Medico_Model->obtenerMedicos();
+		$data["hoja"] = $idHoja;
+		// Detalle de la hoja
+			$data["detalleHoja"] = $this->Hoja_Model->medicamentosHoja($idHoja);
+		// Detalle de la hoja
+		
+		
+		$this->load->view('Base/header');
+		$this->load->view('Paciente/motivo_paciente', $data);
+		$this->load->view('Base/footer');
+
+		// echo json_encode($data["hoja"]);
 	}
 
 	public function eliminar_paciente(){
@@ -366,6 +415,124 @@ class Paciente extends CI_Controller {
 			print json_encode($respuesta);
 		}
 	}
+
+	// Agregando consulta
+		public function agregar_consulta(){
+			if($this->input->is_ajax_request()){
+				$datos =$this->input->post();
+
+				// Consulta
+					$consulta["idPaciente"] = $datos["idPaciente"];
+					$consulta["idMedico"] = $datos["idMedico"];
+					$consulta["nombrePaciente"] = $datos["nombrePaciente"];
+					$consulta["pesoPaciente"] = $datos["peso"];
+					$consulta["alturaPaciente"] = $datos["altura"];
+					$consulta["imcPaciente"] = $datos["imcPaciente"];
+					$consulta["temperatura"] = $datos["temperatura"];
+					$consulta["presion"] = $datos["presion"];
+					$consulta["fechaHoja"] = date("Y-m-d");
+					$consulta["hoja"] = $datos["idHoja"];
+				// Consulta
+
+				// Agregar a la hoja de cobro
+					$medicamento["idHoja"] = $datos["idHoja"];
+					$medicamento["idMedicamento"] = $datos["idM"];
+					$medicamento["precioMedicamento"] = $datos["precioM"];
+					$medicamento["cantidadMedicamento"] = 1;
+					$medicamento["fechaHoja"] = date("y-m-d");
+					$medicamento["por"] = $this->session->userdata('id_usuario_h');
+				// Agregar a la hoja de cobro
+
+				// Datos para bitacora -Restaurar cuenta
+					$bitacora["idCuenta"] = $this->input->post("idHoja");
+					$bitacora["idUsuario"] = $this->session->userdata('id_usuario_h');
+					$bitacora["usuario"] = $this->session->userdata('usuario_h');
+					$bitacora["descripcionBitacora"] = "Agrego 1 elementos de ".$datos['nombreMedicamento'].", con precio de $".$datos['precioM'];
+				// Fin datos para bitacora -Restaurar cuenta
+				
+				$resp = $this->Hoja_Model->guardarConsulta($consulta); // Capturando movimiento de la hoja de cobro
+				if($resp){
+					$bool = $this->Hoja_Model->guardarDetalleHojaUnitario($medicamento);
+					if($bool){
+						$this->Usuarios_Model->insertarMovimientoHoja($bitacora); // Capturando movimiento de la hoja de cobro
+						$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+						header("content-type:application/json");
+						print json_encode($respuesta);
+					}else{
+						$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+						header("content-type:application/json");
+						print json_encode($respuesta);
+					}
+				}else{
+					$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+					header("content-type:application/json");
+					print json_encode($respuesta);
+				}
+			}
+			else{
+				echo "Error...";
+			}
+		}
+	// Agregando consulta
+
+	// Agregando examenes
+		public function agregar_examenes(){
+			if($this->input->is_ajax_request()){
+				$datos =$this->input->post();
+				// Medicamento
+					$medicamento["idHoja"] = $datos["idHoja"];
+					$medicamento["idMedicamento"] = $datos["idMedicamento"];
+					$medicamento["precioMedicamento"] = $datos["precioV"];
+					$medicamento["cantidadMedicamento"] = $datos["cantidad"];
+					$medicamento["fechaHoja"] = date("Y-m-d");;
+					$medicamento["por"] = $this->session->userdata('id_usuario_h');
+				// Medicamento
+				// Datos para bitacora -Restaurar cuenta
+					$bitacora["idCuenta"] = $datos["idHoja"];
+					$bitacora["idUsuario"] = $this->session->userdata('id_usuario_h');
+					$bitacora["usuario"] = $this->session->userdata('usuario_h');
+					$bitacora["descripcionBitacora"] = "Agrego el examen ".$datos['nombreMedicamento'].", con precio de $".$datos['precioV'];
+				// Fin datos para bitacora -Restaurar cuenta
+
+				$bool = $this->Hoja_Model->guardarDetalleHojaUnitario($medicamento);
+				if($bool){
+					$this->Usuarios_Model->insertarMovimientoHoja($bitacora); // Capturando movimiento de la hoja de cobro
+					$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+					header("content-type:application/json");
+					print json_encode($respuesta);
+				}else{
+					$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+					header("content-type:application/json");
+					print json_encode($respuesta);
+				}
+
+				// echo json_encode($bitacora);
+			}
+			else{
+				echo "Error...";
+			}
+		}
+	// Agregando examenes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public function esquema_habitaciones(){
 		$this->load->view('Base/header');

@@ -26,8 +26,8 @@ class Hoja_Model extends CI_Model {
 
         public function guardarConsulta($data = null){
             if ($data != null) {
-                $sql = "INSERT INTO tbl_consultas(idPaciente, idMedico, nombrePaciente, peso, altura, imc, fechaConsulta, hojaCobro)
-                        VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO tbl_consultas(idPaciente, idMedico, nombrePaciente, peso, altura, imc, temperaturaPaciente, presionPaciente, fechaConsulta, hojaCobro)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -53,6 +53,16 @@ class Hoja_Model extends CI_Model {
                 return $datos->row();
             }else{
                 return null;
+            }
+        }
+
+        public function existeHoja($paciente = null, $fecha = null){
+            if($paciente != null){
+                $sql = "SELECT COALESCE(h.idHoja,'0') AS idHoja FROM tbl_hoja_cobro AS h WHERE h.correlativoSalidaHoja = '0' AND h.idPaciente = '$paciente' AND h.fechaHoja = '$fecha'";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }else{
+                return 0;
             }
         }
 

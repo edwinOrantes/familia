@@ -20,6 +20,7 @@ class Hoja extends CI_Controller {
 			$this->load->model("Externos_Model");
 			$this->load->model("Hoja_Model");
 			$this->load->model("Usuarios_Model");
+			$this->load->model("Consultas_Model");
 			// $this->load->model("Quirofanos_Model");
 
 			date_default_timezone_set('America/El_Salvador');
@@ -759,6 +760,9 @@ class Hoja extends CI_Controller {
 
 			}
 
+			// Liberando cupo consulta
+				$this->Consultas_Model->saldarConsulta($id);
+			// Liberando cupo consulta
 			
 			//Obteniendo datos ya existentes
 			$paciente = $this->Hoja_Model->detalleHoja($id);
@@ -836,6 +840,8 @@ class Hoja extends CI_Controller {
 				$mpdf->Output('recibo_cobro.pdf', 'I');
 			
 			// Fin detalle hoja
+
+			// echo json_encode($data["medicamentosHoja"] );
 			
 		}
 		

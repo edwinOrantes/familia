@@ -44,8 +44,9 @@
                                 <th class="text-center">#</th>
                                 <th class="text-center">Paciente</th>
                                 <th class="text-center">Edad</th>
-                                <th class="text-center">Telefono</th>
-                                <th class="text-center">Médico</th>
+                                <!-- <th class="text-center">Telefono</th> -->
+                                <th class="text-center">Procesos</th>
+                                <!-- <th class="text-center">Médico</th> -->
                                 <th class="text-center">Llegada</th>
                                 <th class="text-center">Acción</th>
                             </tr>
@@ -61,8 +62,26 @@
                                             </td>
                                             <td class="text-center"><?php echo $cita->nombrePaciente; ?></td>
                                             <td class="text-center"><?php echo $cita->edadPaciente; ?> Años</td>
-                                            <td class="text-center"><?php echo $cita->telefonoPaciente; ?></td>
-                                            <td class="text-center"><?php echo $cita->nombreMedico; ?></td>
+                                            <!-- <td class="text-center"><?php echo $cita->telefonoPaciente; ?></td> -->
+                                            <td class="text-center">
+                                                <?php
+                                                    $consulta = $this->Consultas_Model->consultaARealizar($cita->idConsulta, 10, 10);
+                                                    foreach ($consulta as $row) {
+                                                        echo '<strong> '.$row->nombreMedicamento.' </strong>';
+                                                    }
+
+                                                    $examenes = $this->Consultas_Model->consultaARealizar($cita->idConsulta, 1, 9);
+                                                    if(sizeof($examenes) > 0){
+                                                        echo '(<span style="font-size: 10px">';
+                                                        foreach ($examenes as $row) {
+                                                            echo $row->nombreMedicamento.",";
+                                                        }
+                                                        echo '</span>) ';
+                                                    }
+                                                ?>
+                                                
+                                            </td>
+                                            <!-- <td class="text-center"><?php echo $cita->nombreMedico; ?></td> -->
                                             <td class="text-center"><?php echo date("h:i:s A", strtotime($cita->hora)); ?></td>
                                             <td class="text-center">
                                                 <?php

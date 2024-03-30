@@ -172,7 +172,7 @@
                     mysqli_query($conn, "SET CHARACTER SET 'utf8'");
                     $acceso = $this->session->userdata("acceso_h");
                     $consulta = "SELECT m.htmlMenu FROM tbl_permisos as p INNER JOIN tbl_accesos as a ON(p.idAcceso = a.idAcceso)
-                    INNER JOIN tbl_menu as m ON(p.idMenu = m.idMenu) WHERE p.idAcceso = '$acceso' AND p.estadoPermiso = '1' ORDER BY p.idMenu ASC";
+                    INNER JOIN tbl_menu as m ON(p.idMenu = m.idMenu) WHERE p.idAcceso = '$acceso' AND p.estadoPermiso = '1' ORDER BY p.idPermiso ASC";
                     $datos =  mysqli_query( $conn, $consulta);  
                     $a = base_url();
                     while($item = mysqli_fetch_array($datos)){

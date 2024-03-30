@@ -114,7 +114,7 @@ class Usuarios_Model extends CI_Model {
     }
 
     public function nombreMedicamento($id){
-        $sql = "SELECT nombreMedicamento as nombre FROM tbl_medicamentos WHERE idMedicamento = '$id' ";
+        $sql = "SELECT nombreMedicamento as nombre, precioVMedicamento as precio FROM tbl_medicamentos WHERE idMedicamento = '$id' ";
         $datos = $this->db->query($sql);
         return $datos->row();
     }

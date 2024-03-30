@@ -40,45 +40,51 @@
             
 				<div class="ms-panel-body">
 					<div class="row mt-3">
-						<div class="table-responsive">
-							<table id="tabla-pacientes" class="table table-striped thead-primary w-100">
-								<thead>
-									<tr>
-										<th scope="col" class="text-center">#</th>
-										<th scope="col" class="text-center">Nombre</th>
-										<th scope="col" class="text-center">Precio compra</th>
-										<th scope="col" class="text-center">Precio venta</th>
-									</tr>
-								</thead>
-								<tbody>
-							<?php
+
+						<?php
 							if (sizeof($medicamentos) > 0) {
-								$index= 0;
-								foreach ($medicamentos as $medicamento) {
+						?>
+							<div class="table-responsive">
+								<table id="tabla-pacientes" class="table table-striped thead-primary w-100">
+									<thead>
+										<tr>
+											<th scope="col" class="text-center">#</th>
+											<th scope="col" class="text-center">Nombre</th>
+											<th scope="col" class="text-center">Existencia</th>
+											<th scope="col" class="text-center">Precio venta</th>
+										</tr>
+									</thead>
+									<tbody>
+								<?php
+									$index= 0;
+									foreach ($medicamentos as $medicamento) {
+										if($medicamento->pivoteMedicamento == 0){
 										$index++;
-							?>
-							
+								?>
+								
 										<tr>
 											<td class="text-center"><?php echo $index ?></td>
 											<td class="text-center" style="text-transform: uppercase;"><?php echo $medicamento->nombreMedicamento; ?></td>
-											<td class="text-center">$ <?php echo $medicamento->precioCMedicamento ?></td>
+											<td class="text-center" style="text-transform: uppercase;"><?php echo $medicamento->stockMedicamento; ?></td>
 											<td class="text-center">$ <?php echo $medicamento->precioVMedicamento ?></td>
 										</tr>
+											
 										
-									
 
-							<?php
+								<?php
+										}
 									}
-								}else
-								{
-									echo '<div class="alert alert-danger">
-											<h6 class="text-center"><strong>No hay datos que mostrar.</strong></h6>
-										</div>';
-								}
-							?>   
-								</tbody>
-							</table>
-						</div>
+								?>   
+									</tbody>
+								</table>
+							</div>
+						<?php
+							}else{
+								echo '<div class="alert alert-danger col-md-12">
+										<h6 class="text-center"><strong>No hay datos que mostrar.</strong></h6>
+									</div>';
+							}
+						?>
 					</div>
 				</div>
             </div>

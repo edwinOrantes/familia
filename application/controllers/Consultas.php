@@ -24,7 +24,6 @@ class Consultas extends CI_Controller {
 		// echo json_encode($data);
 	}
 
-
     // Metodos para obtener los pacientes pendientes
 		public function consultas_pendientes(){
 			//$pivote = $this->session->userdata("acceso_h");

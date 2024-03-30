@@ -220,134 +220,142 @@ class Paciente_Model extends CI_Model {
     }
 
     // Nuevas funciones
-    public function obtenerResponsable($id = null){
-        $sql = "SELECT * FROM tbl_responsables WHERE idMenor = (SELECT MAX(idMenor) FROM tbl_responsables WHERE idMenor = '$id' )";
-        $datos = $this->db->query($sql);
-        return $datos->row();
-    }
-
-    public function guardarDatos($data = null){
-        if ($data != null) {
-            $menor = $data["menor"];
-            $responsable = $data["responsable"];
-            $pivote = $responsable["pivote"];
-            unset($responsable["pivote"]);
-            $sqlR = "";
-            $sqlP = "UPDATE tbl_pacientes SET nombrePaciente = ?, edadPaciente = ? WHERE idPaciente = ?";
-            switch ($pivote) {
-                case '1':
-                    // Insertar
-                    $sqlR = "INSERT INTO tbl_responsables(idMenor, nombreResponsable, edadResponsable, telefonoResponsable, duiResponsable, profesionResponsable, parentescoResponsable, direccionResponsable, esResponsable)
-                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    break;
-                case '2':
-                    // Actualizar
-                    $sqlR = "UPDATE tbl_responsables SET idMenor = ?, nombreResponsable = ?, edadResponsable = ?, telefonoResponsable = ?, duiResponsable = ?,
-                            profesionResponsable = ?, parentescoResponsable = ?, direccionResponsable =?, esResponsable=?
-                            WHERE idResponsable = ?";
-                    break;
-                default:
-                    # code...
-                    break;
-            }
-            if ($this->db->query($sqlR, $responsable)) {
-                $this->db->query($sqlP, $menor);
-                return true;
-            }else{
-                return false;
-            }
-        }else{
-            return false;
+        public function obtenerResponsable($id = null){
+            $sql = "SELECT * FROM tbl_responsables WHERE idMenor = (SELECT MAX(idMenor) FROM tbl_responsables WHERE idMenor = '$id' )";
+            $datos = $this->db->query($sql);
+            return $datos->row();
         }
-    }
 
-    public function guardarDatosMayor($data = null){
-        if ($data != null) {
-            $paciente = $data["paciente"];
-            $responsable = $data["responsable"];
-
-            $pivote = $responsable["pivote"];
-
-            unset($responsable["pivote"]);
-
-            $sqlR = "";
-            $sqlP = "UPDATE tbl_pacientes SET nombrePaciente = ?, edadPaciente = ?, duiPaciente = ?, profesionPaciente = ?, direccionPaciente = ? WHERE idPaciente = ?";
-
-            switch ($pivote) {
-                case '1':
-                    // Insertar
-                    $sqlR = "INSERT INTO tbl_responsables(idMenor, nombreResponsable, parentescoResponsable, duiResponsable, pivoteResponsable)
-                            VALUES(?, ?, ?, ?, ?)";
-                    break;
-                case '2':
-                    // Actualizar
-                    unset($responsable["flag"]);
-                    $sqlR = "UPDATE tbl_responsables SET idMenor = ?, nombreResponsable = ?,  parentescoResponsable = ?, duiResponsable = ?
-                            WHERE idResponsable = ?";
-                    break;
-                default:
-                    # code...
-                    break;
-            }
-
-            if ($this->db->query($sqlP, $paciente)) {
-                if($responsable["nombre"] != ""){
-                    $this->db->query($sqlR, $responsable);
+        public function guardarDatos($data = null){
+            if ($data != null) {
+                $menor = $data["menor"];
+                $responsable = $data["responsable"];
+                $pivote = $responsable["pivote"];
+                unset($responsable["pivote"]);
+                $sqlR = "";
+                $sqlP = "UPDATE tbl_pacientes SET nombrePaciente = ?, edadPaciente = ? WHERE idPaciente = ?";
+                switch ($pivote) {
+                    case '1':
+                        // Insertar
+                        $sqlR = "INSERT INTO tbl_responsables(idMenor, nombreResponsable, edadResponsable, telefonoResponsable, duiResponsable, profesionResponsable, parentescoResponsable, direccionResponsable, esResponsable)
+                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        break;
+                    case '2':
+                        // Actualizar
+                        $sqlR = "UPDATE tbl_responsables SET idMenor = ?, nombreResponsable = ?, edadResponsable = ?, telefonoResponsable = ?, duiResponsable = ?,
+                                profesionResponsable = ?, parentescoResponsable = ?, direccionResponsable =?, esResponsable=?
+                                WHERE idResponsable = ?";
+                        break;
+                    default:
+                        # code...
+                        break;
                 }
-                return true;
+                if ($this->db->query($sqlR, $responsable)) {
+                    $this->db->query($sqlP, $menor);
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
-        }else{
-            return false;
         }
-    }
 
-    public function datosConsentimientos($hoja = null){
-        $sql = "SELECT
-                p.nombrePaciente, p.edadPaciente, p.duiPaciente, p.telefonoPaciente, p.direccionPaciente, p.profesionPaciente, m.nombreMedico, m.especialidadMedico
-                FROM tbl_hoja_cobro AS hc
-                INNER JOIN tbl_pacientes AS p ON(hc.idPaciente = p.idPaciente)
-                INNER JOIN tbl_medicos AS m ON(hc.idMedico = m.idMedico)
-                WHERE hc.idHoja = '$hoja' ";
-        $datos = $this->db->query($sql);
-        return $datos->row();
-    }
+        public function guardarDatosMayor($data = null){
+            if ($data != null) {
+                $paciente = $data["paciente"];
+                $responsable = $data["responsable"];
 
+                $pivote = $responsable["pivote"];
 
-    public function guardarResponsables($data = null){
-        if ($data != null) {
-            $accion = $data["accion"];
-            unset($data["accion"]);
+                unset($responsable["pivote"]);
 
-            switch ($accion) {
-                case '1':
-                    // Insertar
-                    $sql = "INSERT INTO tbl_responsables(nombreResponsable, telefonoResponsable, duiResponsable, parentescoResponsable, pivoteResponsable, idMenor)
-                            VALUES(?, ?, ?, ?, ?, ?)";
-                    break;
-                case '2':
-                    // Actualizar
-                    unset($data["pivote"]);
-                    $sql = "UPDATE tbl_responsables SET nombreResponsable = ?, telefonoResponsable = ?, duiResponsable = ?, 
-                            parentescoResponsable = ?
-                            WHERE idResponsable = ?";
-                    break;
-                default:
-                    $sql = "";
-                    break;
-            }
+                $sqlR = "";
+                $sqlP = "UPDATE tbl_pacientes SET nombrePaciente = ?, edadPaciente = ?, duiPaciente = ?, profesionPaciente = ?, direccionPaciente = ? WHERE idPaciente = ?";
 
-            if ($this->db->query($sql, $data)) {
-                return true;
+                switch ($pivote) {
+                    case '1':
+                        // Insertar
+                        $sqlR = "INSERT INTO tbl_responsables(idMenor, nombreResponsable, parentescoResponsable, duiResponsable, pivoteResponsable)
+                                VALUES(?, ?, ?, ?, ?)";
+                        break;
+                    case '2':
+                        // Actualizar
+                        unset($responsable["flag"]);
+                        $sqlR = "UPDATE tbl_responsables SET idMenor = ?, nombreResponsable = ?,  parentescoResponsable = ?, duiResponsable = ?
+                                WHERE idResponsable = ?";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+
+                if ($this->db->query($sqlP, $paciente)) {
+                    if($responsable["nombre"] != ""){
+                        $this->db->query($sqlR, $responsable);
+                    }
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
-        }else{
-            return false;
         }
-    }
+
+        public function datosConsentimientos($hoja = null){
+            $sql = "SELECT
+                    p.nombrePaciente, p.edadPaciente, p.duiPaciente, p.telefonoPaciente, p.direccionPaciente, p.profesionPaciente, m.nombreMedico, m.especialidadMedico
+                    FROM tbl_hoja_cobro AS hc
+                    INNER JOIN tbl_pacientes AS p ON(hc.idPaciente = p.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(hc.idMedico = m.idMedico)
+                    WHERE hc.idHoja = '$hoja' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+
+        public function guardarResponsables($data = null){
+            if ($data != null) {
+                $accion = $data["accion"];
+                unset($data["accion"]);
+
+                switch ($accion) {
+                    case '1':
+                        // Insertar
+                        $sql = "INSERT INTO tbl_responsables(nombreResponsable, telefonoResponsable, duiResponsable, parentescoResponsable, pivoteResponsable, idMenor)
+                                VALUES(?, ?, ?, ?, ?, ?)";
+                        break;
+                    case '2':
+                        // Actualizar
+                        unset($data["pivote"]);
+                        $sql = "UPDATE tbl_responsables SET nombreResponsable = ?, telefonoResponsable = ?, duiResponsable = ?, 
+                                parentescoResponsable = ?
+                                WHERE idResponsable = ?";
+                        break;
+                    default:
+                        $sql = "";
+                        break;
+                }
+
+                if ($this->db->query($sql, $data)) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
     // Nuevas funciones
+
+    // Obtener todo menos medicamentos
+    public function obtenerExamenes(){
+        $sql = "SELECT * FROM tbl_medicamentos AS m WHERE m.pivoteMedicamento > 0 AND m.ocultarMedicamento = 0";
+        $datos = $this->db->query($sql);
+        return $datos->result();
+    }
+    // Obtener todo menos medicamentos
 }
 ?>
 
