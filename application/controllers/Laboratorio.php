@@ -87,7 +87,7 @@ class Laboratorio extends CI_Controller {
             $this->load->view("Laboratorio/detalle_examenes", $data);
             $this->load->view("Base/footer"); 
 
-            // echo json_encode($data["historial"]);
+            // echo json_encode($data);
 
         }
 
@@ -132,6 +132,286 @@ class Laboratorio extends CI_Controller {
         // Examen de quimica sanguinea
             public function guardar_quimica_sanguinea(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                        
+                    if($datos["glucosa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Glucosa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["glucosa"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">55-110 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["posprandial"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Glucosa postprandial</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["posprandial"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">140 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterol"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterol"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 200 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterolHDL"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol HDL</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterolHDL"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterolLDL"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol LDL</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterolLDL"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["trigliceridos"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Triglicéridos</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["trigliceridos"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["acidoUrico"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Ácido úrico</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["acidoUrico"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["urea"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Urea</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["urea"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">10.0 a 48.1 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["nitrogenoUreico"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Nitrógeno Ureico</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["nitrogenoUreico"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["creatinina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Creatinina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["creatinina"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["amilasa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Amilasa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["amilasa"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 90 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["lipasa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Lipasa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["lipasa"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 38 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["fosfatasaAlcalina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Fosfatasa alcalina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fosfatasaAlcalina"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">98-279 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["tgp"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>TGP</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tgp"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">1-40 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["tgo"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>TGO</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tgo"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">1-38 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["hba1c"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Hemoglobina glicosilada</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["hba1c"].'</td>
+                                <td style="text-align: center; font-weight: bold">%</td>
+                                <td style="text-align: center; font-weight: bold">4.5-6.5%</td>
+                            </tr>';
+                    }
+                    if($datos["proteinaTotal"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Proteína total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["proteinaTotal"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">6.7-8.7 d/dl</td>
+                            </tr>';
+                    }
+                    if($datos["albumina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Albúmina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["albumina"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">3.5-5.0 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["globulina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Globulina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["globulina"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["relacionAG"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Relación A/G</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["relacionAG"].'</td>
+                                <td style="text-align: center; font-weight: bold"></td>
+                                <td style="text-align: center; font-weight: bold">1.2-2.2</td>
+                            </tr>';
+                    }
+                    if($datos["biliTotal"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliTotal"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Hasta 1.1 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["biliDirecta"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina directa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliDirecta"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Hasta 0.25 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["biliIndirecta"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina indirecta</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliIndirecta"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold"></td>
+                            </tr>';
+                    }
+                    if($datos["sodioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Sodio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["sodioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">135-155 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["potasioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Potasio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["potasioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["cloroQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Cloro</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cloroQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">95-115 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["magnesioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Magnesio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["magnesioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">1.6-2.5 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["calcioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Calcio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["calcioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">8.1-10.4 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["fosforoQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Fosforo</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fosforoQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.5-5.0 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["cpkTQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>CPK Total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cpkTQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">0-195 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["cpkMbQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>CPK MB</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cpkMbQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor a 24 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["ldhQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>LDH</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["ldhQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">230-460 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["troponinaQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Troponina I</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["troponinaQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">ng/dl</td>
+                                <td style="text-align: center; font-weight: bold">VN: menor a 0.30 ng/dl</td>
+                            </tr>';
+                    }
+                    if($datos["nota"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Observaciones</strong></td>
+                                <td style="text-align: center; font-weight: bold" colspan=3>'.$datos["nota"].'</td>
+                            </tr>';
+                    }
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $this->Laboratorio_Model->guardarQuimicaSanguinea($datos);
                 $examen = $resp["idQuimicaSanguinea"];
                 $consulta = $resp["idDetalleConsulta"];
@@ -144,7 +424,7 @@ class Laboratorio extends CI_Controller {
                     redirect(base_url()."Laboratorio/detalle_consulta/$c/");
                 }
 
-                // echo json_encode($datos);
+                // echo json_encode($datos["tabla"]);
             }
 
             public function quimica_sanguinea_pdf($id){
@@ -190,6 +470,286 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_quimica_sanguinea(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                        
+                    if($datos["glucosa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Glucosa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["glucosa"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">55-110 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["posprandial"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Glucosa postprandial</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["posprandial"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">140 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterol"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterol"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 200 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterolHDL"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol HDL</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterolHDL"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["colesterolLDL"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Colesterol LDL</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["colesterolLDL"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["trigliceridos"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Triglicéridos</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["trigliceridos"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["acidoUrico"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Ácido úrico</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["acidoUrico"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["urea"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Urea</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["urea"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">10.0 a 48.1 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["nitrogenoUreico"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Nitrógeno Ureico</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["nitrogenoUreico"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["creatinina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Creatinina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["creatinina"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["amilasa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Amilasa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["amilasa"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 90 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["lipasa"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Lipasa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["lipasa"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor de 38 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["fosfatasaAlcalina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Fosfatasa alcalina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fosfatasaAlcalina"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">98-279 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["tgp"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>TGP</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tgp"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">1-40 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["tgo"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>TGO</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tgo"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">1-38 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["hba1c"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Hemoglobina glicosilada</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["hba1c"].'</td>
+                                <td style="text-align: center; font-weight: bold">%</td>
+                                <td style="text-align: center; font-weight: bold">4.5-6.5%</td>
+                            </tr>';
+                    }
+                    if($datos["proteinaTotal"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Proteína total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["proteinaTotal"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">6.7-8.7 d/dl</td>
+                            </tr>';
+                    }
+                    if($datos["albumina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Albúmina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["albumina"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">3.5-5.0 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["globulina"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Globulina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["globulina"].'</td>
+                                <td style="text-align: center; font-weight: bold">g/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["relacionAG"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Relación A/G</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["relacionAG"].'</td>
+                                <td style="text-align: center; font-weight: bold"></td>
+                                <td style="text-align: center; font-weight: bold">1.2-2.2</td>
+                            </tr>';
+                    }
+                    if($datos["biliTotal"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliTotal"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Hasta 1.1 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["biliDirecta"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina directa</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliDirecta"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">Hasta 0.25 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["biliIndirecta"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Bilirrubina indirecta</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["biliIndirecta"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold"></td>
+                            </tr>';
+                    }
+                    if($datos["sodioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Sodio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["sodioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">135-155 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["potasioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Potasio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["potasioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["cloroQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Cloro</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cloroQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mmol/L</td>
+                                <td style="text-align: center; font-weight: bold">95-115 mmol/L</td>
+                            </tr>';
+                    }
+                    if($datos["magnesioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Magnesio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["magnesioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">1.6-2.5 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["calcioQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Calcio</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["calcioQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">8.1-10.4 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["fosforoQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Fosforo</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fosforoQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">2.5-5.0 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["cpkTQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>CPK Total</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cpkTQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">0-195 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["cpkMbQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>CPK MB</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["cpkMbQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">Menor a 24 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["ldhQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>LDH</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["ldhQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">U/L</td>
+                                <td style="text-align: center; font-weight: bold">230-460 U/L</td>
+                            </tr>';
+                    }
+                    if($datos["troponinaQuimicaClinica"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Troponina I</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["troponinaQuimicaClinica"].'</td>
+                                <td style="text-align: center; font-weight: bold">ng/dl</td>
+                                <td style="text-align: center; font-weight: bold">VN: menor a 0.30 ng/dl</td>
+                            </tr>';
+                    }
+                    if($datos["nota"] != ""){
+                       $tablaExamen .='<tr>
+                                <td><strong>Observaciones</strong></td>
+                                <td style="text-align: center; font-weight: bold" colspan=3>'.$datos["nota"].'</td>
+                            </tr>';
+                    }
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+                
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 $bool = $this->Laboratorio_Model->actualizarQuimicaSanguinea($datos);
@@ -208,6 +768,200 @@ class Laboratorio extends CI_Controller {
         // Examen de Orina
             public function guardar_orina(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                        // Analisis fisico quimico
+                            $tablaExamen .=  '<tr>
+                                                <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Fisico-Quimico </strong></td>
+                                            </tr>';
+                            if($datos["colorOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Color</strong></td>
+                                        <td style="text-align: center;">'.$datos["colorOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["aspectoOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Aspecto</strong></td>
+                                        <td style="text-align: center;">'.$datos["aspectoOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["reaccionOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Reacción</strong></td>
+                                        <td style="text-align: center;">'.$datos["reaccionOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["densidadOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Densidad</strong></td>
+                                        <td style="text-align: center;">'.$datos["densidadOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["phOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">pH</strong></td>
+                                        <td style="text-align: center;">'.$datos["phOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["proteinasOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Proteínas</strong></td>
+                                        <td style="text-align: center;">'.$datos["proteinasOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["glucosaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Glucosa</strong></td>
+                                        <td style="text-align: center;">'.$datos["glucosaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["pigBilaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Pigmentos biliares</strong></td>
+                                        <td style="text-align: center;">'.$datos["pigBilaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["sangreOcultaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Sangre oculta</strong></td>
+                                        <td style="text-align: center;">'.$datos["sangreOcultaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["nitritoOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Nitrito</strong></td>
+                                        <td style="text-align: center;">'.$datos["nitritoOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["cuerposCetonicosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cuerpos cetónicos</strong></td>
+                                        <td style="text-align: center;">'.$datos["cuerposCetonicosOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+
+                            if($datos["acidosBilOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Acidos biliares</strong></td>
+                                        <td style="text-align: center;">'.$datos["acidosBilOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            
+                        // Analisis fisico quimico
+                        // Analisis microscopico
+                            $tablaExamen .=  '<tr>
+                                    <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Microscopico </strong></td>
+                                </tr>';
+                            if($datos["granulososOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Granulosos</strong></td>
+                                        <td style="text-align: center;">'.$datos["granulososOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["cilindrosLeuOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cilindros luicocitarios</strong></td>
+                                        <td style="text-align: center;">'.$datos["cilindrosLeuOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["cilindrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cilindros</strong></td>
+                                        <td style="text-align: center;">'.$datos["cilindrosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["oCilindrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Otros cilindros</strong></td>
+                                        <td style="text-align: center;">'.$datos["oCilindrosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["leucocitosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Leucocitos</strong></td>
+                                        <td style="text-align: center;">'.$datos["leucocitosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["hematiesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Hematíes</strong></td>
+                                        <td style="text-align: center;">'.$datos["hematiesOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+
+                            if($datos["celulasEpitelialesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Células epiteliales</strong></td>
+                                        <td style="text-align: center;">'.$datos["celulasEpitelialesOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+
+                            if($datos["elemMineralesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Elementos minerales</strong></td>
+                                        <td style="text-align: center;">'.$datos["elemMineralesOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["bacteriasOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Bacterias</strong></td>
+                                        <td style="text-align: center;">'.$datos["bacteriasOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["levaduraOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Levadura</strong></td>
+                                        <td style="text-align: center;">'.$datos["levaduraOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+
+                            if($datos["otrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Otros</strong></td>
+                                        <td style="text-align: center;">'.$datos["otrosOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["observacionesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Observaciones</strong></td>
+                                        <td style="text-align: center;">'.$datos["observacionesOrina"].'</td>
+                                        <td></td>
+                                    </tr>';
+                            }
+
+                        // Fin analisis microscopico
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $this->Laboratorio_Model->guardarOrina($datos);
                 $examen = $resp["idOrina"];
                 $consulta = $resp["idDetalleConsulta"];
@@ -269,6 +1023,200 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_orina(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                        // Analisis fisico quimico
+                            $tablaExamen .=  '<tr>
+                                                <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Fisico-Quimico </strong></td>
+                                            </tr>';
+                            if($datos["colorOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Color</strong></td>
+                                        <td style="text-align: center;">'.$datos["colorOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["aspectoOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Aspecto</strong></td>
+                                        <td style="text-align: center;">'.$datos["aspectoOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["reaccionOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Reacción</strong></td>
+                                        <td style="text-align: center;">'.$datos["reaccionOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["densidadOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Densidad</strong></td>
+                                        <td style="text-align: center;">'.$datos["densidadOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["phOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">pH</strong></td>
+                                        <td style="text-align: center;">'.$datos["phOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["proteinasOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Proteínas</strong></td>
+                                        <td style="text-align: center;">'.$datos["proteinasOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["glucosaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Glucosa</strong></td>
+                                        <td style="text-align: center;">'.$datos["glucosaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["pigBilaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Pigmentos biliares</strong></td>
+                                        <td style="text-align: center;">'.$datos["pigBilaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["sangreOcultaOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Sangre oculta</strong></td>
+                                        <td style="text-align: center;">'.$datos["sangreOcultaOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["nitritoOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Nitrito</strong></td>
+                                        <td style="text-align: center;">'.$datos["nitritoOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["cuerposCetonicosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cuerpos cetónicos</strong></td>
+                                        <td style="text-align: center;">'.$datos["cuerposCetonicosOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+
+                            if($datos["acidosBilOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Acidos biliares</strong></td>
+                                        <td style="text-align: center;">'.$datos["acidosBilOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            
+                        // Analisis fisico quimico
+                        // Analisis microscopico
+                            $tablaExamen .=  '<tr>
+                                    <td style="text-align: center; background: rgba(7, 84, 128, 0.1);" colspan=4><strong>Análisis Microscopico </strong></td>
+                                </tr>';
+                            if($datos["granulososOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Granulosos</strong></td>
+                                        <td style="text-align: center;">'.$datos["granulososOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["cilindrosLeuOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cilindros luicocitarios</strong></td>
+                                        <td style="text-align: center;">'.$datos["cilindrosLeuOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["cilindrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Cilindros</strong></td>
+                                        <td style="text-align: center;">'.$datos["cilindrosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["oCilindrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Otros cilindros</strong></td>
+                                        <td style="text-align: center;">'.$datos["oCilindrosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["leucocitosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Leucocitos</strong></td>
+                                        <td style="text-align: center;">'.$datos["leucocitosOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+                            if($datos["hematiesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Hematíes</strong></td>
+                                        <td style="text-align: center;">'.$datos["hematiesOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+
+                            if($datos["celulasEpitelialesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Células epiteliales</strong></td>
+                                        <td style="text-align: center;">'.$datos["celulasEpitelialesOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+
+                            if($datos["elemMineralesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Elementos minerales</strong></td>
+                                        <td style="text-align: center;">'.$datos["elemMineralesOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["bacteriasOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Bacterias</strong></td>
+                                        <td style="text-align: center;">'.$datos["bacteriasOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["levaduraOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Levadura</strong></td>
+                                        <td style="text-align: center;">'.$datos["levaduraOrina"].'</td>
+                                        <td style="text-align: center;">-</td>
+                                    </tr>';
+                            }
+
+                            if($datos["otrosOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Otros</strong></td>
+                                        <td style="text-align: center;">'.$datos["otrosOrina"].'</td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>';
+                            }
+                            if($datos["observacionesOrina"] != ""){
+                                $tablaExamen .= '<tr>
+                                        <td><strong class="">Observaciones</strong></td>
+                                        <td style="text-align: center;">'.$datos["observacionesOrina"].'</td>
+                                        <td></td>
+                                    </tr>';
+                            }
+
+                        // Fin analisis microscopico
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                  
@@ -288,6 +1236,205 @@ class Laboratorio extends CI_Controller {
         // Examenes Hematologia
             public function guardar_hematologia(){
                 $datos = $this->input->post();
+
+                // Valores de referencia segun edad
+                    $ns = "";
+                    $nb = "";
+                    $linfocitos = "";
+                    $eosinofilos = "";
+                    $basofilo = "";
+                    $monocitos = "";
+                    if($datos["edadPaciente"] >= 1 && $datos["edadPaciente"] <= 8){
+                        $ns = "20-45";
+                        $nb = "0-4";
+                        $linfocitos = "40-60";
+                        $eosinofilos = "1-5";
+                        $basofilo = "0-1";
+                        $monocitos = "2-8";
+                    }else{
+                        if($datos["edadPaciente"] > 8){
+                            $ns = "50-70";
+                            $nb = "0-5";
+                            $linfocitos = "20-40";
+                            $eosinofilos = "0-5";
+                            $basofilo = "0-1";
+                            $monocitos = "2-8";
+                        }
+                    }
+                    unset($datos["edadPaciente"]);
+                // Fin valores de referencia segun edad
+
+                // Diseñando tabla del examen
+                    $tablaExamen = '<table class="table">
+                        <thead></thead>
+                        <tbody class="text-left">';
+                    if($datos["eritrocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eritrocitos</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["eritrocitosHematologia"].'</td>
+                                <td style="text-align: center; font-weight: bold">4-6 millones</td>
+                            </tr>';
+                            
+                    }
+                    if($datos["hematocritoHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Hematócrito</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hematocritoHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">36-50%</td>
+                            </tr>';
+                    }
+                    if($datos["hemoglobinaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Hemoglobina</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hemoglobinaHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 12-16.2 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["vgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">VCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["vgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 82-96 fl</td>
+                            </tr>';
+                    }
+                    if($datos["hgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">HCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">27-32 pg</td>
+                            </tr>';
+                    }
+                    if($datos["chgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">CHCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["chgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 30-35 g/dl</td>
+                            </tr>';
+                    }
+                    
+                    if($datos["leucocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Leucocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["leucocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">5-10 mil</td>
+                            </tr>';
+                    }
+                    if($datos["neutrofHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Neutrofilos segmentados</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["neutrofHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$ns.'%</td>
+                            </tr>';
+                    }
+                    if($datos["neutrofBandHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Neutrofilos en banda</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["neutrofBandHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$nb.'%</td>
+                            </tr>';
+                    }
+                    if($datos["linfocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linfocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["linfocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$linfocitos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["eosinofilosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eosinófilos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["eosinofilosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$eosinofilos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["monocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Monocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["monocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$monocitos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["basofilosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Basófilos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["basofilosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$basofilo.'%</td>
+                            </tr>';
+                    }
+                    if($datos["blastosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Blastos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["blastosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">%</td>
+                            </tr>';
+                    }
+                    if($datos["reticulocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Reticulocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["reticulocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">0.5-2.0%</td>
+                            </tr>';
+                    }
+                    if($datos["eritrosedHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eritrosedimentación</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["eritrosedHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">0-20 mm/hr</td>
+                            </tr>';
+                    }
+                    
+                    if($datos["plaquetasHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Plaquetas</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["plaquetasHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">150,000-450,000 xmmc</td>
+                            </tr>';
+                    }
+                    if($datos["gotaGruesaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Gota gruesa</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["gotaGruesaHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"></td>
+                            </tr>';
+                    }
+                    if($datos["rojaHematologia"] == "" && $datos["blancaHematologia"] == "" && $datos["plaquetariaHematologia"] == ""){
+                        $tablaExamen .= '<tr></tr>';
+                    }else{
+                        $tablaExamen .= '<tr>
+                                <td colspan=3 style="text-align: center; background: rgba(7, 84, 128, 0.1);"><strong class="">Frotis de sangre periferica</strong></td>
+                            </tr>';        
+                    }
+
+                    if($datos["rojaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea roja</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["rojaHematologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["blancaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea blanca</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["blancaHematologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["plaquetariaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea plaquetaria</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["plaquetariaHematologia"].'</td>
+                            </tr>';
+                    }
+
+                    if($datos["observacionesHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Observaciones</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["observacionesHematologia"].'</td>
+                            </tr>';
+                    }
+                $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
+
                 $resp = $this->Laboratorio_Model->guardarHematologia($datos);
                 $examen = $resp["idHematologia"];
                 $consulta = $resp["idDetalleConsulta"];
@@ -299,7 +1446,7 @@ class Laboratorio extends CI_Controller {
                     redirect(base_url()."Laboratorio/historial_examenes/");
                 }
 
-                // echo json_encode($datos);
+                // echo json_encode($datos["tabla"]);
             }
 
             public function hematologia_pdf($id){
@@ -350,6 +1497,205 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_hematologia(){
                 $datos = $this->input->post();
+
+                // Valores de referencia segun edad
+                    $ns = "";
+                    $nb = "";
+                    $linfocitos = "";
+                    $eosinofilos = "";
+                    $basofilo = "";
+                    $monocitos = "";
+                    if($datos["edadPaciente"] >= 1 && $datos["edadPaciente"] <= 8){
+                        $ns = "20-45";
+                        $nb = "0-4";
+                        $linfocitos = "40-60";
+                        $eosinofilos = "1-5";
+                        $basofilo = "0-1";
+                        $monocitos = "2-8";
+                    }else{
+                        if($datos["edadPaciente"] > 8){
+                            $ns = "50-70";
+                            $nb = "0-5";
+                            $linfocitos = "20-40";
+                            $eosinofilos = "0-5";
+                            $basofilo = "0-1";
+                            $monocitos = "2-8";
+                        }
+                    }
+                    unset($datos["edadPaciente"]);
+                // Fin valores de referencia segun edad
+
+                // Diseñando tabla del examen
+                    $tablaExamen = '<table class="table">
+                        <thead></thead>
+                        <tbody class="text-left">';
+                    if($datos["eritrocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eritrocitos</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["eritrocitosHematologia"].'</td>
+                                <td style="text-align: center; font-weight: bold">4-6 millones</td>
+                            </tr>';
+                            
+                    }
+                    if($datos["hematocritoHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Hematócrito</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hematocritoHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">36-50%</td>
+                            </tr>';
+                    }
+                    if($datos["hemoglobinaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Hemoglobina</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hemoglobinaHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 12-16.2 g/dl</td>
+                            </tr>';
+                    }
+                    if($datos["vgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">VCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["vgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 82-96 fl</td>
+                            </tr>';
+                    }
+                    if($datos["hgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">HCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["hgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">27-32 pg</td>
+                            </tr>';
+                    }
+                    if($datos["chgmHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">CHCM</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["chgmHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"> 30-35 g/dl</td>
+                            </tr>';
+                    }
+                    
+                    if($datos["leucocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Leucocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["leucocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">5-10 mil</td>
+                            </tr>';
+                    }
+                    if($datos["neutrofHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Neutrofilos segmentados</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["neutrofHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$ns.'%</td>
+                            </tr>';
+                    }
+                    if($datos["neutrofBandHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Neutrofilos en banda</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["neutrofBandHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$nb.'%</td>
+                            </tr>';
+                    }
+                    if($datos["linfocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linfocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["linfocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$linfocitos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["eosinofilosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eosinófilos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["eosinofilosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$eosinofilos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["monocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Monocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["monocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$monocitos.'%</td>
+                            </tr>';
+                    }
+                    if($datos["basofilosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Basófilos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["basofilosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">'.$basofilo.'%</td>
+                            </tr>';
+                    }
+                    if($datos["blastosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Blastos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["blastosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">%</td>
+                            </tr>';
+                    }
+                    if($datos["reticulocitosHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Reticulocitos</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["reticulocitosHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">0.5-2.0%</td>
+                            </tr>';
+                    }
+                    if($datos["eritrosedHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Eritrosedimentación</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["eritrosedHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">0-20 mm/hr</td>
+                            </tr>';
+                    }
+                    
+                    if($datos["plaquetasHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Plaquetas</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["plaquetasHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold">150,000-450,000 xmmc</td>
+                            </tr>';
+                    }
+                    if($datos["gotaGruesaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Gota gruesa</strong></td>
+                                <td style="text-align: center;  font-weight: bold">'.$datos["gotaGruesaHematologia"].'</td>
+                                <td style="text-align: center;  font-weight: bold"></td>
+                            </tr>';
+                    }
+                    if($datos["rojaHematologia"] == "" && $datos["blancaHematologia"] == "" && $datos["plaquetariaHematologia"] == ""){
+                        $tablaExamen .= '<tr></tr>';
+                    }else{
+                        $tablaExamen .= '<tr>
+                                <td colspan=3 style="text-align: center; background: rgba(7, 84, 128, 0.1);"><strong class="">Frotis de sangre periferica</strong></td>
+                            </tr>';        
+                    }
+
+                    if($datos["rojaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea roja</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["rojaHematologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["blancaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea blanca</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["blancaHematologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["plaquetariaHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Linea plaquetaria</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["plaquetariaHematologia"].'</td>
+                            </tr>';
+                    }
+
+                    if($datos["observacionesHematologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong class="">Observaciones</strong></td>
+                                <td style="text-align: center;  font-weight: bold" colspan=2>'.$datos["observacionesHematologia"].'</td>
+                            </tr>';
+                    }
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
+
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 $bool = $this->Laboratorio_Model->actualizarHematologia($datos);
@@ -360,13 +1706,47 @@ class Laboratorio extends CI_Controller {
                     $this->session->set_flashdata("error","Error al actualizar los datos!");
                     redirect(base_url()."Laboratorio/");
                 }
-                // echo json_encode($datos);
+                echo json_encode($datos);
             }
         // Fin Hematologia
 
         // Examen de sanguineo
             public function guardar_sanguineo(){
                 $datos = $this->input->post();
+
+                 // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    if($datos["muestraSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Muestra</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["muestraSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["grupoSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Grupo sanguíneo</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["grupoSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["factorSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Factor RH</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["factorSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["duSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Du</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["duSanguineo"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $c = $datos["consulta"];
                 $resp = $this->Laboratorio_Model->guardarSanguineo($datos);
                 $examen = $resp["idSanguineo"];
@@ -379,7 +1759,7 @@ class Laboratorio extends CI_Controller {
                     redirect(base_url()."Laboratorio/detalle_consulta/$c/");
                 } 
 
-                // echo json_encode($datos);
+                // echo json_encode($datos["tabla"]);
             }
 
             public function sanguineo_pdf($id){
@@ -425,6 +1805,39 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_sanguineo(){
                 $datos = $this->input->post();
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    if($datos["muestraSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Muestra</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["muestraSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["grupoSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Grupo sanguíneo</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["grupoSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["factorSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Factor RH</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["factorSanguineo"].'</td>
+                            </tr>';
+                    }
+                    if($datos["duSanguineo"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="padding-left: 50px"><strong class="">Du</strong></td>
+                                <td style="text-align: center; font-weight: bold; font-size: 12px">'.$datos["duSanguineo"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 
@@ -445,6 +1858,70 @@ class Laboratorio extends CI_Controller {
         // Examen de Coagulacion
             public function guardar_coagulacion(){
                 $datos = $this->input->post();
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    
+                    if($datos["tiempoProtombina"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de Protombina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoProtombina"].'</td>
+                                <td style="text-align: center; font-weight: bold">Segundos</td>
+                                <td style="text-align: center; font-weight: bold">10-14</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoTromboplastina"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo Parcial de Tromboplastina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoTromboplastina"].'</td>
+                                <td style="text-align: center; font-weight: bold">Segundos</td>
+                                <td style="text-align: center; font-weight: bold">20-33</td>
+                            </tr>';
+                    }
+                    if($datos["fibrinogeno"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Fibrinógeno</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fibrinogeno"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">200-400 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["inr"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>INR</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["inr"].'</td>
+                                <td style="text-align: center; font-weight: bold">-</td>
+                                <td style="text-align: center; font-weight: bold">-</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoSangramiento"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de sangramiento</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoSangramiento"].'</td>
+                                <td style="text-align: center; font-weight: bold">Minutos</td>
+                                <td style="text-align: center; font-weight: bold">1-4</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoCoagulacion"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de coagulación</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoCoagulacion"].'</td>
+                                <td style="text-align: center; font-weight: bold">Minutos</td>
+                                <td style="text-align: center; font-weight: bold">4-9</td>
+                            </tr>';
+                    }
+                    if($datos["observacion"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Observación</strong></td>
+                                <td style="text-align: center; font-weight: bold" colspan=3>'.$datos["observacion"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $c = $datos["consulta"];
                 $resp = $this->Laboratorio_Model->guardarCoagulacion($datos);
                 $examen = $resp["idCoagulacion"];
@@ -456,7 +1933,7 @@ class Laboratorio extends CI_Controller {
                     $this->session->set_flashdata("error","Error al guardar los datos!");
                     redirect(base_url()."Laboratorio/detalle_consulta/$c/");
                 }
-                // echo json_encode($datos);
+                // echo json_encode($datos["tabla"]);
             }
 
             public function coagulacion_pdf($id){
@@ -502,6 +1979,71 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_coagulacion(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    
+                    if($datos["tiempoProtombina"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de Protombina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoProtombina"].'</td>
+                                <td style="text-align: center; font-weight: bold">Segundos</td>
+                                <td style="text-align: center; font-weight: bold">10-14</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoTromboplastina"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo Parcial de Tromboplastina</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoTromboplastina"].'</td>
+                                <td style="text-align: center; font-weight: bold">Segundos</td>
+                                <td style="text-align: center; font-weight: bold">20-33</td>
+                            </tr>';
+                    }
+                    if($datos["fibrinogeno"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Fibrinógeno</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["fibrinogeno"].'</td>
+                                <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                <td style="text-align: center; font-weight: bold">200-400 mg/dl</td>
+                            </tr>';
+                    }
+                    if($datos["inr"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>INR</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["inr"].'</td>
+                                <td style="text-align: center; font-weight: bold">-</td>
+                                <td style="text-align: center; font-weight: bold">-</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoSangramiento"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de sangramiento</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoSangramiento"].'</td>
+                                <td style="text-align: center; font-weight: bold">Minutos</td>
+                                <td style="text-align: center; font-weight: bold">1-4</td>
+                            </tr>';
+                    }
+                    if($datos["tiempoCoagulacion"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Tiempo de coagulación</strong></td>
+                                <td style="text-align: center; font-weight: bold">'.$datos["tiempoCoagulacion"].'</td>
+                                <td style="text-align: center; font-weight: bold">Minutos</td>
+                                <td style="text-align: center; font-weight: bold">4-9</td>
+                            </tr>';
+                    }
+                    if($datos["observacion"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td><strong>Observación</strong></td>
+                                <td style="text-align: center; font-weight: bold" colspan=3>'.$datos["observacion"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 $bool = $this->Laboratorio_Model->actualizarCoagulacion($datos);
@@ -519,6 +2061,160 @@ class Laboratorio extends CI_Controller {
         // Examen de Cropologia
             public function guardar_cropologia(){
                 $datos = $this->input->post();
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    
+                    if($datos["colorCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Color</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["colorCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["consistenciaCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Consistencia</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["consistenciaCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["mucusCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Mucus</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["mucusCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["hematiesCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Hematíes</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["hematiesCropologia"].' x campo</td>
+                            </tr>';
+                    }
+                    if($datos["leucocitosCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Leucocitos</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["leucocitosCropologia"].' x campo</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px" ><strong>METAZOARIOS</strong></th>
+                        </tr>';
+                    if($datos["ascarisCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Ascaris lumbricoides</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["ascarisCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["hymenolepisCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Hymenolepis</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["hymenolepisCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["uncinariasCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Uncinarias</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["uncinariasCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["tricocefalosCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Trichuris trichiura</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["tricocefalosCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["larvaStrongyloides"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Larva strongyloides stercoralis </strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["larvaStrongyloides"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px"><strong>PROTOZOARIOS</strong></th>
+                        </tr>';
+                    $tablaExamen .= '<tr>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center; color: #075480;"><strong>Quistes</strong></td>
+                            <td style="text-align: center; color: #075480;"><strong>Trofozoitos</strong></td>
+                        </tr>';
+                    if($datos["histolyticaQuistes"] != "" || $datos["histolyticaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Entamoeba histolytica</strong></td>
+                                <td style="text-align: center;">'.$datos["histolyticaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["histolyticaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["coliQuistes"] != "" || $datos["coliTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Entamoeba coli</strong></td>
+                                <td style="text-align: center;">'.$datos["coliQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["coliTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["giardiaQuistes"] != "" || $datos["giardiaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Giardia lamblia</strong></td>
+                                <td style="text-align: center;">'.$datos["giardiaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["giardiaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["blastocystisQuistes"] != "" || $datos["blastocystisTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Blastocystis hominis</strong></td>
+                                <td style="text-align: center;">'.$datos["blastocystisQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["blastocystisTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["tricomonasQuistes"] != "" || $datos["tricomonasTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Tricomonas hominis</strong></td>
+                                <td style="text-align: center;">'.$datos["tricomonasQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["tricomonasTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["mesnilliQuistes"] != "" || $datos["mesnilliTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Chilomastix mesnilli</strong></td>
+                                <td style="text-align: center;">'.$datos["mesnilliQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["mesnilliTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["nanaQuistes"] != "" || $datos["nanaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Endolimax nana</strong></td>
+                                <td style="text-align: center;">'.$datos["nanaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["nanaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+
+                    if($datos["restosMacroscopicos"] != "" && $datos["restosMicroscopicos"] != ""){
+                        $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; color: #075480; color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px"><strong>RESTOS ALIMENTICIOS</strong></th>
+                        </tr>';
+                        if($datos["restosMacroscopicos"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td colspan="2"><strong class="borderAzul">Restos Alimenticios Macroscópicos</strong></td>
+                                    <td colspan="2" style="text-align: center;">'.$datos["restosMacroscopicos"].'</td>
+                                </tr>';
+                        }
+                        if($datos["restosMicroscopicos"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td colspan="2"><strong class="borderAzul">Restos Alimenticios Microscópicos</strong></td>
+                                    <td colspan="2" style="text-align: center;">'.$datos["restosMicroscopicos"].'</td>
+                                </tr>';
+                        }
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+
+            
+                // Diseñando tabla del examen
+
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $this->Laboratorio_Model->guardarCropologia($datos);
                 $examen = $resp["idCropologia"];
                 $consulta = $resp["idDetalleConsulta"];
@@ -530,7 +2226,7 @@ class Laboratorio extends CI_Controller {
                     redirect(base_url()."Laboratorio/historial_examenes/");
                 }
 
-                // echo json_encode($datos);
+                // echo json_encode($tablaExamen);
             }
 
             public function cropologia_pdf($id){
@@ -578,6 +2274,161 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_cropologia(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    
+                    if($datos["colorCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Color</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["colorCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["consistenciaCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Consistencia</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["consistenciaCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["mucusCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Mucus</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["mucusCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["hematiesCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Hematíes</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["hematiesCropologia"].' x campo</td>
+                            </tr>';
+                    }
+                    if($datos["leucocitosCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Leucocitos</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["leucocitosCropologia"].' x campo</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px" ><strong>METAZOARIOS</strong></th>
+                        </tr>';
+                    if($datos["ascarisCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Ascaris lumbricoides</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["ascarisCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["hymenolepisCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Hymenolepis</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["hymenolepisCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["uncinariasCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Uncinarias</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["uncinariasCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["tricocefalosCropologia"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Trichuris trichiura</strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["tricocefalosCropologia"].'</td>
+                            </tr>';
+                    }
+                    if($datos["larvaStrongyloides"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Larva strongyloides stercoralis </strong></td>
+                                <td colspan="2" style="text-align: center;">'.$datos["larvaStrongyloides"].'</td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px"><strong>PROTOZOARIOS</strong></th>
+                        </tr>';
+                    $tablaExamen .= '<tr>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center; color: #075480;"><strong>Quistes</strong></td>
+                            <td style="text-align: center; color: #075480;"><strong>Trofozoitos</strong></td>
+                        </tr>';
+                    if($datos["histolyticaQuistes"] != "" || $datos["histolyticaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Entamoeba histolytica</strong></td>
+                                <td style="text-align: center;">'.$datos["histolyticaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["histolyticaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["coliQuistes"] != "" || $datos["coliTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Entamoeba coli</strong></td>
+                                <td style="text-align: center;">'.$datos["coliQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["coliTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["giardiaQuistes"] != "" || $datos["giardiaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Giardia lamblia</strong></td>
+                                <td style="text-align: center;">'.$datos["giardiaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["giardiaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["blastocystisQuistes"] != "" || $datos["blastocystisTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Blastocystis hominis</strong></td>
+                                <td style="text-align: center;">'.$datos["blastocystisQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["blastocystisTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["tricomonasQuistes"] != "" || $datos["tricomonasTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Tricomonas hominis</strong></td>
+                                <td style="text-align: center;">'.$datos["tricomonasQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["tricomonasTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["mesnilliQuistes"] != "" || $datos["mesnilliTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Chilomastix mesnilli</strong></td>
+                                <td style="text-align: center;">'.$datos["mesnilliQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["mesnilliTrofozoitos"].'</td>
+                            </tr>';
+                    }
+                    if($datos["nanaQuistes"] != "" || $datos["nanaTrofozoitos"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td colspan="2"><strong class="">Endolimax nana</strong></td>
+                                <td style="text-align: center;">'.$datos["nanaQuistes"].'</td>
+                                <td style="text-align: center;">'.$datos["nanaTrofozoitos"].'</td>
+                            </tr>';
+                    }
+
+                    if($datos["restosMacroscopicos"] != "" && $datos["restosMicroscopicos"] != ""){
+                        $tablaExamen .= '<tr>
+                            <th colspan="4" style="color: #075480; color: #075480; color: #075480; text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 25px"><strong>RESTOS ALIMENTICIOS</strong></th>
+                        </tr>';
+                        if($datos["restosMacroscopicos"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td colspan="2"><strong class="borderAzul">Restos Alimenticios Macroscópicos</strong></td>
+                                    <td colspan="2" style="text-align: center;">'.$datos["restosMacroscopicos"].'</td>
+                                </tr>';
+                        }
+                        if($datos["restosMicroscopicos"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td colspan="2"><strong class="borderAzul">Restos Alimenticios Microscópicos</strong></td>
+                                    <td colspan="2" style="text-align: center;">'.$datos["restosMicroscopicos"].'</td>
+                                </tr>';
+                        }
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+
+            
+                // Diseñando tabla del examen
+
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 $bool = $this->Laboratorio_Model->actualizarCropologia($datos);
@@ -596,6 +2447,50 @@ class Laboratorio extends CI_Controller {
         // Examenes varios
             public function guardar_varios(){
                 $datos = $this->input->post();
+
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    $tablaExamen .= '<tr>
+                                <td style="text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 30px" colspan="3"><strong class="borderAzul">Examen realizado: </strong>'.$datos["examenSolicitadoLibre"].'</td>
+                            </tr>';
+
+                    if($datos["muestraVarios"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="text-align: center;"><strong class="borderAzul">Muestra</strong></td>
+                                <td style="text-align: center;">'.$datos["muestraVarios"].'</td>
+                                <td style="text-align: center;"></td>
+                            </tr>';
+                    }
+                    if($datos["resultadoVarios"] != ""){
+                        if($datos["valorNormalVarios"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td style="text-align: center;"><strong class="borderAzul">Resultado</strong></td>
+                                    <td style="text-align: center;">'.$datos["resultadoVarios"].'</td>
+                                    <td style="text-align: center;">'.$datos["valorNormalVarios"].'</td>
+                                </tr>';
+
+                        }else{
+                            $tablaExamen .= '<tr>
+                            <td style="text-align: center;"><strong class="borderAzul">Resultado</strong></td>
+                            <td style="text-align: center;">'.$datos["resultadoVarios"].'</td>
+                        </tr>';
+                            
+                        }
+                    }
+                    if($datos["observacionesVarios"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="text-align: center;"><strong class="borderAzul">Observaciones</strong></td>
+                                <td style="text-align: center;">'.$datos["observacionesVarios"].'</td>
+                                <td style="text-align: center;"></td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+
                 $resp = $this->Laboratorio_Model->guardarVarios($datos);
                 
                 $examen = $resp["idVarios"];
@@ -608,7 +2503,7 @@ class Laboratorio extends CI_Controller {
                     redirect(base_url()."Laboratorio/historial_examenes/");
                 }
 
-                // echo json_encode($datos);
+                // echo json_encode($datos["tabla"]);
             }
 
             public function varios_pdf($id){
@@ -657,6 +2552,49 @@ class Laboratorio extends CI_Controller {
 
             public function actualizar_varios(){
                 $datos = $this->input->post();
+                // Diseñando tabla del examen 
+                    $tablaExamen = '<table class="table">
+                                    <thead></thead>
+                                    <tbody class="text-left">';
+                    $tablaExamen .= '<tr>
+                                <td style="text-align: center; font-size: 12px; background: rgba(7, 84, 128, 0.1); height: 30px" colspan="3"><strong class="borderAzul">Examen realizado: </strong>'.$datos["examenSolicitadoLibre"].'</td>
+                            </tr>';
+
+                    if($datos["muestraVarios"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="text-align: center;"><strong class="borderAzul">Muestra</strong></td>
+                                <td style="text-align: center;">'.$datos["muestraVarios"].'</td>
+                                <td style="text-align: center;"></td>
+                            </tr>';
+                    }
+                    if($datos["resultadoVarios"] != ""){
+                        if($datos["valorNormalVarios"] != ""){
+                            $tablaExamen .= '<tr>
+                                    <td style="text-align: center;"><strong class="borderAzul">Resultado</strong></td>
+                                    <td style="text-align: center;">'.$datos["resultadoVarios"].'</td>
+                                    <td style="text-align: center;">'.$datos["valorNormalVarios"].'</td>
+                                </tr>';
+
+                        }else{
+                            $tablaExamen .= '<tr>
+                            <td style="text-align: center;"><strong class="borderAzul">Resultado</strong></td>
+                            <td style="text-align: center;">'.$datos["resultadoVarios"].'</td>
+                        </tr>';
+                            
+                        }
+                    }
+                    if($datos["observacionesVarios"] != ""){
+                        $tablaExamen .= '<tr>
+                                <td style="text-align: center;"><strong class="borderAzul">Observaciones</strong></td>
+                                <td style="text-align: center;">'.$datos["observacionesVarios"].'</td>
+                                <td style="text-align: center;"></td>
+                            </tr>';
+                    }
+
+                    $tablaExamen .= '</tbody><table>';
+                // Diseñando tabla del examen
+                $datos["tabla"] = $tablaExamen;
+                
                 $resp = $datos["consulta"];
                 unset($datos["consulta"]);
                 $bool = $this->Laboratorio_Model->actualizarVarios($datos);

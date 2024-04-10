@@ -55,6 +55,8 @@ class Laboratorio_Model extends CI_Model {
         public function guardarSanguineo($data = null){
             if($data != null){
                 $idConsulta = $data["consulta"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
 
                 $sql = "INSERT INTO tbl_sanguineo(muestraSanguineo, grupoSanguineo, factorSanguineo, duSanguineo)
@@ -63,8 +65,8 @@ class Laboratorio_Model extends CI_Model {
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                            VALUES('$idConsulta', '$idExamen', '4', '$hora', 'Tipeo sanguineo')"; 
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                            VALUES('$idConsulta', '$idExamen', '4', '$hora', 'Tipeo sanguineo', '$tabla')"; 
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
                     $datos = array('idSanguineo' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -80,10 +82,14 @@ class Laboratorio_Model extends CI_Model {
         public function actualizarSanguineo($data = null){
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 $sql = "UPDATE tbl_sanguineo SET muestraSanguineo = ?, grupoSanguineo = ?, factorSanguineo = ?,
                         duSanguineo = ? WHERE idSanguineo = ?";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -100,6 +106,8 @@ class Laboratorio_Model extends CI_Model {
         public function guardarOrina($data = null){
             if($data != null){
                 $idConsulta = $data["consulta"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
 
                 $sql = "INSERT INTO tbl_orina(colorOrina, aspectoOrina, reaccionOrina, densidadOrina, phOrina, proteinasOrina, glucosaOrina, pigBilaOrina, 
@@ -111,8 +119,8 @@ class Laboratorio_Model extends CI_Model {
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                            VALUES('$idConsulta', '$idExamen', '13', '$hora', 'Orina')";
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                            VALUES('$idConsulta', '$idExamen', '13', '$hora', 'Orina', '$tabla')";
 
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
@@ -129,6 +137,8 @@ class Laboratorio_Model extends CI_Model {
         public function actualizarOrina($data = null){
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 $sql = "UPDATE tbl_orina SET colorOrina = ?, aspectoOrina = ?, reaccionOrina = ?, densidadOrina = ?, phOrina = ?, proteinasOrina = ?,
                                 glucosaOrina = ?, pigBilaOrina = ?, sangreOcultaOrina = ?, nitritoOrina = ?, cuerposCetonicosOrina = ?, 
@@ -136,7 +146,9 @@ class Laboratorio_Model extends CI_Model {
                                 leucocitosOrina = ?, hematiesOrina = ?, celulasEpitelialesOrina = ?, elemMineralesOrina = ?, bacteriasOrina = ?,
                                 levaduraOrina = ?, otrosOrina = ?, observacionesOrina = ?
                         WHERE idOrina = ? ";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -152,6 +164,8 @@ class Laboratorio_Model extends CI_Model {
         public function guardarHematologia($data = null){
             if($data != null){
                 $idConsulta = $data["consulta"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
                 $sql = "INSERT INTO tbl_hematologia(eritrocitosHematologia, hematocritoHematologia, hemoglobinaHematologia,
                         vgmHematologia, hgmHematologia, chgmHematologia, leucocitosHematologia, neutrofHematologia, neutrofBandHematologia,
@@ -161,8 +175,8 @@ class Laboratorio_Model extends CI_Model {
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                            VALUES('$idConsulta', '$idExamen', '12', '$hora', 'Hematologia')";
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                            VALUES('$idConsulta', '$idExamen', '12', '$hora', 'Hematologia', '$tabla')";
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
                     $datos = array('idHematologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -178,13 +192,17 @@ class Laboratorio_Model extends CI_Model {
         public function actualizarHematologia($data = null){
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 $sql = "UPDATE tbl_hematologia SET eritrocitosHematologia = ?, hematocritoHematologia = ?, hemoglobinaHematologia = ?,
                         vgmHematologia = ?, hgmHematologia = ?, chgmHematologia = ?, leucocitosHematologia = ?, neutrofHematologia = ?, neutrofBandHematologia = ?, 
                         linfocitosHematologia = ?, eosinofilosHematologia = ?, monocitosHematologia = ?, basofilosHematologia = ?, blastosHematologia = ?,
                         reticulocitosHematologia = ?, eritrosedHematologia = ?, plaquetasHematologia = ?, gotaGruesaHematologia = ?, rojaHematologia = ?,
                         blancaHematologia = ?, plaquetariaHematologia = ?, observacionesHematologia = ? WHERE idHematologia = ? ";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -200,6 +218,8 @@ class Laboratorio_Model extends CI_Model {
         public function guardarCoagulacion($data = null){
             if($data != null){
                 $idConsulta = $data["consulta"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
 
                 $sql = "INSERT INTO tbl_coagulacion(tiempoProtombina, tiempoTromboplastina, fibrinogeno, inr, tiempoSangramiento, tiempoCoagulacion, observacion) 
@@ -208,8 +228,8 @@ class Laboratorio_Model extends CI_Model {
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                              VALUES('$idConsulta', '$idExamen', '3', '$hora', 'Coagulación')"; 
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                              VALUES('$idConsulta', '$idExamen', '3', '$hora', 'Coagulación', '$tabla')"; 
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
                     $datos = array('idCoagulacion' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -225,10 +245,14 @@ class Laboratorio_Model extends CI_Model {
         public function actualizarCoagulacion($data = null){
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 $sql = "UPDATE tbl_coagulacion SET tiempoProtombina = ?, tiempoTromboplastina = ?, fibrinogeno = ?,
                         inr = ?, tiempoSangramiento = ?, tiempoCoagulacion = ?, observacion = ? WHERE idCoagulacion = ?";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -244,19 +268,22 @@ class Laboratorio_Model extends CI_Model {
             if($data != null){
                 $idConsulta = $data["consulta"];
                 $solicitado = $data["examenSolicitado"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
 
                 $sql = "INSERT INTO tbl_cropologia(colorCropologia, consistenciaCropologia, mucusCropologia, hematiesCropologia, leucocitosCropologia,
                         ascarisCropologia, hymenolepisCropologia, uncinariasCropologia, tricocefalosCropologia, larvaStrongyloides, histolyticaQuistes,
                         histolyticaTrofozoitos, coliQuistes, coliTrofozoitos, giardiaQuistes, giardiaTrofozoitos, blastocystisQuistes, blastocystisTrofozoitos,
                         tricomonasQuistes, tricomonasTrofozoitos, mesnilliQuistes, mesnilliTrofozoitos, nanaQuistes, nanaTrofozoitos, restosMacroscopicos, 
-                        restosMicroscopicos, observacionesCropologia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        restosMicroscopicos, observacionesCropologia) 
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                            VALUES('$idConsulta', '$idExamen', '7', '$hora', 'Coprologia')"; 
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                            VALUES('$idConsulta', '$idExamen', '7', '$hora', 'Coprologia', '$tabla')"; 
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
                     $datos = array('idCropologia' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -272,6 +299,8 @@ class Laboratorio_Model extends CI_Model {
         public function actualizarCropologia($data = null){
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 $sql = "UPDATE tbl_cropologia SET colorCropologia = ?, consistenciaCropologia = ?, mucusCropologia = ?,
                         hematiesCropologia = ?, leucocitosCropologia = ?, ascarisCropologia = ?, hymenolepisCropologia = ?, 
@@ -280,7 +309,9 @@ class Laboratorio_Model extends CI_Model {
                         blastocystisQuistes = ?, blastocystisTrofozoitos = ?, tricomonasQuistes = ?, tricomonasTrofozoitos = ?, 
                         mesnilliQuistes = ?, mesnilliTrofozoitos = ?, nanaQuistes = ?, nanaTrofozoitos = ?, restosMacroscopicos = ?, 
                         restosMicroscopicos = ?, observacionesCropologia = ? WHERE idCropologia = ?";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -296,6 +327,8 @@ class Laboratorio_Model extends CI_Model {
             if($data != null){
                 $idConsulta = $data["consulta"];
                 $examen = $data["examenSolicitadoLibre"];
+                $tabla = $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["consulta"]);
 
                 $sql = "INSERT INTO tbl_varios(examenSolicitado, muestraVarios, resultadoVarios, valorNormalVarios, observacionesVarios)
@@ -303,8 +336,8 @@ class Laboratorio_Model extends CI_Model {
                 if($this->db->query($sql, $data)){
                     $idExamen = $this->db->insert_id();
                     $hora = date('h:i:s a', time());
-                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                            VALUES('$idConsulta', '$idExamen', '10', '$hora', '$examen')"; 
+                    $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                            VALUES('$idConsulta', '$idExamen', '10', '$hora', '$examen', '$tabla')"; 
                     $this->db->query($sqlDC);
                     $idDetalleConsulta = $this->db->insert_id();
                     $datos = array('idVarios' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -321,11 +354,15 @@ class Laboratorio_Model extends CI_Model {
             if($data != null){
                 $detalle =  $data["idDetalleConsulta"];
                 $examen =  $data["examenSolicitado"];
+                $tabla =  $data["tabla"];
+                unset($data["tabla"]);
                 unset($data["idDetalleConsulta"]);
                 unset($data["examenSolicitado"]);
                 $sql = "UPDATE tbl_varios SET muestraVarios = ?, resultadoVarios = ?, valorNormalVarios = ?,
                         observacionesVarios = ? WHERE idVarios = ? ";
+                $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                 if($this->db->query($sql, $data)){
+                    $this->db->query($sql2);
                     return true;
                 }else{
                     return false;
@@ -578,7 +615,7 @@ class Laboratorio_Model extends CI_Model {
 
         public function historialRealizado($fecha = null, $p = null){
             $sql = "SELECT cl.fechaConsulta, dc.nombreExamen, cl.idPaciente, cl.idConsultaLaboratorio, dc.idDetalleConsulta, dc.idExamen, 
-                    dc.horaDetalleConsulta, dc.fechaDetalleConsulta, dc.tipoExamen, dc.examenes
+                    dc.horaDetalleConsulta, dc.fechaDetalleConsulta, dc.tipoExamen, dc.examenes, dc.tablaExamen
                     FROM tbl_consulta_laboratorio AS cl 
                     INNER JOIN tbl_detalle_consulta AS dc on(cl.idConsultaLaboratorio = dc.idConsultaLaboratorio) 
                     WHERE cl.fechaConsulta = '$fecha' AND cl.idPaciente = '$p'
@@ -961,6 +998,8 @@ class Laboratorio_Model extends CI_Model {
                 if($data != null){
                     $idConsulta = $data["consulta"];
                     $solicitado = $data["examenSolicitado"];
+                    $tabla = $data["tabla"];
+                    unset($data["tabla"]);
                     unset($data["examenSolicitado"]);
                     unset($data["consulta"]);
 
@@ -973,8 +1012,8 @@ class Laboratorio_Model extends CI_Model {
                     if($this->db->query($sql, $data)){
                         $idExamen = $this->db->insert_id();
                         $hora = date('h:i:s a', time());
-                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen)
-                                    VALUES('$idConsulta', '$idExamen', '6', '$hora', 'Quimica sanguinea')"; 
+                        $sqlDC = "INSERT INTO tbl_detalle_consulta(idConsultaLaboratorio, idExamen, tipoExamen, horaDetalleConsulta, nombreExamen, tablaExamen)
+                                    VALUES('$idConsulta', '$idExamen', '6', '$hora', 'Quimica sanguinea', '$tabla')"; 
                         $this->db->query($sqlDC);
                         $idDetalleConsulta = $this->db->insert_id();
                         $datos = array('idQuimicaSanguinea' => $idExamen, 'idDetalleConsulta' => $idDetalleConsulta );
@@ -990,6 +1029,8 @@ class Laboratorio_Model extends CI_Model {
             public function actualizarQuimicaSanguinea($data = null){
                 if($data != null){
                     $detalle =  $data["idDetalleConsulta"];
+                    $tabla =  $data["tabla"];
+                    unset($data["tabla"]);
                     unset($data["idDetalleConsulta"]);
 
                     $sql = "UPDATE tbl_quimica_sanguinea SET glucosaQS = ?, posprandialQS = ?, colesterolQS = ?, trigliceridosQS = ?, colesterolHDLQS = ?,
@@ -998,7 +1039,9 @@ class Laboratorio_Model extends CI_Model {
                             globulinaQS = ?, relacionAGQS = ?, bilirrubinaTQS = ?, bilirrubinaDQS = ?, bilirrubinaIQS = ?, sodioQuimicaClinica = ?, potasioQuimicaClinica = ?,
                             cloroQuimicaClinica = ?, magnesioQuimicaClinica = ?, calcioQuimicaClinica = ?, fosforoQuimicaClinica = ?, cpkTQuimicaClinica = ?, cpkMbQuimicaClinica = ?, ldhQuimicaClinica = ?,
                             troponinaQuimicaClinica = ?, notaQS = ? WHERE idQuimicaSanguinea = ?";
+                    $sql2 = "UPDATE tbl_detalle_consulta SET tablaExamen = '$tabla' WHERE idDetalleConsulta = '$detalle'";
                     if($this->db->query($sql, $data)){
+                        $this->db->query($sql2);
                         return true;
                     }else{
                         return false;

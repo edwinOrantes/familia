@@ -155,7 +155,7 @@
                                         <td><strong>Glucosa</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->glucosaQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">60-110mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">55-110 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->posprandialQS != ""){
@@ -163,7 +163,7 @@
                                         <td><strong>Glucosa postprandial</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->posprandialQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 140 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">140 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->colesterolQS != ""){
@@ -179,7 +179,7 @@
                                         <td><strong>Colesterol HDL</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->colesterolHDLQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Mayor de 35 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->colesterolLDLQS != ""){
@@ -187,7 +187,7 @@
                                         <td><strong>Colesterol LDL</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->colesterolLDLQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 130 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->trigliceridosQS != ""){
@@ -203,7 +203,7 @@
                                         <td><strong>Ácido úrico</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->acidoUricoQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">2.4-7.0 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->ureaQS != ""){
@@ -211,7 +211,7 @@
                                         <td><strong>Urea</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->ureaQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">15-45 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">10.0 a 48.1 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->nitrogenoQS != ""){
@@ -219,7 +219,7 @@
                                         <td><strong>Nitrógeno Ureico</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->nitrogenoQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">5-25 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->creatininaQS != ""){
@@ -227,7 +227,7 @@
                                         <td><strong>Creatinina</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->creatininaQS.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">0.5-1.4 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->amilasaQS != ""){
@@ -251,7 +251,7 @@
                                         <td><strong>Fosfatasa alcalina</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->fosfatasaQS.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">Hasta 275 U/L</td>
+                                        <td style="text-align: center; font-weight: bold">98-279 U/L</td>
                                     </tr>';
                             }
                             if($sanguinea->tgpQS != ""){
@@ -283,7 +283,7 @@
                                         <td><strong>Proteína total</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->proteinaTotalQS.'</td>
                                         <td style="text-align: center; font-weight: bold">g/dl</td>
-                                        <td style="text-align: center; font-weight: bold">6.6-8.3 d/dl</td>
+                                        <td style="text-align: center; font-weight: bold">6.7-8.7 d/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->albuminaQS != ""){
@@ -299,7 +299,7 @@
                                         <td><strong>Globulina</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->globulinaQS.'</td>
                                         <td style="text-align: center; font-weight: bold">g/dl</td>
-                                        <td style="text-align: center; font-weight: bold">2-3.5 g/dl</td>
+                                        <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->relacionAGQS != ""){
@@ -339,7 +339,7 @@
                                         <td><strong>Sodio</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->sodioQuimicaClinica.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">136-148 mmol/L</td>
+                                        <td style="text-align: center; font-weight: bold">135-155 mmol/L</td>
                                     </tr>';
                             }
                             if($sanguinea->potasioQuimicaClinica != ""){
@@ -347,7 +347,7 @@
                                         <td><strong>Potasio</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->potasioQuimicaClinica.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">3.5-5.3 mmol/L</td>
+                                        <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/L</td>
                                     </tr>';
                             }
                             if($sanguinea->cloroQuimicaClinica != ""){
@@ -355,7 +355,7 @@
                                         <td><strong>Cloro</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->cloroQuimicaClinica.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">98-107 mmol/L</td>
+                                        <td style="text-align: center; font-weight: bold">95-115 mmol/L</td>
                                     </tr>';
                             }
                             if($sanguinea->magnesioQuimicaClinica != ""){
@@ -371,7 +371,7 @@
                                         <td><strong>Calcio</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$sanguinea->calcioQuimicaClinica.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">8.5-10.5 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">8.1-10.4 mg/dl</td>
                                     </tr>';
                             }
                             if($sanguinea->fosforoQuimicaClinica != ""){

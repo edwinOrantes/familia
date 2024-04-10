@@ -197,161 +197,161 @@
                                         <td style="text-align: center; font-weight: bold">4-6 millones</td>
                                     </tr>';
                                     
-                                }
-                                if($hematologia->hematocritoHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Hematócrito</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->hematocritoHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">37-45%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->hemoglobinaHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Hemoglobina</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->hemoglobinaHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold"> 12-15 g/dl</td>
-                                        </tr>';
-                                }
-                                if($hematologia->vgmHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">VCM</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->vgmHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold"> 82-96 fl</td>
-                                        </tr>';
-                                }
-                                if($hematologia->hgmHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">HCM</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->hgmHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">27-32 pg</td>
-                                        </tr>';
-                                }
-                                if($hematologia->chgmHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">CHCM</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->chgmHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold"> 30-35 g/dl</td>
-                                        </tr>';
-                                }
-                                
-                                if($hematologia->leucocitosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Leucocitos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->leucocitosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">5-10 mil</td>
-                                        </tr>';
-                                }
-                                if($hematologia->neutrofHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Neutrofilos segmentados</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->neutrofHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$ns.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->neutrofBandHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Neutrofilos en banda</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->neutrofBandHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$nb.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->linfocitosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Linfocitos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->linfocitosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$linfocitos.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->eosinofilosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Eosinófilos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->eosinofilosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$eosinofilos.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->monocitosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Monocitos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->monocitosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$monocitos.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->basofilosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Basófilos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->basofilosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">'.$basofilo.'%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->blastosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Blastos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->blastosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->reticulocitosHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Reticulocitos</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->reticulocitosHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">0.5-2.0%</td>
-                                        </tr>';
-                                }
-                                if($hematologia->eritrosedHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Eritrosedimentación</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->eritrosedHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">0-20 mm/hr</td>
-                                        </tr>';
-                                }
-                                
-                                if($hematologia->plaquetasHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Plaquetas</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->plaquetasHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold">150,000-450,000 xmmc</td>
-                                        </tr>';
-                                }
-                                if($hematologia->gotaGruesaHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Gota gruesa</strong></td>
-                                            <td style="text-align: center;  font-weight: bold">'.$hematologia->gotaGruesaHematologia.'</td>
-                                            <td style="text-align: center;  font-weight: bold"></td>
-                                        </tr>';
-                                }
-                                if($hematologia->rojaHematologia == "" && $hematologia->blancaHematologia == "" && $hematologia->plaquetariaHematologia == ""){
-                                    echo '<tr></tr>';
-                                }else{
-                                    echo '<tr>
-                                            <td colspan=3 style="text-align: center; background: rgba(7, 84, 128, 0.1);"><strong class="">Frotis de sangre periferica</strong></td>
-                                        </tr>';        
-                                }
-    
-                                if($hematologia->rojaHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Linea roja</strong></td>
-                                            <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->rojaHematologia.'</td>
-                                        </tr>';
-                                }
-                                if($hematologia->blancaHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Linea blanca</strong></td>
-                                            <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->blancaHematologia.'</td>
-                                        </tr>';
-                                }
-                                if($hematologia->plaquetariaHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Linea plaquetaria</strong></td>
-                                            <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->plaquetariaHematologia.'</td>
-                                        </tr>';
-                                }
-    
-                                if($hematologia->observacionesHematologia != ""){
-                                    echo '<tr>
-                                            <td><strong class="">Observaciones</strong></td>
-                                            <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->observacionesHematologia.'</td>
-                                        </tr>';
-                                }
+                            }
+                            if($hematologia->hematocritoHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Hematócrito</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->hematocritoHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">36-50%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->hemoglobinaHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Hemoglobina</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->hemoglobinaHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold"> 12-16.2 g/dl</td>
+                                    </tr>';
+                            }
+                            if($hematologia->vgmHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">VCM</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->vgmHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold"> 82-96 fl</td>
+                                    </tr>';
+                            }
+                            if($hematologia->hgmHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">HCM</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->hgmHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">27-32 pg</td>
+                                    </tr>';
+                            }
+                            if($hematologia->chgmHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">CHCM</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->chgmHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold"> 30-35 g/dl</td>
+                                    </tr>';
+                            }
+                            
+                            if($hematologia->leucocitosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Leucocitos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->leucocitosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">5-10 mil</td>
+                                    </tr>';
+                            }
+                            if($hematologia->neutrofHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Neutrofilos segmentados</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->neutrofHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$ns.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->neutrofBandHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Neutrofilos en banda</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->neutrofBandHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$nb.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->linfocitosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Linfocitos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->linfocitosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$linfocitos.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->eosinofilosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Eosinófilos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->eosinofilosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$eosinofilos.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->monocitosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Monocitos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->monocitosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$monocitos.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->basofilosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Basófilos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->basofilosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">'.$basofilo.'%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->blastosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Blastos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->blastosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->reticulocitosHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Reticulocitos</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->reticulocitosHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">0.5-2.0%</td>
+                                    </tr>';
+                            }
+                            if($hematologia->eritrosedHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Eritrosedimentación</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->eritrosedHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">0-20 mm/hr</td>
+                                    </tr>';
+                            }
+                            
+                            if($hematologia->plaquetasHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Plaquetas</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->plaquetasHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold">150,000-450,000 xmmc</td>
+                                    </tr>';
+                            }
+                            if($hematologia->gotaGruesaHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Gota gruesa</strong></td>
+                                        <td style="text-align: center;  font-weight: bold">'.$hematologia->gotaGruesaHematologia.'</td>
+                                        <td style="text-align: center;  font-weight: bold"></td>
+                                    </tr>';
+                            }
+                            if($hematologia->rojaHematologia == "" && $hematologia->blancaHematologia == "" && $hematologia->plaquetariaHematologia == ""){
+                                echo '<tr></tr>';
+                            }else{
+                                echo '<tr>
+                                        <td colspan=3 style="text-align: center; background: rgba(7, 84, 128, 0.1);"><strong class="">Frotis de sangre periferica</strong></td>
+                                    </tr>';        
+                            }
+
+                            if($hematologia->rojaHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Linea roja</strong></td>
+                                        <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->rojaHematologia.'</td>
+                                    </tr>';
+                            }
+                            if($hematologia->blancaHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Linea blanca</strong></td>
+                                        <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->blancaHematologia.'</td>
+                                    </tr>';
+                            }
+                            if($hematologia->plaquetariaHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Linea plaquetaria</strong></td>
+                                        <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->plaquetariaHematologia.'</td>
+                                    </tr>';
+                            }
+
+                            if($hematologia->observacionesHematologia != ""){
+                                echo '<tr>
+                                        <td><strong class="">Observaciones</strong></td>
+                                        <td style="text-align: center;  font-weight: bold" colspan=2>'.$hematologia->observacionesHematologia.'</td>
+                                    </tr>';
+                            }
 
                         ?>
                        

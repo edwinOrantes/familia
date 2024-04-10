@@ -302,8 +302,8 @@
                         <?php
                             if($cropologia->observacionesCropologia != ""){
                                 echo '<tr>
-                                        <td><strong class="">Observaciones</strong></td>
-                                        <td>'.$cropologia->observacionesCropologia.'</td>
+                                        <td style="width: 200"><strong class="">Observaciones</strong></td>
+                                        <td colspan=3>'.$cropologia->observacionesCropologia.'</td>
                                     </tr>';
                             }
 

@@ -45,6 +45,16 @@
 
 ?>
 
+<style>
+    .tabla_examen, .nombre_examen{
+        display: none;
+    }
+
+    #htmlDetalle .table tr td{
+        padding: 1px !important
+    }
+</style>
+
 <div class="">
     <div class="row">
         <div class="col-md-2 pl-4">
@@ -291,7 +301,7 @@
                                                 $examenes = $this->Laboratorio_Model->historialRealizado($row->fecha, $paciente->idPaciente);
                                                 foreach ($examenes as $fila) {
                                                     echo '<tr>
-                                                            <td><a href="">'.$fila->nombreExamen.'</a></td>
+                                                            <td><a href="#detalleTablaExamen" data-toggle="modal" class="examenFecha">'.$fila->nombreExamen.'</a> <p class="nombre_examen">'.$fila->nombreExamen.'</p> <div class="tabla_examen">'.base64_encode($fila->tablaExamen).'</div> </td>
                                                         </tr>';
                                                 }
                                             ?>
@@ -677,28 +687,28 @@
                                                     <input type="hidden" value="0" name="examenSolicitado">
                                                    
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Glucosa (60-110 mg/dl)</strong><br><input type="text" name="glucosa" class="form-control menosHeight" id="glucosa"></td>
+                                                        <td class="menosPadding"><strong> Glucosa (55-110 mg/dl)</strong><br><input type="text" name="glucosa" class="form-control menosHeight" id="glucosa"></td>
                                                         <td class="menosPadding"><strong> Glucosa P. (140 mg/dl)</strong><br><input type="text" name="posprandial" class="form-control menosHeight" id="posprandial"></td>
                                                         <td class="menosPadding"><strong> Colesterol ( < de 200 mg/dl)</strong><br><input type="text" name="colesterol" class="form-control menosHeight" id="colesterol"></td>
                                                         <td class="menosPadding"><strong> Triglicéridos ( < de 150 mg/dl)</strong><br><input type="text" name="trigliceridos" class="form-control menosHeight" id="trigliceridos"></td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Colesterol HDL ( > de 35 mg/dl) </strong><br><input type="text" name="colesterolHDL" class="form-control menosHeight" id="colesterolHDL"></td>
-                                                        <td class="menosPadding"><strong> Colesterol LDL ( < 130 mg/dl)</strong><br><input type="text" name="colesterolLDL" class="form-control menosHeight" id="colesterolLDL"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Ácido úrico (2.4-7.0 mg/dl) </strong><br><input type="text" name="acidoUrico" class="form-control menosHeight" id="acidoUrico" size="47"></td>
+                                                        <td class="menosPadding"><strong> Colesterol HDL (35-65 mg/dl) </strong><br><input type="text" name="colesterolHDL" class="form-control menosHeight" id="colesterolHDL"></td>
+                                                        <td class="menosPadding"><strong> Colesterol LDL ( < 150 mg/dl)</strong><br><input type="text" name="colesterolLDL" class="form-control menosHeight" id="colesterolLDL"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Ácido úrico (2.5-7.0 mg/dl) </strong><br><input type="text" name="acidoUrico" class="form-control menosHeight" id="acidoUrico" size="47"></td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Urea ( 15-45 mg/dl)</strong><br><input type="text" name="urea" class="form-control menosHeight" id="urea"></td>
-                                                        <td class="menosPadding"><strong> Nitrógeno ureico ( 5-25 mg/dl)</strong><br><input type="text" name="nitrogenoUreico" class="form-control menosHeight" id="nitrogenoUreico"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Creatinina ( 0.5-1.4 mg/dl)</strong><br><input type="text" name="creatinina" class="form-control menosHeight" id="creatinina" size="47"></td>
+                                                        <td class="menosPadding"><strong> Urea ( 10.0 a 48.1 mg/dl)</strong><br><input type="text" name="urea" class="form-control menosHeight" id="urea"></td>
+                                                        <td class="menosPadding"><strong> Nitrógeno ureico ( 4.7-22.5 mg/dl)</strong><br><input type="text" name="nitrogenoUreico" class="form-control menosHeight" id="nitrogenoUreico"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Creatinina ( 0.7-1.4 mg/dl)</strong><br><input type="text" name="creatinina" class="form-control menosHeight" id="creatinina" size="47"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td class="menosPadding"><strong> Amilasa ( VN: menor de 90 U/L)</strong><br><input type="text" name="amilasa" class="form-control menosHeight" id="amilasa"></td>
                                                         <td class="menosPadding"><strong> Lipasa ( VN: menor de 38 U/L)</strong><br><input type="text" name="lipasa" class="form-control menosHeight" id="lipasa"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Fosfatasa alcalina ( Hasta 275 U/L)</strong><br><input type="text" name="fosfatasaAlcalina" class="form-control menosHeight" id="fosfatasaAlcalina" size="47"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Fosfatasa alcalina ( 98-279 U/L)</strong><br><input type="text" name="fosfatasaAlcalina" class="form-control menosHeight" id="fosfatasaAlcalina" size="47"></td>
                                                     </tr>
 
                                                     <tr>
@@ -708,9 +718,9 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Proteina total (VN: 6.6-8.3 g/dL)</strong><br><input type="text" name="proteinaTotal" class="form-control menosHeight" id="proteinaTotal"></td>
+                                                        <td class="menosPadding"><strong> Proteina total (VN: 6.7-8.7 g/dL)</strong><br><input type="text" name="proteinaTotal" class="form-control menosHeight" id="proteinaTotal"></td>
                                                         <td class="menosPadding"><strong> Albúmina (VN: 3.5-5.0 g/dL)</strong><br><input type="text" name="albumina" class="form-control menosHeight" id="albumina"></td>
-                                                        <td class="menosPadding"><strong> Globulina (VN: 2-3.5 g/dL) </strong><br><input type="text" name="globulina" class="form-control menosHeight" id="globulina"></td>
+                                                        <td class="menosPadding"><strong> Globulina (VN: 2.3-3.4 g/dL) </strong><br><input type="text" name="globulina" class="form-control menosHeight" id="globulina"></td>
                                                         <td class="menosPadding"><strong> Relación A/G: 1.2 a 2.2 </strong><br><input type="text" name="relacionAG" class="form-control menosHeight" id="relacionAG"></td>
                                                     </tr>
 
@@ -723,14 +733,14 @@
                                                     <!-- Quimica sanguinea -->
 
                                                         <tr>
-                                                            <td class="menosPadding"><strong> Sodio (136-148 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinica"></td>
-                                                            <td class="menosPadding" colspan="2"><strong> Potasio (3.5-5.3 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinica"></td>
-                                                            <td class="menosPadding"><strong> Cloro (98-107 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinica"></td>
+                                                            <td class="menosPadding"><strong> Sodio (135-155 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinica"></td>
+                                                            <td class="menosPadding" colspan="2"><strong> Potasio (3.6-5.5 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinica"></td>
+                                                            <td class="menosPadding"><strong> Cloro (95-115 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinica"></td>
                                                         </tr>
 
                                                         <tr>
                                                             <td class="menosPadding"><strong> Magnesio (1.6-2.5 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="magnesioQuimicaClinica" id="magnesioQuimicaClinica"></td>
-                                                            <td class="menosPadding"  colspan="2"><strong> Calcio (8.5-10.5 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="calcioQuimicaClinica" id="calcioQuimicaClinica"></td>
+                                                            <td class="menosPadding"  colspan="2"><strong> Calcio (8.1-10.4 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="calcioQuimicaClinica" id="calcioQuimicaClinica"></td>
                                                             <td class="menosPadding"><strong> Fosforo (Vn: 2.5-5.0 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="fosforoQuimicaClinica" id="fosforoQuimicaClinica"></td>
                                                         </tr>
                                                         
@@ -876,7 +886,7 @@
                                                             <tr>
                                                                 <td class="textPeque">Tricomonas hominis</td>
                                                                 <td class="menosPadding"><input type="text" value="NO SE OBSERVAN"  class="form-control menosHeight" name="tricomonasQuistes" id="tricomonasQuistes"></td>
-                                                                <td class="menosPadding"><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name=" tricomonasTrofozoitos " id=" tricomonasTrofozoitos "></td>
+                                                                <td class="menosPadding"><input type="text" value="NO SE OBSERVAN" class="form-control menosHeight" name=" tricomonasTrofozoitos" id=" tricomonasTrofozoitos "></td>
                                                             </tr>
 
                                                             <tr>
@@ -1261,8 +1271,8 @@
                                                 <tbody class="text-left">
                                                     <tr>
                                                         <td class="menosPadding"><strong> Eritrocitos (4-6 millones)</strong><br><input type="text" class="form-control menosHeight" name="eritrocitosHematologia" id="eritrocitosHematologia"></td>
-                                                        <td class="menosPadding"><strong> Hematócrito (37-45 %)</strong><br><input type="text" class="form-control menosHeight" name="hematocritoHematologia" id="hematocritoHematologia"></td>
-                                                        <td class="menosPadding"><strong> Hemoglobina (12-15 g/dl)</strong><br><input type="text" class="form-control menosHeight" name="hemoglobinaHematologia" id="hemoglobinaHematologia"></td>
+                                                        <td class="menosPadding"><strong> Hematócrito (36-50 %)</strong><br><input type="text" class="form-control menosHeight" name="hematocritoHematologia" id="hematocritoHematologia"></td>
+                                                        <td class="menosPadding"><strong> Hemoglobina (12-16.2 g/dl)</strong><br><input type="text" class="form-control menosHeight" name="hemoglobinaHematologia" id="hemoglobinaHematologia"></td>
                                                     </tr>
 
                                                     <tr>
@@ -1320,6 +1330,7 @@
                                             </table>
                                             <div class="text-center">
                                                 <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
+                                                <input type="hidden" name="edadPaciente" value="<?php echo $paciente->edadPaciente; ?>">
                                                 <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Guardar examen</button>
                                                 <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
                                             </div>
@@ -2393,28 +2404,28 @@
                                                 <tbody class="text-left">
                                                     <tr style="display: none;">
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Glucosa (60-110 mg/dl)</strong><br><input type="text" name="glucosa" class="form-control menosHeight" id="glucosaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Glucosa (55-110 mg/dl)</strong><br><input type="text" name="glucosa" class="form-control menosHeight" id="glucosaActualizar"></td>
                                                         <td class="menosPadding"><strong> Glucosa P. (140 mg/dl)</strong><br><input type="text" name="posprandial" class="form-control menosHeight" id="posprandialActualizar"></td>
                                                         <td class="menosPadding"><strong> Colesterol ( < de 200 mg/dl)</strong><br><input type="text" name="colesterol" class="form-control menosHeight" id="colesterolActualizar"></td>
                                                         <td class="menosPadding"><strong> Triglicéridos ( < de 150 mg/dl)</strong><br><input type="text" name="trigliceridos" class="form-control menosHeight" id="trigliceridosActualizar"></td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Colesterol HDL ( > de 35 mg/dl) </strong><br><input type="text" name="colesterolHDL" class="form-control menosHeight" id="colesterolHDLActualizar"></td>
-                                                        <td class="menosPadding"><strong> Colesterol LDL ( < 130 mg/dl)</strong><br><input type="text" name="colesterolLDL" class="form-control menosHeight" id="colesterolLDLActualizar"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Ácido úrico (2.4-7.0 mg/dl) </strong><br><input type="text" name="acidoUrico" class="form-control menosHeight" id="acidoUricoActualizar" size="47"></td>
+                                                        <td class="menosPadding"><strong> Colesterol HDL (35-65 mg/dl) </strong><br><input type="text" name="colesterolHDL" class="form-control menosHeight" id="colesterolHDLActualizar"></td>
+                                                        <td class="menosPadding"><strong> Colesterol LDL ( < 150 mg/dl)</strong><br><input type="text" name="colesterolLDL" class="form-control menosHeight" id="colesterolLDLActualizar"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Ácido úrico (2.5-7.0 mg/dl) </strong><br><input type="text" name="acidoUrico" class="form-control menosHeight" id="acidoUricoActualizar" size="47"></td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Urea ( 15-45 mg/dl)</strong><br><input type="text" name="urea" class="form-control menosHeight" id="ureaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Nitrógeno ureico ( 5-25 mg/dl)</strong><br><input type="text" name="nitrogenoUreico" class="form-control menosHeight" id="nitrogenoUreicoActualizar"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Creatinina ( 0.5-1.4 mg/dl)</strong><br><input type="text" name="creatinina" class="form-control menosHeight" id="creatininaActualizar" size="47"></td>
+                                                        <td class="menosPadding"><strong> Urea ( 10.0 a 48.1 mg/dl)</strong><br><input type="text" name="urea" class="form-control menosHeight" id="ureaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Nitrógeno ureico ( 4.7-22.5 mg/dl)</strong><br><input type="text" name="nitrogenoUreico" class="form-control menosHeight" id="nitrogenoUreicoActualizar"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Creatinina ( 0.7-1.4 mg/dl)</strong><br><input type="text" name="creatinina" class="form-control menosHeight" id="creatininaActualizar" size="47"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td class="menosPadding"><strong> Amilasa ( VN: menor de 90 U/L)</strong><br><input type="text" name="amilasa" class="form-control menosHeight" id="amilasaActualizar"></td>
                                                         <td class="menosPadding"><strong> Lipasa ( VN: menor de 38 U/L)</strong><br><input type="text" name="lipasa" class="form-control menosHeight" id="lipasaActualizar"></td>
-                                                        <td colspan="2" class="menosPadding"><strong> Fosfatasa alcalina ( Hasta 275 U/L)</strong><br><input type="text" name="fosfatasaAlcalina" class="form-control menosHeight" id="fosfatasaAlcalinaActualizar" size="47"></td>
+                                                        <td colspan="2" class="menosPadding"><strong> Fosfatasa alcalina ( 98-279 U/L)</strong><br><input type="text" name="fosfatasaAlcalina" class="form-control menosHeight" id="fosfatasaAlcalinaActualizar" size="47"></td>
                                                     </tr>
 
                                                     <tr>
@@ -2424,9 +2435,9 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="menosPadding"><strong> Proteina total (VN: 6.6-8.3 g/dL)</strong><br><input type="text" name="proteinaTotal" class="form-control menosHeight" id="proteinaTotalActualizar"></td>
+                                                        <td class="menosPadding"><strong> Proteina total (VN: 6.7-8.7 g/dL)</strong><br><input type="text" name="proteinaTotal" class="form-control menosHeight" id="proteinaTotalActualizar"></td>
                                                         <td class="menosPadding"><strong> Albúmina (VN: 3.5-5.0 g/dL)</strong><br><input type="text" name="albumina" class="form-control menosHeight" id="albuminaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Globulina (VN: 2-3.5 g/dL) </strong><br><input type="text" name="globulina" class="form-control menosHeight" id="globulinaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Globulina (VN: 2.3-3.4 g/dL) </strong><br><input type="text" name="globulina" class="form-control menosHeight" id="globulinaActualizar"></td>
                                                         <td class="menosPadding"><strong> Relación A/G: 1.2 a 2.2 </strong><br><input type="text" name="relacionAG" class="form-control menosHeight" id="relacionAGActualizar"></td>
                                                     </tr>
 
@@ -2438,14 +2449,14 @@
 
                                                     <!-- Inicio -->
                                                         <tr>
-                                                            <td class="menosPadding"><strong> Sodio (136-148 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinicaActualizar"></td>
-                                                            <td class="menosPadding" colspan="2"><strong> Potasio (3.5-5.3 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinicaActualizar"></td>
-                                                            <td class="menosPadding"><strong> Cloro (98-107 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinicaActualizar"></td>
+                                                            <td class="menosPadding"><strong> Sodio (135-155 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="sodioQuimicaClinica" id="sodioQuimicaClinicaActualizar"></td>
+                                                            <td class="menosPadding" colspan="2"><strong> Potasio (3.6-5.5 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="potasioQuimicaClinica" id="potasioQuimicaClinicaActualizar"></td>
+                                                            <td class="menosPadding"><strong> Cloro (95-115 mmol/L)</strong><br><input type="text" class="form-control menosHeight" name="cloroQuimicaClinica" id="cloroQuimicaClinicaActualizar"></td>
                                                         </tr>
 
                                                         <tr>
                                                             <td class="menosPadding"><strong> Magnesio (1.6-2.5 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="magnesioQuimicaClinica" id="magnesioQuimicaClinicaActualizar"></td>
-                                                            <td class="menosPadding" colspan="2"><strong> Calcio (8.5-10.5 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="calcioQuimicaClinica" id="calcioQuimicaClinicaActualizar"></td>
+                                                            <td class="menosPadding" colspan="2"><strong> Calcio (8.1-10.4 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="calcioQuimicaClinica" id="calcioQuimicaClinicaActualizar"></td>
                                                             <td class="menosPadding"><strong> Fosforo (Vn: 2.5-5.0 mg/dl) </strong><br><input type="text" class="form-control menosHeight" name="fosforoQuimicaClinica" id="fosforoQuimicaClinicaActualizar"></td>
                                                         </tr>
 
@@ -2594,7 +2605,7 @@
                                                             <tr>
                                                                 <td class="textPeque">Tricomonas hominis</td>
                                                                 <td class="menosPadding"><input type="text" class="form-control menosHeight" name="tricomonasQuistes" id="tricomonasQuistesActualizar"></td>
-                                                                <td class="menosPadding"><input type="text" class="form-control menosHeight" name=" tricomonasTrofozoitos " id="tricomonasTrofozoitosActualizar"></td>
+                                                                <td class="menosPadding"><input type="text" class="form-control menosHeight" name=" tricomonasTrofozoitos" id="tricomonasTrofozoitosActualizar"></td>
                                                             </tr>
 
                                                             <tr>
@@ -2965,8 +2976,8 @@
 
                                                     <tr>
                                                         <td class="menosPadding"><strong> Eritrocitos (4-6 millones)</strong><br><input type="text" class="form-control menosHeight" name="eritrocitosHematologia" id="eritrocitosHematologiaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Hematócrito (37-45 %)</strong><br><input type="text" class="form-control menosHeight" name="hematocritoHematologia" id="hematocritoHematologiaActualizar"></td>
-                                                        <td class="menosPadding"><strong> Hemoglobina (12-15 g/dl)</strong><br><input type="text" class="form-control menosHeight" name="hemoglobinaHematologia" id="hemoglobinaHematologiaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Hematócrito (36-50 %)</strong><br><input type="text" class="form-control menosHeight" name="hematocritoHematologia" id="hematocritoHematologiaActualizar"></td>
+                                                        <td class="menosPadding"><strong> Hemoglobina (12-16.2 g/dl)</strong><br><input type="text" class="form-control menosHeight" name="hemoglobinaHematologia" id="hemoglobinaHematologiaActualizar"></td>
                                                     </tr>
 
                                                     <tr>
@@ -3026,6 +3037,7 @@
                                                 <input type="hidden" name="idHematologia" id="idHematologia">
                                                 <input type="hidden" name="idDetalleConsulta" id="idDetalleConsultaH">
                                                 <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
+                                                <input type="hidden" name="edadPaciente" value="<?php echo $paciente->edadPaciente; ?>">
                                                 <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar examen</button>
                                                 <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
                                             </div>
@@ -3117,9 +3129,9 @@
                                                 </tbody>
                                             </table>
                                             <div class="text-center">
-                                                <input type="text" name="idOrina" id="idOrina">
-                                                <input type="text" name="idDetalleConsulta" id="idDetalleConsultaO">
-                                                <input type="text" name="consulta" value="<?php echo $consulta; ?>">
+                                                <input type="hidden" name="idOrina" id="idOrina">
+                                                <input type="hidden" name="idDetalleConsulta" id="idDetalleConsultaO">
+                                                <input type="hidden" name="consulta" value="<?php echo $consulta; ?>">
                                                 <button class="btn btn-primary mt-4 d-inline w-20" type="submit"><i class="fa fa-save"></i> Actualizar</button>
                                                 <button class="btn btn-light mt-4 d-inline w-20" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Cancelar</button>
                                             </div>
@@ -3607,6 +3619,32 @@
     <!-- Fin Modal para examen Toxoplasma-->
 
 <!-- Fin modales para actualizar -->
+
+<!-- Modal para examen Toxoplasma-->
+<div class="modal fade" id="detalleTablaExamen" tabindex="-1" role="dialog" awhria-hidden="true">
+            <div class="modal-dialog ms-modal-dialog-width">
+                <div class="modal-content ms-modal-content-width">
+                    <div class="modal-header  ms-modal-header-radius-0">
+                        <h4 class="modal-title text-white">Resultados del examen <span id="htmlNombre" class="text-white"></span></h4>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body p-0 text-left">
+                        <div class="col-xl-12 col-md-12">
+                            <div class="ms-panel ms-panel-bshadow-none">
+                                <div class="ms-panel-body">
+                                    <div id="htmlDetalle">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <!-- Fin Modal para examen Toxoplasma-->
 
 <script>
     $(document).ready(function() {
@@ -4131,6 +4169,17 @@
 </script>
 
 <script>
+
+    $(document).on("click", ".examenFecha", function(e) {
+        e.preventDefault();
+        var html = $(this).closest('tr').find('.tabla_examen').html();
+        var tabla = checkUTF8(atob(html));
+        var nombre = $(this).closest('tr').find('.nombre_examen').html();
+        $("#htmlDetalle").html(tabla);
+        $("#htmlNombre").html(nombre);
+        // console.log(tabla);
+    });
+
     /* $('#tLibre').click(function(e) {
         e.preventDefault();
         // Coding
@@ -4139,4 +4188,17 @@
         //$('#tiroideasLibres').reset();
         return false;
     }); */
+
+    function checkUTF8(text) {
+        var utf8Text = text;
+        try {
+            // Try to convert to utf-8
+            utf8Text = decodeURIComponent(escape(text));
+            // If the conversion succeeds, text is not utf-8
+        }catch(e) {
+            // console.log(e.message); // URI malformed
+            // This exception means text is utf-8
+        }   
+        return utf8Text; // returned text is always utf-8
+    }
 </script>
