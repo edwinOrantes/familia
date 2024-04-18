@@ -396,6 +396,29 @@ class Laboratorio_Model extends CI_Model {
         return $datos->result();
     }
 
+    // Metodo para busqueda de pacientes
+        public function busquedaConsultas($data = null){
+            if($data != null){
+                $param = $data["parametro"];
+                $busqueda = $data["busquedaPaciente"];
+                $str = "";
+                if($param == 1){
+                    $str = "p.nombrePaciente LIKE '%$busqueda%'";
+                }else{
+                    $str = "p.duiPaciente LIKE '%$busqueda%'";
+                }
+                $sql = "SELECT * FROM tbl_consulta_laboratorio AS cl
+                        INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                        WHERE ".$str."
+                        GROUP BY p.idPaciente LIMIT 10";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+
+            }
+        }
+
+    // Metodo para busqueda de pacientes
+
     
 
 
@@ -1636,6 +1659,20 @@ class Laboratorio_Model extends CI_Model {
             }
         }
     // Validando que se hayan subido a la nube los resultados
+
+
+    //Metodos para busqueda de resultados
+    public function cabeceraBusqueda($id){
+        $sql = "SELECT 
+                cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, cl.codigoConsulta, cl.fechaConsulta, m.nombreMedico
+                FROM tbl_consulta_laboratorio AS cl
+                INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                WHERE cl.idPaciente = '$id' ";
+        $datos = $this->db->query($sql);
+        return $datos->row();
+    }
+    //Metodos para busqueda de resultados
 }
 ?>
 

@@ -3966,111 +3966,111 @@ class Laboratorio extends CI_Controller {
             }
         // Fin gases arteriales
         
-    public function resumen_examenes(){
-        $this->load->view("Base/header");
-        $this->load->view("Laboratorio/reporte_por_fechas");
-        $this->load->view("Base/footer");
-    }
-
-    public function resumen_examenes_excel(){
-        if($this->input->server('REQUEST_METHOD') == 'POST'){
-            $datos = $this->input->post();
-            if($datos["fechaInicio"] > $datos["fechaFin"]){
-                /* $this->session->set_flashdata("error","La fecha de inicio no puede ser mayor o igual a la fecha fin");
-				redirect(base_url()."Laboratorio/resumen_examenes"); */
-            }else{
-                $i = $datos["fechaInicio"];
-                $f = $datos["fechaFin"];
-            }
-        }else{
-            $i = date("Y-m-d");
-            $f = date("Y-m-d");
+        public function resumen_examenes(){
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/reporte_por_fechas");
+            $this->load->view("Base/footer");
         }
 
-        // Sacando excel
-            $datos = $this->Laboratorio_Model->obtenerConsultas($i, $f);
-            $spreadsheet = new Spreadsheet();
-            $sheet = $spreadsheet->getActiveSheet();
-            $sheet->setCellValue('A1', 'CENTRO MEDICO LA FAMILIA');
-            $sheet->mergeCells('A1:E1');
-            // Centrando horizontalmente.
-                $centrar = [
-                    'alignment' => [
-                        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
-                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
-                    ],
-                ];
-                $sheet->getStyle('A1:F2')->applyFromArray($centrar);
-                $sheet->getStyle('A2:F2')->applyFromArray($centrar);
-            // Fin centrar horizontalmente
-
-            $sheet->setCellValue('A2', '#');
-            $sheet->setCellValue('B2', 'Paciente');
-            $sheet->setCellValue('C2', 'Examenes');
-            $sheet->setCellValue('D2', 'Efectuados');
-            $sheet->setCellValue('E2', 'Total');
-
-            // Poniendo en negritas
-                $sheet->getStyle('A1:E1')->getFont()->setBold(true);	
-                $sheet->getStyle('A2:E2')->getFont()->setBold(true);	
-            // Fin poner negritas
-            $flag = 3;
-            $index=1;
-            
-            foreach ($datos as $fila) {
-                $cadenaDetalle = "";
-                $consumidoPaciente = 0;
-                $detalleConsulta = $this->Laboratorio_Model->obtenerDetalleConsultas($fila->idConsultaLaboratorio);
-                $efectuados = 0;
-                $hospital = 0;
-                $isbm = 0;
-                $urologica = 0;
-                
-                foreach ($detalleConsulta as $detalle) {
-
-                    $cadenaDetalle .= $detalle->examenes;
-
-                    $totalExamenes = $this->Laboratorio_Model->detalleExamenesRealizados($detalle->idDetalleConsulta);
-                    foreach ($totalExamenes as $detalleConsumido) {
-                        $consumidoPaciente += ($detalleConsumido->precioVMedicamento * 1);
-                        $efectuados++;
-                    }
-                    
+        public function resumen_examenes_excel(){
+            if($this->input->server('REQUEST_METHOD') == 'POST'){
+                $datos = $this->input->post();
+                if($datos["fechaInicio"] > $datos["fechaFin"]){
+                    /* $this->session->set_flashdata("error","La fecha de inicio no puede ser mayor o igual a la fecha fin");
+                    redirect(base_url()."Laboratorio/resumen_examenes"); */
+                }else{
+                    $i = $datos["fechaInicio"];
+                    $f = $datos["fechaFin"];
                 }
-                // var_dump($detalleConsulta);
-                //echo $fila->tipoConsulta." --- ".$fila->idConsultaLaboratorio." --- ".$fila->nombrePaciente." --- ".$cadenaDetalle." --- ".$consumidoPaciente."<br>";
-                
-                
-                $sheet->setCellValue('A'.$flag, $index);
-                $sheet->setCellValue('B'.$flag, $fila->nombrePaciente);
-                $sheet->setCellValue('C'.$flag, $cadenaDetalle);
-                $sheet->getStyle('C'.$flag)->getAlignment()->setWrapText(true);
-                $sheet->setCellValue('D'.$flag, $efectuados);
-                $sheet->setCellValue('E'.$flag, $consumidoPaciente);
-                
-                $efectuados = 0;
-                $index++;
-                $flag++;
-                
-
+            }else{
+                $i = date("Y-m-d");
+                $f = date("Y-m-d");
             }
 
-            $sheet->getColumnDimension('A')->setWidth(5);
-            $sheet->getColumnDimension('B')->setWidth(50);
-            $sheet->getColumnDimension('C')->setWidth(100);
-            $sheet->getColumnDimension('D')->setWidth(15);
-            $sheet->getColumnDimension('E')->setWidth(15);
+            // Sacando excel
+                $datos = $this->Laboratorio_Model->obtenerConsultas($i, $f);
+                $spreadsheet = new Spreadsheet();
+                $sheet = $spreadsheet->getActiveSheet();
+                $sheet->setCellValue('A1', 'CENTRO MEDICO LA FAMILIA');
+                $sheet->mergeCells('A1:E1');
+                // Centrando horizontalmente.
+                    $centrar = [
+                        'alignment' => [
+                            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                        ],
+                    ];
+                    $sheet->getStyle('A1:F2')->applyFromArray($centrar);
+                    $sheet->getStyle('A2:F2')->applyFromArray($centrar);
+                // Fin centrar horizontalmente
 
-            $curdate = date('d-m-Y H:i:s');
-            $writer = new Xlsx($spreadsheet);
-            $filename = 'examenes_del_mes'.$curdate;
-            ob_end_clean();
-            header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-            header('Cache-Control: max-age=0');
-            $writer->save('php://output');
-        // Fin sacar excel
-    }
+                $sheet->setCellValue('A2', '#');
+                $sheet->setCellValue('B2', 'Paciente');
+                $sheet->setCellValue('C2', 'Examenes');
+                $sheet->setCellValue('D2', 'Efectuados');
+                $sheet->setCellValue('E2', 'Total');
+
+                // Poniendo en negritas
+                    $sheet->getStyle('A1:E1')->getFont()->setBold(true);	
+                    $sheet->getStyle('A2:E2')->getFont()->setBold(true);	
+                // Fin poner negritas
+                $flag = 3;
+                $index=1;
+                
+                foreach ($datos as $fila) {
+                    $cadenaDetalle = "";
+                    $consumidoPaciente = 0;
+                    $detalleConsulta = $this->Laboratorio_Model->obtenerDetalleConsultas($fila->idConsultaLaboratorio);
+                    $efectuados = 0;
+                    $hospital = 0;
+                    $isbm = 0;
+                    $urologica = 0;
+                    
+                    foreach ($detalleConsulta as $detalle) {
+
+                        $cadenaDetalle .= $detalle->examenes;
+
+                        $totalExamenes = $this->Laboratorio_Model->detalleExamenesRealizados($detalle->idDetalleConsulta);
+                        foreach ($totalExamenes as $detalleConsumido) {
+                            $consumidoPaciente += ($detalleConsumido->precioVMedicamento * 1);
+                            $efectuados++;
+                        }
+                        
+                    }
+                    // var_dump($detalleConsulta);
+                    //echo $fila->tipoConsulta." --- ".$fila->idConsultaLaboratorio." --- ".$fila->nombrePaciente." --- ".$cadenaDetalle." --- ".$consumidoPaciente."<br>";
+                    
+                    
+                    $sheet->setCellValue('A'.$flag, $index);
+                    $sheet->setCellValue('B'.$flag, $fila->nombrePaciente);
+                    $sheet->setCellValue('C'.$flag, $cadenaDetalle);
+                    $sheet->getStyle('C'.$flag)->getAlignment()->setWrapText(true);
+                    $sheet->setCellValue('D'.$flag, $efectuados);
+                    $sheet->setCellValue('E'.$flag, $consumidoPaciente);
+                    
+                    $efectuados = 0;
+                    $index++;
+                    $flag++;
+                    
+
+                }
+
+                $sheet->getColumnDimension('A')->setWidth(5);
+                $sheet->getColumnDimension('B')->setWidth(50);
+                $sheet->getColumnDimension('C')->setWidth(100);
+                $sheet->getColumnDimension('D')->setWidth(15);
+                $sheet->getColumnDimension('E')->setWidth(15);
+
+                $curdate = date('d-m-Y H:i:s');
+                $writer = new Xlsx($spreadsheet);
+                $filename = 'examenes_del_mes'.$curdate;
+                ob_end_clean();
+                header('Content-Type: application/vnd.ms-excel');
+                header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+                header('Cache-Control: max-age=0');
+                $writer->save('php://output');
+            // Fin sacar excel
+        }
     /* Metodos para gestion de procesos de laboratorio */
 
     /* Metodos para el Dashboard */
@@ -4951,5 +4951,54 @@ class Laboratorio extends CI_Controller {
         }
 
     // Blanco y negro
+
+
+    // Busqueda de resultados de examenes
+        public function examenes_laboratorio(){
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/Busqueda/busqueda_examenes");
+            $this->load->view("Base/footer");
+        }
+
+        public function resultado_busqueda(){
+            $datos = $this->input->post();
+            $data["pacientes"] = $this->Laboratorio_Model->busquedaConsultas($datos);
+            
+            $this->load->view('Base/header');
+            $this->load->view('Laboratorio/Busqueda/lista_paciente', $data);
+            $this->load->view('Base/footer');
+    
+            // echo json_encode($datos);
+        }
+
+        
+        public function detalle_examenes($id){
+            $data["paciente"] = $this->Laboratorio_Model->cabeceraBusqueda($id);
+            $data["consulta"] = $id;
+            
+            $data["examenes"] = $this->Laboratorio_Model->obtenerExamenes();
+            $data["examenesRealizados"] = $this->Laboratorio_Model->obtenerExamenesRealizados($id);
+            $data["historial"] = $this->Laboratorio_Model->fechasVisitas($data["paciente"]->idPaciente, $data["paciente"]->fechaConsulta);
+            $data["consulta"] = $id;
+
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/Busqueda/detalle_busqueda", $data);
+            $this->load->view("Base/footer"); 
+
+            // echo json_encode($data);
+
+        }
+
+        public function recomendaciones_busqueda(){
+			if($this->input->is_ajax_request()){
+				$str =$this->input->post("id");
+				$data = $this->Laboratorio_Model->busquedaConsultas(trim($str));
+				echo json_encode($data);
+			}
+			else{
+				echo "Error...";
+			}
+		}
+    // Busqueda de resultados de examenes
 	
 }

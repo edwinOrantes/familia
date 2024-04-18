@@ -24,6 +24,30 @@ class Consultas extends CI_Controller {
 		// echo json_encode($data);
 	}
 
+	public function detalle_consulta($consulta = null){
+		$data["paciente"] = $this->Consultas_Model->cabeceraConsulta($consulta);
+		$this->load->view("Base/header");
+		$this->load->view("Consultas/detalle_consulta", $data);
+		$this->load->view("Base/footer");
+		// echo json_encode($data);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Metodos para obtener los pacientes pendientes
 		public function consultas_pendientes(){
 			//$pivote = $this->session->userdata("acceso_h");

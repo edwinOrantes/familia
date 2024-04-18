@@ -351,7 +351,8 @@ class Paciente_Model extends CI_Model {
 
     // Obtener todo menos medicamentos
     public function obtenerExamenes(){
-        $sql = "SELECT * FROM tbl_medicamentos AS m WHERE m.pivoteMedicamento > 0 AND m.ocultarMedicamento = 0";
+        // $sql = "SELECT * FROM tbl_medicamentos AS m WHERE m.pivoteMedicamento > 0 AND m.ocultarMedicamento = 0";
+        $sql = "SELECT * FROM tbl_medicamentos AS m WHERE m.ocultarMedicamento = 0";
         $datos = $this->db->query($sql);
         return $datos->result();
     }

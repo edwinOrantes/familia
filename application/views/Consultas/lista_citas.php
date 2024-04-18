@@ -85,9 +85,8 @@
                                             <td class="text-center"><?php echo date("h:i:s A", strtotime($cita->hora)); ?></td>
                                             <td class="text-center">
                                                 <?php
-                                                    echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Hemodialisis/boleta_para_pago/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
-                                                    echo "<a title='Ver historial del paciente' target='blank' href='".base_url()."Paciente/detalle_paciente/".$cita->idPaciente."'><i class='fas fa-eye ms-text-primary'></i></a>";
-                                                    echo "<a  title='Ver hoja de cobro' target='blank' href='".base_url()."Hoja/detalle_hoja/".$cita->hojaCobro."/'><i class='fas fa-file ms-text-primary'></i></a>";
+                                                    echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Consultas/detalle_consulta/".$cita->idConsulta."/'><i class='fas fa-file ms-text-primary'></i></a>";
+                                                    // echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Consultas/detalle_consulta/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
                                                 ?>
                                             </td>
                                         </tr>

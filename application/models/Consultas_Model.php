@@ -11,6 +11,25 @@ class Consultas_Model extends CI_Model {
             return $datos->result();
         }
 
+        public function cabeceraConsulta($consulta = null){
+            if($consulta != null){
+                $sql = "SELECT p.*, c.idConsulta, c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta 
+                        FROM tbl_consultas AS c 
+                        INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
+                        WHERE c.idConsulta = '$consulta' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
+
+
+
+
+
+
+
+
+
         public function consultasPorPaciente($id = null){
             $sql = "SELECT m.nombreMedico, p.*, c.*, TIME(c.creadaConsulta) AS hora FROM tbl_consultas AS c 
                     INNER JOIN tbl_medicos AS m ON(m.idMedico = c.idMedico)
