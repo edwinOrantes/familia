@@ -13,12 +13,33 @@ class Consultas_Model extends CI_Model {
 
         public function cabeceraConsulta($consulta = null){
             if($consulta != null){
-                $sql = "SELECT p.*, c.idConsulta, c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta 
+                $sql = "SELECT r.nombreResponsable, r.parentescoResponsable, r.duiResponsable, r.telefonoResponsable, p.*, c.idConsulta, c.peso, 
+                        c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta 
                         FROM tbl_consultas AS c 
                         INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
+                        INNER JOIN tbl_responsables AS r ON(r.idMenor = p.idPaciente)
                         WHERE c.idConsulta = '$consulta' ";
                 $datos = $this->db->query($sql);
                 return $datos->row();
+            }
+        }
+
+        public function obtenerIdPaciente($consulta = null){
+            if($consulta != null){
+                $sql = "SELECT c.idPaciente FROM tbl_consultas AS c WHERE c.idConsulta = '$consulta' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
+
+        public function historialMedidas($paciente = null){
+            if($paciente != null){
+                $sql = "SELECT 
+                        c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta
+                        FROM tbl_consultas AS c WHERE c.idPaciente = '$paciente' 
+                        ORDER BY date(c.fechaConsulta) ASC";
+                $datos = $this->db->query($sql);
+                return $datos->result();
             }
         }
 

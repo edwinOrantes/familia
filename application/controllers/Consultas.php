@@ -25,7 +25,9 @@ class Consultas extends CI_Controller {
 	}
 
 	public function detalle_consulta($consulta = null){
+		$paciente = $this->Consultas_Model->obtenerIdPaciente($consulta); // Obteneiendo el id del paciente
 		$data["paciente"] = $this->Consultas_Model->cabeceraConsulta($consulta);
+		$data["medidas"] = $this->Consultas_Model->historialMedidas($paciente->idPaciente);
 		$this->load->view("Base/header");
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
