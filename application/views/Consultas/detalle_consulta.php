@@ -38,13 +38,13 @@
                     <!-- Tabs -->
                        <div class="ms-panel-body clearfix">
                             <ul class="nav nav-tabs d-flex nav-justified mb-4" role="tablist">
-                            <li role="presentation"><a href="#datosPaciente" aria-controls="datosPaciente" class="active" role="tab" data-toggle="tab">Datos del paciente</a></li>
-                            <li role="presentation"><a href="#tabConsulta" aria-controls="tabConsulta" role="tab" data-toggle="tab">Consultas</a></li>
-                            <li role="presentation"><a href="#antecedentes" aria-controls="antecedentes" role="tab" data-toggle="tab">Antecedentes</a></li>
-                            <li role="presentation"><a href="#examanesLaboratorio" aria-controls="examanesLaboratorio" role="tab" data-toggle="tab">Exámenes de Laboratorio</a></li>
-                            <li role="presentation"><a href="#recetas" aria-controls="recetas" role="tab" data-toggle="tab">Recetas</a></li>
-                            <li role="presentation"><a href="#reporteQuirurgico" aria-controls="reporteQuirurgico" role="tab" data-toggle="tab">Reporte quirúrgico </a></li>
-                            <li role="presentation"><a href="#ingresosHospitalarios" aria-controls="ingresosHospitalarios" role="tab" data-toggle="tab">Ingresos hospitalarios </a></li>
+                                <li role="presentation"><a href="#datosPaciente" aria-controls="datosPaciente" class="active" role="tab" data-toggle="tab">Datos del paciente</a></li>
+                                <li role="presentation"><a href="#tabConsulta" aria-controls="tabConsulta" role="tab" data-toggle="tab">Consultas</a></li>
+                                <li role="presentation"><a href="#antecedentes" aria-controls="antecedentes" role="tab" data-toggle="tab">Antecedentes</a></li>
+                                <li role="presentation"><a href="#examanesLaboratorio" aria-controls="examanesLaboratorio" role="tab" data-toggle="tab">Exámenes de Laboratorio</a></li>
+                                <li role="presentation"><a href="#recetas" aria-controls="recetas" role="tab" data-toggle="tab">Recetas</a></li>
+                                <li role="presentation"><a href="#reporteQuirurgico" aria-controls="reporteQuirurgico" role="tab" data-toggle="tab">Reporte quirúrgico </a></li>
+                                <li role="presentation"><a href="#ingresosHospitalarios" aria-controls="ingresosHospitalarios" role="tab" data-toggle="tab">Ingresos hospitalarios </a></li>
                             </ul>
                             <div class="tab-content">
 
@@ -149,88 +149,98 @@
                                 <div role="tabpanel" class="tab-pane fade" id="tabConsulta">
 
                                     <div class="row">
+                                        <div class="col-md-10">
 
-                                        <div class="col-md-5">
-                                            <table class="table table-borderless table-sm">
-                                                <tr>
-                                                    <td><strong>CONSULTA POR:</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" size="50" name="consultaPor" id="consultaPor"></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-
-                                        <div class="col-md-7 alert-success">
-                                            <table class="table table-borderless table-sm">
-                                                <tr class="text-center">
-                                                    <td colspan="5"><strong>DATOS TOMADOS EN EMERGENCIA:</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
-                                                    <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> Cm</td>
-                                                    <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
-                                                    <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
-                                                    <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 text-center">
-                                            <p><strong>PRESENTE ENFERMEDAD</strong></p>
-                                            <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5"></textarea>
-                                        </div>
-                                        <div class="col-md-6 text-center">
-                                            <p><strong>EVOLUCION</strong></p>
-                                            <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-2">
-                                        <div class="col-md-8">
-                                            
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                    <table class="table table-borderless">
+                                                <div class="col-md-12 bg-danger text-white">
+                                                    <table class="table table-borderless table-sm">
+                                                        <tr class="text-center">
+                                                            <td colspan="5"><strong>DATOS TOMADOS EN EMERGENCIA:</strong></td>
+                                                        </tr>
                                                         <tr>
-                                                            <td><strong>EXAMEN FISICO</strong></td>
-                                                            <td>P.A: <input type="text" size="10" class="" name="paConsulta" id="paConsulta"></td>
-                                                            <td>F.C: <input type="text" size="10" class="" name="fcConsulta" id="fcConsulta"></td>
-                                                            <td>Temp: <input type="text" size="10" class="" name="tempConsulta" id="tempConsulta"></td>
-                                                            <td>FR: <input type="text" size="10" class="" name="frConsulta" id="frConsulta"></td>
+                                                            <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
+                                                            <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> Cm</td>
+                                                            <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
+                                                            <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
+                                                            <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
                                                         </tr>
                                                     </table>
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <table class="table table-borderless table-sm">
+                                                        <tr>
+                                                            <td><strong>CONSULTA POR:</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="form-control" name="consultaPor" id="consultaPor"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+        
+                                                
                                             </div>
                                             
                                             <div class="row">
                                                 <div class="col-md-6 text-center">
-                                                    <p><strong>IMPRESION DIAGNOSTICA</strong></p>
-                                                    <table class="table table-borderless">
+                                                    <p><strong>PRESENTE ENFERMEDAD</strong></p>
+                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5"></textarea>
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    <p><strong>EVOLUCION</strong></p>
+                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5"></textarea>
+                                                </div>
+                                            </div>
+    
+                                        
+                                        
+                                            <div class="col-md-12">
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-borderless">
                                                             <tr>
-                                                                <td><input type="text" class="form-control" name="diagnosticoUno" id="diagnosticoUno"></td>
+                                                                <td><strong>EXAMEN FISICO</strong></td>
+                                                                <td>P.A: <input type="text" size="10" class="" name="paConsulta" id="paConsulta"></td>
+                                                                <td>F.C: <input type="text" size="10" class="" name="fcConsulta" id="fcConsulta"></td>
+                                                                <td>Temp: <input type="text" size="10" class="" name="tempConsulta" id="tempConsulta"></td>
+                                                                <td>FR: <input type="text" size="10" class="" name="frConsulta" id="frConsulta"></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td><input type="text" class="form-control" name="diagnosticoDos" id="diagnosticoDos"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="text" class="form-control" name="diagnosticoTres" id="diagnosticoTres"></td>
-                                                            </tr>
-                                                    </table>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-6 text-center">
+                                                        <p><strong>IMPRESION DIAGNOSTICA</strong></p>
+                                                        <table class="table table-borderless">
+                                                                <tr>
+                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoUno" id="diagnosticoUno"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoDos" id="diagnosticoDos"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoTres" id="diagnosticoTres"></td>
+                                                                </tr>
+                                                        </table>
+    
+    
+                                                        <datalist id="lista_diagnostico"></datalist>
+                                                    </div>
+        
+                                                    <div class="col-md-6">
+                                                        <p><strong>PLAN</strong></p>
+                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8"></textarea>
+                                                    </div>
+    
                                                 </div>
     
-                                                <div class="col-md-6">
-                                                    <p><strong>PLAN</strong></p>
-                                                    <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8"></textarea>
-                                                </div>
-
                                             </div>
 
                                         </div>
-                                        <div class="col-md-4 text-center">
+
+
+                                        <div class="col-md-2 text-center">
                                             <p><strong>HISTORIAL</strong></p>
                                             <div class="table-responsive historial">
                                                 <table class="table table-borderless table-sm">
@@ -278,9 +288,11 @@
                                                 </table>
                                             </div>
                                         </div>
+
+
                                     </div>
-                                    
-                                </div>
+
+`                                </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="antecedentes">
                                     <div class="row">
@@ -471,3 +483,47 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+
+$(document).on("keyup", ".impresionEnfermedad", function() {
+    $("#lista_diagnostico").html();
+    var lista = "";
+    var datos = {
+        str : $(this).val()
+    }
+
+    $.ajax({
+        url: "../../buscar_diagnostico",
+        type: "POST",
+        data: datos,
+        success:function(respuesta){
+            var registro = eval(respuesta);
+            if (Object.keys(registro).length > 0){
+                for (let i = 0; i < registro.length; i++) {
+                    lista += '<option value="'+registro[i]["nombreDiagnostico"]+'">'+registro[i]["nombreDiagnostico"]+'</option>';
+                }
+                $("#lista_diagnostico").html(lista);
+            }
+        }
+    });
+});
+
+$(document).ready(function(){
+    // Obtener la última pestaña activa desde el almacenamiento local
+    var ultimaPestana = localStorage.getItem('ultimaPestana');
+
+    // Si hay una última pestaña activa, activarla
+    if (ultimaPestana) {
+        $('.nav-tabs a[href="' + ultimaPestana + '"]').tab('show');
+    }
+
+    // Guardar la pestaña activa al cambiar de pestaña
+    $('.nav-tabs a').on('shown.bs.tab', function(event){
+        var nuevaPestana = $(event.target).attr('href');
+        localStorage.setItem('ultimaPestana', nuevaPestana);
+    });
+});
+
+</script>

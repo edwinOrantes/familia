@@ -34,6 +34,15 @@ class Consultas extends CI_Controller {
 		// echo json_encode($data);
 	}
 
+	public function buscar_diagnostico(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+			$resp = $this->Consultas_Model->buscarDiagnostico($datos["str"]);
+			print json_encode($resp);
+		}else{
+			echo "Error";
+		}
+	}
 
 
 
@@ -87,6 +96,7 @@ class Consultas extends CI_Controller {
 			$this->load->view("Base/footer");
 
 		}
+
 
 		public function liberar_cupo(){
 			if($this->input->is_ajax_request()){

@@ -43,6 +43,16 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function buscarDiagnostico($str = null){
+            if($str != null){
+                $sql = "SELECT dc.idDiagnostico, dc.codigoDiagnostico, dc.nombreDiagnostico 
+                        FROM tbl_diagnosticos_cie AS dc
+                        WHERE dc.nombreDiagnostico LIKE '%$str%'";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
+
 
 
 
