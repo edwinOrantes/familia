@@ -19,14 +19,11 @@
 <?php endif; ?>
 
 <style>
-    .historial {
-        height:300px;
+    .historial, .historial_receta {
+        height: 480px;
         overflow-y: scroll;
     }
-    .historial_receta {
-        height:500px;
-        overflow-y: scroll;
-    }
+
 </style>
 
 <div class="ms-content-wrapper">
@@ -172,7 +169,7 @@
                                                             <td><strong>CONSULTA POR:</strong></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><input type="text" class="form-control" name="consultaPor" id="consultaPor"></td>
+                                                            <td><input type="text" value="<?php echo $consulta->consultaPor; ?>" class="form-control" name="consultaPor" id="consultaPor"></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -183,11 +180,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 text-center">
                                                     <p><strong>PRESENTE ENFERMEDAD</strong></p>
-                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5"></textarea>
+                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5"><?php echo $consulta->presenteEnfermedad; ?></textarea>
                                                 </div>
                                                 <div class="col-md-6 text-center">
                                                     <p><strong>EVOLUCION</strong></p>
-                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5"></textarea>
+                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
                                                 </div>
                                             </div>
     
@@ -200,10 +197,10 @@
                                                         <table class="table table-borderless">
                                                             <tr>
                                                                 <td><strong>EXAMEN FISICO</strong></td>
-                                                                <td>P.A: <input type="text" size="10" class="" name="paConsulta" id="paConsulta"></td>
-                                                                <td>F.C: <input type="text" size="10" class="" name="fcConsulta" id="fcConsulta"></td>
-                                                                <td>Temp: <input type="text" size="10" class="" name="tempConsulta" id="tempConsulta"></td>
-                                                                <td>FR: <input type="text" size="10" class="" name="frConsulta" id="frConsulta"></td>
+                                                                <td>P.A: <input type="text" value="<?php echo $consulta->paConsulta; ?>"  size="10" class="" name="paConsulta" id="paConsulta"></td>
+                                                                <td>F.C: <input type="text" value="<?php echo $consulta->fcConsulta; ?>"  size="10" class="" name="fcConsulta" id="fcConsulta"></td>
+                                                                <td>Temp: <input type="text" value="<?php echo $consulta->tempConsulta; ?>"  size="10" class="" name="tempConsulta" id="tempConsulta"></td>
+                                                                <td>FR: <input type="text" value="<?php echo $consulta->frConsulta; ?>"  size="10" class="" name="frConsulta" id="frConsulta"></td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -214,13 +211,13 @@
                                                         <p><strong>IMPRESION DIAGNOSTICA</strong></p>
                                                         <table class="table table-borderless">
                                                                 <tr>
-                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoUno" id="diagnosticoUno"></td>
+                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoUno; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoUno" id="diagnosticoUno"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoDos" id="diagnosticoDos"></td>
+                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoDos; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoDos" id="diagnosticoDos"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input type="text" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoTres" id="diagnosticoTres"></td>
+                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoTres; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoTres" id="diagnosticoTres"></td>
                                                                 </tr>
                                                         </table>
     
@@ -230,7 +227,8 @@
         
                                                     <div class="col-md-6">
                                                         <p><strong>PLAN</strong></p>
-                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8"></textarea>
+                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8"><?php echo $consulta->planConsulta; ?></textarea>
+                                                        <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
     
                                                 </div>
@@ -286,6 +284,10 @@
                                                     </tr>
 
                                                 </table>
+                                            </div>
+
+                                            <div class="mt-5">
+                                                <button type="button" class="btn btn-primary btn-block" id="btnGuardarDetalleConsulta"> <i class="fa fa-save"></i> Guardar </button>
                                             </div>
                                         </div>
 
@@ -526,4 +528,81 @@ $(document).ready(function(){
     });
 });
 
+$(document).on("click", "#btnGuardarDetalleConsulta", function(e) {
+    e.preventDefault();
+    var datos = {
+        consultaPor: $("#consultaPor").val(),
+        presenteEnfermedad: $("#presenteEnfermedad").val(),
+        evolucionEnfermedad: $("#evolucionEnfermedad").val(),
+        paConsulta: $("#paConsulta").val(),
+        fcConsulta: $("#fcConsulta").val(),
+        tempConsulta: $("#tempConsulta").val(),
+        frConsulta: $("#frConsulta").val(),
+        diagnosticoUno: $("#diagnosticoUno").val(),
+        diagnosticoDos: $("#diagnosticoDos").val(),
+        diagnosticoTres: $("#diagnosticoTres").val(),
+        diagnostico: "",
+        planEnfermedad: $("#planEnfermedad").val(),
+        idDetalleConsulta: $("#idDetalleConsulta").val(),
+    };
+
+    $.ajax({
+        url: "../../guardar_detalle_consulta",
+        type: "POST",
+        data: datos,
+        success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                    if(registro.estado == 1){
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.success('Datos agregados con exito', 'Aviso!');
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+                    }
+                }else{
+                    toastr.remove();
+                    toastr.options = {
+                        "positionClass": "toast-top-left",
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1000",
+                        "extendedTimeOut": "50",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        },
+                    toastr.error('No se agrego el detalle...', 'Aviso!');
+
+                }
+            }
+    });
+
+
+});
+
 </script>
+

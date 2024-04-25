@@ -28,10 +28,45 @@ class Consultas extends CI_Controller {
 		$paciente = $this->Consultas_Model->obtenerIdPaciente($consulta); // Obteneiendo el id del paciente
 		$data["paciente"] = $this->Consultas_Model->cabeceraConsulta($consulta);
 		$data["medidas"] = $this->Consultas_Model->historialMedidas($paciente->idPaciente);
+
+		// Datos actuales
+			$data["consulta"] = $this->Consultas_Model->detalleConsulta($consulta);
+		// Datos actuales
+		
+
 		$this->load->view("Base/header");
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
-		// echo json_encode($data);
+
+		// echo json_encode($data["consulta"]);
+	}
+
+	public function guardar_detalle_consulta(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$datos["diagnostico"] = $datos["diagnosticoUno"]."<br>".$datos["diagnosticoDos"]."<br>".$datos["diagnosticoTres"];
+
+			$bool = $this->Consultas_Model->guardarDetalleConsulta($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
 	}
 
 	public function buscar_diagnostico(){

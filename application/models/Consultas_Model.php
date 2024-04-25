@@ -53,7 +53,24 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function detalleConsulta($c = null){
+            if($c != null){
+                $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
 
+        public function guardarDetalleConsulta($data = null){
+            $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
+                    tempConsulta = ?, frConsulta = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?, diagnosticoConsulta = ?, planConsulta = ?
+                    WHERE idDetalleConsulta = ?";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 
 

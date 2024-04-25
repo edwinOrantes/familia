@@ -160,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `tbl_bitacora` (
   `descripcionBitacora` text NOT NULL,
   `fechaBitacora` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idBitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=1018 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1019 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~64 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~65 rows (aproximadamente)
 INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `fechaBitacora`) VALUES
 	(954, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:12'),
 	(955, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:36'),
@@ -227,7 +227,8 @@ INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `f
 	(1014, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-13 20:00:39'),
 	(1015, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-18 01:03:25'),
 	(1016, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-19 00:55:26'),
-	(1017, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-20 21:20:29');
+	(1017, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-20 21:20:29'),
+	(1018, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-04-25 20:01:25');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_cargos
 CREATE TABLE IF NOT EXISTS `tbl_cargos` (
@@ -346,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `tbl_coagulacion` (
   PRIMARY KEY (`idCoagulacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_coagulacion: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_coagulacion: ~0 rows (aproximadamente)
 INSERT INTO `tbl_coagulacion` (`idCoagulacion`, `examenSolicitado`, `tiempoProtombina`, `tiempoTromboplastina`, `fibrinogeno`, `inr`, `tiempoSangramiento`, `tiempoCoagulacion`, `observacion`, `fechaCreacion`) VALUES
 	(16, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'Editado', '2024-04-10 01:48:24');
 
@@ -358,9 +359,9 @@ CREATE TABLE IF NOT EXISTS `tbl_cola_laboratorio` (
   `consultaGenerada` int(11) NOT NULL DEFAULT 0,
   `fechaCola` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idCola`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_cola_laboratorio: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_cola_laboratorio: ~25 rows (aproximadamente)
 INSERT INTO `tbl_cola_laboratorio` (`idCola`, `idPaciente`, `idHoja`, `consultaGenerada`, `fechaCola`) VALUES
 	(1, 3, 3, 0, '2024-02-22 21:35:49'),
 	(2, 2, 4, 0, '2024-03-02 15:53:41'),
@@ -385,7 +386,8 @@ INSERT INTO `tbl_cola_laboratorio` (`idCola`, `idPaciente`, `idHoja`, `consultaG
 	(21, 1, 23, 0, '2024-03-30 22:45:43'),
 	(22, 1, 24, 0, '2024-03-30 22:50:07'),
 	(23, 1, 25, 0, '2024-04-13 20:00:49'),
-	(24, 2, 26, 0, '2024-04-18 01:03:35');
+	(24, 2, 26, 0, '2024-04-18 01:03:35'),
+	(25, 5, 27, 0, '2024-04-25 20:13:23');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_compras_hemo
 CREATE TABLE IF NOT EXISTS `tbl_compras_hemo` (
@@ -480,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `tbl_consultas` (
   `estadoConsulta` int(11) NOT NULL DEFAULT 1,
   `creadaConsulta` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idConsulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_consultas: ~11 rows (aproximadamente)
 INSERT INTO `tbl_consultas` (`idConsulta`, `idPaciente`, `idMedico`, `nombrePaciente`, `peso`, `altura`, `imc`, `temperaturaPaciente`, `presionPaciente`, `fechaConsulta`, `hojaCobro`, `estadoConsulta`, `creadaConsulta`) VALUES
@@ -492,9 +494,10 @@ INSERT INTO `tbl_consultas` (`idConsulta`, `idPaciente`, `idMedico`, `nombrePaci
 	(9, 2, 2, 'Maria del Carmen Alfaro', 90.00, 180.00, 0.00, '0', '0', '2024-03-30', 18, 1, '2024-03-30 15:38:22'),
 	(10, 2, 1, 'Maria del Carmen Alfaro', 80.00, 200.00, 0.00, '0', '0', '2024-03-30', 19, 1, '2024-03-30 16:59:27'),
 	(11, 3, 1, 'Adela Maria Romero Cruz', 90.00, 180.00, 0.00, '0', '0', '2024-03-30', 21, 1, '2024-03-30 17:27:44'),
-	(12, 4, 2, 'Adela Matilde Romero Cruz', 90.00, 170.00, 0.00, '0', '0', '2024-04-24', 22, 1, '2024-03-30 17:30:15'),
+	(12, 4, 2, 'Adela Matilde Romero Cruz', 90.00, 170.00, 0.00, '0', '0', '2024-04-25', 22, 1, '2024-03-30 17:30:15'),
 	(13, 1, 1, 'Juan Antonio Campos', 90.00, 180.00, 0.00, '34', '95', '2024-03-30', 24, 0, '2024-03-30 22:59:11'),
-	(14, 1, 2, 'Juan Antonio Campos', 50.00, 150.00, 0.00, '36', '100/70', '2024-04-18', 25, 0, '2024-04-13 20:09:22');
+	(14, 1, 2, 'Juan Antonio Campos', 50.00, 150.00, 0.00, '36', '100/70', '2024-04-18', 25, 0, '2024-04-13 20:09:22'),
+	(15, 5, 2, 'Marcos Daniel Funes', 100.00, 1.50, 44.44, '35', '080/080', '2024-04-25', 27, 1, '2024-04-25 20:14:01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_consulta_laboratorio
 CREATE TABLE IF NOT EXISTS `tbl_consulta_laboratorio` (
@@ -640,7 +643,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cropologia` (
   PRIMARY KEY (`idCropologia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_cropologia: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_cropologia: ~0 rows (aproximadamente)
 INSERT INTO `tbl_cropologia` (`idCropologia`, `examenSolicitado`, `colorCropologia`, `consistenciaCropologia`, `mucusCropologia`, `hematiesCropologia`, `leucocitosCropologia`, `ascarisCropologia`, `hymenolepisCropologia`, `uncinariasCropologia`, `tricocefalosCropologia`, `larvaStrongyloides`, `histolyticaQuistes`, `histolyticaTrofozoitos`, `coliQuistes`, `coliTrofozoitos`, `giardiaQuistes`, `giardiaTrofozoitos`, `blastocystisQuistes`, `blastocystisTrofozoitos`, `tricomonasQuistes`, `tricomonasTrofozoitos`, `mesnilliQuistes`, `mesnilliTrofozoitos`, `nanaQuistes`, `nanaTrofozoitos`, `restosMacroscopicos`, `restosMicroscopicos`, `observacionesCropologia`, `tablaExamen`, `fechaCropologia`) VALUES
 	(13, 0, 'Amarillo', 'Pastosa', 'Negativo', 'no se observan', 'no se observan', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'NO SE OBSERVAN', 'escasos', 'escasos', 'Ninguna', '', '2024-04-06 22:46:22');
 
@@ -772,6 +775,30 @@ CREATE TABLE IF NOT EXISTS `tbl_dcompra_limpieza` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_dcompra_limpieza: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla db_centro_medico.tbl_dconsulta_medica
+CREATE TABLE IF NOT EXISTS `tbl_dconsulta_medica` (
+  `idDetalleConsulta` int(11) NOT NULL AUTO_INCREMENT,
+  `idConsulta` int(11) NOT NULL,
+  `consultaPor` text NOT NULL,
+  `presenteEnfermedad` text NOT NULL,
+  `evolucionEnfermedad` text NOT NULL,
+  `paConsulta` text NOT NULL,
+  `fcConsulta` text NOT NULL,
+  `tempConsulta` text NOT NULL,
+  `frConsulta` text NOT NULL,
+  `diagnosticoUno` text NOT NULL,
+  `diagnosticoDos` text NOT NULL,
+  `diagnosticoTres` text NOT NULL,
+  `diagnosticoConsulta` text NOT NULL,
+  `planConsulta` text NOT NULL,
+  `creadoConsulta` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`idDetalleConsulta`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla db_centro_medico.tbl_dconsulta_medica: ~0 rows (aproximadamente)
+INSERT INTO `tbl_dconsulta_medica` (`idDetalleConsulta`, `idConsulta`, `consultaPor`, `presenteEnfermedad`, `evolucionEnfermedad`, `paConsulta`, `fcConsulta`, `tempConsulta`, `frConsulta`, `diagnosticoUno`, `diagnosticoDos`, `diagnosticoTres`, `diagnosticoConsulta`, `planConsulta`, `creadoConsulta`) VALUES
+	(1, 15, 'Dolor de cabeza', 'Por el momento esta bien.\nnítido la verdad', 'Muy bien', '1', '2', '3', '4', 'FIEBRE TIFOIDEA', 'COLERA NO ESPECIFICADO', 'BALANTIDIASIS', 'FIEBRE TIFOIDEA<br>COLERA NO ESPECIFICADO<br>BALANTIDIASIS', 'Por el momento nada', '2024-04-25 20:14:01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcuenta_descargosbm
 CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargosbm` (
@@ -990,7 +1017,7 @@ CREATE TABLE IF NOT EXISTS `tbl_diagnosticos_cie` (
   PRIMARY KEY (`idDiagnostico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12424 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_diagnosticos_cie: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_diagnosticos_cie: ~12,562 rows (aproximadamente)
 INSERT INTO `tbl_diagnosticos_cie` (`idDiagnostico`, `codigoDiagnostico`, `nombreDiagnostico`, `creadoDiagnostico`) VALUES
 	(1, 'A000', 'COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO CHOLERAE', '0000-00-00 00:00:00'),
 	(2, 'A001', 'COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO EL TOR', '0000-00-00 00:00:00'),
@@ -13516,7 +13543,7 @@ CREATE TABLE IF NOT EXISTS `tbl_empleados` (
   CONSTRAINT `tbl_empleados_ibfk_2` FOREIGN KEY (`cargoEmpleado`) REFERENCES `tbl_cargos` (`idCargo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_empleados: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_empleados: ~0 rows (aproximadamente)
 INSERT INTO `tbl_empleados` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `edadEmpleado`, `telefonoEmpleado`, `cargoEmpleado`, `sexoEmpleado`, `duiEmpleado`, `nitEmpleado`, `estadoEmpleado`, `nacimientoEmpleado`, `departamentoEmpleado`, `municipioEmpleado`, `direccionEmpleado`, `tipoEmpleado`, `ingresoEmpleado`) VALUES
 	(1, 'Edwin Alexander', 'Cortez Orantes', 29, '0000-0000', 1, 'Masculino', '00000000-0', '0000-000000-000-0', 'Casado/a', '1992-01-03', 11, 42, 'Usulután', 0, '2021-01-04');
 
@@ -13608,7 +13635,7 @@ CREATE TABLE IF NOT EXISTS `tbl_externos_generados` (
   KEY `inicioExternoGenerado` (`inicioExternoGenerado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_externos_generados: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_externos_generados: ~0 rows (aproximadamente)
 INSERT INTO `tbl_externos_generados` (`idExternoGenerado`, `inicioExternoGenerado`, `finExternoGenerado`, `fechaGenerado`, `fechaExternoGenerado`) VALUES
 	(27, 1, 3, '2024-03-23', '2024-03-23 16:27:28');
 
@@ -13622,7 +13649,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fabricantes` (
   PRIMARY KEY (`idFabricante`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_fabricantes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_fabricantes: ~0 rows (aproximadamente)
 INSERT INTO `tbl_fabricantes` (`idFabricante`, `nombreFabricante`, `tiempoFabricante`, `estadoFabricante`, `creadoFabricante`) VALUES
 	(1, 'Fabricante 1', 30, 1, '2024-02-04 00:00:52');
 
@@ -13905,9 +13932,9 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_cobro` (
   KEY `idMedico` (`idMedico`),
   CONSTRAINT `tbl_hoja_cobro_ibfk_2` FOREIGN KEY (`idMedico`) REFERENCES `tbl_medicos` (`idMedico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tbl_hoja_cobro_ibfk_3` FOREIGN KEY (`idPaciente`) REFERENCES `tbl_pacientes` (`idPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_hoja_cobro: ~17 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_cobro: ~18 rows (aproximadamente)
 INSERT INTO `tbl_hoja_cobro` (`idHoja`, `codigoHoja`, `idPaciente`, `fechaHoja`, `tipoHoja`, `idMedico`, `idHabitacion`, `totalHoja`, `estadoHoja`, `salidaHoja`, `fechaIngresoHoja`, `correlativoSalidaHoja`, `diagnosticoHoja`, `anulada`, `credito_fiscal`, `motivoAnulada`, `paraHoja`, `descuentoHoja`, `seguroHoja`, `dh`, `esPaquete`, `porPagos`, `detalleAnulada`, `fechaRecibo`, `pagaMedico`, `destinoHoja`, `totalPaquete`, `esPromocion`, `formaPago`) VALUES
 	(1, 1000, 1, '2024-01-28', 'Ambulatorio', 1, 1, 0.00, 1, '', '2024-01-28 15:42:20', 0, '', 0, '', '', 'Paciente', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 1, 0.00, 0, 0),
 	(2, 1001, 2, '2024-01-28', 'Ambulatorio', 1, 1, 0.00, 0, '2024-02-15', '2024-01-28 15:47:22', 1, 'Paciente de alta', 0, '', '', 'Paciente', NULL, 1, NULL, 0, 0, NULL, '2024-02-19', 0, 2, 0.00, 0, 0),
@@ -13925,7 +13952,8 @@ INSERT INTO `tbl_hoja_cobro` (`idHoja`, `codigoHoja`, `idPaciente`, `fechaHoja`,
 	(23, 1013, 1, '2024-03-30', 'Ambulatoria', 1, 1, 0.00, 0, '2024-03-30', '2024-03-30 22:45:43', 10, 'Paciente de alta', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, '2024-03-30', 0, 0, 0.00, 0, 0),
 	(24, 1014, 1, '2024-03-30', 'Ambulatoria', 1, 1, 0.00, 0, '2024-03-30', '2024-03-30 22:50:07', 11, 'Paciente de alta', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, '2024-03-30', 0, 0, 0.00, 0, 0),
 	(25, 1015, 1, '2024-04-13', 'Ambulatoria', 1, 1, 0.00, 0, '2024-04-13', '2024-04-13 20:00:49', 12, 'Paciente de alta', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, '2024-04-13', 0, 0, 0.00, 0, 0),
-	(26, 1016, 2, '2024-04-17', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-04-18 01:03:35', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0);
+	(26, 1016, 2, '2024-04-17', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-04-18 01:03:35', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
+	(27, 1017, 5, '2024-04-25', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-04-25 20:13:23', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_externos
 CREATE TABLE IF NOT EXISTS `tbl_hoja_externos` (
@@ -13967,9 +13995,9 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos` (
   KEY `idHojaInsumo` (`idHoja`),
   KEY `idInsumo` (`idInsumo`),
   CONSTRAINT `tbl_hoja_insumos_ibfk_3` FOREIGN KEY (`idHoja`) REFERENCES `tbl_hoja_cobro` (`idHoja`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos: ~20 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos: ~21 rows (aproximadamente)
 INSERT INTO `tbl_hoja_insumos` (`idHojaInsumo`, `idHoja`, `idInsumo`, `precioInsumo`, `cantidadInsumo`, `fechaInsumo`, `descuentoUnitario`, `aumentoUnitario`, `por`, `eliminado`, `motivoEliminado`, `pivoteStock`, `filaKardexStock`, `fechaAgregado`) VALUES
 	(1, 2, 970, 1.00, 5, '2024-01-28', 0.00, 0.00, 1, 0, '', 0, 0, '2024-02-15 21:23:51'),
 	(2, 6, 970, 1.00, 100, '2024-03-16', 0.00, 0.00, 1, 0, '', 0, 0, '2024-03-16 23:54:09'),
@@ -13990,7 +14018,8 @@ INSERT INTO `tbl_hoja_insumos` (`idHojaInsumo`, `idHoja`, `idInsumo`, `precioIns
 	(18, 24, 145, 10.00, 1, '2024-03-30', 0.00, 0.00, 1, 0, '', 0, 0, '2024-03-30 22:59:11'),
 	(19, 25, 145, 10.00, 1, '2024-04-13', 0.00, 0.00, 1, 0, '', 0, 0, '2024-04-13 20:09:22'),
 	(20, 25, 108, 0.00, 1, '2024-04-13', 0.00, 0.00, 1, 0, '', 0, 0, '2024-04-13 20:11:40'),
-	(21, 25, 5, 0.00, 1, '2024-04-13', 0.00, 0.00, 1, 0, '', 0, 0, '2024-04-13 20:11:48');
+	(21, 25, 5, 0.00, 1, '2024-04-13', 0.00, 0.00, 1, 0, '', 0, 0, '2024-04-13 20:11:48'),
+	(22, 27, 145, 10.00, 1, '2024-04-25', 0.00, 0.00, 1, 0, '', 0, 0, '2024-04-25 20:14:01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_insumos_eliminados
 CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos_eliminados` (
@@ -14168,9 +14197,9 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_botiquin` (
   `movimientoPor` int(11) NOT NULL,
   `creadoKardex` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idKardex`)
-) ENGINE=InnoDB AUTO_INCREMENT=233 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_kardex_botiquin: ~30 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_botiquin: ~31 rows (aproximadamente)
 INSERT INTO `tbl_kardex_botiquin` (`idKardex`, `idInsumo`, `cantidadInsumo`, `stockActual`, `tipoKardex`, `filaEntrada`, `filaSalida`, `filaEmpleado`, `conceptoKardex`, `movimientoPor`, `creadoKardex`) VALUES
 	(203, 970, 0, 0, 'Eliminado', 101, 0, 0, '', 0, '2024-01-16 21:03:46'),
 	(204, 970, 100, 100, 'Entrada', 102, 0, 0, '', 0, '2024-01-16 21:05:19'),
@@ -14201,7 +14230,8 @@ INSERT INTO `tbl_kardex_botiquin` (`idKardex`, `idInsumo`, `cantidadInsumo`, `st
 	(229, 145, 1, -3, 'Salida', 0, 18, 0, 'Usado en cuentas privadas', 0, '2024-03-30 22:59:11'),
 	(230, 145, 1, -4, 'Salida', 0, 19, 0, 'Usado en cuentas privadas', 0, '2024-04-13 20:09:22'),
 	(231, 108, 1, -2, 'Salida', 0, 20, 0, 'Usado en cuentas privadas', 0, '2024-04-13 20:11:40'),
-	(232, 5, 1, -1, 'Salida', 0, 21, 0, 'Usado en cuentas privadas', 0, '2024-04-13 20:11:48');
+	(232, 5, 1, -1, 'Salida', 0, 21, 0, 'Usado en cuentas privadas', 0, '2024-04-13 20:11:48'),
+	(233, 145, 1, -5, 'Salida', 0, 22, 0, 'Usado en cuentas privadas', 0, '2024-04-25 20:14:01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_hemo
 CREATE TABLE IF NOT EXISTS `tbl_kardex_hemo` (
@@ -14437,7 +14467,7 @@ INSERT INTO `tbl_medicamentos` (`idMedicamento`, `codigoMedicamento`, `nombreMed
 	(142, 1141, 'COLANGIOGRAMA POR TUBO EN T.', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(143, 1142, 'FISTULOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(144, 1143, 'ULTRASONOGRAFIA ABDOMINAL', 1, 0.00, 0.00, 0, 'Servicios', 27, -1, 0, 3, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(145, 1144, 'Consulta general', 1, 10.00, 10.00, 0, 'Servicios', 27, -4, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:26:59'),
+	(145, 1144, 'Consulta general', 1, 10.00, 10.00, 0, 'Servicios', 27, -5, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:26:59'),
 	(146, 1145, 'Consulta ginecológica', 1, 25.00, 25.00, 0, 'Servicios', 27, -2, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:27:53');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_medicos
@@ -14520,9 +14550,9 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos_hoja` (
   `detalleBitacora` text NOT NULL,
   `fechaMovimiento` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idMovimiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_movimientos_hoja: ~118 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_movimientos_hoja: ~120 rows (aproximadamente)
 INSERT INTO `tbl_movimientos_hoja` (`idMovimiento`, `idHoja`, `idUsuario`, `nombreUsuario`, `detalleBitacora`, `fechaMovimiento`) VALUES
 	(1, 180, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:07:25'),
 	(2, 1, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:15:06'),
@@ -14641,7 +14671,9 @@ INSERT INTO `tbl_movimientos_hoja` (`idMovimiento`, `idHoja`, `idUsuario`, `nomb
 	(115, 25, 1, 'Informatica', 'El usuario ha cerrado la cuenta', '2024-04-13 20:12:53'),
 	(116, 25, 1, 'Informatica', 'Creo el recibo número: #12', '2024-04-13 20:12:56'),
 	(117, 25, 1, 'Informatica', 'El usuario visualizo el resumen de la cuenta', '2024-04-13 20:14:30'),
-	(118, 26, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-04-18 01:03:35');
+	(118, 26, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-04-18 01:03:35'),
+	(119, 27, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-04-25 20:13:23'),
+	(120, 27, 1, 'Informatica', 'Agrego 1 elementos de Consulta general, con precio de $10.00', '2024-04-25 20:14:01');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_movimientos_stocks
 CREATE TABLE IF NOT EXISTS `tbl_movimientos_stocks` (
@@ -15000,7 +15032,7 @@ INSERT INTO `tbl_pacientes` (`idPaciente`, `nombrePaciente`, `edadPaciente`, `te
 	(2, 'Maria del Carmen Alfaro', 29, '7586-2333', '22222222-2', '1995-01-23', 12, 94, 'San Miguel', 'Soltero/a', 'Femenino', '2024-01-25 21:25:02'),
 	(3, 'Adela Maria Romero Cruz', 24, '7326-5499', '33333333-3', '2000-02-01', 4, 129, 'El Transito', 'Soltero/a', 'Femenino', '2024-01-25 21:25:02'),
 	(4, 'Adela Matilde Romero Cruz', 24, '7326-5499', '44444444-4', '2000-02-01', 11, 48, 'El Transito', 'Casado/a', 'Femenino', '2024-01-25 21:25:02'),
-	(5, 'Marcos Daniel Funes', 24, '7485-9631', '55555555-5', '2000-03-25', 11, 50, 'Barrio la Merced', 'Casado/a', 'Masculino', '2024-03-26 01:23:46');
+	(5, 'Marcos Daniel Funes', 24, '7485-9631', '55555555-5', '2000-03-25', 14, 127, 'Barrio la Merced', 'Casado/a', 'Masculino', '2024-03-26 01:23:46');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_paquetes
 CREATE TABLE IF NOT EXISTS `tbl_paquetes` (
@@ -15309,7 +15341,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sanguineo` (
   PRIMARY KEY (`idSanguineo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_sanguineo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_sanguineo: ~0 rows (aproximadamente)
 INSERT INTO `tbl_sanguineo` (`idSanguineo`, `examenSolicitado`, `muestraSanguineo`, `grupoSanguineo`, `factorSanguineo`, `duSanguineo`, `fechaSanguineo`) VALUES
 	(16, 0, 'Sangre', 'A', 'Positivo', 'N/A', '2024-04-10 01:42:53');
 
@@ -15455,7 +15487,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   CONSTRAINT `tbl_usuarios_ibfk_2` FOREIGN KEY (`idAcceso`) REFERENCES `tbl_accesos` (`idAcceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_usuarios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_usuarios: ~0 rows (aproximadamente)
 INSERT INTO `tbl_usuarios` (`idUsuario`, `nombreUsuario`, `psUsuario`, `idEmpleado`, `idAcceso`, `idMedico`, `codigoVerificacion`, `nivelUsuario`, `estadoUsuario`, `fechaUsuario`) VALUES
 	(1, 'Informatica', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 0, '2f2bb449c2cb83320769d123f0904b5a', 1, 1, '2021-04-30 00:05:52');
 
@@ -15875,6 +15907,15 @@ CREATE TRIGGER `agregar_cola_lab` AFTER INSERT ON `tbl_hoja_cobro` FOR EACH ROW 
 	INSERT INTO tbl_cola_laboratorio(idPaciente, idHoja)
 	VALUES(NEW.idPaciente, NEW.idHoja);
 
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Volcando estructura para disparador db_centro_medico.crear_registro_vacio
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `crear_registro_vacio` AFTER INSERT ON `tbl_consultas` FOR EACH ROW BEGIN
+	INSERT INTO tbl_dconsulta_medica(idConsulta) VALUES(NEW.idConsulta);
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
