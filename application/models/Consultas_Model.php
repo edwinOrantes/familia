@@ -61,6 +61,7 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+
         public function guardarDetalleConsulta($data = null){
             $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
                     tempConsulta = ?, frConsulta = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?, diagnosticoConsulta = ?, planConsulta = ?
@@ -72,10 +73,39 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function antecedentesConsulta($p = null){
+            if($p != null){
+                $sql = "SELECT * FROM tbl_antecedentes_consulta AS ac WHERE ac.idPaciente = '$p' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
 
+        public function guardarAntecedentesConsulta($data = null){
+            $sql = "UPDATE tbl_antecedentes_consulta SET antecedentesMedicos = ?, antecedentesQuirurgicos = ?, antecedentesAlergias = ?,
+                    antecedentesPartos = ?, antecedentesIngresos = ?, antecedentesOtros  = ?
+                    WHERE idAntecedentes  = ?";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
+        public function guardarDetalleHorario($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_horario_medicina(detalleHorario) VALUES(?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }   
 
-
+   
 
 
         public function consultasPorPaciente($id = null){

@@ -301,27 +301,32 @@
                                         <table class="table table-borderless table-sm">
                                             <tr>
                                                 <td style="width: 125px"><strong>ANT. MEDICOS</strong></td>
-                                                <td><textarea name="antMedicos" id="antMedicos" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="antMedicos" id="antMedicos" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesMedicos;?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 125px"><strong>ANT. QUIRURGICOS</strong></td>
-                                                <td><textarea name="antQuirurgicos" id="antQuirurgicos" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="antQuirurgicos" id="antQuirurgicos" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesQuirurgicos;?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 125px"><strong>ALERGIAS</strong></td>
-                                                <td><textarea name="alergias" id="alergias" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="alergias" id="alergias" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesAlergias;?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 125px"><strong>PARTOS</strong></td>
-                                                <td><textarea name="partos" id="partos" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="partos" id="partos" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesPartos;?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 125px"><strong>INGRESOS</strong></td>
-                                                <td><textarea name="ingresos" id="ingresos" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="ingresos" id="ingresos" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesIngresos;?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 125px"><strong>OTROS</strong></td>
-                                                <td><textarea name="otros" id="otros" class="form-control" cols="30" rows="3"></textarea></td>
+                                                <td><textarea name="otros" id="otros" class="form-control" cols="30" rows="3"><?php echo $antecedentes->antecedentesOtros;?></textarea></td>
+                                                <input type="hidden" value="<?php echo $antecedentes->idAntecedentes;?>" id="idPaciente" name="idPaciente">
+                                            </tr>
+
+                                            <tr class="text-center">
+                                                <td colspan="2"><button type="button" class="btn btn-primary" id="btnGuardarAntecedentes"> <i class="fa fa-save"></i> Guardar</button></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -340,7 +345,7 @@
                                                     <td><strong>FECHA:</strong></td>
                                                     <td><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="fechaReceta" id="fechaReceta"></td>
                                                     <td><strong>PROXIMA CITA:</strong></td>
-                                                    <td><input type="date" value="" class="form-control" name="fechaReceta" id="fechaReceta"></td>
+                                                    <td><input type="date" value="" class="form-control" name="proximaReceta" id="proximaReceta"></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -349,72 +354,62 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="historial_receta">
-                                                <table class="table table-borderless">
+                                                <table class="table table-borderless"  id="recetaMedica">
                                                     <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        <td>
+                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
                                                     </tr>
-                                                </table>
-                                                <table class="table table-borderless">
+
                                                     <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        <td>
+                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
                                                     </tr>
-                                                </table>
-                                                <table class="table table-borderless">
+
                                                     <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        <td>
+                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
                                                     </tr>
-                                                </table>
-                                                <table class="table table-borderless">
+
                                                     <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        <td>
+                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
                                                     </tr>
-                                                </table>
-                                                <table class="table table-borderless">
+
                                                     <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                    </tr>
-                                                </table>
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                    </tr>
-                                                </table>
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                    </tr>
-                                                </table>
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                    </tr>
-                                                </table>
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                    </tr>
-                                                </table>
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        <td>
+                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4 text-center">
+                                        <div class="col-md-2">
+                                            <table class="table table-borderless">
+                                                <tr>
+                                                    <td><button class="btn btn-outline-primary btn-block" id="indicacionMedica"> <i class="fa fa-plus"></i>Indicación médica</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#agregarIndicacion" data-toggle="modal" class="btn btn-outline-primary btn-block"> <i class="fa fa-clock"></i>Indicación horario</a href="#agregarIndicacion" data-toggle="modal"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn btn-primary btn-block"> <i class="fa fa-save"></i>Guardar receta</button></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
                                             <p><strong>HISTORIAL</strong></p>
-                                            <div class="table-responsive historial_receta">
+                                            <div class="table-responsive historial_receta table-md">
                                                 <table class="table table-borderless table-sm">
                                                     <tr>
                                                         <td>2024-01-01</td>
@@ -486,87 +481,148 @@
 	</div>
 </div>
 
+<!-- Modales -->
+    <!-- Modal para agregar datos del Medicamento-->
+        <div class="modal fade" id="agregarIndicacion" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog ms-modal-dialog-width">
+                <div class="modal-content ms-modal-content-width">
+                    <div class="modal-header  ms-modal-header-radius-0">
+                        <h4 class="modal-title text-white">Datos de la indicación</h4>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true" class="text-white">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body p-0 text-left">
+                        <div class="col-xl-12 col-md-12">
+                            <div class="ms-panel ms-panel-bshadow-none">
+                                <div class="ms-panel-body">
+                                    <form class="needs-validation" method="post" action="<?php echo base_url()?>Botiquin/guardar_medida" novalidate>
+                                        
+                                        <div class="form-row">
+
+                                            <div class="col-md-12 mb-2">
+                                                <label for=""><strong>Indicación</strong></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="detalleIndicacion" name="detalleIndicacion" placeholder="Detalle de la indicación" required>
+                                                    <div class="invalid-tooltip">
+                                                        Ingrese un detalle
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button class="btn btn-primary mt-4 d-inline w-20" type="button" id="btnHorarioMedicina"><i class="fa fa-save"></i> Guardar </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <!-- Fin Modal para agregar datos del Medicamento-->
+<!-- Modales -->
+
 
 <script>
 
-$(document).on("keyup", ".impresionEnfermedad", function() {
-    $("#lista_diagnostico").html();
-    var lista = "";
-    var datos = {
-        str : $(this).val()
-    }
-
-    $.ajax({
-        url: "../../buscar_diagnostico",
-        type: "POST",
-        data: datos,
-        success:function(respuesta){
-            var registro = eval(respuesta);
-            if (Object.keys(registro).length > 0){
-                for (let i = 0; i < registro.length; i++) {
-                    lista += '<option value="'+registro[i]["nombreDiagnostico"]+'">'+registro[i]["nombreDiagnostico"]+'</option>';
-                }
-                $("#lista_diagnostico").html(lista);
-            }
+    $(document).on("keyup", ".impresionEnfermedad", function() {
+        $("#lista_diagnostico").html();
+        var lista = "";
+        var datos = {
+            str : $(this).val()
         }
-    });
-});
 
-$(document).ready(function(){
-    // Obtener la última pestaña activa desde el almacenamiento local
-    var ultimaPestana = localStorage.getItem('ultimaPestana');
-
-    // Si hay una última pestaña activa, activarla
-    if (ultimaPestana) {
-        $('.nav-tabs a[href="' + ultimaPestana + '"]').tab('show');
-    }
-
-    // Guardar la pestaña activa al cambiar de pestaña
-    $('.nav-tabs a').on('shown.bs.tab', function(event){
-        var nuevaPestana = $(event.target).attr('href');
-        localStorage.setItem('ultimaPestana', nuevaPestana);
-    });
-});
-
-$(document).on("click", "#btnGuardarDetalleConsulta", function(e) {
-    e.preventDefault();
-    var datos = {
-        consultaPor: $("#consultaPor").val(),
-        presenteEnfermedad: $("#presenteEnfermedad").val(),
-        evolucionEnfermedad: $("#evolucionEnfermedad").val(),
-        paConsulta: $("#paConsulta").val(),
-        fcConsulta: $("#fcConsulta").val(),
-        tempConsulta: $("#tempConsulta").val(),
-        frConsulta: $("#frConsulta").val(),
-        diagnosticoUno: $("#diagnosticoUno").val(),
-        diagnosticoDos: $("#diagnosticoDos").val(),
-        diagnosticoTres: $("#diagnosticoTres").val(),
-        diagnostico: "",
-        planEnfermedad: $("#planEnfermedad").val(),
-        idDetalleConsulta: $("#idDetalleConsulta").val(),
-    };
-
-    $.ajax({
-        url: "../../guardar_detalle_consulta",
-        type: "POST",
-        data: datos,
-        success:function(respuesta){
+        $.ajax({
+            url: "../../buscar_diagnostico",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
                 var registro = eval(respuesta);
                 if (Object.keys(registro).length > 0){
-                    if(registro.estado == 1){
-                        toastr.remove();
-                        toastr.options = {
-                            "positionClass": "toast-top-left",
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "1000",
-                            "extendedTimeOut": "50",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            },
-                        toastr.success('Datos agregados con exito', 'Aviso!');
+                    for (let i = 0; i < registro.length; i++) {
+                        lista += '<option value="'+registro[i]["nombreDiagnostico"]+'">'+registro[i]["nombreDiagnostico"]+'</option>';
+                    }
+                    $("#lista_diagnostico").html(lista);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+        // Obtener la última pestaña activa desde el almacenamiento local
+        var ultimaPestana = localStorage.getItem('ultimaPestana');
+
+        // Si hay una última pestaña activa, activarla
+        if (ultimaPestana) {
+            $('.nav-tabs a[href="' + ultimaPestana + '"]').tab('show');
+        }
+
+        // Guardar la pestaña activa al cambiar de pestaña
+        $('.nav-tabs a').on('shown.bs.tab', function(event){
+            var nuevaPestana = $(event.target).attr('href');
+            localStorage.setItem('ultimaPestana', nuevaPestana);
+        });
+    });
+
+    $(document).on("click", "#btnGuardarDetalleConsulta", function(e) {
+        e.preventDefault();
+        var datos = {
+            consultaPor: $("#consultaPor").val(),
+            presenteEnfermedad: $("#presenteEnfermedad").val(),
+            evolucionEnfermedad: $("#evolucionEnfermedad").val(),
+            paConsulta: $("#paConsulta").val(),
+            fcConsulta: $("#fcConsulta").val(),
+            tempConsulta: $("#tempConsulta").val(),
+            frConsulta: $("#frConsulta").val(),
+            diagnosticoUno: $("#diagnosticoUno").val(),
+            diagnosticoDos: $("#diagnosticoDos").val(),
+            diagnosticoTres: $("#diagnosticoTres").val(),
+            diagnostico: "",
+            planEnfermedad: $("#planEnfermedad").val(),
+            idDetalleConsulta: $("#idDetalleConsulta").val(),
+        };
+
+        $.ajax({
+            url: "../../guardar_detalle_consulta",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
                     }else{
                         toastr.remove();
                         toastr.options = {
@@ -581,28 +637,165 @@ $(document).on("click", "#btnGuardarDetalleConsulta", function(e) {
                             "hideMethod": "fadeOut"
                             },
                         toastr.error('No se agrego el detalle...', 'Aviso!');
-                    }
-                }else{
-                    toastr.remove();
-                    toastr.options = {
-                        "positionClass": "toast-top-left",
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "1000",
-                        "extendedTimeOut": "50",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        },
-                    toastr.error('No se agrego el detalle...', 'Aviso!');
 
+                    }
                 }
-            }
+        });
+
+
+    });
+
+    $(document).on("click", "#btnGuardarAntecedentes", function(e) {
+        e.preventDefault();
+        var datos = {
+            antMedicos : $("#antMedicos").val(),
+            antQuirurgicos : $("#antQuirurgicos").val(),
+            alergias : $("#alergias").val(),
+            partos : $("#partos").val(),
+            ingresos : $("#ingresos").val(),
+            otros : $("#otros").val(),
+            idPaciente : $("#idPaciente").val()
+        };
+
+        $.ajax({
+            url: "../../guardar_antecedentes_consulta",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+
+                    }
+                }
+        });
+
+
+    });
+
+    $(document).on("click", "#indicacionMedica", function(e) {
+        e.preventDefault();
+        var html = "";
+        html +='<tr>';
+        html +='    <td>';
+        html +='        <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">';
+        html +='        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">';
+        html +='    </td>';
+        html +='</tr>';
+
+        $("#recetaMedica").append(html);
+
+
+    });
+
+    
+    $(document).on("click", "#btnHorarioMedicina", function(e) {
+        e.preventDefault();
+        var datos = {
+            detalleIndicacion : $("#detalleIndicacion").val()
+        };
+
+        $.ajax({
+            url: "../../guardar_horario_medicina",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                            $("#detalleIndicacion").val("");
+                            $("#detalleIndicacion").focus();
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+
+                    }
+                }
+        });
+
+
     });
 
 
-});
-
 </script>
-

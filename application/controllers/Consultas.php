@@ -31,9 +31,9 @@ class Consultas extends CI_Controller {
 
 		// Datos actuales
 			$data["consulta"] = $this->Consultas_Model->detalleConsulta($consulta);
+			$data["antecedentes"] = $this->Consultas_Model->antecedentesConsulta($paciente->idPaciente);
 		// Datos actuales
 		
-
 		$this->load->view("Base/header");
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
@@ -48,6 +48,58 @@ class Consultas extends CI_Controller {
 			$datos["diagnostico"] = $datos["diagnosticoUno"]."<br>".$datos["diagnosticoDos"]."<br>".$datos["diagnosticoTres"];
 
 			$bool = $this->Consultas_Model->guardarDetalleConsulta($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
+	public function guardar_antecedentes_consulta(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarAntecedentesConsulta($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
+	public function guardar_horario_medicina(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarDetalleHorario($datos);
 			if($bool){
 				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
 				header("content-type:application/json");
