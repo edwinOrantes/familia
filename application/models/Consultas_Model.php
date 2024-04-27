@@ -53,6 +53,25 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function buscarMedicamento($str = null){
+            if($str != null){
+                $sql = "SELECT m.nombreMedicamento FROM tbl_medicamentos AS m
+                        WHERE m.nombreMedicamento LIKE '%$str%'
+                        AND m.pivoteMedicamento = 0";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
+
+        public function buscarIndicaciones($str = null){
+            if($str != null){
+                $sql = "SELECT dh.detalleHorario FROM tbl_horario_medicina AS dh 
+                        WHERE dh.detalleHorario LIKE '%$str%'";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
+
         public function detalleConsulta($c = null){
             if($c != null){
                 $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
@@ -103,7 +122,18 @@ class Consultas_Model extends CI_Model {
             }else{
                 return false;
             }
-        }   
+        }
+
+        
+        public function historialDetallesConsultas($p = null){
+            if($p != null){
+                $sql = "SELECT * FROM tbl_dconsulta_medica AS dcm 
+                        INNER JOIN tbl_consultas AS c ON(c.idConsulta = dcm.idConsulta)
+                        WHERE c.idPaciente = '$p' ORDER BY c.idConsulta DESC";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
 
    
 

@@ -24,6 +24,10 @@
         overflow-y: scroll;
     }
 
+    .verDetalleConsulta, .verDetalleActual{
+        cursor: pointer
+    }
+
 </style>
 
 <div class="ms-content-wrapper">
@@ -116,16 +120,16 @@
 
                                                             // Calculo peso ideal
                                                                 if($paciente->sexoPaciente == "Masculino"){
-                                                                    $peso_ideal = $row->altura - 100 - (($row->altura-150)/4);
+                                                                    $peso_ideal = ($row->altura * 100) - 100 - ((($row->altura * 100)-150)/4);
                                                                 }else{
-                                                                    $peso_ideal = $row->altura - 100 - (($row->altura-150)/2.5);
+                                                                    $peso_ideal = ($row->altura * 100) - 100 - ((($row->altura * 100)-150)/2.5);
                                                                 }
                                                             // Calculo peso ideal
                                                     ?>
                                                         <tr>
                                                             <td class="text-center"><?php echo $index; ?></td>
                                                             <td class="text-center"><?php echo $row->fechaConsulta; ?></td>
-                                                            <td class="text-center"><?php echo $row->altura; ?> cm</td>
+                                                            <td class="text-center"><?php echo ($row->altura * 100); ?> cm</td>
                                                             <td class="text-center"><?php echo $row->peso; ?> Kg</td>
                                                             <td class="text-center"><?php echo $row->imc; ?></td>
                                                             <td class="text-center"><?php echo $peso_ideal; ?> Kg</td>
@@ -146,7 +150,7 @@
                                 <div role="tabpanel" class="tab-pane fade" id="tabConsulta">
 
                                     <div class="row">
-                                        <div class="col-md-10">
+                                        <div class="col-md-10" id="contenedorconsulta">
 
                                             <div class="row">
                                                 <div class="col-md-12 bg-danger text-white">
@@ -236,53 +240,41 @@
                                             </div>
 
                                         </div>
-
+                                        
+                                        <div class="col-md-10" id="contenedorconsultaH"></div>
 
                                         <div class="col-md-2 text-center">
                                             <p><strong>HISTORIAL</strong></p>
                                             <div class="table-responsive historial">
                                                 <table class="table table-borderless table-sm">
-                                                    <tr>
-                                                        <td>2024-01-01</td>
-                                                        <td>DOLORES</td>
+                                                    <?php
+                                                     foreach ($historial_detalles as $row) {
+                                                        if($row->fechaConsulta == date('Y-m-d')){
+                                                            echo '<tr class="verDetalleActual alert-primary">
+                                                                    <td colspan="2"><strong>'.$row->fechaConsulta.'</strong></td>
+                                                                </tr>';
+                                                        }else{
+                                                    ?>
+                                                    <tr class="verDetalleConsulta">
+                                                        <td><?php echo $row->fechaConsulta; ?>
+                                                            <input type="hidden" value="<?php echo $row->consultaPor; ?>" class="consultaPorH">
+                                                            <input type="hidden" value="<?php echo $row->presenteEnfermedad; ?>" class="presenteEnfermedadH">
+                                                            <input type="hidden" value="<?php echo $row->evolucionEnfermedad; ?>" class="evolucionEnfermedadH">
+                                                            <input type="hidden" value="<?php echo $row->paConsulta; ?>" class="paConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->fcConsulta; ?>" class="fcConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
+                                                            <input type="hidden" value="<?php echo $row->altura; ?>" class="alturaH">
+                                                            <input type="hidden" value="<?php echo $row->imc; ?>" class="imcH">
+                                                            <input type="hidden" value="<?php echo $row->temperaturaPaciente; ?>" class="temperaturaPacienteH">
+                                                            <input type="hidden" value="<?php echo $row->presionPaciente; ?>" class="presionPacienteH">
+                                                        </td>
+                                                        <td><?php echo $row->consultaPor; ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2024-02-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-03-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-04-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-04-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-
+                                                    <?php }} ?>
                                                 </table>
                                             </div>
 
@@ -357,40 +349,39 @@
                                                 <table class="table table-borderless"  id="recetaMedica">
                                                     <tr>
                                                         <td>
-                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
+                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" list="lista_medicamentos" class="form-control busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
+                                                            <input type="text" list="lista_indicaciones" class="form-control mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
                                                         </td>
                                                     </tr>
 
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
                                                 </table>
                                             </div>
+                                            <datalist id="lista_medicamentos"></datalist>
+                                            <datalist id="lista_indicaciones"></datalist>
                                         </div>
 
                                         <div class="col-md-2">
@@ -554,6 +545,7 @@
     });
 
     $(document).ready(function(){
+        $("#contenedorconsultaH").hide();
         // Obtener la última pestaña activa desde el almacenamiento local
         var ultimaPestana = localStorage.getItem('ultimaPestana');
 
@@ -795,6 +787,142 @@
         });
 
 
+    });
+    
+    $(document).on("click", ".verDetalleConsulta", function(e) {
+        e.preventDefault();
+        var html = '';
+        // Creando Contenido
+            html += '<div class="row">';
+            html += '    <div class="col-md-12">';
+            html += '        <div class="row">';
+            html += '            <div class="col-md-12 alert-danger">';
+            html += '                <table class="table table-borderless table-sm">';
+            html += '                    <tr class="text-center">';
+            html += '                        <td colspan="5"><strong>DATOS TOMADOS EN EMERGENCIA:</strong></td>';
+            html += '                    </tr>';
+            html += '                    <tr>';
+            html += '                        <td> <strong>Peso: </strong> '+$(this).closest('tr').find('.pesoH').val()+' Kg</td>';
+            html += '                        <td> <strong>Altura: </strong>'+$(this).closest('tr').find('.alturaH').val()+' Cm</td>';
+            html += '                        <td> <strong>IMC: </strong>'+$(this).closest('tr').find('.imcH').val()+'</td>';
+            html += '                        <td> <strong>Presión: </strong>'+$(this).closest('tr').find('.temperaturaPacienteH').val()+'</td>';
+            html += '                        <td> <strong>Temperatura: </strong>'+$(this).closest('tr').find('.presionPacienteH').val()+' °C</td>';
+            html += '                    </tr>';
+            html += '                </table>';
+            html += '            </div>';
+            html += '            <div class="col-md-12">';
+            html += '                <table class="table table-borderless table-sm">';
+            html += '                    <tr>';
+            html += '                        <td><strong>CONSULTA POR:</strong></td>';
+            html += '                    </tr>';
+            html += '                    <tr>';
+            html += '                        <td><input type="text" value="'+$(this).closest('tr').find('.consultaPorH').val()+'" class="form-control" name="consultaPor" id="consultaPor" readonly></td>';
+            html += '                    </tr>';
+            html += '                </table>';
+            html += '            </div>';
+            html += '        </div>';
+            html += '        <div class="row">';
+            html += '            <div class="col-md-6 text-center">';
+            html += '                <p><strong>PRESENTE ENFERMEDAD</strong></p>';
+            html += '                <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5" readonly>'+$(this).closest('tr').find('.presenteEnfermedadH').val()+'</textarea>';
+            html += '            </div>';
+            html += '            <div class="col-md-6 text-center">';
+            html += '                <p><strong>EVOLUCION</strong></p>';
+            html += '                <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5" readonly>'+$(this).closest('tr').find('.evolucionEnfermedadH').val()+'</textarea>';
+            html += '            </div>';
+            html += '        </div>';
+            html += '        <div class="col-md-12">';
+            html += '            <div class="row">';
+            html += '                <div class="col-md-12">';
+            html += '                    <table class="table table-borderless">';
+            html += '                        <tr>';
+            html += '                            <td><strong>EXAMEN FISICO</strong></td>';
+            html += '                            <td>P.A: <input type="text" value="'+$(this).closest('tr').find('.paConsultaH').val()+'"  size="10" readonly></td>';
+            html += '                            <td>F.C: <input type="text" value="'+$(this).closest('tr').find('.fcConsultaH').val()+'"  size="10" readonly></td>';
+            html += '                            <td>Temp:<input type="text" value="'+$(this).closest('tr').find('.tempConsultaH').val()+'"  size="10" readonly></td>';
+            html += '                            <td>FR: <input type="text" value="'+$(this).closest('tr').find('.frConsultaH').val()+'"  size="10" readonly></td>';
+            html += '                        </tr>';
+            html += '                    </table>';
+            html += '                </div>';
+            html += '            </div>';
+            html += '            <div class="row">';
+            html += '                <div class="col-md-6 text-center">';
+            html += '                    <p><strong>IMPRESION DIAGNOSTICA</strong></p>';
+            html += '                    <table class="table table-borderless">';
+            html += '                            <tr>';
+            html += '                                <td class="text-left">'+$(this).closest('tr').find('.diagnosticoConsultaH').val()+'</td>';
+            html += '                            </tr>';
+            html += '                    </table>';
+            html += '                </div>';
+            html += '                <div class="col-md-6">';
+            html += '                    <p><strong>PLAN</strong></p>';
+            html += '                    <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8" readonly>'+$(this).closest('tr').find('.planConsultaH').val()+'</textarea>';
+            html += '                </div>';
+            html += '            </div>';
+            html += '        </div>';
+            html += '    </div>';
+            html += '    </div>';
+            html += '</div>';
+        // Creando Contenido
+
+        $("#contenedorconsulta").hide();
+        $("#contenedorconsultaH").html(html);
+        $("#contenedorconsultaH").show();
+        
+    });
+    
+    $(document).on("click", ".verDetalleActual", function(e) {
+        e.preventDefault();
+        $("#contenedorconsulta").show();
+        $("#contenedorconsultaH").html("");
+        $("#contenedorconsultaH").hide();
+        
+    });
+    
+    $(document).on("keyup", ".busquedaMedicamentos", function() {
+        $("#lista_medicamentos").html();
+        var lista = "";
+        var datos = {
+            str : $(this).val()
+        }
+
+        $.ajax({
+            url: "../../buscar_medicamento",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                    for (let i = 0; i < registro.length; i++) {
+                        lista += '<option value="'+registro[i]["nombreMedicamento"]+'">'+registro[i]["nombreMedicamento"]+'</option>';
+                    }
+                    $("#lista_medicamentos").html(lista);
+                }
+            }
+        });
+    });
+    
+    $(document).on("keyup", ".busquedaIndicaciones", function() {
+        $("#lista_indicaciones").html();
+        var lista = "";
+        var datos = {
+            str : $(this).val()
+        }
+
+        $.ajax({
+            url: "../../buscar_indicaciones",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                    for (let i = 0; i < registro.length; i++) {
+                        lista += '<option value="'+registro[i]["detalleHorario"]+'">'+registro[i]["detalleHorario"]+'</option>';
+                    }
+                    $("#lista_indicaciones").html(lista);
+                }
+            }
+        });
     });
 
 
