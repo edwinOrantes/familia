@@ -329,125 +329,98 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="recetas">
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table table-borderless">
-                                                <tr>
-                                                    <td><strong>FECHA:</strong></td>
-                                                    <td><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="fechaReceta" id="fechaReceta"></td>
-                                                    <td><strong>PROXIMA CITA:</strong></td>
-                                                    <td><input type="date" value="" class="form-control" name="proximaReceta" id="proximaReceta"></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="historial_receta">
-                                                <table class="table table-borderless"  id="recetaMedica">
+                                    <form action="<?php echo base_url(); ?>Consultas/guardar_receta_medica" method="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
                                                     <tr>
-                                                        <td>
-                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
+                                                        <td><strong>FECHA:</strong></td>
+                                                        <td><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="fechaReceta" id="fechaReceta"></td>
+                                                        <td><strong>PROXIMA CITA:</strong></td>
+                                                        <td><input type="date" value="" class="form-control" name="proximaReceta" id="proximaReceta"></td>
+                                                        <td><input type="hidden" value="<?php echo $paciente->idConsulta; ?>" class="form-control" name="consultaActual" id="consultaActual"></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" list="lista_medicamentos" class="form-control busquedaMedicamentos" name="medicamento[]" placeholder="Medicamento">
-                                                            <input type="text" list="lista_indicaciones" class="form-control mt-1 busquedaIndicaciones" name="indicacion[]"  placeholder="Indicación médica">
-                                                        </td>
-                                                    </tr>
-
-                                                </table>
-                                            </div>
-                                            <datalist id="lista_medicamentos"></datalist>
-                                            <datalist id="lista_indicaciones"></datalist>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <table class="table table-borderless">
-                                                <tr>
-                                                    <td><button class="btn btn-outline-primary btn-block" id="indicacionMedica"> <i class="fa fa-plus"></i>Indicación médica</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#agregarIndicacion" data-toggle="modal" class="btn btn-outline-primary btn-block"> <i class="fa fa-clock"></i>Indicación horario</a href="#agregarIndicacion" data-toggle="modal"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button class="btn btn-primary btn-block"> <i class="fa fa-save"></i>Guardar receta</button></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-
-                                        <div class="col-md-2 text-center">
-                                            <p><strong>HISTORIAL</strong></p>
-                                            <div class="table-responsive historial_receta table-md">
-                                                <table class="table table-borderless table-sm">
-                                                    <tr>
-                                                        <td>2024-01-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-02-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-03-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-04-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-04-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2024-05-01</td>
-                                                        <td>DOLORES</td>
-                                                    </tr>
-
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
 
+                                        <div class="row">
+                                            <div class="col-md-1" style="display: none"> </div>
+                                            
+                                            
+                                                <div class="col-md-7">
+                                                    <div class="historial_receta">
+                                                        <table class="table table-borderless"  id="recetaMedica">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                    <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                    <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                    <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                    <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" list="lista_medicamentos" class="form-control busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                    <input type="text" list="lista_indicaciones" class="form-control mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                </td>
+                                                            </tr>
+        
+                                                        </table>
+                                                    </div>
+                                                    <datalist id="lista_medicamentos"></datalist>
+                                                    <datalist id="lista_indicaciones"></datalist>
+                                                </div>
+        
+                                                <div class="col-md-2">
+                                                    <table class="table table-borderless">
+                                                        <tr>
+                                                            <td><button class="btn btn-outline-primary btn-block" id="indicacionMedica"> <i class="fa fa-plus"></i>Indicación médica</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="#agregarIndicacion" data-toggle="modal" class="btn btn-outline-primary btn-block"> <i class="fa fa-clock"></i>Indicación horario</a href="#agregarIndicacion" data-toggle="modal"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button class="btn btn-primary btn-block" id="btnGuardarReceta"> <i class="fa fa-save"></i>Guardar receta</button></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            <div class="col-md-2 text-center">
+                                                <p><strong>HISTORIAL</strong></p>
+                                                <div class="table-responsive historial_receta table-md">
+                                                    <table class="table table-borderless table-sm">
+                                                        <?php 
+                                                            foreach ($historial_recetas as $row) {
+                                                                echo '<tr>
+                                                                        <td>'.$row->fechaReceta.'</td>
+                                                                    </tr>';
+                                                            }
+                                                        ?>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" value="<?php echo $paciente->idPaciente; ?>" name="idPaciente">
+                                    </form>
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="reporteQuirurgico">
@@ -518,7 +491,6 @@
     <!-- Fin Modal para agregar datos del Medicamento-->
 <!-- Modales -->
 
-
 <script>
 
     $(document).on("keyup", ".impresionEnfermedad", function() {
@@ -545,6 +517,7 @@
     });
 
     $(document).ready(function(){
+        $("#btnGuardarReceta").hide();
         $("#contenedorconsultaH").hide();
         // Obtener la última pestaña activa desde el almacenamiento local
         var ultimaPestana = localStorage.getItem('ultimaPestana');
@@ -722,7 +695,6 @@
 
     });
 
-    
     $(document).on("click", "#btnHorarioMedicina", function(e) {
         e.preventDefault();
         var datos = {
@@ -925,5 +897,115 @@
         });
     });
 
+    $(document).on("change", "#proximaReceta", function() {
+        $("#btnGuardarReceta").show();
+    });
+
+   /*  $(document).on("click", "#btnGuardarReceta", function(e) {
+        e.preventDefault();
+        // Obtener todos los pares de inputs
+        var detalle = [];
+        var datos = [];
+        var index = 0;
+        var html = "";
+        $('.txtMedicamento').each(function(){
+            var medicamento = $(this).closest('tr').find('.txtMedicamento').val();
+            var indicacion = $(this).closest('tr').find('.txtIndicacion').val();
+
+            
+            if(medicamento != '' || indicacion != '') {
+                index++;
+                html += '<tr>';
+                html += '    <td>'+medicamento+'</td>';
+                html += '    <td>'+indicacion+'</td>';
+                html += '</tr>';
+                detalle.push(
+                    {
+                        medicamento: medicamento,
+                        indicacion: indicacion,
+                        cadena: medicamento + "-"+ indicacion,
+                        consulta : $("#consultaActual").val(),
+                        hoy : $("#fechaReceta").val(),
+                        proxima : $("#proximaReceta").val()
+                    }
+                );
+            }
+        });
+
+        if(detalle.length > 0){
+
+            datos.push(
+                {
+                    detalle : detalle,
+                    consulta : $("#consultaActual").val(),
+                    html : html,
+                    hoy : $("#fechaReceta").val(),
+                    proxima : $("#proximaReceta").val()
+                }
+            );
+            var datosJSON = JSON.stringify(datos);
+            $.ajax({
+                url: "../../guardar_receta_medica",
+                type: "POST",
+                data: datosJSON,
+                success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            var html = ''
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+    
+                    }
+                }
+            });
+
+            // console.log(datosJSON);
+
+        }
+
+    }); */
+
 
 </script>
+

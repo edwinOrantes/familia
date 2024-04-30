@@ -159,6 +159,7 @@ class Consultas_Model extends CI_Model {
             return $datos->result();
         }
 
+
         public function saldarConsulta($id = null){
             $sql = "UPDATE tbl_consultas SET estadoConsulta = '0' WHERE hojaCobro = '$id' ";
             if($this->db->query($sql)){
@@ -167,7 +168,28 @@ class Consultas_Model extends CI_Model {
                 return false;
             }
         }
+
+
+        public function guardarRecetaMedica($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, idPaciente, htmlReceta, medicamentosReceta)
+                        VALUES(?, ?, ?, ?, ?, ?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        public function recetasMedicas($p = null){
+            $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
     
 }
 ?>
-
