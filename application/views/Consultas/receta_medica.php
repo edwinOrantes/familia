@@ -12,114 +12,67 @@
     }
     .img_cabecera{
         padding-top: -20px;
-        width: 25%;
         width: 225px;
         float: left;
     }
     .title_cabecera{
+        font-size: 16px;
         float: right;
         line-height: 5px;
         text-align: center;
         width: 60%;
     }
-
-    .subtitle_cabecera{
-        clear: both;
-        width: 100%;
-    }
-
-    .subtitle_cabecera h5{
-        font-size: 11px;
-        margin-top: 15px;
-        text-align: center;
-    }
-
-    .paciente{
-        width: 100%;
-        margin-top: -8px;;
-    }
-
-    .tabla_paciente{
-        font-size: 10px;
-        margin-bottom: 25px;
-        width: 100%;
-
-    }
-
-    .tabla_num_recibo{
-        font-size: 12px;
-        margin-bottom: 25px;
-        width: 100%;
-
-    }
-
-    .detalle{
-        width: 100%;
-        padding-top: -25px;
-    }
-
-    .tabla_detalle{
-        font-size: 11px;
-        margin-bottom: 25px;
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-
-    }
-
-    .tabla_detalle thead tr th, tbody tr td{
-        border-width: 1px;
-        border-style: solid;
-        border-color: #000;
-    }
-
-    .pie{
-        width: 100%;
-     }
-    .pie_izquierda{
-        width: 68%;
+    .body_left{
+        border: 2px solid #1560b7;
+        border-radius: 5px;
         float: left;
+        height: 95%;
+        padding: 5px;
+        text-align:center;
+        width: 27%;
     }
-    .pie_derecha{
+
+
+    .body_right{
         float: right;
-        text-align: left;
-        width: 32%;
-        line-height: 12px;
+        width: 68%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cabecera_receta{
+        height: 50px
+    }
+
+    .contenido_receta{
+        height: 700px
+    }
+    
+    .pie_receta{
+        height: 100px
+    }
+
+    .signos_recetas{
+        float:left;
+        width: 50%;
         
     }
+    
+    .fechas_receta{
+        float:right;
+        width: 50%
+    }
 
-    .pie_abajo{
-        clear: both;
-    }
-    
-    .pie_abajo_detalle{
-        font-size: 8px;
-        word-spacing: 3px;
-    }
-    
-    .numeracion{
-        font-size: 12x;
-        width: 100%;
-    }
-    .numeracion_izquierda{
-        width: 40%;
-        width: 115px;
-        float: left;
-    }
-    .numeracion_derecha{
-        float: right;
-        line-height: 5px;
-        text-align: right;
-        width: 60%;
-    }
 
     .letraMayuscula{
         text-transform: uppercase;
     }
+
+
 </style>
 
 <div class="cabecera" style="font-family: Times New Roman">
-    <div class="img_cabecera">
+    <div class="body_left">
         
         <div>
             <h5><strong>TELEFONO</strong></h5>
@@ -134,58 +87,78 @@
             <p>8:00 a.m a 12:00 m.d</p>
         </div>
 
-        <div>
-        <p>Ultrasonografía</p>
-            <p>Toma y lectura de: Electrocardiogramas</p>
-            <p>Consulta de niños y adultos</p>
-            <p>Controles prenatales</p>
-            <p>Consulta Ginecológica y planificación familiar</p>
-            <p>Colocación de sueros</p>
-            <p>Control de azúcar y presión</p>
-            <p>Pequeña cirugía</p>
-            <p>Cirugías mayores</p>
+        <h5><strong>SERVICIOS</strong></h5>
+        <div style="text-align: left; margin: 15px 0px 100px -20px; line-height: 22px">
+            <ul>
+                <li>Ultrasonografía</li>
+                <li>Toma y lectura de: Electrocardiogramas</li>
+                <li>Consulta de niños y adultos</li>
+                <li>Controles prenatales</li>
+                <li>Consulta Ginecológica y planificación familiar</li>
+                <li>Colocación de sueros</li>
+                <li>Control de azúcar y presión</li>
+                <li>Pequeña cirugía</li>
+                <li>Cirugías mayores</li>
+            </ul>
         </div>
 
-        <div>
+        <div style="font-size: 12px; font-weight: bold">
             <p> Atendiéndole con amabilidad que nos caracteriza.</p>
         </div>
 
         
     </div>
-    <div class="title_cabecera">
-        <div>
+    <div class="body_right">
+        <div class="cabecera_receta">
             <table>
                 <tr>
-                    <th>PACIENTE</th>
-                    <th style="border-bottom: 1px solid #000000; width: 300px"></th>
+                    <th>PACIENTE: </th>
+                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 400px"> <?php echo $detalle->nombrePaciente; ?> </th>
                 </tr>
             </table>
         </div>
-        <div>
-            <div>
-                <table>
+        
+        <div class="contenido_receta">
+            <?php
+
+                $indicaciones = json_decode($detalle->medicamentosReceta);
+                foreach ($indicaciones as $row) {
+                    echo '<div style="">
+                        <p>'.$row->medicamento.'</p>
+                        <p>'.$row->indicacion.'</p>
+                    </div>';
+                }
+
+                 
+            ?>
+        </div>
+
+        <div class="pie_receta">
+            <hr style="color: #1560b7 ">
+            <div class="signos_recetas">
+                <table style="font-size: 12px; text-align: center; padding-top: 7px; width: 100%">
                     <tr>
-                        <th>PESO</th>
-                        <th>ALTURA</th>
-                        <th>PESO IDEAL</th>
+                        <th>Peso</th>
+                        <th>Altura</th>
                         <th>IMC</th>
-                        <th>FECHA</th>
+                        <th>P.A</th>
+                        <th>Temp.</th>
                     </tr>
 
                     <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td><?php echo $detalle->peso; ?>Kg</td>
+                        <td><?php echo $detalle->altura; ?>m</td>
+                        <td><?php echo $detalle->imc; ?></td>
+                        <td><?php echo $detalle->presionPaciente; ?></td>
+                        <td><?php echo $detalle->temperaturaPaciente; ?></td>
                     </tr>
                 </table>
             </div>
-
-            <div>
-                <h5><strong>FECHA DE CONSULTA: 0000/00/00</strong></h5>
-                <H4><strong>PRÓXIMA CITA: 0000/00/00</strong></H4>
+            <div class="fechas_receta" style="line-height: 1px; text-align: center;">
+                <h6><strong>FECHA DE CONSULTA:</strong><?php echo $detalle->fechaReceta; ?></h6>
+                <h6><strong>PRÓXIMA CITA:</strong><?php echo $detalle->proximaReceta; ?></h6>
             </div>
         </div>
     </div>
 </div>
+

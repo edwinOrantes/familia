@@ -7,11 +7,12 @@ class Consultas extends CI_Controller {
     public function __construct(){
 		parent::__construct();
 		date_default_timezone_set('America/El_Salvador');
-        $this->load->model("Consultas_Model");
 		if (!$this->session->has_userdata('valido')){
 			$this->session->set_flashdata("error", "Debes iniciar sesión");
 			redirect(base_url());
 		}
+        $this->load->model("Consultas_Model");
+        $this->load->model("Laboratorio_Model");
 	}
 
 
@@ -34,13 +35,14 @@ class Consultas extends CI_Controller {
 			$data["antecedentes"] = $this->Consultas_Model->antecedentesConsulta($paciente->idPaciente);
 			$data["historial_detalles"] = $this->Consultas_Model->historialDetallesConsultas($paciente->idPaciente); // Historial detalles Consultas
 			$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($paciente->idPaciente); // Historial detalles Consultas
+			$data["historial_laboratorio"] = $this->Consultas_Model->fechasVisitas($paciente->idPaciente); // Historial laboratorio
 		// Datos actuales
 		
 		$this->load->view("Base/header");
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
 
-		// echo json_encode($data["historial_recetas"]);
+		// echo json_encode($data["historial_laboratorio"]);
 	}
 
 	public function guardar_detalle_consulta(){
@@ -256,16 +258,17 @@ class Consultas extends CI_Controller {
 	}
 
 
-	public function receta_medica(){
-		$data = array();
-		// Factura
+	public function receta_medica($r = null){
+
+		$data["detalle"] = $this->Consultas_Model->detalleReceta($r);
+		// Receta
 			$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
 			$mpdf = new \Mpdf\Mpdf([
 				'margin_left' => 15,
 				'margin_right' => 15,
-				'margin_top' => 30,
+				'margin_top' => 40,
 				'margin_bottom' => 25,
-				'margin_header' => 10,
+				'margin_header' => 15,
 				'margin_footer' => 25
 			]);
 			$mpdf->SetHTMLHeader('
@@ -298,7 +301,10 @@ class Consultas extends CI_Controller {
 			$html = $this->load->view('Consultas/receta_medica', $data,true); // Cargando hoja de estilos
 
 			$mpdf->WriteHTML($html);
-			$mpdf->Output('examen_bacteriologia.pdf', 'I');
+			$mpdf->Output('receta_medica', 'I');
+		// Receta
+
+		// echo json_encode($data);
 	}
 
 

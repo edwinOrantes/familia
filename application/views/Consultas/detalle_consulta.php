@@ -28,7 +28,16 @@
         cursor: pointer
     }
 
+    .tabla_examen, .nombre_examen{
+        display: none;
+    }
+
+    #dvHistorialLab .table tr td{
+        padding: 1px !important
+    }
+
 </style>
+
 
 <div class="ms-content-wrapper">
 	<div class="row">
@@ -325,7 +334,45 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="examanesLaboratorio">
-                                    <p>Laboratorio clinico</p>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="accordion" id="accordionExample3">
+                                                <?php
+                                                    $flag = 1;
+                                                    foreach ($historial_laboratorio as $row) {
+                                                ?>
+                                                    <div class="card">
+                                                        <div class="card-header collapsed" data-toggle="collapse" role="button" data-target="#fechas<?php echo $flag; ?>" aria-expanded="false" aria-controls="fechas<?php echo $flag; ?>">
+                                                            <span class="has-icon"> <i class="far fa-calendar"></i> <?php echo $row->fecha; ?> </span>
+                                                        </div>
+                                                        <div id="fechas<?php echo $flag; ?>" class="collapse" data-parent="#accordionExample3" style="">
+                                                            <div class="card-body">
+                                                                <table class="table">
+                                                                    <?php
+                                                                        $examenes = $this->Laboratorio_Model->historialRealizado($row->fecha, $paciente->idPaciente);
+                                                                        foreach ($examenes as $fila) {
+                                                                            echo '<tr>
+                                                                                    <td><a href="#" class="examenFecha">'.$fila->nombreExamen.'</a> <p class="nombre_examen">'.$fila->nombreExamen.'</p> <div class="tabla_examen">'.base64_encode($fila->tablaExamen).'</div> </td>
+                                                                                </tr>';
+                                                                        }
+                                                                    ?>
+                                                                </table>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                                    $flag++;
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-7 text-center">
+                                            <h5 id="nombreExamen"></h5>
+                                            <div id="dvHistorialLab"></div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="recetas">
@@ -345,11 +392,9 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-1" style="display: none"> </div>
                                             
-                                            
-                                                <div class="col-md-7">
-                                                    <div class="historial_receta">
+                                                <div class="col-md-8">
+                                                    <div class="historial_receta dvhistorial_receta">
                                                         <table class="table table-borderless"  id="recetaMedica">
                                                             <tr>
                                                                 <td>
@@ -384,6 +429,9 @@
         
                                                         </table>
                                                     </div>
+
+                                                    <div id="dvdDetalle" style="display: none">Detalle</div>
+
                                                     <datalist id="lista_medicamentos"></datalist>
                                                     <datalist id="lista_indicaciones"></datalist>
                                                 </div>
@@ -408,16 +456,26 @@
                                                     <table class="table table-borderless table-sm">
                                                         <?php 
                                                             foreach ($historial_recetas as $row) {
-                                                                echo '<tr>
-                                                                        <td>'.$row->fechaReceta.'</td>
-                                                                    </tr>';
+                                                                if($row->fechaReceta == date("Y-m-d")){
+                                                                    echo '<tr class="alert-primary">';
+                                                                }else{
+                                                                    echo '<tr>';
+                                                                }
+                                                                echo ' <td>'.$row->fechaReceta.'</td>';
+                                                                echo ' <td>
+                                                                        <a href="'.base_url().'Consultas/receta_medica/'.$row->idReceta.'" target="_blank" title="Imprimir receta"><i class="fa fa-print text-danger"></i></a>
+                                                                        <a href="#" title="Ver receta" class="verReceta"><i class="fa fa-file text-success"></i></a>
+                                                                        <input type="hidden" value="'.$row->htmlReceta.'" class="htmlReceta" name="htmlReceta">
+                                                                    </td>';
+                                                                echo '</tr>';
                                                             }
                                                         ?>
+                                                        
                                                         
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
 
                                         <input type="hidden" value="<?php echo $paciente->idPaciente; ?>" name="idPaciente">
                                     </form>
@@ -900,6 +958,51 @@
     $(document).on("change", "#proximaReceta", function() {
         $("#btnGuardarReceta").show();
     });
+
+    $(document).on("click", ".verReceta", function(e) {
+        e.preventDefault();
+        var html =  '<table class="table table-borderless text-center">';
+        html +=  '<tr class="alert-primary"> <td colspan= "2">INFORMACION DE LA RECETA</td> </tr>';
+        html +=  $(this).closest('tr').find('.htmlReceta').val();
+        html +=  '<tr class="alert-danger"> <td colspan= "2"><a href="#" class="cerrarReceta"><i class="fa fa-times"></i></a></tr>';
+        html +=  '</table>';
+        
+        $("#dvdDetalle").html(html);
+        $("#dvdDetalle").show();
+        $(".dvhistorial_receta").hide();
+    });
+
+
+    $(document).on("click", ".cerrarReceta", function(e) {
+        e.preventDefault();
+        $("#dvdDetalle").html("");
+        $("#dvdDetalle").hide();
+        $(".dvhistorial_receta").show();
+    });
+
+    $(document).on("click", ".examenFecha", function(e) {
+        e.preventDefault();
+        var html = $(this).closest('tr').find('.tabla_examen').html();
+        var tabla = checkUTF8(atob(html));
+        var nombre = $(this).closest('tr').find('.nombre_examen').html();
+        $("#dvHistorialLab").html(tabla);
+        $("#nombreExamen").html(nombre);
+
+        // console.log(tabla);
+    });
+
+    function checkUTF8(text) {
+        var utf8Text = text;
+        try {
+            // Try to convert to utf-8
+            utf8Text = decodeURIComponent(escape(text));
+            // If the conversion succeeds, text is not utf-8
+        }catch(e) {
+            // console.log(e.message); // URI malformed
+            // This exception means text is utf-8
+        }   
+        return utf8Text; // returned text is always utf-8
+    }
 
    /*  $(document).on("click", "#btnGuardarReceta", function(e) {
         e.preventDefault();

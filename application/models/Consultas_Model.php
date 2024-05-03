@@ -169,26 +169,48 @@ class Consultas_Model extends CI_Model {
             }
         }
 
-
-        public function guardarRecetaMedica($data = null){
-            if($data != null){
-                $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, idPaciente, htmlReceta, medicamentosReceta)
-                        VALUES(?, ?, ?, ?, ?, ?)";
-                if($this->db->query($sql, $data)){
-                    return true;
+        // Recetas medicas
+            public function guardarRecetaMedica($data = null){
+                if($data != null){
+                    $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, idPaciente, htmlReceta, medicamentosReceta)
+                            VALUES(?, ?, ?, ?, ?, ?)";
+                    if($this->db->query($sql, $data)){
+                        return true;
+                    }else{
+                        return false;
+                    }
                 }else{
                     return false;
                 }
-            }else{
-                return false;
             }
-        }
 
-        public function recetasMedicas($p = null){
-            $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ";
-            $datos = $this->db->query($sql);
-            return $datos->result();
-        }
+            public function recetasMedicas($p = null){
+                $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+
+            public function detalleReceta($r = null){
+                if($r != null){
+                    $sql = "SELECT p.nombrePaciente, c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, rm.* FROM tbl_receta_medica AS rm 
+                            INNER JOIN tbl_consultas AS c ON(c.idConsulta = rm.idConsulta)
+                            INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
+                            WHERE rm.idReceta = '$r' ";
+                    $datos = $this->db->query($sql);
+                    return $datos->row();
+                }
+            }
+        // Recetas medicas
+
+
+        // Examenes de laboratorio
+            public function fechasVisitas($id = null){
+                $sql = "SELECT DISTINCT(cl.fechaConsulta) AS fecha FROM tbl_consulta_laboratorio AS cl
+                        WHERE cl.idPaciente = '$id' ";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        // Examenes de laboratorio
 
     
 }
