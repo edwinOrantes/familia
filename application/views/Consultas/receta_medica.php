@@ -75,19 +75,19 @@
     <div class="body_left">
         
         <div>
-            <h5><strong>TELEFONO</strong></h5>
+            <h5 style="text-decoration: underline"><strong>TELEFONO</strong></h5>
             <h5><strong>2605-6298</strong></h5>
         </div>
 
         <div>
-            <h5><strong>HORARIO</strong></h5>
+            <h5 style="text-decoration: underline"><strong>HORARIO</strong></h5>
             <p>De Lunes a Sabado</p>
             <p>7:00 a.m a 5:00 p.m</p>
             <p>Domingo</p>
             <p>8:00 a.m a 12:00 m.d</p>
         </div>
 
-        <h5><strong>SERVICIOS</strong></h5>
+        <h5 style="text-decoration: underline"><strong>SERVICIOS</strong></h5>
         <div style="text-align: left; margin: 15px 0px 100px -20px; line-height: 22px">
             <ul>
                 <li>Ultrasonografía</li>
@@ -103,7 +103,7 @@
         </div>
 
         <div style="font-size: 12px; font-weight: bold">
-            <p> Atendiéndole con amabilidad que nos caracteriza.</p>
+            <p> Atendiéndole con la amabilidad que nos caracteriza.</p>
         </div>
 
         
@@ -113,7 +113,9 @@
             <table>
                 <tr>
                     <th>PACIENTE: </th>
-                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 400px"> <?php echo $detalle->nombrePaciente; ?> </th>
+                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 250px"> <?php echo $detalle->nombrePaciente; ?> </th>
+                    <th>Edad: </th>
+                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 75"> <?php echo $detalle->edadPaciente; ?> Años</th>
                 </tr>
             </table>
         </div>
@@ -155,8 +157,8 @@
                 </table>
             </div>
             <div class="fechas_receta" style="line-height: 1px; text-align: center;">
-                <h6><strong>FECHA DE CONSULTA:</strong><?php echo $detalle->fechaReceta; ?></h6>
-                <h6><strong>PRÓXIMA CITA:</strong><?php echo $detalle->proximaReceta; ?></h6>
+                <h6><strong>FECHA DE CONSULTA: </strong><?php echo $detalle->fechaReceta; ?></h6>
+                <h6><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></h6>
             </div>
         </div>
     </div>

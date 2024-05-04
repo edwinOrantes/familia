@@ -129,16 +129,16 @@
 
                                                             // Calculo peso ideal
                                                                 if($paciente->sexoPaciente == "Masculino"){
-                                                                    $peso_ideal = ($row->altura * 100) - 100 - ((($row->altura * 100)-150)/4);
+                                                                    $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/4);
                                                                 }else{
-                                                                    $peso_ideal = ($row->altura * 100) - 100 - ((($row->altura * 100)-150)/2.5);
+                                                                    $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/2.5);
                                                                 }
                                                             // Calculo peso ideal
                                                     ?>
                                                         <tr>
                                                             <td class="text-center"><?php echo $index; ?></td>
                                                             <td class="text-center"><?php echo $row->fechaConsulta; ?></td>
-                                                            <td class="text-center"><?php echo ($row->altura * 100); ?> cm</td>
+                                                            <td class="text-center"><?php echo ($row->altura); ?> cm</td>
                                                             <td class="text-center"><?php echo $row->peso; ?> Kg</td>
                                                             <td class="text-center"><?php echo $row->imc; ?></td>
                                                             <td class="text-center"><?php echo $peso_ideal; ?> Kg</td>
