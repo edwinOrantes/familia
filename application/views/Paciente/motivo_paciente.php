@@ -53,7 +53,7 @@
 			<div class="ms-panel">
 				<div class="ms-panel-header">
                     <div class="row">
-                        <div class="col-md-6"><h6>Que proceso se desea realizar?</h6></div>
+                        <div class="col-md-6"><h6>Hoja de cobro</h6></div>
                         <div class="col-md-6 text-right">
                         <a class="btn btn-success btn-sm" href="<?php echo base_url()?>Paciente/agregar_pacientes"><i class="fa fa-arrow-left"></i> Volver </a>
                         <a class="btn btn-primary btn-sm" href="<?php echo base_url()?>Hoja/detalle_hoja/<?php echo $hoja; ?>/"><i class="fa fa-file"></i> Terminar </a>
@@ -111,7 +111,7 @@
 
                         <div class="col-md-4">
                             <a href="#examenesLaboratorio" data-toggle="modal">
-                                <div class="ms-card card-gradient-danger ms-widget ms-infographics-widget">
+                                <div class="ms-card card-gradient-success ms-widget ms-infographics-widget">
                                     <div class="ms-card-body media">
                                         <div class="media-body">
                                             <h6>&nbsp;</h6>
@@ -126,7 +126,7 @@
 
                         <div class="col-md-4">
                             <a href="#medicamentos" data-toggle="modal">
-                                <div class="ms-card card-gradient-warning ms-widget ms-infographics-widget">
+                                <div class="ms-card card-gradient-success ms-widget ms-infographics-widget">
                                     <div class="ms-card-body media">
                                         <div class="media-body">
                                             <h6>&nbsp;</h6>
@@ -156,7 +156,7 @@
 
                         <div class="col-md-4">
                             <a href="#ultrasonografia" data-toggle="modal">
-                                <div class="ms-card card-gradient-warning ms-widget ms-infographics-widget">
+                                <div class="ms-card card-gradient-info ms-widget ms-infographics-widget">
                                     <div class="ms-card-body media">
                                         <div class="media-body">
                                             <h6>&nbsp;</h6>
@@ -171,7 +171,7 @@
 
                         <div class="col-md-4">
                             <a href="#otrosServicios" data-toggle="modal">
-                                <div class="ms-card card-gradient-danger ms-widget ms-infographics-widget">
+                                <div class="ms-card card-gradient-info ms-widget ms-infographics-widget">
                                     <div class="ms-card-body media">
                                         <div class="media-body">
                                             <h6>&nbsp;</h6>
@@ -288,6 +288,7 @@
                                                 <tr>
                                                     <th class="text-center" scope="col">Código</th>
                                                     <th class="text-center" scope="col">Nombre</th>
+                                                    <th class="text-center" scope="col">Fecha</th>
                                                     <th class="text-center" scope="col">Precio</th>
                                                     <th class="text-center" scope="col">Agregar</th>
                                                 </tr>
@@ -301,6 +302,9 @@
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
                                                         <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row">
+                                                            <input type="date" class="form-control fechaConsulta">
+                                                        </td>
 
 
                                                         <td class="text-center" scope="row">
@@ -782,7 +786,8 @@
             idM : $(this).closest('tr').find('.idM').val(),
             nombreMedicamento : $(this).closest('tr').find('.nombreM').val(),
             precioM : $(this).closest('tr').find('.precioM').val(),
-            cantidadM : $(this).closest('tr').find('.cantidadM').val()
+            cantidadM : $(this).closest('tr').find('.cantidadM').val(),
+            fecha : $(this).closest('tr').find('.fechaConsulta').val()
         }
 
         $.ajax({
@@ -910,6 +915,60 @@
     $(document).on('click', '.close', function(event) {
         event.preventDefault();
         location.reload();
+    });
+
+    $(document).on("change", ".fechaConsulta", function() {
+        $("#btnGuardarReceta").show();
+
+        var datos = {
+            fecha : $(this).val(),
+            medico : $("#medicoHoja").val()
+        }
+
+        $.ajax({
+            url: "../../../Consultas/validar_fecha",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error(registro.respuesta, 'Aviso!');
+                            $(".fechaConsulta ").val("");
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error(registro.respuesta, 'Aviso!');
+                        $(".fechaConsulta ").val("");
+                    }
+            }
+        });
+
+
     });
 
 </script>

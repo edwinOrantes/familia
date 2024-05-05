@@ -8361,11 +8361,11 @@ body:not(.ms-settings-open2) .ms-settings-toggle2:hover {
 }
 
 .ms-modal-dialog-width {
-  width: 900px;
+  width: 1500px;
 }
 
 .ms-modal-content-width {
-  width: 900px;
+  width: 1200px;
   margin: auto;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -9030,7 +9030,7 @@ body:not(.ms-settings-open2) .ms-settings-toggle2:hover {
 
 @media(min-width:576px) {
   .modal-dialog.ms-modal-dialog-width {
-    max-width: 1000px;
+    max-width: 1500px;
     margin: auto;
   }
 }

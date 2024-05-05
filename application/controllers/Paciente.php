@@ -420,7 +420,6 @@ class Paciente extends CI_Controller {
 		public function agregar_consulta(){
 			if($this->input->is_ajax_request()){
 				$datos =$this->input->post();
-
 				// Consulta
 					$consulta["idPaciente"] = $datos["idPaciente"];
 					$consulta["idMedico"] = $datos["idMedico"];
@@ -430,7 +429,7 @@ class Paciente extends CI_Controller {
 					$consulta["imcPaciente"] = $datos["imcPaciente"];
 					$consulta["temperatura"] = $datos["temperatura"];
 					$consulta["presion"] = $datos["presion"];
-					$consulta["fechaHoja"] = date("Y-m-d");
+					$consulta["fechaHoja"] = $datos["fecha"];
 					$consulta["hoja"] = $datos["idHoja"];
 				// Consulta
 
@@ -468,6 +467,8 @@ class Paciente extends CI_Controller {
 					header("content-type:application/json");
 					print json_encode($respuesta);
 				}
+
+				
 			}
 			else{
 				echo "Error...";

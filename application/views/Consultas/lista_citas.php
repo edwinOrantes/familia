@@ -18,6 +18,11 @@
   </script>
 <?php endif; ?>
 
+<style>
+    .listaConsultas .text-center{
+        font-size: 16px;
+    }
+</style>
 
 <div class="ms-content-wrapper">
 	<div class="row">
@@ -38,7 +43,7 @@
                     <?php
                         if(sizeof($citas) > 0){
                     ?>
-                    <table class="table table-borderless thead-primary tablaPlus">
+                    <table class="table table-borderless thead-primary tablaPlus listaConsultas">
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="text-center">#</th>
@@ -85,7 +90,7 @@
                                             <td class="text-center"><?php echo date("h:i:s A", strtotime($cita->hora)); ?></td>
                                             <td class="text-center">
                                                 <?php
-                                                    echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Consultas/detalle_consulta/".$cita->idConsulta."/'><i class='fas fa-file ms-text-primary'></i></a>";
+                                                    echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Consultas/detalle_consulta/".$cita->idConsulta."/'><i class='fas fa-file fa-2x ms-text-primary'></i></a>";
                                                     // echo "<a  title='Consulta atendida' target='blank' href='".base_url()."Consultas/detalle_consulta/".$cita->idConsulta."/'><i class='fas fa-check ms-text-primary'></i></a>";
                                                 ?>
                                             </td>

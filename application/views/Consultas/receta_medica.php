@@ -127,7 +127,7 @@
                 foreach ($indicaciones as $row) {
                     echo '<div style="">
                         <p>'.$row->medicamento.'</p>
-                        <p>'.$row->indicacion.'</p>
+                        <p>'.$row->indicacion." ".@$row->medida.'</p>
                     </div>';
                 }
 
@@ -157,7 +157,7 @@
                 </table>
             </div>
             <div class="fechas_receta" style="line-height: 1px; text-align: center;">
-                <h6><strong>FECHA DE CONSULTA: </strong><?php echo $detalle->fechaReceta; ?></h6>
+                <h6><strong>FECHA RECETA: </strong><?php echo $detalle->fechaReceta; ?></h6>
                 <h6><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></h6>
             </div>
         </div>

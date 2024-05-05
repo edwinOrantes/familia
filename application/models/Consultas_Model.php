@@ -14,7 +14,7 @@ class Consultas_Model extends CI_Model {
         public function cabeceraConsulta($consulta = null){
             if($consulta != null){
                 $sql = "SELECT r.nombreResponsable, r.parentescoResponsable, r.duiResponsable, r.telefonoResponsable, p.*, c.idConsulta, c.peso, 
-                        c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta 
+                        c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta, c.idMedico
                         FROM tbl_consultas AS c 
                         INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
                         INNER JOIN tbl_responsables AS r ON(r.idMenor = p.idPaciente)
@@ -72,6 +72,15 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function buscarCantidades($str = null){
+            if($str != null){
+                $sql = "SELECT cm.detalleCantidad FROM tbl_cantidad_medicamentos AS cm 
+                        WHERE cm.detalleCantidad LIKE '%$str%'";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
+
         public function detalleConsulta($c = null){
             if($c != null){
                 $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
@@ -79,11 +88,18 @@ class Consultas_Model extends CI_Model {
                 return $datos->row();
             }
         }
+        public function detalleConsultaR($c = null){
+            if($c != null){
+                $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
 
 
         public function guardarDetalleConsulta($data = null){
             $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
-                    tempConsulta = ?, frConsulta = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?, diagnosticoConsulta = ?, planConsulta = ?
+                    tempConsulta = ?, frConsulta = ?, examenFisico = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?, diagnosticoConsulta = ?, planConsulta = ?
                     WHERE idDetalleConsulta = ?";
             if($this->db->query($sql, $data)){
                 return true;
@@ -114,6 +130,19 @@ class Consultas_Model extends CI_Model {
         public function guardarDetalleHorario($data = null){
             if($data != null){
                 $sql = "INSERT INTO tbl_horario_medicina(detalleHorario) VALUES(?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        public function guardarCantidadMedicamento($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_cantidad_medicamentos(detalleCantidad) VALUES(?)";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -185,9 +214,23 @@ class Consultas_Model extends CI_Model {
             }
 
             public function recetasMedicas($p = null){
-                $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ";
+                $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ORDER BY rm.idReceta DESC ";
                 $datos = $this->db->query($sql);
                 return $datos->result();
+            }
+
+            public function cantidadConsultasMedico($m = null){
+                $sql = "SELECT m.cantidadConsultas FROM tbl_medicos AS m WHERE m.idMedico = '$m' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+
+            public function validarFecha($data = null){
+                if($data != null){
+                    $sql = "SELECT COALESCE(COUNT(c.idConsulta), 0) AS consultas FROM tbl_consultas AS c WHERE c.fechaConsulta = ? AND c.idMedico = ? ";
+                    $datos = $this->db->query($sql, $data);
+                    return $datos->row();
+                }
             }
 
             public function detalleReceta($r = null){

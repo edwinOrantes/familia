@@ -73,6 +73,21 @@ class Consultas extends CI_Controller {
 		}
 	}
 
+	public function obtener_detalle_actual(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+			$detalle = $this->Consultas_Model->detalleConsultaR($datos["id"]);
+			print json_encode($detalle);
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
 	public function guardar_antecedentes_consulta(){
 		if($this->input->is_ajax_request()){
 			$datos = $this->input->post();
@@ -125,6 +140,32 @@ class Consultas extends CI_Controller {
 		}
 	}
 
+	public function guardar_cantidad_medicamento(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarCantidadMedicamento($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
 
 	public function buscar_diagnostico(){
 		if($this->input->is_ajax_request()){
@@ -151,6 +192,37 @@ class Consultas extends CI_Controller {
 			$datos = $this->input->post();
 			$resp = $this->Consultas_Model->buscarIndicaciones($datos["str"]);
 			print json_encode($resp);
+		}else{
+			echo "Error";
+		}
+	}
+
+	public function buscar_cantidades(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+			$resp = $this->Consultas_Model->buscarCantidades($datos["str"]);
+			print json_encode($resp);
+		}else{
+			echo "Error";
+		}
+	}
+	public function validar_fecha(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+			$agendadas = $this->Consultas_Model->validarFecha($datos);
+			$disponibles = $this->Consultas_Model->cantidadConsultasMedico($datos["medico"]);
+
+			if($agendadas->consultas < $disponibles->cantidadConsultas){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Para esta fecha no hay cupos disponibles con este médico');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
 		}else{
 			echo "Error";
 		}
@@ -225,21 +297,23 @@ class Consultas extends CI_Controller {
 			for ($i = 0; $i < $numElementos; $i++) {
 				// Crear un arreglo asociativo para cada conjunto de datos
 
-				if($datos["medicamento"][$i]!= '' || $datos["indicacion"][$i] != '') {
+				if($datos["medicamento"][$i]!= '' || $datos["indicacion"][$i] != '' || $datos["medida"][$i] != '') {
 					$html .= '<tr>
 						<td>'.$datos["medicamento"][$i].'</td>
 						<td>'.$datos["indicacion"][$i].'</td>
+						<td>'.$datos["medida"][$i].'</td>
 					</tr>';
 					$objeto = array(
 						"medicamento" => $datos["medicamento"][$i],
 						"indicacion" => $datos["indicacion"][$i],
+						"medida" => $datos["medida"][$i],
 					);
 					// Agregar el arreglo al arreglo combinado
 					array_push($listaInsumos, $objeto);
 				}
 
 			}
-			unset($datos["medicamento"], $datos["indicacion"]);
+			unset($datos["medicamento"], $datos["indicacion"], $datos["medida"], $datos["htmlReceta"]);
 			$datos["html"] = $html;
 			$datos["medidas"] = json_encode($listaInsumos);
 		// Creando Json de medidas
