@@ -1662,17 +1662,55 @@ class Laboratorio_Model extends CI_Model {
 
 
     //Metodos para busqueda de resultados
-    public function cabeceraBusqueda($id){
-        $sql = "SELECT 
-                cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, cl.codigoConsulta, cl.fechaConsulta, m.nombreMedico
-                FROM tbl_consulta_laboratorio AS cl
-                INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
-                INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
-                WHERE cl.idPaciente = '$id' ";
-        $datos = $this->db->query($sql);
-        return $datos->row();
-    }
-    //Metodos para busqueda de resultados
+        public function cabeceraBusqueda($id){
+            $sql = "SELECT 
+                    cl.idConsultaLaboratorio, p.idPaciente, p.nombrePaciente, p.edadPaciente, cl.codigoConsulta, cl.fechaConsulta, m.nombreMedico
+                    FROM tbl_consulta_laboratorio AS cl
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE cl.idPaciente = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+        //Metodos para busqueda de resultados
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    // Metodos nuevos para examenes
+        public function obtenerHematologia($id = null){
+            $sql = "SELECT * FROM tbl_hematologia AS h WHERE idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function guardarHematologiaLab($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_hematologia SET 
+                    examenSolicitado = ?, fechaExamen = ?, globulosRojos = ?, eritrosedimentacion = ?, globulosBlancos = ?, reticulositos = ?, hematocrito = ?, 
+                    tpTrombolastina = ?, hemoglobina = ?, tSangramiento = ?, vlGMedio = ?, tCoagulacion = ?, hbGMedia = ?, tProtombina = ?, concHbGlobMed = ?, 
+                    neutrofilos = ?, linfocitos = ?, eosinofilos = ?, basofilos = ?, monocitos = ?, plaquetas = ?, observacionesH = ? WHERE idHematologia = ?             ";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+    // Metodos nuevos para examenes
 }
 ?>
+
 

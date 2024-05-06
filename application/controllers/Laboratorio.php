@@ -74,7 +74,7 @@ class Laboratorio extends CI_Controller {
             // echo json_encode($datos);
         }
 
-        public function detalle_consulta($id){
+        /* public function detalle_consulta($id){
             $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
             $data["consulta"] = $id;
             
@@ -82,6 +82,20 @@ class Laboratorio extends CI_Controller {
             $data["examenesRealizados"] = $this->Laboratorio_Model->obtenerExamenesRealizados($id);
             $data["historial"] = $this->Laboratorio_Model->fechasVisitas($data["paciente"]->idPaciente, $data["paciente"]->fechaConsulta);
             $data["consulta"] = $id;
+
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/detalle_examenes", $data);
+            $this->load->view("Base/footer"); 
+
+            // echo json_encode($data);
+
+        } */
+
+        public function detalle_consulta($id = null){
+            $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
+            $data["consulta"] = $id;
+            
+            $data["hematologia"] = $this->Laboratorio_Model->obtenerHematologia($id);
 
             $this->load->view("Base/header");
             $this->load->view("Laboratorio/detalle_examenes", $data);
@@ -1706,7 +1720,7 @@ class Laboratorio extends CI_Controller {
                     $this->session->set_flashdata("error","Error al actualizar los datos!");
                     redirect(base_url()."Laboratorio/");
                 }
-                echo json_encode($datos);
+                // echo json_encode($datos);
             }
         // Fin Hematologia
 
@@ -5000,5 +5014,26 @@ class Laboratorio extends CI_Controller {
 			}
 		}
     // Busqueda de resultados de examenes
+
+
+
+
+    // Nuevos metodos de laboratorio
+        public function guardar_hematologia_lab(){
+            $datos = $this->input->post();
+            $consulta = $datos["idConsulta"];
+            unset($datos["idConsulta"]);
+            $bool = $this->Laboratorio_Model->guardarHematologiaLab($datos);
+            if($bool){
+                $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }else{
+                $this->session->set_flashdata("error","Error al guardar los datos!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }
+
+            // echo json_encode($datos);
+        }
+    // Nuevos metodos de laboratorio
 	
 }

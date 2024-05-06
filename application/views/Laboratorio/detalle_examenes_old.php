@@ -19,6 +19,32 @@
     </script>
 <?php endif; ?>
 
+<!-- Horas para tolerancia a la glucosa -->
+    <?php
+        $hora= date('h:i A'); 
+        $primera = strtotime ( '-1 hour' , strtotime ($hora)); 
+        $segunda = strtotime ( '-2 hour' , strtotime ($hora)); 
+        $tercera = strtotime ( '-3 hour' , strtotime ($hora)); 
+        $primera = date ( 'h:i A' , $primera); 
+        $segunda = date ( 'h:i A' , $segunda); 
+        $tercera = date ( 'h:i A' , $tercera); 
+    ?>
+<!-- Fin horas para tolerancia a la glucosa -->
+
+<?php
+    $totalConsulta = 0;
+
+    /* foreach ($totalHojaLaboratorio as $examen) {
+        $totalConsulta += $examen->precioVMedicamento;
+    } */
+
+    // echo json_encode($datosOnline);
+    // Datos a subir en linea
+        // $params = urlencode(base64_encode(serialize($datosOnline)));
+    // Datos a subir en linea
+
+?>
+
 <style>
     .tabla_examen, .nombre_examen{
         display: none;
@@ -27,232 +53,271 @@
     #htmlDetalle .table tr td{
         padding: 1px !important
     }
-
-    .table td  {
-        padding: 1px 5px 0px 0px;
-        }
 </style>
 
 <div class="">
     <div class="row">
-        
-        <div class="col-md-12">
-            <div class="ms-panel-body clearfix">
-                <ul class="nav nav-tabs d-flex nav-justified mb-4" role="tablist">
-                <li role="presentation"><a href="#datosPaciente" aria-controls="datosPaciente" class="active show" role="tab" data-toggle="tab" aria-selected="false">Datos del paciente</a></li>
-                <li role="presentation"><a href="#hematologia" aria-controls="hematologia" class="" role="tab" data-toggle="tab" aria-selected="false">Hematología</a></li>
-                <li role="presentation"><a href="#quimicaSanguinea" aria-controls="quimicaSanguinea" role="tab" data-toggle="tab" class="" aria-selected="false">Química sanguínea</a></li>
-                <li role="presentation"><a href="#urianalisis" aria-controls="urianalisis" role="tab" data-toggle="tab" aria-selected="false">Urianálisis </a></li>
-                <li role="presentation"><a href="#coprologia" aria-controls="coprologia" role="tab" data-toggle="tab" aria-selected="false">Coprología </a></li>
-                <li role="presentation"><a href="#pruebasEspeciales" aria-controls="pruebasEspeciales" role="tab" data-toggle="tab" aria-selected="false">Pruebas especiales </a></li>
-                <li role="presentation"><a href="#bacteriologia" aria-controls="bacteriologia" role="tab" data-toggle="tab" aria-selected="false">Bacteriología </a></li>
-                </ul>
-                <div class="tab-content">
-
-                    <div role="tabpanel" class="tab-pane fade active show" id="datosPaciente">
-                        <div class="alert-primary table-responsive bordeContenedor pt-3 pl-3">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <td><strong>Código:</strong></td>
-                                        <td><?php echo $paciente->codigoConsulta; ?></td>
-                                        <td><strong>Fecha:</strong></td>
-                                        <td><?php echo $paciente->fechaConsulta; ?></td>
-                                        <td><strong>Tipo:</strong></td>
-                                        <td>Ambulatorio</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td><strong>Paciente:</strong></td>
-                                        <td><?php echo $paciente->nombrePaciente; ?> </td>
-                                        <td><strong>Edad:</strong></td>
-                                        <td><?php echo $paciente->edadPaciente." Años"; ?></td>
-                                        <td><strong>Medico:</strong></td>
-                                        <td><?php echo $paciente->nombreMedico; ?></td>
-                                    </tr>
-                        
-                                </table>
-                        </div> 
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="hematologia">
-                        <form action="<?php echo base_url(); ?>Laboratorio/guardar_hematologia_lab" method="post">
-                        <div class="row">
-                                <div class="col-md-10">
-                                    <table class="table table-borderless">
-                                        <tr>
-                                            <td><strong>Examen:</strong> <input type="text" value="<?php echo $hematologia->examenSolicitado; ?>"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
-                                            <td><strong>Fecha:</strong>  <input type="date" value="<?php echo $hematologia->fechaExamen; ?>" class="form-control"  id="fechaExamen" name="fechaExamen"></td>
-                                        </tr>
-                                    </table>
-    
-                                    <table class="table table-borderless frmExamen">
-    
-                                        <tr>
-                                            <td>Globulos rojos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->globulosRojos; ?>" name="globulosRojos" id="globulosRojos"> </td>
-                                            <td> <span class="badge badge-danger">3,960,000-5,500,000 X mm3</span> </td>
-                                            <td>Eritrosedimentación</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->eritrosedimentacion; ?>" name="eritrosedimentacion" id="eritrosedimentacion"></td>
-                                            <td> <span class="badge badge-danger">1-20mm/hr</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Globulos blancos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->globulosBlancos; ?>" name="globulosBlancos" id="globulosBlancos"> </td>
-                                            <td> <span class="badge badge-danger"> 5,000-10,000 X mm3</span> </td>
-                                            <td>Reticulositos</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->reticulositos; ?>" name="reticulositos" id="reticulositos"></td>
-                                            <td> <span class="badge badge-danger">0.5-1.5%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Hematocrito</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hematocrito; ?>" name="hematocrito" id="hematocrito"> </td>
-                                            <td> <span class="badge badge-danger">36-50%</span> </td>
-                                            <td>T.P Trombolastina</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tpTrombolastina; ?>" name="tpTrombolastina" id="tpTrombolastina"></td>
-                                            <td> <span class="badge badge-danger">26-34 Seg.</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Hemoglobina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hemoglobina; ?>" name="hemoglobina" id="hemoglobina"> </td>
-                                            <td> <span class="badge badge-danger">12-16.6 g%</span> </td>
-                                            <td>T. de sangramiento</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tSangramiento; ?>" name="tSangramiento" id="tSangramiento"></td>
-                                            <td> <span class="badge badge-danger">1-3 Minutos</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Vl. globular medio</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->vlGMedio; ?>" name="vlGMedio" id="vlGMedio"> </td>
-                                            <td> <span class="badge badge-danger">90.9-92.7 micras3</span> </td>
-                                            <td>T. de coagulacion</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tCoagulacion; ?>" name="tCoagulacion" id="tCoagulacion"></td>
-                                            <td> <span class="badge badge-danger">5-10 Minutos</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Hb. globular media</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hbGMedia; ?>" name="hbGMedia" id="hbGMedia"> </td>
-                                            <td> <span class="badge badge-danger">30.2-31.7 uug</span> </td>
-                                            <td>T. Protombina</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tProtombina; ?>" name="tProtombina" id="tProtombina"></td>
-                                            <td> <span class="badge badge-danger">13-17 Seg</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Conc. HB. Glob. Med</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->concHbGlobMed; ?>" name="concHbGlobMed" id="concHbGlobMed"> </td>
-                                            <td> <span class="badge badge-danger">33-33.5%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Neutrofilos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->neutrofilos; ?>" name="neutrofilos" id="neutrofilos"> </td>
-                                            <td> <span class="badge badge-danger">40-70%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Linfocitos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->linfocitos; ?>" name="linfocitos" id="linfocitos"> </td>
-                                            <td> <span class="badge badge-danger">20-40%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Eosinofilos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->eosinofilos; ?>" name="eosinofilos" id="eosinofilos"> </td>
-                                            <td> <span class="badge badge-danger">1-4%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Basofilos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->basofilos; ?>" name="basofilos" id="basofilos"> </td>
-                                            <td> <span class="badge badge-danger">2-5%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Monocitos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->monocitos; ?>" name="monocitos" id="monocitos"> </td>
-                                            <td> <span class="badge badge-danger">0-1%</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Plaquetas</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->plaquetas; ?>" name="plaquetas" id="plaquetas"> </td>
-                                            <td> <span class="badge badge-danger">150,000-400,000 X mm3</span> </td>
-                                        </tr>
-    
-                                        <tr>
-                                            <td>Observaciones</td>
-                                            <td colspan="2"> <textarea class="form-control" name="observacionesH" id="observacionesH"><?php echo $hematologia->observacionesH; ?></textarea></td>
-                                            <td></td>
-                                            <td >
-                                                <input type="hidden" class="form-control" value="<?php echo $hematologia->idHematologia; ?>" name="idHematologia" id="idHematologia"> 
-                                                <input type="hidden" class="form-control" value="<?php echo $consulta; ?>" name="idConsulta"> 
-                                                <button class="btn btn-primary btn-block"> <i class="fa fa-save"></i> Guardar</button>
-                                            </td>
-                                        </tr>
-    
-    
-                                    </table>
-                                </div>
-                                <div class="col-md-2 text-center">
-                                    <p><strong>HISTORIAL</strong></p>
-                                    <div class="table-responsive historial_receta table-md">
-                                        <table class="table table-borderless table-sm">
-                                            <tr>
-                                                <td>Fecha</td>
-                                                <td>Opcion</td>
-                                            </tr>
-                                            <!-- <?php 
-                                                foreach ($historial_recetas as $row) {
-                                                    if($row->fechaReceta == date("Y-m-d")){
-                                                        echo '<tr class="alert-primary">';
-                                                    }else{
-                                                        echo '<tr>';
-                                                    }
-                                                    echo ' <td>'.$row->fechaReceta.'</td>';
-                                                    echo ' <td>
-                                                            <a href="'.base_url().'Consultas/receta_medica/'.$row->idReceta.'" target="_blank" title="Imprimir receta"><i class="fa fa-print text-danger"></i></a>
-                                                            <a href="#" title="Ver receta" class="verReceta"><i class="fa fa-file text-success"></i></a>
-                                                            <input type="hidden" value="'.$row->htmlReceta.'" class="htmlReceta" name="htmlReceta">
-                                                        </td>';
-                                                    echo '</tr>';
-                                                }
-                                            ?> -->
-                                            
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="quimicaSanguinea">
-                        <p>Química sanguínea</p>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="urianalisis">
-                        <p>Urianálisis</p>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="coprologia">
-                        <p> Coprología </p>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="pruebasEspeciales">
-                        <p>Pruebas especiales </p>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
-                        <p>Bacteriología</p>
-                    </div>
-
-                </div>
+        <div class="col-md-2 pl-4">
+            <div class="text-center">
+                <a href="#cropologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Coprologia </strong> </a>
+                <a href="#orina" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Orina </strong> </a>
+                <a href="#hematologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Hematología </strong> </a>
+                <a href="#quimicaSanguinea" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Química sanguinea </strong> </a>
+                <a href="#sanguineo" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tipeo sanguineo </strong> </a>
+                <a href="#coagulacion" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Pruebas de coagulación </strong> </a>
+                <a href="#varios" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Varios </strong> </a>
+                <!-- <a href='#inmunologia' data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Inmunologia </strong> </a> -->
+                <!-- <a href="#bacteriologia" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Bacteriologia </strong> </a> -->
+                <!-- <a href="#tiroideasLibres" data-toggle='modal' class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tiroideas libres </strong> </a> -->
+                <!-- <a href="#tiroideasTotales" data-toggle='modal'class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Tiroideas totales </strong> </a> -->
+                <!-- <a href="#psaTotal" data-toggle='modal'  class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> PSA Total </strong> </a> -->
+                <!-- <a href="#hisopadoNasal" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Hisopado nasal </strong> </a> -->
+                <!-- <a href="#espermograma" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Espermograma </strong> </a> -->
+                <!-- <a href="#examenCreatinina" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> D. Creatinina </strong> </a> -->
+                <!-- <a href="#gasesArteriales" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Gases arteriales </strong> </a> -->
+                <!-- <a href="#toleranciaGlucosa" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> T. a la Glucosa </strong> </a> -->
+                <!-- <a href="#toxoplasma" data-toggle="modal" class="btn btn-primary btn-sm btn-block py-3 mt-1 has-icon"><strong> Toxoplasma </strong> </a> -->
             </div>
         </div>
 
+        <div class="col-md-8 mt-1">
+            <div class="alert-primary table-responsive bordeContenedor pt-3 pl-3">
+                <form action="" method="">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Código:</strong></td>
+                            <td><?php echo $paciente->codigoConsulta; ?></td>
+                            <td><strong>Fecha:</strong></td>
+                            <td><?php echo $paciente->fechaConsulta; ?></td>
+                            <td><strong>Tipo:</strong></td>
+                            <td>Ambulatorio</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>Paciente:</strong></td>
+                            <td><?php echo $paciente->nombrePaciente; ?> </td>
+                            <td><strong>Edad:</strong></td>
+                            <td><?php echo $paciente->edadPaciente." Años"; ?></td>
+                            <td><strong>Medico:</strong></td>
+                            <td><?php echo $paciente->nombreMedico; ?></td>
+                        </tr>
+            
+                    </table>
+                </form>
+            </div>
+            
+            <div class="table-responsive mt-3">
+            <table id="" class="table table-striped thead-primary w-100">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Examen</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Hora</th>
+                            <th class="text-center">Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                            foreach ($examenesRealizados as $examen) {
+                                $idExamen ='"'.$examen->idExamen.'"'; // Id del examen.
+                                $exam ='"'.$examen->tipoExamen.'"'; // Id del examen.
+                                $idDC ='"'.$examen->idDetalleConsulta.'"'; // Id detalle de la consulta.
+                        ?>
+                        <tr>
+                            <td class="text-center"><?php echo $examen->nombreExamen; ?></td>
+                            <td class="text-center"><?php echo substr($examen->fechaDetalleConsulta, 0, 10); ?></td>
+                            <td class="text-center"><?php echo $examen->horaDetalleConsulta; ?></td>
+                            <td class="text-center">
+                                <?php
+                                    switch ($examen->tipoExamen) {
+                                        case '1':
+                                            echo '<a href="'.base_url().'Laboratorio/examen_inmunologia_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/examen_inmunologia/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#inmunologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 1)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        case '2':
+                                                echo '<a href="'.base_url().'Laboratorio/bacteriologia_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                                echo '<a href="'.base_url().'Laboratorio/bacteriologia_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                                echo "<a href='#bacteriologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 2)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                                // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '3':
+                                            echo '<a href="'.base_url().'Laboratorio/coagulacion_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#coagulacionActualizar' data-toggle='modal' onclick='actualizar($idExamen, 3)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                        break;
+
+                                        case '4':
+                                            echo '<a href="'.base_url().'Laboratorio/sanguineo_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#sanguineoActualizar' data-toggle='modal' onclick='actualizar($idExamen, 4)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '5':
+                                            echo '<a href="'.base_url().'Laboratorio/quimica_clinica_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#quimicaClinicaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 5)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '6':
+                                            echo '<a href="'.base_url().'Laboratorio/quimica_sanguinea_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#quimicaSanguineaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 6)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '7':
+                                            echo '<a href="'.base_url().'Laboratorio/cropologia_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#cropologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 7)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '8':
+                                            echo '<a href="'.base_url().'Laboratorio/tiroidea_libre_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/tiroidea_libre_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#tiroideaLibreActualizar' data-toggle='modal' onclick='actualizar($idExamen, 8)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '9':
+                                            echo '<a href="'.base_url().'Laboratorio/tiroidea_total_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/tiroidea_total_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#tiroideasTotalesActualizar' data-toggle='modal' onclick='actualizar($idExamen, 9)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            //  echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                    
+                                        case '10':
+                                            echo '<a href="'.base_url().'Laboratorio/varios_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#variosActualizar' data-toggle='modal' onclick='actualizar($idExamen, 10)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        
+                                        case '11':
+                                            echo '<a href="'.base_url().'Laboratorio/psa_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/psa_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#psaTotalActualizar' data-toggle='modal' onclick='actualizar($idExamen, 11)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        case '12':
+                                            echo '<a href="'.base_url().'Laboratorio/hematologia_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#hematologiaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 12)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        case '13':
+                                            echo '<a href="'.base_url().'Laboratorio/orina_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#orinaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 13)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        case '14':
+                                            echo '<a href="'.base_url().'Laboratorio/hisopado_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/hisopado_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#hisopadoNasalActualizar' data-toggle='modal' onclick='actualizar($idExamen, 14)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '15':
+                                            echo '<a href="'.base_url().'Laboratorio/espermograma_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/espermograma_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#espermogramaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 15)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '16':
+                                            echo '<a href="'.base_url().'Laboratorio/creatinina_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/creatinina_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#examenCreatininaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 16)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '17':
+                                            echo '<a href="'.base_url().'Laboratorio/gases_arteriales_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/gases_arteriales_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#gasesArterialesActualizar' data-toggle='modal' onclick='actualizar($idExamen, 17)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '18':
+                                            echo '<a href="'.base_url().'Laboratorio/tolerancia_glucosa_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-black"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/tolerancia_glucosa_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#toleranciaGlucosaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 18)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+
+                                        case '19':
+                                            echo '<a href="'.base_url().'Laboratorio/toxoplasma_pdf_b/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-balck"></i></a>';
+                                            echo '<a href="'.base_url().'Laboratorio/toxoplasma_pdf/'.$examen->idExamen.'/" target="_blank"><i class="fa fa-print ms-text-primary"></i></a>';
+                                            echo "<a href='#toxoplasmaActualizar' data-toggle='modal' onclick='actualizar($idExamen, 19)' ><i class='fas fa-edit ms-text-success'></i></a>";
+                                            // echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        
+                                        default:
+                                            # code...
+                                            break;
+                                    }
+
+                                    switch($this->session->userdata('nivel')) {
+                                        case '1':
+                                            echo "<a href='#eliminarExamen' onclick='eliminar($idExamen, $exam, $idDC)' data-toggle='modal'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                                        break;
+                                        default:
+                                            echo "";
+                                            break;
+                                    }
+                                    
+                                ?>
+                                
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+            </table>
+
+               
+
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+            <div class="ms-panel ms-panel-fh">
+                <div class="ms-panel-header">
+                    <h6>Otras</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="accordion" id="accordionExample3">
+                        <?php
+                            $flag = 1;
+                            foreach ($historial as $row) {
+                        ?>
+                            <div class="card">
+                                <div class="card-header collapsed" data-toggle="collapse" role="button" data-target="#fechas<?php echo $flag; ?>" aria-expanded="false" aria-controls="fechas<?php echo $flag; ?>">
+                                    <span class="has-icon"> <i class="far fa-calendar"></i> <?php echo $row->fecha; ?> </span>
+                                </div>
+                                <div id="fechas<?php echo $flag; ?>" class="collapse" data-parent="#accordionExample3" style="">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <?php
+                                                $examenes = $this->Laboratorio_Model->historialRealizado($row->fecha, $paciente->idPaciente);
+                                                foreach ($examenes as $fila) {
+                                                    echo '<tr>
+                                                            <td><a href="#detalleTablaExamen" data-toggle="modal" class="examenFecha">'.$fila->nombreExamen.'</a> <p class="nombre_examen">'.$fila->nombreExamen.'</p> <div class="tabla_examen">'.base64_encode($fila->tablaExamen).'</div> </td>
+                                                        </tr>';
+                                                }
+                                            ?>
+                                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                            $flag++;
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -3583,19 +3648,23 @@
 
 <script>
     $(document).ready(function() {
-        // Obtener la última pestaña activa desde el almacenamiento local
-        var ultimaPestana = localStorage.getItem('ultimaPestana');
 
-        // Si hay una última pestaña activa, activarla
-        if (ultimaPestana) {
-            $('.nav-tabs a[href="' + ultimaPestana + '"]').tab('show');
-        }
-
-        // Guardar la pestaña activa al cambiar de pestaña
-        $('.nav-tabs a').on('shown.bs.tab', function(event){
-            var nuevaPestana = $(event.target).attr('href');
-            localStorage.setItem('ultimaPestana', nuevaPestana);
-        });
+        // Pivote para liberar examenes varios
+            $("#pivoteExamen").click(function() {
+                var valor = $('input:checkbox[name=examenes]:checked').val();
+                if (valor == "examenes") {
+                    $("#ocultarSelectVarios").hide();
+                    $("#controlInteligente10").attr("required", false);
+                    $("#detalleLibre").attr("required", true);
+                    $("#detalleLibre").show();
+                } else {
+                    $("#detalleLibre").hide();
+                    $("#ocultarSelectVarios").show();
+                    $("#controlInteligente10").attr("required", true);
+                    $("#detalleLibre").attr("required", false);
+                }
+            });
+        // Pivote para liberar examenes varios
     });
 </script>
 
@@ -3988,3 +4057,148 @@
         }); */
     </script>
 <!-- Fin gestion de examenes -->
+
+<script>
+    $(document).ready(function(){
+        $(".cerrarVarios").click(function() {
+            location.reload();
+        });
+
+        $(".frmData").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).on('change', '.calculoCreatinina', function() {
+        
+        var volumen = $("#volumenCreatinina").val();
+        var tiempo = $("#tiempoCreatinina").val();
+        var sangre = $("#sangreCreatinina").val();
+        var orina = $("#orinaCreatinina").val();
+        
+        //Calculo de el valor de la creatinina
+            var creatinina = (orina*volumen) / (sangre*tiempo);
+            if (isNaN(creatinina)) {
+                $("#depuracionCreatinina").val("0");
+            }else{
+                $("#depuracionCreatinina").val(creatinina.toFixed(2));
+            }
+        //Calculo de el valor de la creatinina
+
+    })
+
+    $(document).on("change", ".valorNormal", function() {
+        // Calcumo de valor normal
+            var sexo = $("#sexoCreatinina").val();
+            var edad = $("#edadCreatinina").val();
+
+            
+            switch (true) {
+                case edad > 0 && edad <= 15:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("40-95 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("43-97 ml/min");
+                    }
+                    break;
+                case edad > 15 && edad <= 30:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("50-156 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("74-133 ml/min");
+                    }
+                    break;
+                case edad > 30 && edad <= 40:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("20-175 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("53-153 ml/min");
+                    }
+                    break;
+                case edad > 40 && edad <= 50:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("45-132 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("29-133 ml/min");
+                    }
+                    break;
+                case edad > 50 && edad <= 60:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("40-123 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("25-122 ml/min");
+                    }
+                    break;
+                case edad > 60 && edad <= 70:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("25-116 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("35-93 ml/min");
+                    }
+                    break;
+                case edad > 70 && edad <= 80:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("35-95 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("30-75 ml/min");
+                    }
+                    break;
+                case edad > 80 && edad <= 90:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("18-76 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("19-75 ml/min");
+                    }
+                    break;
+                case edad > 90 && edad <= 100:
+                    if(sexo == "M"){
+                        $("#valorNormalDepuracion").val("15-50 ml/min");
+                    }else{
+                        $("#valorNormalDepuracion").val("24-55 ml/min");
+                    }
+                    break;
+            
+                default:
+                    $("#valorNormalDepuracion").val("");
+                    break;
+            }
+        //Fin calculo valor normal
+    });
+</script>
+
+<script>
+
+    $(document).on("click", ".examenFecha", function(e) {
+        e.preventDefault();
+        var html = $(this).closest('tr').find('.tabla_examen').html();
+        var tabla = checkUTF8(atob(html));
+        var nombre = $(this).closest('tr').find('.nombre_examen').html();
+        $("#htmlDetalle").html(tabla);
+        $("#htmlNombre").html(nombre);
+        // console.log(tabla);
+    });
+
+    /* $('#tLibre').click(function(e) {
+        e.preventDefault();
+        // Coding
+        window.print();
+        $('#tiroideasLibres').modal('hide'); //or  $('#IDModal').modal('hide');
+        //$('#tiroideasLibres').reset();
+        return false;
+    }); */
+
+    function checkUTF8(text) {
+        var utf8Text = text;
+        try {
+            // Try to convert to utf-8
+            utf8Text = decodeURIComponent(escape(text));
+            // If the conversion succeeds, text is not utf-8
+        }catch(e) {
+            // console.log(e.message); // URI malformed
+            // This exception means text is utf-8
+        }   
+        return utf8Text; // returned text is always utf-8
+    }
+</script>
