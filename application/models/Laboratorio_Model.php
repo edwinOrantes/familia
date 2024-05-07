@@ -540,16 +540,6 @@ class Laboratorio_Model extends CI_Model {
             }
         }
 
-        public function cabeceraPDF($id, $tabla, $flag, $tipo){
-            $sql = "SELECT cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, dc.fechaDetalleConsulta, dc.horaDetalleConsulta,
-                    dc.examenes, m.nombreMedico FROM $tabla AS i INNER JOIN tbl_detalle_consulta AS dc ON(i.$flag = dc.idExamen)
-                    INNER JOIN tbl_consulta_laboratorio as cl ON(dc.idConsultaLaboratorio = cl.idConsultaLaboratorio) 
-                    INNER JOIN tbl_pacientes as p ON(cl.idPaciente = p.idPaciente)
-                    INNER JOIN tbl_medicos as m ON(cl.idMedico = m.idMedico) 
-                    WHERE dc.idExamen = '$id' AND dc.tipoExamen = '$tipo'";
-            $datos = $this->db->query($sql);
-            return $datos->row();
-        }
 
         public function detalleExamen($id, $tipo){
             switch ($tipo) {
@@ -1687,8 +1677,28 @@ class Laboratorio_Model extends CI_Model {
         
         
     // Metodos nuevos para examenes
+        
+        public function pacienteConsulta($id = null){
+            $sql = "SELECT * FROM tbl_consulta_laboratorio AS cl WHERE cl.idConsultaLaboratorio = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+        
+        public function historialHematologia($id = null){
+            $sql = "SELECT * FROM tbl_hematologia AS h
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = h.idConsulta)
+                    WHERE cl.idPaciente = '$id' ORDER BY h.idHematologia DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
         public function obtenerHematologia($id = null){
             $sql = "SELECT * FROM tbl_hematologia AS h WHERE idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+        public function hematologiaPDF($id = null){
+            $sql = "SELECT * FROM tbl_hematologia AS h WHERE idHematologia = '$id' ";
             $datos = $this->db->query($sql);
             return $datos->row();
         }
@@ -1708,6 +1718,19 @@ class Laboratorio_Model extends CI_Model {
                 return false;
             }
 
+        }
+
+        
+        public function cabeceraPDF($id = null){
+            $sql = "SELECT
+                    cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(h.fechaHematologia) as hora, m.nombreMedico 
+                    FROM tbl_hematologia AS h
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = h.idConsulta)
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE h.idHematologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
         }
     // Metodos nuevos para examenes
 }

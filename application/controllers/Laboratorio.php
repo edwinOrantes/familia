@@ -91,19 +91,6 @@ class Laboratorio extends CI_Controller {
 
         } */
 
-        public function detalle_consulta($id = null){
-            $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
-            $data["consulta"] = $id;
-            
-            $data["hematologia"] = $this->Laboratorio_Model->obtenerHematologia($id);
-
-            $this->load->view("Base/header");
-            $this->load->view("Laboratorio/detalle_examenes", $data);
-            $this->load->view("Base/footer"); 
-
-            // echo json_encode($data);
-
-        }
 
         public function detalle_consulta_historial($id){
             $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
@@ -1463,51 +1450,7 @@ class Laboratorio extends CI_Controller {
                 // echo json_encode($datos["tabla"]);
             }
 
-            public function hematologia_pdf($id){
-                $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id, "tbl_hematologia", "idHematologia", 12);
-                $data['hematologia'] = $this->Laboratorio_Model->detalleExamen($id, 12);
-                // var_dump($data['cabecera']);
-                // echo "<br>___________________________________________________________________________________<br>";
-                //var_dump($data['hematologia']);
-
-                // Factura
-                    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
-                    $mpdf = new \Mpdf\Mpdf([
-                        'margin_left' => 15,
-                        'margin_right' => 15,
-                        'margin_top' => 15,
-                        'margin_bottom' => 25,
-                        'margin_header' => 10,
-                        'margin_footer' => 25
-                    ]);
-                    //$mpdf->setFooter('{PAGENO}');
-                    $mpdf->SetHTMLFooter('
-                        <table width="100%">
-                            <tr>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480">
-                                    <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
-                                </td>
-                                <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
-                                <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
-                            </tr>
-                        </table>');
-                    $mpdf->SetProtection(array('print'));
-                    $mpdf->SetTitle("Centro Médico La Familia");
-                    $mpdf->SetAuthor("Edwin Orantes");
-                    $mpdf->showWatermarkText = true;
-                    $mpdf->watermark_font = 'DejaVuSansCondensed';
-                    $mpdf->watermarkTextAlpha = 0.1;
-                    $mpdf->SetDisplayMode('fullpage');
-                    //$mpdf->AddPage('L'); //Voltear Hoja
-
-                    $html = $this->load->view('base/header', $data,true); 
-                    $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
-
-                    $mpdf->WriteHTML($html);
-                    $mpdf->Output('hematologia_pdf.pdf', 'I');
-                // Fin
-
-            }
+            
 
             public function actualizar_hematologia(){
                 $datos = $this->input->post();
@@ -5019,6 +4962,21 @@ class Laboratorio extends CI_Controller {
 
 
     // Nuevos metodos de laboratorio
+        public function detalle_consulta($id = null){
+            $data["paciente"] = $this->Laboratorio_Model->detalleConsulta($id);
+            $data["consulta"] = $id;
+            
+            $data["hematologia"] = $this->Laboratorio_Model->obtenerHematologia($id);
+            $data["historial_hematologia"] = $this->Laboratorio_Model->historialHematologia($data["paciente"]->idPaciente);
+
+            $this->load->view("Base/header");
+            $this->load->view("Laboratorio/detalle_examenes", $data);
+            $this->load->view("Base/footer"); 
+
+            // echo json_encode($data["historialHematologia"]);
+
+        }
+
         public function guardar_hematologia_lab(){
             $datos = $this->input->post();
             $consulta = $datos["idConsulta"];
@@ -5033,6 +4991,51 @@ class Laboratorio extends CI_Controller {
             }
 
             // echo json_encode($datos);
+        }
+
+        public function hematologia_pdf($id = null){
+            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDF($id);
+            $data['hematologia'] = $this->Laboratorio_Model->hematologiaPDF($id);
+
+            // Factura
+                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
+                $mpdf = new \Mpdf\Mpdf([
+                    'margin_left' => 15,
+                    'margin_right' => 15,
+                    'margin_top' => 15,
+                    'margin_bottom' => 25,
+                    'margin_header' => 10,
+                    'margin_footer' => 25
+                ]);
+                //$mpdf->setFooter('{PAGENO}');
+                $mpdf->SetHTMLFooter('
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480">
+                                <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
+                            </td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                        </tr>
+                    </table>');
+                $mpdf->SetProtection(array('print'));
+                $mpdf->SetTitle("Centro Médico La Familia");
+                $mpdf->SetAuthor("Edwin Orantes");
+                $mpdf->showWatermarkText = true;
+                $mpdf->watermark_font = 'DejaVuSansCondensed';
+                $mpdf->watermarkTextAlpha = 0.1;
+                $mpdf->SetDisplayMode('fullpage');
+                //$mpdf->AddPage('L'); //Voltear Hoja
+
+                $html = $this->load->view('base/header', $data,true); 
+                $html = $this->load->view('Laboratorio/hematologia_pdf', $data,true); // Cargando hoja de estilos
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('hematologia_pdf.pdf', 'I');
+            // Fin
+
+            // echo json_encode($data['hematologia']);
+
         }
     // Nuevos metodos de laboratorio
 	

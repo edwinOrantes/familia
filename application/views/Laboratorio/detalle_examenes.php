@@ -205,22 +205,45 @@
                                                 <td>Fecha</td>
                                                 <td>Opcion</td>
                                             </tr>
-                                            <!-- <?php 
-                                                foreach ($historial_recetas as $row) {
-                                                    if($row->fechaReceta == date("Y-m-d")){
+                                            <?php 
+                                                foreach ($historial_hematologia as $row) {
+                                                    if($row->fechaConsulta == date("Y-m-d")){
                                                         echo '<tr class="alert-primary">';
                                                     }else{
                                                         echo '<tr>';
                                                     }
-                                                    echo ' <td>'.$row->fechaReceta.'</td>';
+                                                    echo ' <td>'.$row->fechaConsulta.'</td>';
                                                     echo ' <td>
-                                                            <a href="'.base_url().'Consultas/receta_medica/'.$row->idReceta.'" target="_blank" title="Imprimir receta"><i class="fa fa-print text-danger"></i></a>
-                                                            <a href="#" title="Ver receta" class="verReceta"><i class="fa fa-file text-success"></i></a>
-                                                            <input type="hidden" value="'.$row->htmlReceta.'" class="htmlReceta" name="htmlReceta">
+
+                                                            <input type="hidden" class="globulosRojos" value="'.$row->globulosRojos.'">
+                                                            <input type="hidden" class="eritrosedimentacion" value="'.$row->eritrosedimentacion.'">
+                                                            <input type="hidden" class="globulosBlancos" value="'.$row->globulosBlancos.'">
+                                                            <input type="hidden" class="reticulositos" value="'.$row->reticulositos.'">
+                                                            <input type="hidden" class="hematocrito" value="'.$row->hematocrito.'">
+                                                            <input type="hidden" class="tpTrombolastina" value="'.$row->tpTrombolastina.'">
+                                                            <input type="hidden" class="hemoglobina" value="'.$row->hemoglobina.'">
+                                                            <input type="hidden" class="tSangramiento" value="'.$row->tSangramiento.'">
+                                                            <input type="hidden" class="vlGMedio" value="'.$row->vlGMedio.'">
+                                                            <input type="hidden" class="tCoagulacion" value="'.$row->tCoagulacion.'">
+                                                            <input type="hidden" class="hbGMedia" value="'.$row->hbGMedia.'">
+                                                            <input type="hidden" class="tProtombina" value="'.$row->tProtombina.'">
+                                                            <input type="hidden" class="concHbGlobMed" value="'.$row->concHbGlobMed.'">
+                                                            <input type="hidden" class="neutrofilos" value="'.$row->neutrofilos.'">
+                                                            <input type="hidden" class="linfocitos" value="'.$row->linfocitos.'">
+                                                            <input type="hidden" class="eosinofilos" value="'.$row->eosinofilos.'">
+                                                            <input type="hidden" class="basofilos" value="'.$row->basofilos.'">
+                                                            <input type="hidden" class="monocitos" value="'.$row->monocitos.'">
+                                                            <input type="hidden" class="plaquetas" value="'.$row->plaquetas.'">
+                                                            <input type="hidden" class="observacionesH" value="'.$row->observacionesH.'">
+                                                            <input type="hidden" class="examenSolicitado" value="'.$row->examenSolicitado.'">
+                                                            <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+
+                                                            <a href="'.base_url().'Laboratorio/hematologia_pdf/'.$row->idHematologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                            <a href="#" title="Ver receta" class="verHematologia"><i class="fa fa-file text-success"></i></a>
                                                         </td>';
                                                     echo '</tr>';
                                                 }
-                                            ?> -->
+                                            ?>
                                             
                                         </table>
                                     </div>
@@ -3556,7 +3579,7 @@
 <!-- Fin modales para actualizar -->
 
 <!-- Modal para examen Toxoplasma-->
-<div class="modal fade" id="detalleTablaExamen" tabindex="-1" role="dialog" awhria-hidden="true">
+    <div class="modal fade" id="detalleTablaExamen" tabindex="-1" role="dialog" awhria-hidden="true">
             <div class="modal-dialog ms-modal-dialog-width">
                 <div class="modal-content ms-modal-content-width">
                     <div class="modal-header  ms-modal-header-radius-0">
@@ -3579,7 +3602,7 @@
                 </div>
             </div>
         </div>
-    <!-- Fin Modal para examen Toxoplasma-->
+<!-- Fin Modal para examen Toxoplasma-->
 
 <script>
     $(document).ready(function() {
@@ -3599,392 +3622,30 @@
     });
 </script>
 
-<!-- Script para gestionar examenes -->
-    <script>
-        function actualizar(idExamen, pivote){
-            var data = {
-                idExamen: idExamen,
-                pivote: pivote
-            }
-            $.ajax({
-                url: "../../buscar_examen",
-                type: "post",
-                // data: {idExamen: idExamen },
-                data: data,
-                success:function(respuesta){
-                    var registro = eval(respuesta);
-                    console.log(registro);
-                    if (registro.length > 0){
-                        for (let i = 0; i < registro.length; i++) {
-                            switch (pivote) {
-                                case 1:
-                                    $("#idInmunologia").val(registro[i]["idInmunologia"]);
-                                    $("#idDetalleConsultaI").val(registro[i]["idDetalleConsulta"]);
-                                    $("#inmunologiaSolicitadoA").val(registro[i]["examenSolicitado"]);
-                                    $("#tificoOA").val(registro[i]["tificoO"]);
-                                    $("#tificoHA").val(registro[i]["tificoH"]);
-                                    $("#paratificoAA").val(registro[i]["paratificoA"]);
-                                    $("#paratificoBA").val(registro[i]["paratificoB"]);
-                                    $("#brucellaAbortusA").val(registro[i]["brucellaAbortus"]);
-                                    $("#proteusOxA").val(registro[i]["proteusOx"]);
-                                    $("#proteinaCA").val(registro[i]["proteinaC"]);
-                                    $("#reumatoideoA").val(registro[i]["reumatoideo"]);
-                                    $("#antiestreptolisinaA").val(registro[i]["antiestreptolisina"]);
-                                    break;
-                                case 2:
-                                    $("#idBacteriologia").val(registro[i]["idBacteriologia"]);
-                                    $("#idDetalleConsultaB").val(registro[i]["idDetalleConsulta"]);
-                                    $("#bacteriologiaSolicitadoA").val(registro[i]["examenSolicitado"]);
-                                    $("#resultadoDirectoA").val(registro[i]["resultadoDirecto"]);
-                                    $("#procedenciaDirectoA").val(registro[i]["procedenciaCultivo"]);
-                                    $("#resultadoCultivoA").val(registro[i]["resultadoCultivo"]);
-                                    $("#cefiximeA").val(registro[i]["cefixime"]);
-                                    $("#amikacinaA").val(registro[i]["amikacina"]);
-                                    $("#levofloxacinaA").val(registro[i]["levofloxacina"]);
-                                    $("#ceftriaxonaA").val(registro[i]["ceftriaxona"]);
-                                    $("#azitromicinaA").val(registro[i]["azitromicina"]);
-                                    $("#imipenemA").val(registro[i]["imipenem"]);
-                                    $("#meropenemA").val(registro[i]["meropenem"]);
-                                    $("#fosfocilA").val(registro[i]["fosfocil"]);
-                                    $("#ciprofloxacinaA").val(registro[i]["ciprofloxacina"]);
-                                    $("#penicilinaA").val(registro[i]["penicilina"]);
-                                    $("#vancomicinaA").val(registro[i]["vancomicina"]);
-                                    $("#acidoNalidixicoA").val(registro[i]["acidoNalidixico"]);
-                                    $("#gentamicinaA").val(registro[i]["gentamicina"]);
-                                    $("#nitrofurantoinaA").val(registro[i]["nitrofurantoina"]);
-                                    $("#ceftazimideA").val(registro[i]["ceftazimide"]);
-                                    $("#cefotaximeA").val(registro[i]["cefotaxime"]);
-                                    $("#clindamicinaA").val(registro[i]["clindamicina"]);
-                                    $("#trimetropimSulfaA").val(registro[i]["trimetropimSulfa"]);
-                                    $("#ampicilinaA").val(registro[i]["ampicilina"]);
-                                    $("#piperacilinaA").val(registro[i]["piperacilina"]);
-                                    $("#amoxicilinaA").val(registro[i]["amoxicilina"]);
-                                    $("#claritromicinaA").val(registro[i]["claritromicina"]);
-                                    $("#cefuroximeA").val(registro[i]["cefuroxime"]);
-                                    $("#observacionBacteriologiaA").val(registro[i]["observacionesCultivo"]);
-                                    break;
-                                case 3:
-                                    $("#idCoagulacion").val(registro[i]["idCoagulacion"]);
-                                    $("#idDetalleConsultaC").val(registro[i]["idDetalleConsulta"]);
-                                    $("#coagulacionSolicitadoA").val(registro[i]["examenSolicitado"]); 
-                                    $("#tiempoProtombinaA").val(registro[i]["tiempoProtombina"]); 
-                                    $("#tiempoTromboplastinaA").val(registro[i]["tiempoTromboplastina"]); 
-                                    $("#fibrinogenoA").val(registro[i]["fibrinogeno"]); 
-                                    $("#inrA").val(registro[i]["inr"]); 
-                                    $("#tiempoSangramientoA").val(registro[i]["tiempoSangramiento"]); 
-                                    $("#tiempoCoagulacionA").val(registro[i]["tiempoCoagulacion"]); 
-                                    $("#observacionCoagulacionA").val(registro[i]["observacion"]); 
-                                break;
-                                case 4:
-                                    $("#idSanguineo").val(registro[i]["idSanguineo"]);
-                                    $("#idDetalleConsultaS").val(registro[i]["idDetalleConsulta"]);
-                                    $("#sanguineoSolicitadoA").val(registro[i]["examenSolicitado"]);
-                                    $("#muestraSanguineoA").val(registro[i]["muestraSanguineo"]);
-                                    $("#grupoSanguineoA").val(registro[i]["grupoSanguineo"]);
-                                    $("#factorSanguineoA").val(registro[i]["factorSanguineo"]);
-                                    $("#duSanguineoA").val(registro[i]["duSanguineo"]);
-                                break;
-                                case 5:
-                                    $("#idQuimicaClinica").val(registro[i]["idQuimicaClinica"]);
-                                    $("#idDetalleConsultaQC").val(registro[i]["idDetalleConsulta"]);
-                                    $("#quimicaClinicaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#sodioQuimicaClinicaActualizar").val(registro[i]["sodioQuimicaClinica"]);
-                                    $("#potasioQuimicaClinicaActualizar").val(registro[i]["potasioQuimicaClinica"]);
-                                    $("#cloroQuimicaClinicaActualizar").val(registro[i]["cloroQuimicaClinica"]);
-                                    $("#magnesioQuimicaClinicaActualizar").val(registro[i]["magnesioQuimicaClinica"]);
-                                    $("#fosforoQuimicaClinicaActualizar").val(registro[i]["fosforoQuimicaClinica"]);
-                                    $("#cpkTQuimicaClinicaActualizar").val(registro[i]["cpkTQuimicaClinica"]);
-                                    $("#cpkMbQuimicaClinicaActualizar").val(registro[i]["cpkMbQuimicaClinica"]);
-                                    $("#ldhQuimicaClinicaActualizar").val(registro[i]["ldhQuimicaClinica"]);
-                                    $("#creatininaQuimicaClinicaActualizar").val(registro[i]["creatininaQuimicaClinica"]);
-                                    $("#troponinaQuimicaClinicaActualizar").val(registro[i]["troponinaQuimicaClinica"]);
-                                    $("#comentariosQuimicaClinicaActualizar").val(registro[i]["comentariosQuimicaClinica"]);
-                                break;
-                                case 6:
-                                    $("#idQuimicaSanguinea").val(registro[i]["idQuimicaSanguinea"]);
-                                    $("#idDetalleConsultaQS").val(registro[i]["idDetalleConsulta"]);
-                                    $("#quimicaSanguineaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#glucosaActualizar").val(registro[i]["glucosaQS"]);
-                                    $("#posprandialActualizar").val(registro[i]["posprandialQS"]);
-                                    $("#colesterolActualizar").val(registro[i]["colesterolQS"]);
-                                    $("#trigliceridosActualizar").val(registro[i]["trigliceridosQS"]);
-                                    $("#colesterolHDLActualizar").val(registro[i]["colesterolHDLQS"]);
-                                    $("#colesterolLDLActualizar").val(registro[i]["colesterolLDLQS"]);
-                                    $("#acidoUricoActualizar").val(registro[i]["acidoUricoQS"]);
-                                    $("#ureaActualizar").val(registro[i]["ureaQS"]);
-                                    $("#nitrogenoUreicoActualizar").val(registro[i]["nitrogenoQS"]);
-                                    $("#creatininaActualizar").val(registro[i]["creatininaQS"]);
-                                    $("#amilasaActualizar").val(registro[i]["amilasaQS"]);
-                                    $("#lipasaActualizar").val(registro[i]["lipasaQS"]);
-                                    $("#fosfatasaAlcalinaActualizar").val(registro[i]["fosfatasaQS"]);
-                                    $("#tgpActualizar").val(registro[i]["tgpQS"]);
-                                    $("#tgoActualizar").val(registro[i]["tgoQS"]);
-                                    $("#hba1cActualizar").val(registro[i]["hba1cQS"]);
-                                    $("#proteinaTotalActualizar").val(registro[i]["proteinaTotalQS"]);
-                                    $("#albuminaActualizar").val(registro[i]["albuminaQS"]);
-                                    $("#globulinaActualizar").val(registro[i]["globulinaQS"]);
-                                    $("#relacionAGActualizar").val(registro[i]["relacionAGQS"]);
-                                    $("#biliTotalActualizar").val(registro[i]["bilirrubinaTQS"]);
-                                    $("#biliDirectaActualizar").val(registro[i]["bilirrubinaDQS"]);
-                                    $("#biliIndirectaActualizar").val(registro[i]["bilirrubinaIQS"]);
-                                    $("#notaActualizar").val(registro[i]["notaQS"]);
-
-                                    $("#sodioQuimicaClinicaActualizar").val(registro[i]["sodioQuimicaClinica"]);
-                                    $("#potasioQuimicaClinicaActualizar").val(registro[i]["potasioQuimicaClinica"]);
-                                    $("#cloroQuimicaClinicaActualizar").val(registro[i]["cloroQuimicaClinica"]);
-                                    $("#magnesioQuimicaClinicaActualizar").val(registro[i]["magnesioQuimicaClinica"]);
-                                    $("#calcioQuimicaClinicaActualizar").val(registro[i]["calcioQuimicaClinica"]);
-                                    $("#fosforoQuimicaClinicaActualizar").val(registro[i]["fosforoQuimicaClinica"]);
-                                    $("#cpkTQuimicaClinicaActualizar").val(registro[i]["cpkTQuimicaClinica"]);
-                                    $("#cpkMbQuimicaClinicaActualizar").val(registro[i]["cpkMbQuimicaClinica"]);
-                                    $("#ldhQuimicaClinicaActualizar").val(registro[i]["ldhQuimicaClinica"]);
-                                    $("#creatininaQuimicaClinicaActualizar").val(registro[i]["creatininaQuimicaClinica"]);
-                                    $("#troponinaQuimicaClinicaActualizar").val(registro[i]["troponinaQuimicaClinica"]);
-
-
-                                break;
-                                case 7:
-                                    $("#idCropologia").val(registro[i]["idCropologia"]);
-                                    $("#idDetalleConsultaCr").val(registro[i]["idDetalleConsulta"]);
-                                    $("#cropologiaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#colorActualizar").val(registro[i]["colorCropologia"]);
-                                    $("#consistenciaCropologiaActualizar").val(registro[i]["consistenciaCropologia"]);
-                                    $("#mucusCropologiaActualizar").val(registro[i]["mucusCropologia"]);
-                                    $("#hematiesCropologiaActualizar").val(registro[i]["hematiesCropologia"]);
-                                    $("#leucocitosCropologiaActualizar").val(registro[i]["leucocitosCropologia"]);
-                                    $("#ascarisCropologiaActualizar").val(registro[i]["ascarisCropologia"]);
-                                    $("#hymenolepisCropologiaActualizar").val(registro[i]["hymenolepisCropologia"]);
-                                    $("#uncinariasCropologiaActualizar").val(registro[i]["uncinariasCropologia"]);
-                                    $("#tricocefalosCropologiaActualizar").val(registro[i]["tricocefalosCropologia"]);
-                                    $("#larvaStrongyloidesActualizar").val(registro[i]["larvaStrongyloides"]);
-                                    $("#histolyticaQuistesActualizar").val(registro[i]["histolyticaQuistes"]);
-                                    $("#histolyticaTrofozoitosActualizar").val(registro[i]["histolyticaTrofozoitos"]);
-                                    $("#coliQuistesActualizar").val(registro[i]["coliQuistes"]);
-                                    $("#coliTrofozoitosActualizar").val(registro[i]["coliTrofozoitos"]);
-                                    $("#giardiaQuistesActualizar").val(registro[i]["giardiaQuistes"]);
-                                    $("#giardiaTrofozoitosActualizar").val(registro[i]["giardiaTrofozoitos"]);
-                                    $("#blastocystisQuistesActualizar").val(registro[i]["blastocystisQuistes"]);
-                                    $("#blastocystisTrofozoitosActualizar").val(registro[i]["blastocystisTrofozoitos"]);
-                                    $("#tricomonasQuistesActualizar").val(registro[i]["tricomonasQuistes"]);
-                                    $("#tricomonasTrofozoitosActualizar").val(registro[i]["tricomonasTrofozoitos"]);
-                                    $("#mesnilliQuistesActualizar").val(registro[i]["mesnilliQuistes"]);
-                                    $("#mesnilliTrofozoitosActualizar").val(registro[i]["mesnilliTrofozoitos"]);
-                                    $("#nanaQuistesActualizar").val(registro[i]["nanaQuistes"]);
-                                    $("#nanaTrofozoitosActualizar").val(registro[i]["nanaTrofozoitos"]);
-                                    $("#restosMacroscopicosActualizar").val(registro[i]["restosMacroscopicos"]);
-                                    $("#restosMicroscopicosActualizar").val(registro[i]["restosMicroscopicos"]);
-                                    $("#observacionesCropologiaActualizar").val(registro[i]["observacionesCropologia"]);
-                                break;
-                                case 8:
-                                    $("#idTiroideaLibre").val(registro[i]["idTiroideaLibre"]);
-                                    $("#idDetalleConsultaTL").val(registro[i]["idDetalleConsulta"]);
-                                    $("#tiroideaLibreSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#muestraTiroideaLibreActualizar").val(registro[i]["muestraTiroideaLibre"]);
-                                    $("#t3TiroideaLibreActualizar").val(registro[i]["t3TiroideaLibre"]);
-                                    $("#t4TiroideaLibreActualizar").val(registro[i]["t4TiroideaLibre"]);
-                                    $("#tshTiroideaLibreActualizar").val(registro[i]["tshTiroideaLibre"]);
-                                    $("#tshTiroideaLibreUActualizar").val(registro[i]["tshTiroideaLibreU"]);
-                                    $("#observacionTiroideaLibreActualizar").val(registro[i]["observacionTiroideaLibre"]); 
-                                break;
-                                case 9:
-                                    $("#idTiroideaTotal").val(registro[i]["idTiroideaTotal"]);
-                                    $("#idDetalleConsultaTT").val(registro[i]["idDetalleConsulta"]);
-                                    $("#tiroideaTotalActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#muestraTiroideaTotalActualizar").val(registro[i]["muestraTiroideaTotal"]);
-                                    $("#t3TiroideaTotalActualizar").val(registro[i]["t3TiroideaTotal"]);
-                                    $("#t4TiroideaTotalActualizar").val(registro[i]["t4TiroideaTotal"]);
-                                    $("#tshTiroideaTotalActualizar").val(registro[i]["tshTiroideaTotal"]);
-                                    $("#observacionTiroideaTotalActualizar").val(registro[i]["observacionTiroideaTotal"]);
-                                    break;
-                                case 10:
-                                    $("#idVarios").val(registro[i]["idVarios"]);
-                                    $("#idDetalleConsultaV").val(registro[i]["idDetalleConsulta"]);
-                                    $("#variosSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#muestraVariosActualizar").val(registro[i]["muestraVarios"]);
-                                    $("#resultadoActualizar").val(registro[i]["resultadoVarios"]);
-                                    $("#valorNormalVariosActualizar").val(registro[i]["valorNormalVarios"]);
-                                    $("#observacionesVariosActualizar").val(registro[i]["observacionesVarios"]);
-                                break;
-                                case 11:
-                                    $("#idAntigenoProstatico").val(registro[i]["idAntigenoProstatico"]);
-                                    $("#idDetalleConsultaPSA").val(registro[i]["idDetalleConsulta"]);
-                                    $("#solicitadoAPActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#muestraAPActualizar").val(registro[i]["muestraAntigenoProstatico"]);
-                                    $("#resultadoAPActualizar").val(registro[i]["resultadoAntigenoProstatico"]);
-                                    $("#observacionAPActualizar").val(registro[i]["observacionAntigenoProstatico"]);
-                                break;
-                                case 12:
-                                    $("#idHematologia").val(registro[i]["idHematologia"]);
-                                    $("#idDetalleConsultaH").val(registro[i]["idDetalleConsulta"]);
-                                    $("#hematologiaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#eritrocitosHematologiaActualizar").val(registro[i]["eritrocitosHematologia"]);
-                                    $("#hematocritoHematologiaActualizar").val(registro[i]["hematocritoHematologia"]);
-                                    $("#hemoglobinaHematologiaActualizar").val(registro[i]["hemoglobinaHematologia"]);
-                                    $("#vgmHematologiaActualizar").val(registro[i]["vgmHematologia"]);
-                                    $("#hgmHematologiaActualizar").val(registro[i]["hgmHematologia"]);
-                                    $("#chgmHematologiaActualizar").val(registro[i]["chgmHematologia"]);
-                                    $("#leucocitosHematologiaActualizar").val(registro[i]["leucocitosHematologia"]);
-                                    $("#neutrofHematologiaActualizar").val(registro[i]["neutrofHematologia"]);
-                                    $("#neutrofBandHematologiaActualizar").val(registro[i]["neutrofBandHematologia"]);
-                                    $("#linfocitosHematologiaActualizar").val(registro[i]["linfocitosHematologia"]);
-                                    $("#eosinofilosHematologiaActualizar").val(registro[i]["eosinofilosHematologia"]);
-                                    $("#monocitosHematologiaActualizar").val(registro[i]["monocitosHematologia"]);
-                                    $("#basofilosHematologiaActualizar").val(registro[i]["basofilosHematologia"]);
-                                    $("#blastosHematologiaActualizar").val(registro[i]["blastosHematologia"]);
-                                    $("#reticulocitosHematologiaActualizar").val(registro[i]["reticulocitosHematologia"]);
-                                    $("#eritrosedHematologiaActualizar").val(registro[i]["eritrosedHematologia"]);
-                                    $("#plaquetasHematologiaActualizar").val(registro[i]["plaquetasHematologia"]);
-                                    $("#gotaGruesaHematologiaActualizar").val(registro[i]["gotaGruesaHematologia"]);
-                                    $("#rojaHematologiaActualizar").val(registro[i]["rojaHematologia"]);
-                                    $("#blancaHematologiaActualizar").val(registro[i]["blancaHematologia"]);
-                                    $("#plaquetariaHematologiaActualizar").val(registro[i]["plaquetariaHematologia"]);
-                                    $("#observacionesHematologiaActualizar").val(registro[i]["observacionesHematologia"]);
-                                break;
-                                case 13:
-                                    $("#idOrina").val(registro[i]["idOrina"]);
-                                    $("#idDetalleConsultaO").val(registro[i]["idDetalleConsulta"]);
-                                    $("#colorOrinaU").val(registro[i]["colorOrina"]);
-                                    $("#aspectoOrinaU").val(registro[i]["aspectoOrina"]);
-                                    $("#reaccionOrinaU").val(registro[i]["reaccionOrina"]);
-                                    $("#densidadOrinaU").val(registro[i]["densidadOrina"]);
-                                    $("#phOrinaU").val(registro[i]["phOrina"]);
-                                    $("#proteinasOrinaU").val(registro[i]["proteinasOrina"]);
-                                    $("#glucosaOrinaU").val(registro[i]["glucosaOrina"]);
-                                    $("#pigBilaOrinaU").val(registro[i]["pigBilaOrina"]);
-                                    $("#sangreOcultaOrinaU").val(registro[i]["sangreOcultaOrina"]);
-                                    $("#nitritoOrinaU").val(registro[i]["nitritoOrina"]);
-                                    $("#cuerposCetonicosOrinaU").val(registro[i]["cuerposCetonicosOrina"]);
-                                    $("#acidosBilOrinaU").val(registro[i]["acidosBilOrina"]);
-                                    $("#granulososOrinaU").val(registro[i]["granulososOrina"]);
-                                    $("#cilindrosLeuOrinaU").val(registro[i]["cilindrosLeuOrina"]);
-                                    $("#cilindrosOrinaU").val(registro[i]["cilindrosOrina"]);
-                                    $("#oCilindrosOrinaU").val(registro[i]["oCilindrosOrina"]);
-                                    $("#leucocitosOrinaU").val(registro[i]["leucocitosOrina"]);
-                                    $("#hematiesOrinaU").val(registro[i]["hematiesOrina"]);
-                                    $("#celulasEpitelialesOrinaU").val(registro[i]["celulasEpitelialesOrina"]);
-                                    $("#elemMineralesOrinaU").val(registro[i]["elemMineralesOrina"]);
-                                    $("#bacteriasOrinaU").val(registro[i]["bacteriasOrina"]);
-                                    $("#levaduraOrinaU").val(registro[i]["levaduraOrina"]);
-                                    $("#otrosOrinaU").val(registro[i]["otrosOrina"]);
-                                    $("#observacionesOrinaO").val(registro[i]["observacionesOrina"]);
-
-                                break;
-                                case 14:
-                                    $("#idHisopadoNasal").val(registro[i]["idHisopadoNasal"]);
-                                    $("#idDetalleConsultaHN").val(registro[i]["idDetalleConsulta"]);
-                                    $("#fechaCovidActualizar").val(registro[i]["horaDetalleConsulta"].substr(0,10));
-                                    $("#horaCovidActualizar").val(registro[i]["horaDetalleConsulta"].substr(11,19));
-                                    $("#pasaporteCovidActualizar").val(registro[i]["pasaporteHisopadoNasal"]);
-                                    $("#observacionesHisopadoActualizar").val(registro[i]["resultadoHisopadoNasal"]);
-
-                                break;
-                                case 15:
-                                    $("#idEspermograma").val(registro[i]["idEspermograma"]);
-                                    $("#idDetalleConsultaEsp").val(registro[i]["idDetalleConsulta"]);
-
-                                    $("#espermogramaSolicitadoActualizar").val(registro[i]["examenSolicitado"]);
-                                    $("#colorExpermaActualizar").val(registro[i]["colorEspermograma"]);
-                                    $("#phEspermaActualizar").val(registro[i]["phEspermograma"]);
-                                    $("#volumenEspermaActualizar").val(registro[i]["volumenEspermograma"]);
-                                    $("#licuefaccionEspermaActualizar").val(registro[i]["licuefaccionEspermograma"]);
-                                    $("#viscocidadEspermaActualizar").val(registro[i]["viscocidadEspermograma"]);
-                                    $("#abstinenciaEspermaActualizar").val(registro[i]["abstinenciaEspermograma"]);
-                                    $("#hematiesEspermaActualizar").val(registro[i]["hematiesEspermograma"]);
-                                    $("#leucocitosEspermaActualizar").val(registro[i]["leucocitosEspermograma"]);
-                                    $("#epitelialesEspermaActualizar").val(registro[i]["epitelialesEspermograma"]);
-                                    $("#bacteriasEspermaActualizar").val(registro[i]["bacteriasEspermograma"]);
-                                    $("#mprEspermaActualizar").val(registro[i]["mprEspermograma"]);
-                                    $("#mplEspermaActualizar").val(registro[i]["mplEspermograma"]);
-                                    $("#mnpEspermaActualizar").val(registro[i]["mnpEspermograma"]);
-                                    $("#inmovilesEspermaActualizar").val(registro[i]["inmovilesEspermograma"]);
-                                    $("#recuentoEspermaActualizar").val(registro[i]["recuentoEspermograma"]);
-                                    $("#normalesEspermaActualizar").val(registro[i]["normalesEspermograma"]);
-                                    $("#anormalCbEspermaActualizar").val(registro[i]["anormalCbEspermograma"]);
-                                    $("#anormalClEspermaActualizar").val(registro[i]["anormalClEspermograma"]);
-                                    $("#vivosEspermaActualizar").val(registro[i]["vivosEspermograma"]);
-                                    $("#muertosEspermaActualizar").val(registro[i]["muertosEspermograma"]);
-                                    $("#observacionesEspermaActualizar").val(registro[i]["observacionesEspermograma"]);
-
-
-                                break;
-                                case 16:
-                                    $("#idCreatinina").val(registro[i]["idDepuracion"]);
-                                    $("#idDetalleConsultaCrea").val(registro[i]["idDetalleConsulta"]);
-
-                                    $("#sexoCreatininaActualizar").val(registro[i]["sexoDepuracion"]);
-                                    $("#edadCreatininaActualizar").val(registro[i]["edadDepuracion"]);
-                                    $("#volumenCreatininaActualizar").val(registro[i]["volumenDepuracion"]);
-                                    $("#tiempoCreatininaActualizar").val(registro[i]["tiempoDepuracion"]);
-                                    $("#sangreCreatininaActualizar").val(registro[i]["csDepuracion"]);
-                                    $("#orinaCreatininaActualizar").val(registro[i]["coDepuracion"]);
-                                    $("#depuracionCreatininaActualizar").val(registro[i]["dcDepuracion"]);
-                                    $("#valorNormalDepuracionActualizar").val(registro[i]["valorNormal"]);
-                                    $("#proteinasCreatininaActualizar").val(registro[i]["proteinasDepuracion"]);
-                                    $("#observacionesCreatininaActualizar").val(registro[i]["observacionesDepuracion"]);
-                                break;
-                                case 17:
-                                    $("#idGasesArteriales").val(registro[i]["idGasesArteriales"]);
-                                    $("#idDetalleConsultaArte").val(registro[i]["idDetalleConsulta"]);
-
-                                    $("#muestraArterialesActualizar").val(registro[i]["muestraGasesArteriales"]);
-                                    $("#phArterialesActualizar").val(registro[i]["phGasesArteriales"]);
-                                    $("#pco2ArterialesActualizar").val(registro[i]["pco2GasesArteriales"]);
-                                    $("#po2ArterialesActualizar").val(registro[i]["po2GasesArteriales"]);
-                                    $("#naArterialesActualizar").val(registro[i]["naGasesArteriales"]);
-                                    $("#kArterialesActualizar").val(registro[i]["kGasesArteriales"]);
-                                    $("#caArterialesActualizar").val(registro[i]["caGasesArteriales"]);
-                                    $("#thbArterialesActualizar").val(registro[i]["tbhGasesArteriales"]);
-                                    $("#soArterialesActualizar").val(registro[i]["soGasesArteriales"]);
-                                    $("#fio2ArterialesActualizar").val(registro[i]["fioGasesArteriales"]);
-                                break;
-
-                                case 18:
-                                    $("#idToleranciaGlucosa").val(registro[i]["idToleranciaGlucosa"]);
-                                    $("#idDetalleConsultaTole").val(registro[i]["idDetalleConsulta"]);
-                                    
-                                    $("#resultado1Actualizar").val(registro[i]["resultado1ToleranciaGlucosa"]);
-                                    $("#hora1Actualizar").val(registro[i]["hora1ToleranciaGlucosa"]);
-                                    $("#resultado2Actualizar").val(registro[i]["resultado2ToleranciaGlucosa"]);
-                                    $("#hora2Actualizar").val(registro[i]["hora2ToleranciaGlucosa"]);
-                                    $("#resultado3Actualizar").val(registro[i]["resultado3ToleranciaGlucosa"]);
-                                    $("#hora3Actualizar").val(registro[i]["hora3ToleranciaGlucosa"]);
-                                    $("#resultado4Actualizar").val(registro[i]["resultado4ToleranciaGlucosa"]);
-                                    $("#hora4Actualizar").val(registro[i]["hora4ToleranciaGlucosa"]);
-                                    $("#observacionesTGActualizar").val(registro[i]["observacionToleranciaGlucosa"]);
-
-                                break;
-
-                                case 19:
-                                    $("#idToxoplasma").val(registro[i]["idToxoplasma"]);
-                                    $("#idDetalleConsultaTox").val(registro[i]["idDetalleConsulta"]);
-                                    
-                                    $("#iggToxoplasmaA").val(registro[i]["iggToxoplasma"]);
-                                    $("#igmToxoplasmaA").val(registro[i]["igmToxoplasma"]);
-                                    $("#observacionesToxoplasmaA").val(registro[i]["observacionesToxoplasma"]);
-                                    
-                                break;
-
-                                default:
-                                    break;
-                            }
-                        }
-                    }
-                }
-            });
-
-        }
-        
-
-        function eliminar(idExamen, exam, idDC){
-            console.log(idExamen, exam, idDC);
-            $("#idExamen").val(idExamen);
-            $("#tipoExamen").val(exam);
-            $("#idDC").val(idDC);
-        }
-        
-        /* $(document).on('click', '.close', function(event) {
-            event.preventDefault();
-            location.reload();
-        }); */
-    </script>
-<!-- Fin gestion de examenes -->
+<script>
+    $(document).on("click", ".verHematologia", function(e){
+        e.preventDefault();
+        $("#nombreExamen").val( $(this).closest('tr').find('.examenSolicitado').val());
+        $("#fechaExamen").val($(this).closest('tr').find('.fechaExamen').val());
+        $("#globulosRojos").val($(this).closest('tr').find('.globulosRojos').val());
+        $("#eritrosedimentacion").val($(this).closest('tr').find('.eritrosedimentacion').val());
+        $("#globulosBlancos").val($(this).closest('tr').find('.globulosBlancos').val());
+        $("#reticulositos").val($(this).closest('tr').find('.reticulositos').val());
+        $("#hematocrito").val($(this).closest('tr').find('.hematocrito').val());
+        $("#tpTrombolastina").val($(this).closest('tr').find('.tpTrombolastina').val());
+        $("#hemoglobina").val($(this).closest('tr').find('.hemoglobina').val());
+        $("#tSangramiento").val($(this).closest('tr').find('.tSangramiento').val());
+        $("#vlGMedio").val($(this).closest('tr').find('.vlGMedio').val());
+        $("#tCoagulacion").val($(this).closest('tr').find('.tCoagulacion').val());
+        $("#hbGMedia").val($(this).closest('tr').find('.hbGMedia').val());
+        $("#tProtombina").val($(this).closest('tr').find('.tProtombina').val());
+        $("#concHbGlobMed").val($(this).closest('tr').find('.concHbGlobMed').val());
+        $("#neutrofilos").val($(this).closest('tr').find('.neutrofilos').val());
+        $("#linfocitos").val($(this).closest('tr').find('.linfocitos').val());
+        $("#eosinofilos").val($(this).closest('tr').find('.eosinofilos').val());
+        $("#basofilos").val($(this).closest('tr').find('.basofilos').val());
+        $("#monocitos").val($(this).closest('tr').find('.monocitos').val());
+        $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
+        $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
+    });
+</script>
