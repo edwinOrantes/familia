@@ -1753,6 +1753,8 @@ class Laboratorio_Model extends CI_Model {
             return $datos->result();
         }
 
+        
+
         public function quimicaPDF($id = null){
             $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs WHERE qs.idQuimicaSanguinea = '$id' ";
             $datos = $this->db->query($sql);
@@ -1781,6 +1783,57 @@ class Laboratorio_Model extends CI_Model {
                     INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
                     INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
                     WHERE qs.idQuimicaSanguinea = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function obtenerUrianalisis($id = null){
+            $sql = "SELECT * FROM tbl_uruanalisis_lab AS u WHERE u.idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+
+        public function guardarUrianalisis($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_uruanalisis_lab SET 
+                        nombreExamen = ?, fechaExamen = ?, color = ?, aspecto = ?, reaccion = ?, densidad = ?, ph = ?, glucosa = ?, 
+                        proteinas = ?, pigmentosB = ?, sangreO = ?, nitritos = ?, cuerposC = ?, acidosBiliares = ?, granulosos = ?, 
+                        cilindrosL = ?, cilindrosH = ?, otrosCilindros = ?, leucositos = ?, hematies = ?, celulasE = ?, elementosM = ?,
+                        bacterias = ?, levadura = ?, otrosUno = ?, otrosDos = ?, observacionesU = ? WHERE idUrianalisis  = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+
+        public function historialUrianalisis($id = null){
+            $sql = "SELECT * FROM tbl_uruanalisis_lab AS u
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = u.idConsulta)
+                    WHERE cl.idPaciente = '$id' ORDER BY u.idUrianalisis DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function cabeceraPDFU($id = null){
+            $sql = "SELECT
+                    cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(u.creadoUrianalisis) as hora, m.nombreMedico 
+                    FROM tbl_uruanalisis_lab AS u
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = u.idConsulta)
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE u.idUrianalisis = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function urianalisisPDF($id = null){
+            $sql = "SELECT * FROM tbl_uruanalisis_lab AS u WHERE u.idUrianalisis = '$id' ";
             $datos = $this->db->query($sql);
             return $datos->row();
         }
