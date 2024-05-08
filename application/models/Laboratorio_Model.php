@@ -1720,6 +1720,45 @@ class Laboratorio_Model extends CI_Model {
 
         }
 
+        public function guardarQuimicaLab($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_quimica_sanguinea_lab SET 
+                    nombreExamen = ?, fechaExamen = ?, glucosa = ?, fosfatasa = ?, glucosaPostPrand = ?, lipasa = ?, globulina = ?, 
+                    amilasa = ?, trigliceridos = ?, indiceAG = ?, colesterol = ?, bilirrubinaD = ?, colesterolHDL = ?, bilirrubinaI = ?, 
+                    colesterolLDL = ?, albumina = ?, acidoUrico = ?, fosforo = ?, creatinina = ?, cloro = ?, nitrogeno = ?, calcio = ?, 
+                    proteinasT = ?, potasio = ?, bilirrubina = ?, sodio = ?, tgo = ?, magnesio = ?, tgp = ?, fosfatasaA = ?, 
+                    observacionesQS = ? WHERE idQuimicaSanguinea = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+
+        public function obtenerQuimicaSanguinea($id = null){
+            $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs WHERE idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function historialQuimica($id = null){
+            $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = qs.idConsulta)
+                    WHERE cl.idPaciente = '$id' ORDER BY qs.idQuimicaSanguinea DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function quimicaPDF($id = null){
+            $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs WHERE qs.idQuimicaSanguinea = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
         
         public function cabeceraPDF($id = null){
             $sql = "SELECT
@@ -1729,6 +1768,19 @@ class Laboratorio_Model extends CI_Model {
                     INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
                     INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
                     WHERE h.idHematologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+
+        public function cabeceraPDFQ($id = null){
+            $sql = "SELECT
+                    cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(qs.creadoQuimica) as hora, m.nombreMedico 
+                    FROM tbl_quimica_sanguinea_lab AS qs
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = qs.idConsulta)
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE qs.idQuimicaSanguinea = '$id' ";
             $datos = $this->db->query($sql);
             return $datos->row();
         }

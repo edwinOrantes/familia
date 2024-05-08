@@ -253,13 +253,13 @@
                     </div>
 
                     <div role="tabpanel" class="tab-pane fade" id="quimicaSanguinea">
-                        <form action="<?php echo base_url(); ?>Laboratorio/guardar_hematologia_lab" method="post">
+                        <form action="<?php echo base_url(); ?>Laboratorio/guardar_quimica_lab" method="post">
                             <div class="row">
                                 <div class="col-md-10">
                                     <table class="table table-borderless">
                                         <tr>
-                                            <td><strong>Examen:</strong> <input type="text" value="<?php echo $hematologia->examenSolicitado; ?>"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
-                                            <td><strong>Fecha:</strong>  <input type="date" value="<?php echo $hematologia->fechaExamen; ?>" class="form-control"  id="fechaExamen" name="fechaExamen"></td>
+                                            <td><strong>Examen:</strong> <input type="text" value="<?php echo $quimica->nombreExamen; ?>"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
+                                            <td><strong>Fecha:</strong>  <input type="date" value="<?php echo $quimica->fechaExamen; ?>" class="form-control"  id="fechaExamenQ" name="fechaExamen"></td>
                                         </tr>
                                     </table>
     
@@ -267,106 +267,106 @@
     
                                         <tr>
                                             <td>Glucosa</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->globulosRojos; ?>" name="glucosa" id="glucosa"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->glucosa; ?>" name="glucosa" id="glucosa"> </td>
                                             <td>Fosfatasa acida Prost.</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->eritrosedimentacion; ?>" name="fosfatasa" id="fosfatasa"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->fosfatasa; ?>" name="fosfatasa" id="fosfatasa"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Glucosa Post-Prand</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->globulosBlancos; ?>" name="glucosaPostPrand" id="glucosaPostPrand"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->glucosaPostPrand; ?>" name="glucosaPostPrand" id="glucosaPostPrand"> </td>
                                             <td>Lipasa</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->reticulositos; ?>" name="lipasa" id="lipasa"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->lipasa; ?>" name="lipasa" id="lipasa"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Globulina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hematocrito; ?>" name="globulina" id="globulina"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->globulina; ?>" name="globulina" id="globulina"> </td>
                                             <td>Amilasa</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tpTrombolastina; ?>" name="amilasa" id="amilasa"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->amilasa; ?>" name="amilasa" id="amilasa"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Trigliceridos</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hemoglobina; ?>" name="trigliceridos" id="trigliceridos"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->trigliceridos; ?>" name="trigliceridos" id="trigliceridos"> </td>
                                             <td>Indice A/G</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tSangramiento; ?>" name="indiceAG" id="indiceAG"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->indiceAG; ?>" name="indiceAG" id="indiceAG"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Colesterol</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->vlGMedio; ?>" name="vlgmedio" id="vlgmedio"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterol; ?>" name="colesterol" id="colesterol"> </td>
                                             <td>Bilirrubina directa</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tCoagulacion; ?>" name="bilirrubinaD" id="bilirrubinaD"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->bilirrubinaD; ?>" name="bilirrubinaD" id="bilirrubinaD"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Colesterol H.D.L</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->hbGMedia; ?>" name="colesterolHDL" id="colesterolHDL"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterolHDL; ?>" name="colesterolHDL" id="colesterolHDL"> </td>
                                             <td>Bilirrubina indirecta</td>
-                                            <td><input type="text" class="form-control" value="<?php echo $hematologia->tProtombina; ?>" name="bilirrubinaI" id="bilirrubinaI"></td>
+                                            <td><input type="text" class="form-control" value="<?php echo $quimica->bilirrubinaI; ?>" name="bilirrubinaI" id="bilirrubinaI"></td>
                                         </tr>
     
                                         <tr>
                                             <td>Colesterol L.D.L</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->concHbGlobMed; ?>" name="colesterolLDL" id="colesterolLDL"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterolLDL; ?>" name="colesterolLDL" id="colesterolLDL"> </td>
                                             <td>Albumina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->concHbGlobMed; ?>" name="albumina" id="albumina"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->albumina; ?>" name="albumina" id="albumina"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Ácido Úrico</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->neutrofilos; ?>" name="acidoUrico" id="acidoUrico"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->acidoUrico; ?>" name="acidoUrico" id="acidoUrico"> </td>
                                             <td>Fosforo</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->neutrofilos; ?>" name="fosforo" id="fosforo"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->fosforo; ?>" name="fosforo" id="fosforo"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Creatinina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->linfocitos; ?>" name="creatinina" id="creatinina"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->creatinina; ?>" name="creatinina" id="creatinina"> </td>
                                             <td>Cloro</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->linfocitos; ?>" name="cloro" id="cloro"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->cloro; ?>" name="cloro" id="cloro"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Nitrógeno</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->eosinofilos; ?>" name="nitrogeno" id="nitrogeno"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->nitrogeno; ?>" name="nitrogeno" id="nitrogeno"> </td>
                                             <td>Calcio</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->eosinofilos; ?>" name="calcio" id="calcio"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->calcio; ?>" name="calcio" id="calcio"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Proteinas totales</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->basofilos; ?>" name="proteinasT" id="proteinasT"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->proteinasT; ?>" name="proteinasT" id="proteinasT"> </td>
                                             <td>Potasio</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->basofilos; ?>" name="potasio" id="potasio"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->potasio; ?>" name="potasio" id="potasio"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Bilirrubina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->monocitos; ?>" name="bilirrubina" id="bilirrubina"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->bilirrubina; ?>" name="bilirrubina" id="bilirrubina"> </td>
                                             <td>Sodio</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->monocitos; ?>" name="sodio" id="sodio"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->sodio; ?>" name="sodio" id="sodio"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>T.G.O</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->plaquetas; ?>" name="tgo" id="tgo"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->tgo; ?>" name="tgo" id="tgo"> </td>
                                             <td>Magnesio</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->plaquetas; ?>" name="magnesio" id="magnesio"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->magnesio; ?>" name="magnesio" id="magnesio"> </td>
                                         </tr>
                                         <tr>
                                             <td>T.G.P</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->plaquetas; ?>" name="tgp" id="tgp"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->tgp; ?>" name="tgp" id="tgp"> </td>
                                             <td>Fosfatasa alcalina</td>
-                                            <td> <input type="text" class="form-control" value="<?php echo $hematologia->plaquetas; ?>" name="fosfatasaA" id="fosfatasaA"> </td>
+                                            <td> <input type="text" class="form-control" value="<?php echo $quimica->fosfatasaA; ?>" name="fosfatasaA" id="fosfatasaA"> </td>
                                         </tr>
     
                                         <tr>
                                             <td>Observaciones</td>
-                                            <td colspan="2"> <textarea class="form-control" name="observacionesQS" id="observacionesQS"><?php echo $hematologia->observacionesH; ?></textarea></td>
+                                            <td colspan="2"> <textarea class="form-control" name="observacionesQS" id="observacionesQS"><?php echo $quimica->observacionesQS; ?></textarea></td>
                                             <td >
-                                                <input type="hidden" class="form-control" value="<?php echo $hematologia->idHematologia; ?>" name="idHematologia" id="idHematologia"> 
+                                                <input type="hidden" class="form-control" value="<?php echo $quimica->idQuimicaSanguinea; ?>" name="idQuimicaSanguinea" id="idQuimicaSanguinea"> 
                                                 <input type="hidden" class="form-control" value="<?php echo $consulta; ?>" name="idConsulta"> 
                                                 <button class="btn btn-primary btn-block mt-2"> <i class="fa fa-save"></i> Guardar</button>
                                             </td>
@@ -384,40 +384,49 @@
                                                 <td>Opcion</td>
                                             </tr>
                                             <?php 
-                                                foreach ($historial_hematologia as $row) {
-                                                    if($row->fechaConsulta == date("Y-m-d")){
+                                                foreach ($historial_quimica as $row) {
+                                                    if($row->fechaExamen == date("Y-m-d")){
                                                         echo '<tr class="alert-primary">';
                                                     }else{
                                                         echo '<tr>';
                                                     }
-                                                    echo ' <td>'.$row->fechaConsulta.'</td>';
+                                                    echo ' <td>'.$row->fechaExamen.'</td>';
                                                     echo ' <td>
 
-                                                            <input type="hidden" class="globulosRojos" value="'.$row->globulosRojos.'">
-                                                            <input type="hidden" class="eritrosedimentacion" value="'.$row->eritrosedimentacion.'">
-                                                            <input type="hidden" class="globulosBlancos" value="'.$row->globulosBlancos.'">
-                                                            <input type="hidden" class="reticulositos" value="'.$row->reticulositos.'">
-                                                            <input type="hidden" class="hematocrito" value="'.$row->hematocrito.'">
-                                                            <input type="hidden" class="tpTrombolastina" value="'.$row->tpTrombolastina.'">
-                                                            <input type="hidden" class="hemoglobina" value="'.$row->hemoglobina.'">
-                                                            <input type="hidden" class="tSangramiento" value="'.$row->tSangramiento.'">
-                                                            <input type="hidden" class="vlGMedio" value="'.$row->vlGMedio.'">
-                                                            <input type="hidden" class="tCoagulacion" value="'.$row->tCoagulacion.'">
-                                                            <input type="hidden" class="hbGMedia" value="'.$row->hbGMedia.'">
-                                                            <input type="hidden" class="tProtombina" value="'.$row->tProtombina.'">
-                                                            <input type="hidden" class="concHbGlobMed" value="'.$row->concHbGlobMed.'">
-                                                            <input type="hidden" class="neutrofilos" value="'.$row->neutrofilos.'">
-                                                            <input type="hidden" class="linfocitos" value="'.$row->linfocitos.'">
-                                                            <input type="hidden" class="eosinofilos" value="'.$row->eosinofilos.'">
-                                                            <input type="hidden" class="basofilos" value="'.$row->basofilos.'">
-                                                            <input type="hidden" class="monocitos" value="'.$row->monocitos.'">
-                                                            <input type="hidden" class="plaquetas" value="'.$row->plaquetas.'">
-                                                            <input type="hidden" class="observacionesH" value="'.$row->observacionesH.'">
-                                                            <input type="hidden" class="examenSolicitado" value="'.$row->examenSolicitado.'">
+                                                            <input type="hidden" class="glucosa" value="'.$row->glucosa.'">
+                                                            <input type="hidden" class="fosfatasa" value="'.$row->fosfatasa.'">
+                                                            <input type="hidden" class="glucosaPostPrand" value="'.$row->glucosaPostPrand.'">
+                                                            <input type="hidden" class="lipasa" value="'.$row->lipasa.'">
+                                                            <input type="hidden" class="globulina" value="'.$row->globulina.'">
+                                                            <input type="hidden" class="amilasa" value="'.$row->amilasa.'">
+                                                            <input type="hidden" class="trigliceridos" value="'.$row->trigliceridos.'">
+                                                            <input type="hidden" class="indiceAG" value="'.$row->indiceAG.'">
+                                                            <input type="hidden" class="colesterol" value="'.$row->colesterol.'">
+                                                            <input type="hidden" class="bilirrubinaD" value="'.$row->bilirrubinaD.'">
+                                                            <input type="hidden" class="colesterolHDL" value="'.$row->colesterolHDL.'">
+                                                            <input type="hidden" class="bilirrubinaI" value="'.$row->bilirrubinaI.'">
+                                                            <input type="hidden" class="colesterolLDL" value="'.$row->colesterolLDL.'">
+                                                            <input type="hidden" class="albumina" value="'.$row->albumina.'">
+                                                            <input type="hidden" class="acidoUrico" value="'.$row->acidoUrico.'">
+                                                            <input type="hidden" class="fosforo" value="'.$row->fosforo.'">
+                                                            <input type="hidden" class="creatinina" value="'.$row->creatinina.'">
+                                                            <input type="hidden" class="cloro" value="'.$row->cloro.'">
+                                                            <input type="hidden" class="nitrogeno" value="'.$row->nitrogeno.'">
+                                                            <input type="hidden" class="calcio" value="'.$row->calcio.'">
+                                                            <input type="hidden" class="proteinasT" value="'.$row->proteinasT.'">
+                                                            <input type="hidden" class="potasio" value="'.$row->potasio.'">
+                                                            <input type="hidden" class="bilirrubina" value="'.$row->bilirrubina.'">
+                                                            <input type="hidden" class="sodio" value="'.$row->sodio.'">
+                                                            <input type="hidden" class="tgo" value="'.$row->tgo.'">
+                                                            <input type="hidden" class="magnesio" value="'.$row->magnesio.'">
+                                                            <input type="hidden" class="tgp" value="'.$row->tgp.'">
+                                                            <input type="hidden" class="fosfatasaA" value="'.$row->fosfatasaA.'">
+                                                            <input type="hidden" class="observacionesQS" value="'.$row->observacionesQS.'">
+                                                            <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                             <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
 
-                                                            <a href="'.base_url().'Laboratorio/hematologia_pdf/'.$row->idHematologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                            <a href="#" title="Ver receta" class="verHematologia"><i class="fa fa-file text-success"></i></a>
+                                                            <a href="'.base_url().'Laboratorio/quimica_pdf/'.$row->idQuimicaSanguinea.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                            <a href="#" title="Ver receta" class="verQuimica"><i class="fa fa-file text-success"></i></a>
                                                         </td>';
                                                     echo '</tr>';
                                                 }
@@ -4183,5 +4192,77 @@
         $("#monocitos").val($(this).closest('tr').find('.monocitos').val());
         $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
         $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
+    });
+
+
+    $(document).on("click", ".verQuimica", function(e){
+        e.preventDefault();
+        
+
+        $("#nombreExamen").val( $(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamenQ").val($(this).closest('tr').find('.fechaExamen').val());
+
+        $("#glucosa").val($(this).closest('tr').find('.glucosa').val());
+        $("#fosfatasa").val($(this).closest('tr').find('.fosfatasa').val());
+        $("#glucosaPostPrand").val($(this).closest('tr').find('.glucosaPostPrand').val());
+        $("#lipasa").val($(this).closest('tr').find('.lipasa').val());
+        $("#globulina").val($(this).closest('tr').find('.globulina').val());
+        $("#amilasa").val($(this).closest('tr').find('.amilasa').val());
+        $("#trigliceridos").val($(this).closest('tr').find('.trigliceridos').val());
+        $("#indiceAG").val($(this).closest('tr').find('.indiceAG').val());
+        $("#colesterol").val($(this).closest('tr').find('.colesterol').val());
+        $("#bilirrubinaD").val($(this).closest('tr').find('.bilirrubinaD').val());
+        $("#colesterolHDL").val($(this).closest('tr').find('.colesterolHDL').val());
+        $("#bilirrubinaI").val($(this).closest('tr').find('.bilirrubinaI').val());
+        $("#colesterolLDL").val($(this).closest('tr').find('.colesterolLDL').val());
+        $("#albumina").val($(this).closest('tr').find('.albumina').val());
+        $("#acidoUrico").val($(this).closest('tr').find('.acidoUrico').val());
+        $("#fosforo").val($(this).closest('tr').find('.fosforo').val());
+        $("#creatinina").val($(this).closest('tr').find('.creatinina').val());
+        $("#cloro").val($(this).closest('tr').find('.cloro').val());
+        $("#nitrogeno").val($(this).closest('tr').find('.nitrogeno').val());
+        $("#calcio").val($(this).closest('tr').find('.calcio').val());
+        $("#proteinasT").val($(this).closest('tr').find('.proteinasT').val());
+        $("#potasio").val($(this).closest('tr').find('.potasio').val());
+        $("#bilirrubina").val($(this).closest('tr').find('.bilirrubina').val());
+        $("#sodio").val($(this).closest('tr').find('.sodio').val());
+        $("#tgo").val($(this).closest('tr').find('.tgo').val());
+        $("#magnesio").val($(this).closest('tr').find('.magnesio').val());
+        $("#tgp").val($(this).closest('tr').find('.tgp').val());
+        $("#fosfatasaA").val($(this).closest('tr').find('.fosfatasaA').val());
+        $("#observacionesQS").val($(this).closest('tr').find('.observacionesQS').val());
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nombreExamen
+fechaExamen
+
     });
 </script>

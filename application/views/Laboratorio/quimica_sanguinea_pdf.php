@@ -130,7 +130,7 @@
                             <td><strong class="borderAzul">Médico:</strong></td>
                             <td><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
                             <td><strong class="borderAzul">Fecha:</strong></td>
-                            <td><p class="borderAzul"><?php echo substr($cabecera->fechaDetalleConsulta, 0, 10)." ".$cabecera->horaDetalleConsulta; ?></p></td>
+                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".$cabecera->hora; ?></p></td>
                         </tr>
                     </table>
                 </div>
@@ -150,274 +150,235 @@
                     <tbody>
                         <?php
 
-                            if($sanguinea->glucosaQS != ""){
+                            if($quimica->glucosa != ""){
                                 echo '<tr>
                                         <td><strong>Glucosa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->glucosaQS.'</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->glucosa.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">55-110 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->posprandialQS != ""){
+                            if($quimica->fosfatasa != ""){
                                 echo '<tr>
-                                        <td><strong>Glucosa postprandial</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->posprandialQS.'</td>
+                                        <td><strong>Fosfatasa acida Prost.</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasa.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">140 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->colesterolQS != ""){
+                            if($quimica->glucosaPostPrand != ""){
                                 echo '<tr>
-                                        <td><strong>Colesterol</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->colesterolQS.'</td>
+                                        <td><strong>Glucosa Post-Prand</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->glucosaPostPrand.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">Menor de 200 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->colesterolHDLQS != ""){
+                            if($quimica->lipasa != ""){
                                 echo '<tr>
-                                        <td><strong>Colesterol HDL</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->colesterolHDLQS.'</td>
+                                        <td><strong>Lipasa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->lipasa.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->colesterolLDLQS != ""){
+                            if($quimica->globulina != ""){
                                 echo '<tr>
-                                        <td><strong>Colesterol LDL</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->colesterolLDLQS.'</td>
+                                        <td><strong>Globulina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->globulina.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->trigliceridosQS != ""){
+                            if($quimica->amilasa != ""){
                                 echo '<tr>
-                                        <td><strong>Triglicéridos</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->trigliceridosQS.'</td>
+                                        <td><strong>Amilasa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->amilasa.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->acidoUricoQS != ""){
+                            if($quimica->trigliceridos != ""){
                                 echo '<tr>
-                                        <td><strong>Ácido úrico</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->acidoUricoQS.'</td>
+                                        <td><strong>Trigliceridos</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->trigliceridos.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->ureaQS != ""){
+                            if($quimica->indiceAG != ""){
                                 echo '<tr>
-                                        <td><strong>Urea</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->ureaQS.'</td>
+                                        <td><strong>Indice A/G</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->indiceAG.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">10.0 a 48.1 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->nitrogenoQS != ""){
+                            if($quimica->colesterol != ""){
                                 echo '<tr>
-                                        <td><strong>Nitrógeno Ureico</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->nitrogenoQS.'</td>
+                                        <td><strong>Colesterol</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterol.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->creatininaQS != ""){
+                            if($quimica->bilirrubinaD != ""){
                                 echo '<tr>
-                                        <td><strong>Creatinina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->creatininaQS.'</td>
+                                        <td><strong>Bilirrubina directa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaD.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->amilasaQS != ""){
+                            if($quimica->colesterolHDL != ""){
                                 echo '<tr>
-                                        <td><strong>Amilasa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->amilasaQS.'</td>
+                                        <td><strong>Colesterol H.D.L</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolHDL.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
                                         <td style="text-align: center; font-weight: bold">Menor de 90 U/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->lipasaQS != ""){
+                            if($quimica->bilirrubinaI != ""){
                                 echo '<tr>
-                                        <td><strong>Lipasa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->lipasaQS.'</td>
+                                        <td><strong>Bilirrubina indirecta</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaI.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
                                         <td style="text-align: center; font-weight: bold">Menor de 38 U/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->fosfatasaQS != ""){
+                            if($quimica->colesterolLDL != ""){
                                 echo '<tr>
-                                        <td><strong>Fosfatasa alcalina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->fosfatasaQS.'</td>
+                                        <td><strong>Colesterol L.D.L</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolLDL.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
                                         <td style="text-align: center; font-weight: bold">98-279 U/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->tgpQS != ""){
+                            if($quimica->albumina != ""){
                                 echo '<tr>
-                                        <td><strong>TGP</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->tgpQS.'</td>
+                                        <td><strong>Albumina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->albumina.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
                                         <td style="text-align: center; font-weight: bold">1-40 U/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->tgoQS != ""){
+                            if($quimica->acidoUrico != ""){
                                 echo '<tr>
-                                        <td><strong>TGO</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->tgoQS.'</td>
+                                        <td><strong>Ácido Úrico</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->acidoUrico.'</td>
                                         <td style="text-align: center; font-weight: bold">U/L</td>
                                         <td style="text-align: center; font-weight: bold">1-38 U/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->hba1cQS != ""){
+                            if($quimica->fosforo != ""){
                                 echo '<tr>
-                                        <td><strong>Hemoglobina glicosilada</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->hba1cQS.'</td>
+                                        <td><strong>Fosforo</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosforo.'</td>
                                         <td style="text-align: center; font-weight: bold">%</td>
                                         <td style="text-align: center; font-weight: bold">4.5-6.5%</td>
                                     </tr>';
                             }
-                            if($sanguinea->proteinaTotalQS != ""){
+                            if($quimica->creatinina != ""){
                                 echo '<tr>
-                                        <td><strong>Proteína total</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->proteinaTotalQS.'</td>
+                                        <td><strong>Creatinina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->creatinina.'</td>
                                         <td style="text-align: center; font-weight: bold">g/dl</td>
                                         <td style="text-align: center; font-weight: bold">6.7-8.7 d/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->albuminaQS != ""){
+                            if($quimica->cloro != ""){
                                 echo '<tr>
-                                        <td><strong>Albúmina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->albuminaQS.'</td>
+                                        <td><strong>Cloro</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->cloro.'</td>
                                         <td style="text-align: center; font-weight: bold">g/dl</td>
                                         <td style="text-align: center; font-weight: bold">3.5-5.0 g/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->globulinaQS != ""){
+                            if($quimica->nitrogeno != ""){
                                 echo '<tr>
-                                        <td><strong>Globulina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->globulinaQS.'</td>
+                                        <td><strong>Nitrógeno</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->nitrogeno.'</td>
                                         <td style="text-align: center; font-weight: bold">g/dl</td>
                                         <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->relacionAGQS != ""){
+                            if($quimica->calcio != ""){
                                 echo '<tr>
-                                        <td><strong>Relación A/G</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->relacionAGQS.'</td>
+                                        <td><strong>Calcio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->calcio.'</td>
                                         <td style="text-align: center; font-weight: bold"></td>
                                         <td style="text-align: center; font-weight: bold">1.2-2.2</td>
                                     </tr>';
                             }
-                            if($sanguinea->bilirrubinaTQS != ""){
+                            if($quimica->proteinasT != ""){
                                 echo '<tr>
-                                        <td><strong>Bilirrubina total</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->bilirrubinaTQS.'</td>
+                                        <td><strong>Proteinas totales</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->proteinasT.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">Hasta 1.1 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->bilirrubinaDQS != ""){
+                            if($quimica->potasio != ""){
                                 echo '<tr>
-                                        <td><strong>Bilirrubina directa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->bilirrubinaDQS.'</td>
+                                        <td><strong>Potasio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->potasio.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">Hasta 0.25 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->bilirrubinaIQS != ""){
+                            if($quimica->bilirrubina != ""){
                                 echo '<tr>
-                                        <td><strong>Bilirrubina indirecta</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->bilirrubinaIQS.'</td>
+                                        <td><strong>Bilirrubina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubina.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold"></td>
                                     </tr>';
                             }
-                            if($sanguinea->sodioQuimicaClinica != ""){
+                            if($quimica->sodio != ""){
                                 echo '<tr>
                                         <td><strong>Sodio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->sodioQuimicaClinica.'</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->sodio.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
                                         <td style="text-align: center; font-weight: bold">135-155 mmol/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->potasioQuimicaClinica != ""){
+                            if($quimica->tgo != ""){
                                 echo '<tr>
-                                        <td><strong>Potasio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->potasioQuimicaClinica.'</td>
+                                        <td><strong>T.G.O</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgo.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
                                         <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->cloroQuimicaClinica != ""){
+                            if($quimica->magnesio != ""){
                                 echo '<tr>
-                                        <td><strong>Cloro</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->cloroQuimicaClinica.'</td>
+                                        <td><strong>Magnesio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->magnesio.'</td>
                                         <td style="text-align: center; font-weight: bold">mmol/L</td>
                                         <td style="text-align: center; font-weight: bold">95-115 mmol/L</td>
                                     </tr>';
                             }
-                            if($sanguinea->magnesioQuimicaClinica != ""){
+                            if($quimica->tgp != ""){
                                 echo '<tr>
-                                        <td><strong>Magnesio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->magnesioQuimicaClinica.'</td>
+                                        <td><strong>T.G.P</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgp.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">1.6-2.5 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->calcioQuimicaClinica != ""){
+                            if($quimica->fosfatasaA != ""){
                                 echo '<tr>
-                                        <td><strong>Calcio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->calcioQuimicaClinica.'</td>
+                                        <td><strong>Fosfatasa alcalina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasaA.'</td>
                                         <td style="text-align: center; font-weight: bold">mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">8.1-10.4 mg/dl</td>
                                     </tr>';
                             }
-                            if($sanguinea->fosforoQuimicaClinica != ""){
-                                echo '<tr>
-                                        <td><strong>Fosforo</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->fosforoQuimicaClinica.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">2.5-5.0 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($sanguinea->cpkTQuimicaClinica != ""){
-                                echo '<tr>
-                                        <td><strong>CPK Total</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->cpkTQuimicaClinica.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">0-195 U/L</td>
-                                    </tr>';
-                            }
-                            if($sanguinea->cpkMbQuimicaClinica != ""){
-                                echo '<tr>
-                                        <td><strong>CPK MB</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->cpkMbQuimicaClinica.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">Menor a 24 U/L</td>
-                                    </tr>';
-                            }
-                            if($sanguinea->ldhQuimicaClinica != ""){
-                                echo '<tr>
-                                        <td><strong>LDH</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->ldhQuimicaClinica.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">230-460 U/L</td>
-                                    </tr>';
-                            }
-                            if($sanguinea->troponinaQuimicaClinica != ""){
-                                echo '<tr>
-                                        <td><strong>Troponina I</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$sanguinea->troponinaQuimicaClinica.'</td>
-                                        <td style="text-align: center; font-weight: bold">ng/dl</td>
-                                        <td style="text-align: center; font-weight: bold">VN: menor a 0.30 ng/dl</td>
-                                    </tr>';
-                            }
-                            if($sanguinea->notaQS != ""){
+                            
+                            if($quimica->observacionesQS != ""){
                                 echo '<tr>
                                         <td><strong>Observaciones</strong></td>
-                                        <td style="text-align: center; font-weight: bold" colspan=3>'.$sanguinea->notaQS.'</td>
+                                        <td style="text-align: center; font-weight: bold" colspan=3>'.$quimica->observacionesQS.'</td>
                                     </tr>';
                             }
 
