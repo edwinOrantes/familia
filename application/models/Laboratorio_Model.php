@@ -1753,8 +1753,6 @@ class Laboratorio_Model extends CI_Model {
             return $datos->result();
         }
 
-        
-
         public function quimicaPDF($id = null){
             $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs WHERE qs.idQuimicaSanguinea = '$id' ";
             $datos = $this->db->query($sql);
@@ -1792,7 +1790,6 @@ class Laboratorio_Model extends CI_Model {
             $datos = $this->db->query($sql);
             return $datos->row();
         }
-
 
         public function guardarUrianalisis($data = null){
             if($data != null){
@@ -1837,8 +1834,65 @@ class Laboratorio_Model extends CI_Model {
             $datos = $this->db->query($sql);
             return $datos->row();
         }
+
+        public function obtenerCoprologia($id = null){
+            $sql = "SELECT * FROM tbl_coprologia_lab AS c WHERE c.idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function guardarCoprologia($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_coprologia_lab SET 
+                        nombreExamen = ?, fechaExamen = ?, color = ?, consistencia = ?, mucus = ?, hematies = ?,
+                        leucocitos = ?, bacterias = ?, levaduras = ?, restosAM = ?, otrosUno = ?, otrosDos = ?, histolyticaT = ?,
+                        histolyticaQ = ?, ascarisH = ?, ascarisL = ?, coliT = ?, coliQ = ?, trinchiuraH = ?, trinchiuraL = ?,
+                        nanaT = ?, nanaQ = ?, guodH = ?, guodL = ?, mesniliT = ?, mesniliQ = ?, vermicH = ?, vermicL = ?,
+                        lambiaT = ?, lambiaQ = ?, stercoH = ?, stercoL = ?, hominisT = ?, hominisQ = ?, hymenolepisH = ?,
+                        hymenolepisL = ?, balantidiumT = ?, balantidiumQ = ?, taeniasH = ?, taeniasL = ?, blastocystisT = ?,
+                        blastocystisQ = ?, otrosH = ?, otrosL = ?, observacionesC = ?
+                        WHERE idCoprologia = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+
+        public function historialCoprologia($id = null){
+            $sql = "SELECT * FROM tbl_coprologia_lab AS c
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = c.idConsulta)
+                    WHERE cl.idPaciente = '$id' ORDER BY c.idCoprologia DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function cabeceraPDFC($id = null){
+            $sql = "SELECT
+                    cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(c.creadoCoprologia) as hora, m.nombreMedico 
+                    FROM tbl_coprologia_lab AS c
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = c.idConsulta)
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE c.idCoprologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function coprologiaPDF($id = null){
+            $sql = "SELECT * FROM tbl_coprologia_lab AS c WHERE c.idCoprologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
     // Metodos nuevos para examenes
 }
 ?>
+
+
 
 

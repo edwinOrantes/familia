@@ -4976,11 +4976,14 @@ class Laboratorio extends CI_Controller {
             $data["urianalisis"] = $this->Laboratorio_Model->obtenerUrianalisis($id);
             $data["historial_urianalisis"] = $this->Laboratorio_Model->historialUrianalisis($data["paciente"]->idPaciente);
 
+            $data["coprologia"] = $this->Laboratorio_Model->obtenerCoprologia($id);
+            $data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($data["paciente"]->idPaciente);
+
             $this->load->view("Base/header");
             $this->load->view("Laboratorio/detalle_examenes", $data);
-            $this->load->view("Base/footer"); 
+            $this->load->view("Base/footer");
 
-            // echo json_encode($data["historial_urianalisis"]);
+            // echo json_encode($data["historial_coprologia"]);
 
         }
 
@@ -5163,10 +5166,70 @@ class Laboratorio extends CI_Controller {
                 $mpdf->Output('hematologia_pdf.pdf', 'I');
             // Fin
 
-           echo json_encode($data['urianalisis']);
+            //    echo json_encode($data['urianalisis']);
 
         }
 
+        public function guardar_coprologia_lab(){
+            $datos = $this->input->post();
+            $consulta = $datos["idConsulta"];
+            unset($datos["idConsulta"]);
+            $bool = $this->Laboratorio_Model->guardarCoprologia($datos);
+            if($bool){
+                $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }else{
+                $this->session->set_flashdata("error","Error al guardar los datos!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }
+
+            // echo json_encode($datos);
+        }
+
+        public function coprologia_pdf($id = null){
+            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDFC($id);
+            $data['coprologia'] = $this->Laboratorio_Model->coprologiaPDF($id);
+
+            // Factura
+                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
+                $mpdf = new \Mpdf\Mpdf([
+                    'margin_left' => 15,
+                    'margin_right' => 15,
+                    'margin_top' => 15,
+                    'margin_bottom' => 25,
+                    'margin_header' => 10,
+                    'margin_footer' => 25
+                ]);
+                //$mpdf->setFooter('{PAGENO}');
+                $mpdf->SetHTMLFooter('
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480">
+                                <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
+                            </td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                        </tr>
+                    </table>');
+                $mpdf->SetProtection(array('print'));
+                $mpdf->SetTitle("Centro Médico La Familia");
+                $mpdf->SetAuthor("Edwin Orantes");
+                $mpdf->showWatermarkText = true;
+                $mpdf->watermark_font = 'DejaVuSansCondensed';
+                $mpdf->watermarkTextAlpha = 0.1;
+                $mpdf->SetDisplayMode('fullpage');
+                //$mpdf->AddPage('L'); //Voltear Hoja
+
+                $html = $this->load->view('base/header', $data,true); 
+                $html = $this->load->view('Laboratorio/coprologia_pdf', $data,true); // Cargando hoja de estilos
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('hematologia_pdf.pdf', 'I');
+            // Fin
+
+            // echo json_encode($data['coprologia']);
+
+        }
     // Nuevos metodos de laboratorio
 	
 }
