@@ -53,6 +53,18 @@
         padding: 0px
     }
 
+    .tabla_examen, .nombre_examen{
+        display: none;
+    }
+
+    #htmlDetalle .table tr td{
+        padding: 1px !important
+    }
+
+    .tblReducida  td  {
+        padding: 3px 5px 0px 0px;
+    }
+
 </style>
 
 
@@ -173,147 +185,6 @@
 
                                 </div>
 
-                                <!-- <div role="tabpanel" class="tab-pane fade" id="tabConsulta">
-
-                                    <div class="row">
-                                        <div class="col-md-10" id="contenedorconsulta">
-
-                                            <div class="row">
-                                                <div class="col-md-12 bg-danger text-white">
-                                                    <table class="table table-borderless table-sm">
-                                                        <tr class="text-center">
-                                                            <td colspan="5"><strong>DATOS TOMADOS EN EMERGENCIA:</strong></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
-                                                            <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> Cm</td>
-                                                            <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
-                                                            <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
-                                                            <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <table class="table table-borderless table-sm">
-                                                        <tr>
-                                                            <td><strong>CONSULTA POR:</strong></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="text" value="<?php echo $consulta->consultaPor; ?>" class="form-control" name="consultaPor" id="consultaPor"></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-        
-                                                
-                                            </div>
-                                            
-                                            <div class="row">
-                                                <div class="col-md-6 text-center">
-                                                    <p><strong>PRESENTE ENFERMEDAD</strong></p>
-                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control" cols="30" rows="5"><?php echo $consulta->presenteEnfermedad; ?></textarea>
-                                                </div>
-                                                <div class="col-md-6 text-center">
-                                                    <p><strong>EVOLUCION</strong></p>
-                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control" cols="30" rows="5"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
-                                                </div>
-                                            </div>
-    
-                                        
-                                        
-                                            <div class="col-md-12">
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <table class="table table-borderless">
-                                                            <tr>
-                                                                <td><strong>EXAMEN FISICO</strong></td>
-                                                                <td>P.A: <input type="text" value="<?php echo $consulta->paConsulta; ?>"  size="10" class="" name="paConsulta" id="paConsulta"></td>
-                                                                <td>F.C: <input type="text" value="<?php echo $consulta->fcConsulta; ?>"  size="10" class="" name="fcConsulta" id="fcConsulta"></td>
-                                                                <td>Temp: <input type="text" value="<?php echo $consulta->tempConsulta; ?>"  size="10" class="" name="tempConsulta" id="tempConsulta"></td>
-                                                                <td>FR: <input type="text" value="<?php echo $consulta->frConsulta; ?>"  size="10" class="" name="frConsulta" id="frConsulta"></td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-6 text-center">
-                                                        <p><strong>IMPRESION DIAGNOSTICA</strong></p>
-                                                        <table class="table table-borderless">
-                                                                <tr>
-                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoUno; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoUno" id="diagnosticoUno"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoDos; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoDos" id="diagnosticoDos"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><input type="text" value="<?php echo $consulta->diagnosticoTres; ?>" list="lista_diagnostico" class="form-control impresionEnfermedad" name="diagnosticoTres" id="diagnosticoTres"></td>
-                                                                </tr>
-                                                        </table>
-    
-    
-                                                        <datalist id="lista_diagnostico"></datalist>
-                                                    </div>
-        
-                                                    <div class="col-md-6">
-                                                        <p><strong>PLAN</strong></p>
-                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control" cols="30" rows="8"><?php echo $consulta->planConsulta; ?></textarea>
-                                                        <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
-                                                    </div>
-    
-                                                </div>
-    
-                                            </div>
-
-                                        </div>
-                                        
-                                        <div class="col-md-10" id="contenedorconsultaH"></div>
-
-                                        <div class="col-md-2 text-center">
-                                            <p><strong>HISTORIAL</strong></p>
-                                            <div class="table-responsive historial">
-                                                <table class="table table-borderless table-sm">
-                                                    <?php
-                                                     foreach ($historial_detalles as $row) {
-                                                        if($row->fechaConsulta == date('Y-m-d')){
-                                                            echo '<tr class="verDetalleActual alert-primary">
-                                                                    <td colspan="2"><strong>'.$row->fechaConsulta.'</strong></td>
-                                                                </tr>';
-                                                        }else{
-                                                    ?>
-                                                    <tr class="verDetalleConsulta">
-                                                        <td><?php echo $row->fechaConsulta; ?>
-                                                            <input type="hidden" value="<?php echo $row->consultaPor; ?>" class="consultaPorH">
-                                                            <input type="hidden" value="<?php echo $row->presenteEnfermedad; ?>" class="presenteEnfermedadH">
-                                                            <input type="hidden" value="<?php echo $row->evolucionEnfermedad; ?>" class="evolucionEnfermedadH">
-                                                            <input type="hidden" value="<?php echo $row->paConsulta; ?>" class="paConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->fcConsulta; ?>" class="fcConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
-                                                            <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
-                                                            <input type="hidden" value="<?php echo $row->altura; ?>" class="alturaH">
-                                                            <input type="hidden" value="<?php echo $row->imc; ?>" class="imcH">
-                                                            <input type="hidden" value="<?php echo $row->temperaturaPaciente; ?>" class="temperaturaPacienteH">
-                                                            <input type="hidden" value="<?php echo $row->presionPaciente; ?>" class="presionPacienteH">
-                                                        </td>
-                                                        <td><?php echo $row->consultaPor; ?></td>
-                                                    </tr>
-                                                    <?php }} ?>
-                                                </table>
-                                            </div>
-
-                                            <div class="mt-5">
-                                                <button type="button" class="btn btn-primary btn-block" id="btnGuardarDetalleConsulta"> <i class="fa fa-save"></i> Guardar </button>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-`                                </div> -->
-
                                 <div role="tabpanel" class="tab-pane fade" id="tabConsulta">
 
                                     <div class="row">
@@ -419,7 +290,8 @@
                                                      foreach ($historial_detalles as $row) {
                                                         if($row->fechaConsulta == date('Y-m-d')){
                                                             echo '<tr class="verDetalleActual alert-primary">
-                                                                    <td colspan="2"><strong>'.$row->fechaConsulta.'</strong><input type="hidden" value="'.$row->idConsulta.'" class="idConsultaA"></td>
+                                                                    <td><strong>'.$row->fechaConsulta.'</strong><input type="hidden" value="'.$row->idConsulta.'" class="idConsultaA"></td>
+                                                                    <td>'.$row->consultaPor.'</td>
                                                                 </tr>';
                                                         }else{
                                                     ?>
@@ -496,45 +368,801 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="examanesLaboratorio">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="accordion" id="accordionExample3">
-                                                <?php
-                                                    $flag = 1;
-                                                    foreach ($historial_laboratorio as $row) {
-                                                ?>
-                                                    <div class="card">
-                                                        <div class="card-header collapsed" data-toggle="collapse" role="button" data-target="#fechas<?php echo $flag; ?>" aria-expanded="false" aria-controls="fechas<?php echo $flag; ?>">
-                                                            <span class="has-icon"> <i class="far fa-calendar"></i> <?php echo $row->fecha; ?> </span>
-                                                        </div>
-                                                        <div id="fechas<?php echo $flag; ?>" class="collapse" data-parent="#accordionExample3" style="">
-                                                            <div class="card-body">
-                                                                <table class="table">
-                                                                    <?php
-                                                                        $examenes = $this->Laboratorio_Model->historialRealizado($row->fecha, $paciente->idPaciente);
-                                                                        foreach ($examenes as $fila) {
-                                                                            echo '<tr>
-                                                                                    <td><a href="#" class="examenFecha">'.$fila->nombreExamen.'</a> <p class="nombre_examen">'.$fila->nombreExamen.'</p> <div class="tabla_examen">'.base64_encode($fila->tablaExamen).'</div> </td>
-                                                                                </tr>';
-                                                                        }
-                                                                    ?>
-                                                                </table>
-                                                                
+                                    <!-- Lab -->
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="ms-panel-body clearfix">
+                                                    
+                                                        <ul class="nav nav-tabs d-flex nav-justified mb-1" role="tablist">
+                                                        <li role="presentation"><a href="#hematologia" aria-controls="hematologia" class="active" role="tab" data-toggle="tab" aria-selected="false">Hematología</a></li>
+                                                        <li role="presentation"><a href="#quimicaSanguinea" aria-controls="quimicaSanguinea" role="tab" data-toggle="tab" class="" aria-selected="false">Química sanguínea</a></li>
+                                                        <li role="presentation"><a href="#urianalisis" aria-controls="urianalisis" role="tab" data-toggle="tab" aria-selected="false">Urianálisis </a></li>
+                                                        <li role="presentation"><a href="#coprologia" aria-controls="coprologia" role="tab" data-toggle="tab" aria-selected="false">Coprología </a></li>
+                                                        <li role="presentation"><a href="#pruebasEspeciales" aria-controls="pruebasEspeciales" role="tab" data-toggle="tab" aria-selected="false">Pruebas especiales </a></li>
+                                                        <li role="presentation"><a href="#bacteriologia" aria-controls="bacteriologia" role="tab" data-toggle="tab" aria-selected="false">Bacteriología </a></li>
+                                                        </ul>
+                                                    <div class="px-3"> 
+                                                        <div class="tab-content">
+                                                            <div role="tabpanel" class="tab-pane active show fade in" id="hematologia">
+                                                                <form action="<?php echo base_url(); ?>Laboratorio/guardar_hematologia_lab" method="post">
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <table class="table table-borderless">
+                                                                                <tr>
+                                                                                    <td><strong>Examen:</strong> <input type="text"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
+                                                                                    <td><strong>Fecha:</strong>  <input type="date" class="form-control"  id="fechaExamen" name="fechaExamen"></td>
+                                                                                </tr>
+                                                                            </table>
+                                            
+                                                                            <table class="table table-borderless tblReducida">
+                                            
+                                                                                <tr>
+                                                                                    <td>Globulos rojos</td>
+                                                                                    <td> <input type="text" class="form-control" name="globulosRojos" id="globulosRojos"> </td>
+                                                                                    <td> <span class="badge badge-danger">3,960,000-5,500,000 X mm3</span> </td>
+                                                                                    <td>Eritrosedimentación</td>
+                                                                                    <td><input type="text" class="form-control" name="eritrosedimentacion" id="eritrosedimentacion"></td>
+                                                                                    <td> <span class="badge badge-danger">1-20mm/hr</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Globulos blancos</td>
+                                                                                    <td> <input type="text" class="form-control" name="globulosBlancos" id="globulosBlancos"> </td>
+                                                                                    <td> <span class="badge badge-danger"> 5,000-10,000 X mm3</span> </td>
+                                                                                    <td>Reticulositos</td>
+                                                                                    <td><input type="text" class="form-control" name="reticulositos" id="reticulositos"></td>
+                                                                                    <td> <span class="badge badge-danger">0.5-1.5%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Hematocrito</td>
+                                                                                    <td> <input type="text" class="form-control" name="hematocrito" id="hematocrito"> </td>
+                                                                                    <td> <span class="badge badge-danger">36-50%</span> </td>
+                                                                                    <td>T.P Trombolastina</td>
+                                                                                    <td><input type="text" class="form-control" name="tpTrombolastina" id="tpTrombolastina"></td>
+                                                                                    <td> <span class="badge badge-danger">26-34 Seg.</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Hemoglobina</td>
+                                                                                    <td> <input type="text" class="form-control" name="hemoglobina" id="hemoglobina"> </td>
+                                                                                    <td> <span class="badge badge-danger">12-16.6 g%</span> </td>
+                                                                                    <td>T. de sangramiento</td>
+                                                                                    <td><input type="text" class="form-control" name="tSangramiento" id="tSangramiento"></td>
+                                                                                    <td> <span class="badge badge-danger">1-3 Minutos</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Vl. globular medio</td>
+                                                                                    <td> <input type="text" class="form-control" name="vlGMedio" id="vlGMedio"> </td>
+                                                                                    <td> <span class="badge badge-danger">90.9-92.7 micras3</span> </td>
+                                                                                    <td>T. de coagulacion</td>
+                                                                                    <td><input type="text" class="form-control" name="tCoagulacion" id="tCoagulacion"></td>
+                                                                                    <td> <span class="badge badge-danger">5-10 Minutos</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Hb. globular media</td>
+                                                                                    <td> <input type="text" class="form-control" name="hbGMedia" id="hbGMedia"> </td>
+                                                                                    <td> <span class="badge badge-danger">30.2-31.7 uug</span> </td>
+                                                                                    <td>T. Protombina</td>
+                                                                                    <td><input type="text" class="form-control" name="tProtombina" id="tProtombina"></td>
+                                                                                    <td> <span class="badge badge-danger">13-17 Seg</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Conc. HB. Glob. Med</td>
+                                                                                    <td> <input type="text" class="form-control" name="concHbGlobMed" id="concHbGlobMed"> </td>
+                                                                                    <td> <span class="badge badge-danger">33-33.5%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Neutrofilos</td>
+                                                                                    <td> <input type="text" class="form-control" name="neutrofilos" id="neutrofilos"> </td>
+                                                                                    <td> <span class="badge badge-danger">40-70%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Linfocitos</td>
+                                                                                    <td> <input type="text" class="form-control" name="linfocitos" id="linfocitos"> </td>
+                                                                                    <td> <span class="badge badge-danger">20-40%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Eosinofilos</td>
+                                                                                    <td> <input type="text" class="form-control" name="eosinofilos" id="eosinofilos"> </td>
+                                                                                    <td> <span class="badge badge-danger">1-4%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Basofilos</td>
+                                                                                    <td> <input type="text" class="form-control" name="basofilos" id="basofilos"> </td>
+                                                                                    <td> <span class="badge badge-danger">2-5%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Monocitos</td>
+                                                                                    <td> <input type="text" class="form-control" name="monocitos" id="monocitos"> </td>
+                                                                                    <td> <span class="badge badge-danger">0-1%</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Plaquetas</td>
+                                                                                    <td> <input type="text" class="form-control" name="plaquetas" id="plaquetas"> </td>
+                                                                                    <td> <span class="badge badge-danger">150,000-400,000 X mm3</span> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Observaciones</td>
+                                                                                    <td colspan="2"> <textarea class="form-control" name="observacionesH" id="observacionesH"></textarea></td>
+                                                                                    <td></td>
+                                                                                    <td >
+                                                                                        <input type="hidden" class="form-control" name="idHematologia" id="idHematologia"> 
+                                                                                        <input type="hidden" class="form-control" name="idConsulta"> 
+                                                                                        <button class="btn btn-primary btn-block"> <i class="fa fa-save"></i> Guardar</button>
+                                                                                    </td>
+                                                                                </tr>
+                                            
+                                            
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-md-2 text-center">
+                                                                            <p><strong>HISTORIAL</strong></p>
+                                                                            <div class="table-responsive historial_receta table-md">
+                                                                                <table class="table table-borderless table-sm">
+                                                                                    <tr>
+                                                                                        <td>Fecha</td>
+                                                                                        <td>Opcion</td>
+                                                                                    </tr>
+                                                                                    <?php 
+                                                                                        foreach ($historial_hematologia as $row) {
+                                                                                            if($row->fechaConsulta == date("Y-m-d")){
+                                                                                                echo '<tr class="alert-primary">';
+                                                                                            }else{
+                                                                                                echo '<tr>';
+                                                                                            }
+                                                                                            echo ' <td>'.$row->fechaConsulta.'</td>';
+                                                                                            echo ' <td>
+                                        
+                                                                                                    <input type="hidden" class="globulosRojos" value="'.$row->globulosRojos.'">
+                                                                                                    <input type="hidden" class="eritrosedimentacion" value="'.$row->eritrosedimentacion.'">
+                                                                                                    <input type="hidden" class="globulosBlancos" value="'.$row->globulosBlancos.'">
+                                                                                                    <input type="hidden" class="reticulositos" value="'.$row->reticulositos.'">
+                                                                                                    <input type="hidden" class="hematocrito" value="'.$row->hematocrito.'">
+                                                                                                    <input type="hidden" class="tpTrombolastina" value="'.$row->tpTrombolastina.'">
+                                                                                                    <input type="hidden" class="hemoglobina" value="'.$row->hemoglobina.'">
+                                                                                                    <input type="hidden" class="tSangramiento" value="'.$row->tSangramiento.'">
+                                                                                                    <input type="hidden" class="vlGMedio" value="'.$row->vlGMedio.'">
+                                                                                                    <input type="hidden" class="tCoagulacion" value="'.$row->tCoagulacion.'">
+                                                                                                    <input type="hidden" class="hbGMedia" value="'.$row->hbGMedia.'">
+                                                                                                    <input type="hidden" class="tProtombina" value="'.$row->tProtombina.'">
+                                                                                                    <input type="hidden" class="concHbGlobMed" value="'.$row->concHbGlobMed.'">
+                                                                                                    <input type="hidden" class="neutrofilos" value="'.$row->neutrofilos.'">
+                                                                                                    <input type="hidden" class="linfocitos" value="'.$row->linfocitos.'">
+                                                                                                    <input type="hidden" class="eosinofilos" value="'.$row->eosinofilos.'">
+                                                                                                    <input type="hidden" class="basofilos" value="'.$row->basofilos.'">
+                                                                                                    <input type="hidden" class="monocitos" value="'.$row->monocitos.'">
+                                                                                                    <input type="hidden" class="plaquetas" value="'.$row->plaquetas.'">
+                                                                                                    <input type="hidden" class="observacionesH" value="'.$row->observacionesH.'">
+                                                                                                    <input type="hidden" class="examenSolicitado" value="'.$row->examenSolicitado.'">
+                                                                                                    <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                        
+                                                                                                    <a href="'.base_url().'Laboratorio/hematologia_pdf/'.$row->idHematologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                                                    <a href="#" title="Ver receta" class="verHematologia"><i class="fa fa-file text-success"></i></a>
+                                                                                                </td>';
+                                                                                            echo '</tr>';
+                                                                                        }
+                                                                                    ?>
+                                                                                    
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
+                                        
+                                                            <div role="tabpanel" class="tab-pane fade" id="quimicaSanguinea">
+                                                                <form action="<?php echo base_url(); ?>Laboratorio/guardar_quimica_lab" method="post">
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <table class="table table-borderless">
+                                                                                <tr>
+                                                                                    <td><strong>Examen:</strong> <input type="text"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
+                                                                                    <td><strong>Fecha:</strong>  <input type="date" class="form-control"  id="fechaExamenQ" name="fechaExamen"></td>
+                                                                                </tr>
+                                                                            </table>
+                                            
+                                                                            <table class="table table-borderless tblReducida">
+                                            
+                                                                                <tr>
+                                                                                    <td>Glucosa</td>
+                                                                                    <td> <input type="text" class="form-control" name="glucosa" id="glucosa"> </td>
+                                                                                    <td>Fosfatasa acida Prost.</td>
+                                                                                    <td><input type="text" class="form-control" name="fosfatasa" id="fosfatasa"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Glucosa Post-Prand</td>
+                                                                                    <td> <input type="text" class="form-control" name="glucosaPostPrand" id="glucosaPostPrand"> </td>
+                                                                                    <td>Lipasa</td>
+                                                                                    <td><input type="text" class="form-control" name="lipasa" id="lipasa"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Globulina</td>
+                                                                                    <td> <input type="text" class="form-control" name="globulina" id="globulina"> </td>
+                                                                                    <td>Amilasa</td>
+                                                                                    <td><input type="text" class="form-control" name="amilasa" id="amilasa"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Trigliceridos</td>
+                                                                                    <td> <input type="text" class="form-control" name="trigliceridos" id="trigliceridos"> </td>
+                                                                                    <td>Indice A/G</td>
+                                                                                    <td><input type="text" class="form-control" name="indiceAG" id="indiceAG"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Colesterol</td>
+                                                                                    <td> <input type="text" class="form-control" name="colesterol" id="colesterol"> </td>
+                                                                                    <td>Bilirrubina directa</td>
+                                                                                    <td><input type="text" class="form-control" name="bilirrubinaD" id="bilirrubinaD"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Colesterol H.D.L</td>
+                                                                                    <td> <input type="text" class="form-control" name="colesterolHDL" id="colesterolHDL"> </td>
+                                                                                    <td>Bilirrubina indirecta</td>
+                                                                                    <td><input type="text" class="form-control" name="bilirrubinaI" id="bilirrubinaI"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Colesterol L.D.L</td>
+                                                                                    <td> <input type="text" class="form-control" name="colesterolLDL" id="colesterolLDL"> </td>
+                                                                                    <td>Albumina</td>
+                                                                                    <td> <input type="text" class="form-control" name="albumina" id="albumina"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Ácido Úrico</td>
+                                                                                    <td> <input type="text" class="form-control" name="acidoUrico" id="acidoUrico"> </td>
+                                                                                    <td>Fosforo</td>
+                                                                                    <td> <input type="text" class="form-control" name="fosforo" id="fosforo"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Creatinina</td>
+                                                                                    <td> <input type="text" class="form-control" name="creatinina" id="creatinina"> </td>
+                                                                                    <td>Cloro</td>
+                                                                                    <td> <input type="text" class="form-control" name="cloro" id="cloro"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Nitrógeno</td>
+                                                                                    <td> <input type="text" class="form-control" name="nitrogeno" id="nitrogeno"> </td>
+                                                                                    <td>Calcio</td>
+                                                                                    <td> <input type="text" class="form-control" name="calcio" id="calcio"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Proteinas totales</td>
+                                                                                    <td> <input type="text" class="form-control" name="proteinasT" id="proteinasT"> </td>
+                                                                                    <td>Potasio</td>
+                                                                                    <td> <input type="text" class="form-control" name="potasio" id="potasio"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Bilirrubina</td>
+                                                                                    <td> <input type="text" class="form-control" name="bilirrubina" id="bilirrubina"> </td>
+                                                                                    <td>Sodio</td>
+                                                                                    <td> <input type="text" class="form-control" name="sodio" id="sodio"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>T.G.O</td>
+                                                                                    <td> <input type="text" class="form-control" name="tgo" id="tgo"> </td>
+                                                                                    <td>Magnesio</td>
+                                                                                    <td> <input type="text" class="form-control" name="magnesio" id="magnesio"> </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T.G.P</td>
+                                                                                    <td> <input type="text" class="form-control" name="tgp" id="tgp"> </td>
+                                                                                    <td>Fosfatasa alcalina</td>
+                                                                                    <td> <input type="text" class="form-control" name="fosfatasaA" id="fosfatasaA"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Observaciones</td>
+                                                                                    <td colspan="2"> <textarea class="form-control" name="observacionesQS" id="observacionesQS"></textarea></td>
+                                                                                    <td >
+                                                                                        <input type="hidden" class="form-control" name="idQuimicaSanguinea" id="idQuimicaSanguinea"> 
+                                                                                        <input type="hidden" class="form-control" name="idConsulta"> 
+                                                                                        <button class="btn btn-primary btn-block mt-2"> <i class="fa fa-save"></i> Guardar</button>
+                                                                                    </td>
+                                                                                </tr>
+                                            
+                                            
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-md-2 text-center">
+                                                                            <p><strong>HISTORIAL</strong></p>
+                                                                            <div class="table-responsive historial_receta table-md">
+                                                                                <table class="table table-borderless table-sm">
+                                                                                    <tr>
+                                                                                        <td>Fecha</td>
+                                                                                        <td>Opcion</td>
+                                                                                    </tr>
+                                                                                    <?php 
+                                                                                        foreach ($historial_quimica as $row) {
+                                                                                            if($row->fechaExamen == date("Y-m-d")){
+                                                                                                echo '<tr class="alert-primary">';
+                                                                                            }else{
+                                                                                                echo '<tr>';
+                                                                                            }
+                                                                                            echo ' <td>'.$row->fechaExamen.'</td>';
+                                                                                            echo ' <td>
+                                        
+                                                                                                    <input type="hidden" class="glucosa" value="'.$row->glucosa.'">
+                                                                                                    <input type="hidden" class="fosfatasa" value="'.$row->fosfatasa.'">
+                                                                                                    <input type="hidden" class="glucosaPostPrand" value="'.$row->glucosaPostPrand.'">
+                                                                                                    <input type="hidden" class="lipasa" value="'.$row->lipasa.'">
+                                                                                                    <input type="hidden" class="globulina" value="'.$row->globulina.'">
+                                                                                                    <input type="hidden" class="amilasa" value="'.$row->amilasa.'">
+                                                                                                    <input type="hidden" class="trigliceridos" value="'.$row->trigliceridos.'">
+                                                                                                    <input type="hidden" class="indiceAG" value="'.$row->indiceAG.'">
+                                                                                                    <input type="hidden" class="colesterol" value="'.$row->colesterol.'">
+                                                                                                    <input type="hidden" class="bilirrubinaD" value="'.$row->bilirrubinaD.'">
+                                                                                                    <input type="hidden" class="colesterolHDL" value="'.$row->colesterolHDL.'">
+                                                                                                    <input type="hidden" class="bilirrubinaI" value="'.$row->bilirrubinaI.'">
+                                                                                                    <input type="hidden" class="colesterolLDL" value="'.$row->colesterolLDL.'">
+                                                                                                    <input type="hidden" class="albumina" value="'.$row->albumina.'">
+                                                                                                    <input type="hidden" class="acidoUrico" value="'.$row->acidoUrico.'">
+                                                                                                    <input type="hidden" class="fosforo" value="'.$row->fosforo.'">
+                                                                                                    <input type="hidden" class="creatinina" value="'.$row->creatinina.'">
+                                                                                                    <input type="hidden" class="cloro" value="'.$row->cloro.'">
+                                                                                                    <input type="hidden" class="nitrogeno" value="'.$row->nitrogeno.'">
+                                                                                                    <input type="hidden" class="calcio" value="'.$row->calcio.'">
+                                                                                                    <input type="hidden" class="proteinasT" value="'.$row->proteinasT.'">
+                                                                                                    <input type="hidden" class="potasio" value="'.$row->potasio.'">
+                                                                                                    <input type="hidden" class="bilirrubina" value="'.$row->bilirrubina.'">
+                                                                                                    <input type="hidden" class="sodio" value="'.$row->sodio.'">
+                                                                                                    <input type="hidden" class="tgo" value="'.$row->tgo.'">
+                                                                                                    <input type="hidden" class="magnesio" value="'.$row->magnesio.'">
+                                                                                                    <input type="hidden" class="tgp" value="'.$row->tgp.'">
+                                                                                                    <input type="hidden" class="fosfatasaA" value="'.$row->fosfatasaA.'">
+                                                                                                    <input type="hidden" class="observacionesQS" value="'.$row->observacionesQS.'">
+                                                                                                    <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
+                                                                                                    <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                        
+                                                                                                    <a href="'.base_url().'Laboratorio/quimica_pdf/'.$row->idQuimicaSanguinea.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                                                    <a href="#" title="Ver receta" class="verQuimica"><i class="fa fa-file text-success"></i></a>
+                                                                                                </td>';
+                                                                                            echo '</tr>';
+                                                                                        }
+                                                                                    ?>
+                                                                                    
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                        
+                                                            <div role="tabpanel" class="tab-pane fade" id="urianalisis">
+                                                                <form action="<?php echo base_url(); ?>Laboratorio/guardar_urianalisis_lab" method="post">
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <table class="table table-borderless">
+                                                                                <tr>
+                                                                                    <td><strong>Examen:</strong> <input type="text"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
+                                                                                    <td><strong>Fecha:</strong>  <input type="date" class="form-control"  id="fechaExamen" name="fechaExamen"></td>
+                                                                                </tr>
+                                                                            </table>
+                                            
+                                                                            <table class="table table-borderless tblReducida">
+                                                                                <tr class="bg-danger text-white text-center">
+                                                                                    <th colspan="4">EXAMEN FISICO QUIMICO</th>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Color</td>
+                                                                                    <td> <input type="text" class="form-control" name="color" id="color"> </td>
+                                                                                    <td>Aspecto</td>
+                                                                                    <td><input type="text" class="form-control" name="aspecto" id="aspecto"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Reacción</td>
+                                                                                    <td> <input type="text" class="form-control" name="reaccion" id="reaccion"> </td>
+                                                                                    <td>Densidad</td>
+                                                                                    <td><input type="text" class="form-control" name="densidad" id="densidad"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>P.H.</td>
+                                                                                    <td> <input type="text" class="form-control" name="ph" id="ph"> </td>
+                                                                                    <td>Glucosa</td>
+                                                                                    <td><input type="text" class="form-control" name="glucosa" id="glucosaU"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Proteinas</td>
+                                                                                    <td> <input type="text" class="form-control" name="proteinas" id="proteinas"> </td>
+                                                                                    <td>Pigmentos Biliares</td>
+                                                                                    <td><input type="text" class="form-control" name="pigmentosB" id="pigmentosB"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Sangre oculta</td>
+                                                                                    <td> <input type="text" class="form-control" name="sangreO" id="sangreO"> </td>
+                                                                                    <td>Nitritos</td>
+                                                                                    <td><input type="text" class="form-control" name="nitritos" id="nitritos"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Cuerpos Cetonicos</td>
+                                                                                    <td> <input type="text" class="form-control" name="cuerposC" id="cuerposC"> </td>
+                                                                                    <td>Acidos Biliares</td>
+                                                                                    <td><input type="text" class="form-control" name="acidosBiliares" id="acidosBiliares"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr class="bg-danger text-white text-center">
+                                                                                    <th colspan="4">EXAMEN MICROSCOPICO</th>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Granulosos</td>
+                                                                                    <td> <input type="text" class="form-control" name="granulosos" id="granulosos"> </td>
+                                                                                    <td>Cilindros leucocitarios</td>
+                                                                                    <td> <input type="text" class="form-control" name="cilindrosL" id="cilindrosL"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Cilindros Hialinos</td>
+                                                                                    <td> <input type="text" class="form-control" name="cilindrosH" id="cilindrosH"> </td>
+                                                                                    <td>Otros cilindros</td>
+                                                                                    <td> <input type="text" class="form-control" name="otrosCilindros" id="otrosCilindros"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Leucositos</td>
+                                                                                    <td> <input type="text" class="form-control" name="leucositos" id="leucositos"> </td>
+                                                                                    <td>Hematies</td>
+                                                                                    <td> <input type="text" class="form-control" name="hematies" id="hematies"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Celulas Epiteliales</td>
+                                                                                    <td> <input type="text" class="form-control" name="celulasE" id="celulasE"> </td>
+                                                                                    <td>Elementos minerales</td>
+                                                                                    <td> <input type="text" class="form-control" name="elementosM" id="elementosM"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Bacterias</td>
+                                                                                    <td> <input type="text" class="form-control" name="bacterias" id="bacterias"> </td>
+                                                                                    <td>Levadura</td>
+                                                                                    <td> <input type="text" class="form-control" name="levadura" id="levadura"> </td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Otros</td>
+                                                                                    <td> <input type="text" class="form-control" name="OtrosUno" id="OtrosUno"> </td>
+                                                                                    <td>Otros</td>
+                                                                                    <td> <input type="text" class="form-control" name="otrosDos" id="otrosDos"> </td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Observaciones</td>
+                                                                                    <td> <textarea class="form-control" name="observacionesU" id="observacionesU"></textarea></td>
+                                                                                    <td></td>
+                                                                                    <td >
+                                                                                        <input type="hidden" class="form-control" name="idUrianalisis" id="idUrianalisis"> 
+                                                                                        <input type="hidden" class="form-control" name="idConsulta"> 
+                                                                                        <button class="btn btn-primary btn-block mt-2"> <i class="fa fa-save"></i> Guardar</button>
+                                                                                    </td>
+                                                                                </tr>
+                                            
+                                            
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-md-2 text-center">
+                                                                            <p><strong>HISTORIAL</strong></p>
+                                                                            <div class="table-responsive historial_receta table-md">
+                                                                                <table class="table table-borderless table-sm">
+                                                                                    <tr>
+                                                                                        <td>Fecha</td>
+                                                                                        <td>Opcion</td>
+                                                                                    </tr>
+                                                                                    <?php 
+                                                                                        foreach ($historial_urianalisis as $row) {
+                                                                                            if($row->fechaExamen == date("Y-m-d")){
+                                                                                                echo '<tr class="alert-primary">';
+                                                                                            }else{
+                                                                                                echo '<tr>';
+                                                                                            }
+                                                                                            echo ' <td>'.$row->fechaExamen.'</td>';
+                                                                                            echo ' <td>
+                                        
+                                                                                                    <input type="hidden" class="color" value="'.$row->color.'">
+                                                                                                    <input type="hidden" class="aspecto" value="'.$row->aspecto.'">
+                                                                                                    <input type="hidden" class="reaccion" value="'.$row->reaccion.'">
+                                                                                                    <input type="hidden" class="densidad" value="'.$row->densidad.'">
+                                                                                                    <input type="hidden" class="ph" value="'.$row->ph.'">
+                                                                                                    <input type="hidden" class="glucosa" value="'.$row->glucosa.'">
+                                                                                                    <input type="hidden" class="proteinas" value="'.$row->proteinas.'">
+                                                                                                    <input type="hidden" class="pigmentosB" value="'.$row->pigmentosB.'">
+                                                                                                    <input type="hidden" class="sangreO" value="'.$row->sangreO.'">
+                                                                                                    <input type="hidden" class="nitritos" value="'.$row->nitritos.'">
+                                                                                                    <input type="hidden" class="cuerposC" value="'.$row->cuerposC.'">
+                                                                                                    <input type="hidden" class="acidosBiliares" value="'.$row->acidosBiliares.'">
+                                                                                                    <input type="hidden" class="granulosos" value="'.$row->granulosos.'">
+                                                                                                    <input type="hidden" class="cilindrosL" value="'.$row->cilindrosL.'">
+                                                                                                    <input type="hidden" class="cilindrosH" value="'.$row->cilindrosH.'">
+                                                                                                    <input type="hidden" class="otrosCilindros" value="'.$row->otrosCilindros.'">
+                                                                                                    <input type="hidden" class="leucositos" value="'.$row->leucositos.'">
+                                                                                                    <input type="hidden" class="hematies" value="'.$row->hematies.'">
+                                                                                                    <input type="hidden" class="celulasE" value="'.$row->celulasE.'">
+                                                                                                    <input type="hidden" class="elementosM" value="'.$row->elementosM.'">
+                                                                                                    <input type="hidden" class="bacterias" value="'.$row->bacterias.'">
+                                                                                                    <input type="hidden" class="levadura" value="'.$row->levadura.'">
+                                                                                                    <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
+                                                                                                    <input type="hidden" class="otrosDos" value="'.$row->elementosM.'">
+                                                                                                    <input type="hidden" class="observacionesU" value="'.$row->observacionesU.'">
+                                                                                                    <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
+                                                                                                    <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                        
+                                                                                                    <a href="'.base_url().'Laboratorio/urianalisis_pdf/'.$row->idUrianalisis.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                                                    <a href="#" title="Ver receta" class="verUrianalisis"><i class="fa fa-file text-success"></i></a>
+                                                                                                </td>';
+                                                                                            echo '</tr>';
+                                                                                        }
+                                                                                    ?>
+                                                                                    
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                        
+                                                            <div role="tabpanel" class="tab-pane fade" id="coprologia">
+                                                                <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <table class="table table-borderless">
+                                                                                <tr>
+                                                                                    <td><strong>Examen:</strong> <input type="text"  class="form-control"  id="nombreExamenC" name="nombreExamen"></td>
+                                                                                    <td><strong>Fecha:</strong>  <input type="date" class="form-control"  id="fechaExamenC" name="fechaExamen"></td>
+                                                                                </tr>
+                                                                            </table>
+                                            
+                                                                            <table class="table table-borderless tblReducida">
+                                                                                <tr>
+                                                                                    <td>Color</td>
+                                                                                    <td colspan="2"> <input type="text" class="form-control" name="color" id="colorC"> </td>
+                                                                                    <td>Consistencia</td>
+                                                                                    <td colspan="2"><input type="text" class="form-control" name="consistencia" id="consistenciaC"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Mucus</td>
+                                                                                    <td colspan="2"> <input type="text" class="form-control" name="mucus" id="mucusC"> </td>
+                                                                                    <td>Hematies</td>
+                                                                                    <td colspan="2"><input type="text" class="form-control" name="hematies" id="hematiesC"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Leucocitos</td>
+                                                                                    <td colspan="2"> <input type="text" class="form-control" name="leucocitos" id="leucocitosC"> </td>
+                                                                                    <td>Bacterias</td>
+                                                                                    <td colspan="2"><input type="text" class="form-control" name="bacterias" id="bacteriasC"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Levaduras</td>
+                                                                                    <td colspan="2"> <input type="text" class="form-control" name="levaduras" id="levadurasC"> </td>
+                                                                                    <td>Restos Alim. Microsc. </td>
+                                                                                    <td colspan="2"><input type="text" class="form-control" name="restosAM" id="restosAMC"></td>
+                                                                                </tr>
+                                            
+                                                                                <tr>
+                                                                                    <td>Otros</td>
+                                                                                    <td colspan="2"> <input type="text" class="form-control" name="otrosUno" id="otrosUnoC"> </td>
+                                                                                    <td>Otros</td>
+                                                                                    <td colspan="2"><input type="text" class="form-control" name="otrosDos" id="otrosDosC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr class="bg-danger text-white text-center">
+                                                                                    <th>PROTOZOARIOS</th>
+                                                                                    <th>TROFOZOITO</th>
+                                                                                    <th>QUISTE</th>
+                                                                                    <th>METAZOARIOS</th>
+                                                                                    <th>HUEVO</th>
+                                                                                    <th>LARVA</th>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Entamoeba Histolytica</td>
+                                                                                    <td> <input type="text" class="form-control" name="histolyticaT" id="histolyticaTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="histolyticaQ" id="histolyticaQC"> </td>
+                                                                                    <td>Ascaris lumbricoides</td>
+                                                                                    <td><input type="text" class="form-control" name="ascarisH" id="ascarisHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="ascarisL" id="ascarisLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Entamoeba Coli</td>
+                                                                                    <td> <input type="text" class="form-control" name="coliT" id="coliTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="coliQ" id="coliQC"> </td>
+                                                                                    <td>Trichuris trinchiura</td>
+                                                                                    <td><input type="text" class="form-control" name="trinchiuraH" id="trinchiuraHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="trinchiuraL" id="trinchiuraLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Endolimax Nana</td>
+                                                                                    <td> <input type="text" class="form-control" name="nanaT" id="nanaTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="nanaQ" id="nanaQC"> </td>
+                                                                                    <td>Ancylostoma guod</td>
+                                                                                    <td><input type="text" class="form-control" name="guodH" id="guodHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="guodL" id="guodLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Chilomastic mesnili</td>
+                                                                                    <td> <input type="text" class="form-control" name="mesniliT" id="mesniliTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="mesniliQ" id="mesniliQC"> </td>
+                                                                                    <td>Enterobios vermic</td>
+                                                                                    <td><input type="text" class="form-control" name="vermicH" id="vermicHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="vermicL" id="vermicLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Giardia Lambia</td>
+                                                                                    <td> <input type="text" class="form-control" name="lambiaT" id="lambiaTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="lambiaQ" id="lambiaQC"> </td>
+                                                                                    <td>Strongiloides Sterco</td>
+                                                                                    <td><input type="text" class="form-control" name="stercoH" id="stercoHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="stercoL" id="stercoLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Tricomonas hominis</td>
+                                                                                    <td> <input type="text" class="form-control" name="hominisT" id="hominisTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="hominisQ" id="hominisQC"> </td>
+                                                                                    <td>Hymenolepis nana</td>
+                                                                                    <td><input type="text" class="form-control" name="hymenolepisH" id="hymenolepisHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="hymenolepisL" id="hymenolepisLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Balantidium coli</td>
+                                                                                    <td> <input type="text" class="form-control" name="balantidiumT" id="balantidiumTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="balantidiumQ" id="balantidiumQC"> </td>
+                                                                                    <td>Taenias</td>
+                                                                                    <td><input type="text" class="form-control" name="taeniasH" id="taeniasHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="taeniasL" id="taeniasLC"></td>
+                                                                                </tr>
+                                        
+                                                                                <tr>
+                                                                                    <td>Blastocystis hominis</td>
+                                                                                    <td> <input type="text" class="form-control" name="blastocystisT" id="blastocystisTC"> </td>
+                                                                                    <td> <input type="text" class="form-control" name="blastocystisQ" id="blastocystisQC"> </td>
+                                                                                    <td>Otros</td>
+                                                                                    <td><input type="text" class="form-control" name="otrosH" id="otrosHC"></td>
+                                                                                    <td><input type="text" class="form-control" name="otrosL" id="otrosLC"></td>
+                                                                                </tr>
+                                            
+                                        
+                                                                                <tr>
+                                                                                    <td>Observaciones</td>
+                                                                                    <td colspan="2"> <textarea class="form-control" name="observacionesC" id="observacionesCC"></textarea></td>
+                                                                                    <td></td>
+                                                                                    <td >
+                                                                                        <input type="hidden" class="form-control" name="idCoprologia" id="idCoprologiaC"> 
+                                                                                        <input type="hidden" class="form-control" name="idConsulta"> 
+                                                                                        <button class="btn btn-primary btn-block mt-2"> <i class="fa fa-save"></i> Guardar</button>
+                                                                                    </td>
+                                                                                </tr>
+                                            
+                                            
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col-md-2 text-center">
+                                                                            <p><strong>HISTORIAL</strong></p>
+                                                                            <div class="table-responsive historial_receta table-md">
+                                                                                <table class="table table-borderless table-sm">
+                                                                                    <tr>
+                                                                                        <td>Fecha</td>
+                                                                                        <td>Opcion</td>
+                                                                                    </tr>
+                                                                                    <?php 
+                                                                                        foreach ($historial_coprologia as $row) {
+                                                                                            if($row->fechaExamen == date("Y-m-d")){
+                                                                                                echo '<tr class="alert-primary">';
+                                                                                            }else{
+                                                                                                echo '<tr>';
+                                                                                            }
+                                                                                            echo ' <td>'.$row->fechaExamen.'</td>';
+                                                                                            echo ' <td>
+                                        
+                                                                                                    <input type="hidden" class="colorC" value="'.$row->color.'">
+                                                                                                    <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
+                                                                                                    <input type="hidden" class="mucus" value="'.$row->mucus.'">
+                                                                                                    <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
+                                                                                                    <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
+                                                                                                    <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
+                                                                                                    <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
+                                                                                                    <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
+                                                                                                    <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
+                                                                                                    <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
+                                                                                                    <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
+                                                                                                    <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
+                                                                                                    <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
+                                                                                                    <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
+                                                                                                    <input type="hidden" class="coliT" value="'.$row->coliT.'">
+                                                                                                    <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
+                                                                                                    <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
+                                                                                                    <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
+                                                                                                    <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
+                                                                                                    <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
+                                                                                                    <input type="hidden" class="guodH" value="'.$row->guodH.'">
+                                                                                                    <input type="hidden" class="guodL" value="'.$row->guodL.'">
+                                                                                                    <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
+                                                                                                    <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
+                                                                                                    <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
+                                                                                                    <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
+                                                                                                    <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
+                                                                                                    <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
+                                                                                                    <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
+                                                                                                    <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
+                                                                                                    <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
+                                                                                                    <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
+                                                                                                    <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
+                                                                                                    <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
+                                                                                                    <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
+                                                                                                    <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
+                                                                                                    <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
+                                                                                                    <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
+                                                                                                    <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
+                                                                                                    <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
+                                                                                                    <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
+                                                                                                    <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
+                                                                                                    <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
+                                        
+                                                                                                    <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
+                                                                                                    <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                        
+                                                                                                    <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                                                    <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                                                </td>';
+                                                                                            echo '</tr>';
+                                                                                        }
+                                                                                    ?>
+                                                                                    
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                        
+                                                            <div role="tabpanel" class="tab-pane fade" id="pruebasEspeciales">
+                                                                <p>Pruebas especiales </p>
+                                                            </div>
+                                        
+                                                            <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
+                                                                <p>Bacteriología</p>
+                                                            </div>
+                                        
                                                         </div>
                                                     </div>
-                                                <?php
-                                                    $flag++;
-                                                    }
-                                                ?>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-7 text-center">
-                                            <h5 id="nombreExamen"></h5>
-                                            <div id="dvHistorialLab"></div>
-                                        </div>
                                     </div>
+                                    <!-- Lab -->
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="recetas">
@@ -1476,5 +2104,177 @@
     }); */
 
 
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Obtener la última pestaña activa desde el almacenamiento local
+        var ultimaPestana = localStorage.getItem('ultimaPestana');
+
+        // Si hay una última pestaña activa, activarla
+        if (ultimaPestana) {
+            $('.nav-tabs a[href="' + ultimaPestana + '"]').tab('show');
+        }
+
+        // Guardar la pestaña activa al cambiar de pestaña
+        $('.nav-tabs a').on('shown.bs.tab', function(event){
+            var nuevaPestana = $(event.target).attr('href');
+            localStorage.setItem('ultimaPestana', nuevaPestana);
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click", ".verHematologia", function(e){
+        e.preventDefault();
+        $("#nombreExamen").val( $(this).closest('tr').find('.examenSolicitado').val());
+        $("#fechaExamen").val($(this).closest('tr').find('.fechaExamen').val());
+        $("#globulosRojos").val($(this).closest('tr').find('.globulosRojos').val());
+        $("#eritrosedimentacion").val($(this).closest('tr').find('.eritrosedimentacion').val());
+        $("#globulosBlancos").val($(this).closest('tr').find('.globulosBlancos').val());
+        $("#reticulositos").val($(this).closest('tr').find('.reticulositos').val());
+        $("#hematocrito").val($(this).closest('tr').find('.hematocrito').val());
+        $("#tpTrombolastina").val($(this).closest('tr').find('.tpTrombolastina').val());
+        $("#hemoglobina").val($(this).closest('tr').find('.hemoglobina').val());
+        $("#tSangramiento").val($(this).closest('tr').find('.tSangramiento').val());
+        $("#vlGMedio").val($(this).closest('tr').find('.vlGMedio').val());
+        $("#tCoagulacion").val($(this).closest('tr').find('.tCoagulacion').val());
+        $("#hbGMedia").val($(this).closest('tr').find('.hbGMedia').val());
+        $("#tProtombina").val($(this).closest('tr').find('.tProtombina').val());
+        $("#concHbGlobMed").val($(this).closest('tr').find('.concHbGlobMed').val());
+        $("#neutrofilos").val($(this).closest('tr').find('.neutrofilos').val());
+        $("#linfocitos").val($(this).closest('tr').find('.linfocitos').val());
+        $("#eosinofilos").val($(this).closest('tr').find('.eosinofilos').val());
+        $("#basofilos").val($(this).closest('tr').find('.basofilos').val());
+        $("#monocitos").val($(this).closest('tr').find('.monocitos').val());
+        $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
+        $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
+    });
+
+
+    $(document).on("click", ".verQuimica", function(e){
+        e.preventDefault();
+        
+
+        $("#nombreExamen").val( $(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamenQ").val($(this).closest('tr').find('.fechaExamen').val());
+
+        $("#glucosa").val($(this).closest('tr').find('.glucosa').val());
+        $("#fosfatasa").val($(this).closest('tr').find('.fosfatasa').val());
+        $("#glucosaPostPrand").val($(this).closest('tr').find('.glucosaPostPrand').val());
+        $("#lipasa").val($(this).closest('tr').find('.lipasa').val());
+        $("#globulina").val($(this).closest('tr').find('.globulina').val());
+        $("#amilasa").val($(this).closest('tr').find('.amilasa').val());
+        $("#trigliceridos").val($(this).closest('tr').find('.trigliceridos').val());
+        $("#indiceAG").val($(this).closest('tr').find('.indiceAG').val());
+        $("#colesterol").val($(this).closest('tr').find('.colesterol').val());
+        $("#bilirrubinaD").val($(this).closest('tr').find('.bilirrubinaD').val());
+        $("#colesterolHDL").val($(this).closest('tr').find('.colesterolHDL').val());
+        $("#bilirrubinaI").val($(this).closest('tr').find('.bilirrubinaI').val());
+        $("#colesterolLDL").val($(this).closest('tr').find('.colesterolLDL').val());
+        $("#albumina").val($(this).closest('tr').find('.albumina').val());
+        $("#acidoUrico").val($(this).closest('tr').find('.acidoUrico').val());
+        $("#fosforo").val($(this).closest('tr').find('.fosforo').val());
+        $("#creatinina").val($(this).closest('tr').find('.creatinina').val());
+        $("#cloro").val($(this).closest('tr').find('.cloro').val());
+        $("#nitrogeno").val($(this).closest('tr').find('.nitrogeno').val());
+        $("#calcio").val($(this).closest('tr').find('.calcio').val());
+        $("#proteinasT").val($(this).closest('tr').find('.proteinasT').val());
+        $("#potasio").val($(this).closest('tr').find('.potasio').val());
+        $("#bilirrubina").val($(this).closest('tr').find('.bilirrubina').val());
+        $("#sodio").val($(this).closest('tr').find('.sodio').val());
+        $("#tgo").val($(this).closest('tr').find('.tgo').val());
+        $("#magnesio").val($(this).closest('tr').find('.magnesio').val());
+        $("#tgp").val($(this).closest('tr').find('.tgp').val());
+        $("#fosfatasaA").val($(this).closest('tr').find('.fosfatasaA').val());
+        $("#observacionesQS").val($(this).closest('tr').find('.observacionesQS').val());
+
+    });
+
+    $(document).on("click", ".verUrianalisis", function(e){
+        e.preventDefault();
+
+        $("#nombreExamen").val($(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamen").val($(this).closest('tr').find('.fechaExamen').val());
+
+        $("#color").val($(this).closest('tr').find('.color').val());
+        $("#aspecto").val($(this).closest('tr').find('.aspecto').val());
+        $("#reaccion").val($(this).closest('tr').find('.reaccion').val());
+        $("#densidad").val($(this).closest('tr').find('.densidad').val());
+        $("#ph").val($(this).closest('tr').find('.ph').val());
+        $("#glucosaU").val($(this).closest('tr').find('.glucosa').val());
+        $("#proteinas").val($(this).closest('tr').find('.proteinas').val());
+        $("#pigmentosB").val($(this).closest('tr').find('.pigmentosB').val());
+        $("#sangreO").val($(this).closest('tr').find('.sangreO').val());
+        $("#nitritos").val($(this).closest('tr').find('.nitritos').val());
+        $("#cuerposC").val($(this).closest('tr').find('.cuerposC').val());
+        $("#acidosBiliares").val($(this).closest('tr').find('.acidosBiliares').val());
+        $("#granulosos").val($(this).closest('tr').find('.granulosos').val());
+        $("#cilindrosL").val($(this).closest('tr').find('.cilindrosL').val());
+        $("#cilindrosH").val($(this).closest('tr').find('.cilindrosH').val());
+        $("#otrosCilindros").val($(this).closest('tr').find('.otrosCilindros').val());
+        $("#leucositos").val($(this).closest('tr').find('.leucositos').val());
+        $("#hematies").val($(this).closest('tr').find('.hematies').val());
+        $("#celulasE").val($(this).closest('tr').find('.celulasE').val());
+        $("#elementosM").val($(this).closest('tr').find('.elementosM').val());
+        $("#bacterias").val($(this).closest('tr').find('.bacterias').val());
+        $("#levadura").val($(this).closest('tr').find('.levadura').val());
+        $("#OtrosUno").val($(this).closest('tr').find('.otrosUno').val());
+        $("#otrosDos").val($(this).closest('tr').find('.otrosDos').val());
+        $("#observacionesU").val($(this).closest('tr').find('.observacionesU').val());
+
+    });
+
+    $(document).on("click", ".verCoprologia", function(e){
+        e.preventDefault();
+        $("#nombreExamenC").val($(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamenC").val($(this).closest('tr').find('.fechaExamen').val());
+
+        $("#colorC").val($(this).closest('tr').find('.colorC').val());
+        $("#consistenciaC").val($(this).closest('tr').find('.consistencia').val());
+        $("#mucusC").val($(this).closest('tr').find('.mucus').val());
+        $("#hematiesC").val($(this).closest('tr').find('.hematiesC').val());
+        $("#leucocitosC").val($(this).closest('tr').find('.leucocitos').val());
+        $("#bacteriasC").val($(this).closest('tr').find('.bacteriasC').val());
+        $("#levadurasC").val($(this).closest('tr').find('.levaduras').val());
+        $("#restosAMC").val($(this).closest('tr').find('.restosAM').val());
+        $("#otrosUnoC").val($(this).closest('tr').find('.otrosUno').val());
+        $("#otrosDosC").val($(this).closest('tr').find('.otrosDosC').val());
+        $("#histolyticaTC").val($(this).closest('tr').find('.histolyticaT').val());
+        $("#histolyticaQC").val($(this).closest('tr').find('.histolyticaQ').val());
+        $("#ascarisHC").val($(this).closest('tr').find('.ascarisH').val());
+        $("#ascarisLC").val($(this).closest('tr').find('.ascarisL').val());
+        $("#coliTC").val($(this).closest('tr').find('.coliT').val());
+        $("#coliQC").val($(this).closest('tr').find('.coliQ').val());
+        $("#trinchiuraHC").val($(this).closest('tr').find('.trinchiuraH').val());
+        $("#trinchiuraLC").val($(this).closest('tr').find('.trinchiuraL').val());
+        $("#nanaTC").val($(this).closest('tr').find('.nanaT').val());
+        $("#nanaQC").val($(this).closest('tr').find('.nanaQ').val());
+        $("#guodHC").val($(this).closest('tr').find('.guodH').val());
+        $("#guodLC").val($(this).closest('tr').find('.guodL').val());
+        $("#mesniliTC").val($(this).closest('tr').find('.mesniliT').val());
+        $("#mesniliQC").val($(this).closest('tr').find('.mesniliQ').val());
+        $("#vermicHC").val($(this).closest('tr').find('.vermicH').val());
+        $("#vermicLC").val($(this).closest('tr').find('.vermicL').val());
+        $("#lambiaTC").val($(this).closest('tr').find('.lambiaT').val());
+        $("#lambiaQC").val($(this).closest('tr').find('.lambiaQ').val());
+        $("#stercoHC").val($(this).closest('tr').find('.stercoH').val());
+        $("#stercoLC").val($(this).closest('tr').find('.stercoL').val());
+        $("#hominisTC").val($(this).closest('tr').find('.hominisT').val());
+        $("#hominisQC").val($(this).closest('tr').find('.hominisQ').val());
+        $("#hymenolepisHC").val($(this).closest('tr').find('.hymenolepisH').val());
+        $("#hymenolepisLC").val($(this).closest('tr').find('.hymenolepisL').val());
+        $("#balantidiumTC").val($(this).closest('tr').find('.balantidiumT').val());
+        $("#balantidiumQC").val($(this).closest('tr').find('.balantidiumQ').val());
+        $("#taeniasHC").val($(this).closest('tr').find('.taeniasH').val());
+        $("#taeniasLC").val($(this).closest('tr').find('.taeniasL').val());
+        $("#blastocystisTC").val($(this).closest('tr').find('.blastocystisT').val());
+        $("#blastocystisQC").val($(this).closest('tr').find('.blastocystisQ').val());
+        $("#otrosHC").val($(this).closest('tr').find('.otrosH').val());
+        $("#otrosLC").val($(this).closest('tr').find('.otrosL').val());
+        $("#observacionesCC").val($(this).closest('tr').find('.observacionesC').val());
+
+
+    });
 </script>
 

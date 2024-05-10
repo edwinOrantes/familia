@@ -37,6 +37,13 @@ class Consultas extends CI_Controller {
 			$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($paciente->idPaciente); // Historial detalles Consultas
 			$data["historial_laboratorio"] = $this->Consultas_Model->fechasVisitas($paciente->idPaciente); // Historial laboratorio
 		// Datos actuales
+
+		// Laboratorio
+			$data["historial_hematologia"] = $this->Laboratorio_Model->historialHematologia($paciente->idPaciente);
+			$data["historial_quimica"] = $this->Laboratorio_Model->historialQuimica($paciente->idPaciente);
+			$data["historial_urianalisis"] = $this->Laboratorio_Model->historialUrianalisis($paciente->idPaciente);
+			$data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($paciente->idPaciente);
+		// Laboratorio
 		
 		$this->load->view("Base/header");
 		$this->load->view("Consultas/detalle_consulta", $data);
