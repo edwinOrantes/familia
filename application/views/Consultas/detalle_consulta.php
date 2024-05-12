@@ -194,11 +194,11 @@
                                                     <div class="datosEnfermeria">
                                                         <table class="table table-borderless table-sm">
                                                             <tr class="text-center">
-                                                                <td colspan="5"><strong>DATOS TOMADOS POR ENFERMERIA:</strong></td>
+                                                                <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
                                                             </tr>
                                                             <tr>
                                                                 <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
-                                                                <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> Cm</td>
+                                                                <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m</td>
                                                                 <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
                                                                 <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
                                                                 <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
@@ -213,7 +213,7 @@
                                                             <td><strong>CONSULTA POR:</strong></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><input type="text" value="<?php echo $consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
+                                                            <td><input type="text" style="width: 400px" value="<?php echo $consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -240,10 +240,11 @@
                                                 <table class="table table-borderless">
                                                     <tr>
                                                         <td><strong>EXAMEN FISICO</strong></td>
-                                                        <td>P.A: <input type="text" class=" bordes" value="<?php echo $consulta->paConsulta; ?>"  size="10" class="" name="paConsulta" id="paConsulta"></td>
-                                                        <td>F.C: <input type="text" class=" bordes" value="<?php echo $consulta->fcConsulta; ?>"  size="10" class="" name="fcConsulta" id="fcConsulta"></td>
-                                                        <td>Temp: <input type="text" class=" bordes" value="<?php echo $consulta->tempConsulta; ?>"  size="10" class="" name="tempConsulta" id="tempConsulta"></td>
-                                                        <td>FR: <input type="text" class=" bordes" value="<?php echo $consulta->frConsulta; ?>"  size="10" class="" name="frConsulta" id="frConsulta"></td>
+                                                        <td>P.A: <input type="text" class=" bordes" value="<?php echo $consulta->paConsulta; ?>"  size="5" class="" name="paConsulta" id="paConsulta"> <span class="font-weight-bold">mm/hg</span> </td>
+                                                        <td>F.C: <input type="text" class=" bordes" value="<?php echo $consulta->fcConsulta; ?>"  size="5" class="" name="fcConsulta" id="fcConsulta"> <span class="font-weight-bold">lat/min</span></td>
+                                                        <td>Temp: <input type="text" class=" bordes" value="<?php echo $consulta->tempConsulta; ?>"  size="5" class="" name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
+                                                        <td>FR: <input type="text" class=" bordes" value="<?php echo $consulta->frConsulta; ?>"  size="5" class="" name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
+                                                        <td>SAT: <input type="text" class=" bordes" value="<?php echo $consulta->satConsulta; ?>"  size="5" class="" name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -304,6 +305,7 @@
                                                             <input type="hidden" value="<?php echo $row->fcConsulta; ?>" class="fcConsultaH">
                                                             <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
                                                             <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->satConsulta; ?>" class="satConsultaH">
                                                             <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
                                                             <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
                                                             <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
@@ -421,7 +423,7 @@
                                                                                     <td> <span class="badge badge-danger">36-50%</span> </td>
                                                                                     <td>T.P Trombolastina</td>
                                                                                     <td><input type="text" class="form-control" name="tpTrombolastina" id="tpTrombolastina"></td>
-                                                                                    <td> <span class="badge badge-danger">26-34 Seg.</span> </td>
+                                                                                    <td> <span class="badge badge-danger">22-38 Seg.</span> </td>
                                                                                 </tr>
                                             
                                                                                 <tr>
@@ -478,13 +480,13 @@
                                                                                 <tr>
                                                                                     <td>Basofilos</td>
                                                                                     <td> <input type="text" class="form-control" name="basofilos" id="basofilos"> </td>
-                                                                                    <td> <span class="badge badge-danger">2-5%</span> </td>
+                                                                                    <td> <span class="badge badge-danger">0-1%</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Monocitos</td>
                                                                                     <td> <input type="text" class="form-control" name="monocitos" id="monocitos"> </td>
-                                                                                    <td> <span class="badge badge-danger">0-1%</span> </td>
+                                                                                    <td> <span class="badge badge-danger">2-5%</span> </td>
                                                                                 </tr>
                                             
                                                                                 <tr>
@@ -578,98 +580,126 @@
                                                                                 <tr>
                                                                                     <td>Glucosa</td>
                                                                                     <td> <input type="text" class="form-control" name="glucosa" id="glucosa"> </td>
+                                                                                    <td> <span class="badge badge-danger">55/110 mg/dl</span> </td>
                                                                                     <td>Fosfatasa acida Prost.</td>
                                                                                     <td><input type="text" class="form-control" name="fosfatasa" id="fosfatasa"></td>
+                                                                                    <td> <span class="badge badge-danger">Menos 1.7 U/L</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Glucosa Post-Prand</td>
                                                                                     <td> <input type="text" class="form-control" name="glucosaPostPrand" id="glucosaPostPrand"> </td>
+                                                                                    <td> <span class="badge badge-danger">---</span> </td>
                                                                                     <td>Lipasa</td>
                                                                                     <td><input type="text" class="form-control" name="lipasa" id="lipasa"></td>
+                                                                                    <td> <span class="badge badge-danger">Menos de 38 U/L</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Globulina</td>
                                                                                     <td> <input type="text" class="form-control" name="globulina" id="globulina"> </td>
+                                                                                    <td> <span class="badge badge-danger">2.3-3.4 g/dl</span> </td>
                                                                                     <td>Amilasa</td>
                                                                                     <td><input type="text" class="form-control" name="amilasa" id="amilasa"></td>
+                                                                                    <td> <span class="badge badge-danger">Menos de 90 U/L</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Trigliceridos</td>
                                                                                     <td> <input type="text" class="form-control" name="trigliceridos" id="trigliceridos"> </td>
+                                                                                    <td> <span class="badge badge-danger">Hasta 15 mg/dl</span> </td>
                                                                                     <td>Indice A/G</td>
                                                                                     <td><input type="text" class="form-control" name="indiceAG" id="indiceAG"></td>
+                                                                                    <td> <span class="badge badge-danger">1.2-2.2</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Colesterol</td>
                                                                                     <td> <input type="text" class="form-control" name="colesterol" id="colesterol"> </td>
+                                                                                    <td> <span class="badge badge-danger">Hasta 200 mg/dl</span> </td>
                                                                                     <td>Bilirrubina directa</td>
                                                                                     <td><input type="text" class="form-control" name="bilirrubinaD" id="bilirrubinaD"></td>
+                                                                                    <td> <span class="badge badge-danger">Hasta 0.25 mg/dl</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Colesterol H.D.L</td>
                                                                                     <td> <input type="text" class="form-control" name="colesterolHDL" id="colesterolHDL"> </td>
+                                                                                    <td> <span class="badge badge-danger">35-65 mg/dl</span> </td>
                                                                                     <td>Bilirrubina indirecta</td>
                                                                                     <td><input type="text" class="form-control" name="bilirrubinaI" id="bilirrubinaI"></td>
+                                                                                    <td> <span class="badge badge-danger">---</span> </td>
                                                                                 </tr>
                                             
                                                                                 <tr>
                                                                                     <td>Colesterol L.D.L</td>
                                                                                     <td> <input type="text" class="form-control" name="colesterolLDL" id="colesterolLDL"> </td>
+                                                                                    <td> <span class="badge badge-danger">Hasta 150 mg/dl</span> </td>
                                                                                     <td>Albumina</td>
                                                                                     <td> <input type="text" class="form-control" name="albumina" id="albumina"> </td>
+                                                                                    <td> <span class="badge badge-danger">3.5-5.0 g/dl</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Ácido Úrico</td>
                                                                                     <td> <input type="text" class="form-control" name="acidoUrico" id="acidoUrico"> </td>
+                                                                                    <td> <span class="badge badge-danger">2.5-7.0 mg/dl</span> </td>
                                                                                     <td>Fosforo</td>
                                                                                     <td> <input type="text" class="form-control" name="fosforo" id="fosforo"> </td>
+                                                                                    <td> <span class="badge badge-danger">2.5-5.0 mg/dl</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Creatinina</td>
                                                                                     <td> <input type="text" class="form-control" name="creatinina" id="creatinina"> </td>
+                                                                                    <td> <span class="badge badge-danger">0.7-1.4 mg/dl</span> </td>
                                                                                     <td>Cloro</td>
                                                                                     <td> <input type="text" class="form-control" name="cloro" id="cloro"> </td>
+                                                                                    <td> <span class="badge badge-danger">95-115mmol/l</span> </td>
                                                                                 </tr>
                                             
                                                                                 <tr>
                                                                                     <td>Nitrógeno</td>
                                                                                     <td> <input type="text" class="form-control" name="nitrogeno" id="nitrogeno"> </td>
+                                                                                    <td> <span class="badge badge-danger">4.7-22.5 mg/dl</span> </td>
                                                                                     <td>Calcio</td>
                                                                                     <td> <input type="text" class="form-control" name="calcio" id="calcio"> </td>
+                                                                                    <td> <span class="badge badge-danger">8.1-10.4 mg/dl</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Proteinas totales</td>
                                                                                     <td> <input type="text" class="form-control" name="proteinasT" id="proteinasT"> </td>
+                                                                                    <td> <span class="badge badge-danger">6.7-8.7 g/dl</span> </td>
                                                                                     <td>Potasio</td>
                                                                                     <td> <input type="text" class="form-control" name="potasio" id="potasio"> </td>
+                                                                                    <td> <span class="badge badge-danger">3.6-5.5 mmol/l</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>Bilirrubina</td>
                                                                                     <td> <input type="text" class="form-control" name="bilirrubina" id="bilirrubina"> </td>
+                                                                                    <td> <span class="badge badge-danger">Hasta 1.1 mg/dl</span> </td>
                                                                                     <td>Sodio</td>
                                                                                     <td> <input type="text" class="form-control" name="sodio" id="sodio"> </td>
+                                                                                    <td> <span class="badge badge-danger">135-155 mmol/l</span> </td>
                                                                                 </tr>
-                                            
+                                                                                
                                                                                 <tr>
                                                                                     <td>T.G.O</td>
                                                                                     <td> <input type="text" class="form-control" name="tgo" id="tgo"> </td>
+                                                                                    <td> <span class="badge badge-danger">Menos de 38 U/L</span> </td>
                                                                                     <td>Magnesio</td>
                                                                                     <td> <input type="text" class="form-control" name="magnesio" id="magnesio"> </td>
+                                                                                    <td> <span class="badge badge-danger">1.6-2.5 mg/dl</span> </td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td>T.G.P</td>
                                                                                     <td> <input type="text" class="form-control" name="tgp" id="tgp"> </td>
+                                                                                    <td> <span class="badge badge-danger">Menos de 40 U/L</span> </td>
                                                                                     <td>Fosfatasa alcalina</td>
                                                                                     <td> <input type="text" class="form-control" name="fosfatasaA" id="fosfatasaA"> </td>
+                                                                                    <td> <span class="badge badge-danger">98-279 U/L</span> </td>
                                                                                 </tr>
                                             
                                                                                 <tr>
@@ -1234,7 +1264,9 @@
                                                             </tr>
         
                                                         </table>
+
                                                     </div>
+                                                    <textarea class="form-control" name="indicacionLibre" id="indicacionLibre"></textarea>
 
                                                     <div id="dvdDetalle" style="display: none">Detalle</div>
 
@@ -1456,6 +1488,7 @@
             fcConsulta: $("#fcConsulta").val(),
             tempConsulta: $("#tempConsulta").val(),
             frConsulta: $("#frConsulta").val(),
+            satConsulta: $("#satConsulta").val(),
             examenFisico: $("#examenFisico").val(),
             diagnosticoUno: $("#diagnosticoUno").val(),
             diagnosticoDos: $("#diagnosticoDos").val(),
@@ -1602,14 +1635,15 @@
         html +='        <input type="text" class="form-control mt-1" name="indicacion[]"  placeholder="Indicación médica">';
         html +='    </td>';
         html +='</tr>'; */
-
-        html +='<td>';
-        html +='    <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">';
-        html +='    <div class="input-group">';
-        html +='        <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">';
-        html +='        <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">';
-        html +='    </div>';
-        html +='</td>';
+        html +='<tr>';
+        html +='    <td>';
+        html +='        <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">';
+        html +='        <div class="input-group">';
+        html +='            <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">';
+        html +='            <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">';
+        html +='        </div>';
+        html +='    </td>';
+        html +='</tr>';
 
         $("#recetaMedica").append(html);
 
@@ -1758,6 +1792,7 @@
         $("#fcConsulta").val($(this).closest('tr').find('.fcConsultaH').val());
         $("#tempConsulta").val($(this).closest('tr').find('.tempConsultaH').val());
         $("#frConsulta").val($(this).closest('tr').find('.frConsultaH').val());
+        $("#satConsulta").val($(this).closest('tr').find('.satConsultaH').val());
         $("#examenFisico").val($(this).closest('tr').find('.examenFisicoH').val());
         $("#planEnfermedad").val($(this).closest('tr').find('.planConsultaH').val());
         $("#diagnosticoUno").val($(this).closest('tr').find('.diagnosticoUnoH').val());
@@ -1766,7 +1801,7 @@
 
         html += '<table class="table table-borderless table-sm">';
         html += '    <tbody><tr class="text-center">';
-        html += '        <td colspan="5"><strong>DATOS TOMADOS POR ENFERMERIA:</strong></td>';
+        html += '        <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>';
         html += '    </tr>';
         html += '    <tr>';
         html += '        <td> <strong>Peso: </strong>'+$(this).closest('tr').find('.pesoH').val()+' Kg</td>';
@@ -1804,6 +1839,7 @@
                     $("#fcConsulta").val(registro[i]["fcConsulta"]);
                     $("#tempConsulta").val(registro[i]["tempConsulta"]);
                     $("#frConsulta").val(registro[i]["frConsulta"]);
+                    $("#satConsulta").val(registro[i]["satConsulta"]);
                     $("#examenFisico").val(registro[i]["examenFisico"]);
                     $("#planEnfermedad").val(registro[i]["planConsulta"]);
                     $("#diagnosticoUno").val(registro[i]["diagnosticoUno"]);

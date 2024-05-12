@@ -113,7 +113,7 @@
                                                 <td> <span class="badge badge-danger">36-50%</span> </td>
                                                 <td>T.P Trombolastina</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $hematologia->tpTrombolastina; ?>" name="tpTrombolastina" id="tpTrombolastina"></td>
-                                                <td> <span class="badge badge-danger">26-34 Seg.</span> </td>
+                                                <td> <span class="badge badge-danger">22-38 Seg.</span> </td>
                                             </tr>
         
                                             <tr>
@@ -170,13 +170,13 @@
                                             <tr>
                                                 <td>Basofilos</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $hematologia->basofilos; ?>" name="basofilos" id="basofilos"> </td>
-                                                <td> <span class="badge badge-danger">2-5%</span> </td>
+                                                <td> <span class="badge badge-danger">0-1%</span> </td>
                                             </tr>
-        
+                                            
                                             <tr>
                                                 <td>Monocitos</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $hematologia->monocitos; ?>" name="monocitos" id="monocitos"> </td>
-                                                <td> <span class="badge badge-danger">0-1%</span> </td>
+                                                <td> <span class="badge badge-danger">2-5%</span> </td>
                                             </tr>
         
                                             <tr>
@@ -270,98 +270,126 @@
                                             <tr>
                                                 <td>Glucosa</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->glucosa; ?>" name="glucosa" id="glucosa"> </td>
+                                                <td> <span class="badge badge-danger">55-110 mg/dl</span> </td>
                                                 <td>Fosfatasa acida Prost.</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->fosfatasa; ?>" name="fosfatasa" id="fosfatasa"></td>
+                                                <td> <span class="badge badge-danger">Menos 1.7 U/L</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Glucosa Post-Prand</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->glucosaPostPrand; ?>" name="glucosaPostPrand" id="glucosaPostPrand"> </td>
+                                                <td> <span class="badge badge-danger">---</span> </td>
                                                 <td>Lipasa</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->lipasa; ?>" name="lipasa" id="lipasa"></td>
+                                                <td> <span class="badge badge-danger">Menos de 38 U/L</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Globulina</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->globulina; ?>" name="globulina" id="globulina"> </td>
+                                                <td> <span class="badge badge-danger">2.3-3.4 g/dl</span> </td>
                                                 <td>Amilasa</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->amilasa; ?>" name="amilasa" id="amilasa"></td>
+                                                <td> <span class="badge badge-danger">Menos de 90 U/L</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Trigliceridos</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->trigliceridos; ?>" name="trigliceridos" id="trigliceridos"> </td>
+                                                <td> <span class="badge badge-danger">Hasta 15 mg/dl</span> </td>
                                                 <td>Indice A/G</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->indiceAG; ?>" name="indiceAG" id="indiceAG"></td>
+                                                <td> <span class="badge badge-danger">1.2-2.2</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Colesterol</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterol; ?>" name="colesterol" id="colesterol"> </td>
+                                                <td> <span class="badge badge-danger">Hasta 200 mg/dl</span> </td>
                                                 <td>Bilirrubina directa</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->bilirrubinaD; ?>" name="bilirrubinaD" id="bilirrubinaD"></td>
+                                                <td> <span class="badge badge-danger">Hasta 0.25 mg/dl</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Colesterol H.D.L</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterolHDL; ?>" name="colesterolHDL" id="colesterolHDL"> </td>
+                                                <td> <span class="badge badge-danger">35-65 mg/dl</span> </td>
                                                 <td>Bilirrubina indirecta</td>
                                                 <td><input type="text" class="form-control" value="<?php echo $quimica->bilirrubinaI; ?>" name="bilirrubinaI" id="bilirrubinaI"></td>
+                                                <td> <span class="badge badge-danger">---</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Colesterol L.D.L</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->colesterolLDL; ?>" name="colesterolLDL" id="colesterolLDL"> </td>
+                                                <td> <span class="badge badge-danger">Hasta 150 mg/dl</span> </td>
                                                 <td>Albumina</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->albumina; ?>" name="albumina" id="albumina"> </td>
+                                                <td> <span class="badge badge-danger">3.5-5.0 g/dl</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Ácido Úrico</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->acidoUrico; ?>" name="acidoUrico" id="acidoUrico"> </td>
+                                                <td> <span class="badge badge-danger">2.5-7.0 mg/dl</span> </td>
                                                 <td>Fosforo</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->fosforo; ?>" name="fosforo" id="fosforo"> </td>
+                                                <td> <span class="badge badge-danger">2.5-5.0 mg/dl</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Creatinina</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->creatinina; ?>" name="creatinina" id="creatinina"> </td>
+                                                <td> <span class="badge badge-danger">0.7-1.4 mg/dl</span> </td>
                                                 <td>Cloro</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->cloro; ?>" name="cloro" id="cloro"> </td>
+                                                <td> <span class="badge badge-danger">95-115mmol/l</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Nitrógeno</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->nitrogeno; ?>" name="nitrogeno" id="nitrogeno"> </td>
+                                                <td> <span class="badge badge-danger">4.7-22.5 mg/dl</span> </td>
                                                 <td>Calcio</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->calcio; ?>" name="calcio" id="calcio"> </td>
+                                                <td> <span class="badge badge-danger">8.1-10.4 mg/dl</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Proteinas totales</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->proteinasT; ?>" name="proteinasT" id="proteinasT"> </td>
+                                                <td> <span class="badge badge-danger">6.7-8.7 g/dl</span> </td>
                                                 <td>Potasio</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->potasio; ?>" name="potasio" id="potasio"> </td>
+                                                <td> <span class="badge badge-danger">3.6-5.5 mmol/l</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>Bilirrubina</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->bilirrubina; ?>" name="bilirrubina" id="bilirrubina"> </td>
+                                                <td> <span class="badge badge-danger">Hasta 1.1 mg/dl</span> </td>
                                                 <td>Sodio</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->sodio; ?>" name="sodio" id="sodio"> </td>
+                                                <td> <span class="badge badge-danger">135-155 mmol/l</span> </td>
                                             </tr>
         
                                             <tr>
                                                 <td>T.G.O</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->tgo; ?>" name="tgo" id="tgo"> </td>
+                                                <td> <span class="badge badge-danger">Menos de 38 U/L</span> </td>
                                                 <td>Magnesio</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->magnesio; ?>" name="magnesio" id="magnesio"> </td>
+                                                <td> <span class="badge badge-danger">1.6-2.5 mg/dl</span> </td>
                                             </tr>
                                             <tr>
                                                 <td>T.G.P</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->tgp; ?>" name="tgp" id="tgp"> </td>
+                                                <td> <span class="badge badge-danger">Menos de 40 U/L</span> </td>
                                                 <td>Fosfatasa alcalina</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $quimica->fosfatasaA; ?>" name="fosfatasaA" id="fosfatasaA"> </td>
+                                                <td> <span class="badge badge-danger">98-279 U/L</span> </td>
                                             </tr>
         
                                             <tr>
@@ -540,8 +568,8 @@
                                             <tr>
                                                 <td>Otros</td>
                                                 <td> <input type="text" class="form-control" value="<?php echo $urianalisis->otrosUno; ?>" name="OtrosUno" id="OtrosUno"> </td>
-                                                <td>Otros</td>
-                                                <td> <input type="text" class="form-control" value="<?php echo $urianalisis->otrosDos; ?>" name="otrosDos" id="otrosDos"> </td>
+                                                <td style="display: none">Otros</td>
+                                                <td style="display: none"> <input type="text" class="form-control" value="<?php echo $urianalisis->otrosDos; ?>" name="otrosDos" id="otrosDos"> </td>
                                             </tr>
     
                                             <tr>
@@ -630,6 +658,9 @@
                                         </table>
         
                                         <table class="table table-borderless frmExamen">
+                                            <tr class="bg-danger text-white text-center">
+                                                <th colspan="6">EXAMEN MACROSCOPICO</th>
+                                            </tr>
                                             <tr>
                                                 <td>Color</td>
                                                 <td colspan="2"> <input type="text" class="form-control" value="<?php echo $coprologia->color; ?>" name="color" id="colorC"> </td>
@@ -664,8 +695,12 @@
                                                 <td>Otros</td>
                                                 <td colspan="2"><input type="text" class="form-control" value="<?php echo $coprologia->otrosDos; ?>" name="otrosDos" id="otrosDosC"></td>
                                             </tr>
-    
+
                                             <tr class="bg-danger text-white text-center">
+                                                <th colspan="6">EXAMEN MICROSCOPICO</th>
+                                            </tr>
+    
+                                            <tr class="alert-danger text-center">
                                                 <th>PROTOZOARIOS</th>
                                                 <th>TROFOZOITO</th>
                                                 <th>QUISTE</th>

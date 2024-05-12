@@ -99,7 +99,8 @@ class Consultas_Model extends CI_Model {
 
         public function guardarDetalleConsulta($data = null){
             $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
-                    tempConsulta = ?, frConsulta = ?, examenFisico = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?, diagnosticoConsulta = ?, planConsulta = ?
+                    tempConsulta = ?, frConsulta = ?, satConsulta = ?, examenFisico = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?,
+                    diagnosticoConsulta = ?, planConsulta = ?
                     WHERE idDetalleConsulta = ?";
             if($this->db->query($sql, $data)){
                 return true;
@@ -201,8 +202,8 @@ class Consultas_Model extends CI_Model {
         // Recetas medicas
             public function guardarRecetaMedica($data = null){
                 if($data != null){
-                    $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, idPaciente, htmlReceta, medicamentosReceta)
-                            VALUES(?, ?, ?, ?, ?, ?)";
+                    $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, indicacionLibre, idPaciente, htmlReceta, medicamentosReceta)
+                            VALUES(?, ?, ?, ?, ?, ?, ?)";
                     if($this->db->query($sql, $data)){
                         return true;
                     }else{
@@ -235,9 +236,11 @@ class Consultas_Model extends CI_Model {
 
             public function detalleReceta($r = null){
                 if($r != null){
-                    $sql = "SELECT p.nombrePaciente, p.edadPaciente, c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, rm.* FROM tbl_receta_medica AS rm 
+                    $sql = "SELECT p.nombrePaciente, p.edadPaciente, m.nombreMedico, c.peso, c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, 
+                            rm.* FROM tbl_receta_medica AS rm 
                             INNER JOIN tbl_consultas AS c ON(c.idConsulta = rm.idConsulta)
                             INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
+                            INNER JOIN tbl_medicos AS m ON(m.idMedico = c.idMedico)
                             WHERE rm.idReceta = '$r' ";
                     $datos = $this->db->query($sql);
                     return $datos->row();

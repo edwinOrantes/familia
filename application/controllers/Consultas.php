@@ -293,6 +293,7 @@ class Consultas extends CI_Controller {
 
 	public function guardar_receta_medica(){
 		$datos = $this->input->post();
+		unset($datos["idMedico"]);
 		
 		// Creando Json de medidas
 			// Crear un arreglo combinado
@@ -324,18 +325,19 @@ class Consultas extends CI_Controller {
 			$datos["html"] = $html;
 			$datos["medidas"] = json_encode($listaInsumos);
 		// Creando Json de medidas
+		
+		$bool = $this->Consultas_Model->guardarRecetaMedica($datos);
+		if($bool){
+			$this->session->set_flashdata("exito","Los datos fueron agregados con exito!");
+			redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
+		}else{
+			$this->session->set_flashdata("error","Hubo un error al agregar los datos!");
+			redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
+		}
 
+		// echo json_encode($datos);
 			
-			$bool = $this->Consultas_Model->guardarRecetaMedica($datos);
-			if($bool){
-				$this->session->set_flashdata("exito","Los datos fueron agregados con exito!");
-				redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
-			}else{
-				$this->session->set_flashdata("error","Hubo un error al agregar los datos!");
-				redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
-			}
 
-			// echo json_encode($datos);
 	}
 
 

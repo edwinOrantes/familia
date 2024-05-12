@@ -143,7 +143,6 @@
                         <tr style="background: #075480;">
                             <th> Parametro </th>
                             <th> Resultado </th>
-                            <th> Unidades </th>
                             <th> Valores de referencia </th>
                         </tr>
                     </thead>
@@ -153,228 +152,215 @@
                             if($quimica->glucosa != ""){
                                 echo '<tr>
                                         <td><strong>Glucosa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->glucosa.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->glucosa.' mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">55-110 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->fosfatasa != ""){
-                                echo '<tr>
-                                        <td><strong>Fosfatasa acida Prost.</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasa.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">140 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->glucosaPostPrand != ""){
                                 echo '<tr>
                                         <td><strong>Glucosa Post-Prand</strong></td>
                                         <td style="text-align: center; font-weight: bold">'.$quimica->glucosaPostPrand.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 200 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->lipasa != ""){
-                                echo '<tr>
-                                        <td><strong>Lipasa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->lipasa.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">--</td>
                                     </tr>';
                             }
                             if($quimica->globulina != ""){
                                 echo '<tr>
                                         <td><strong>Globulina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->globulina.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->amilasa != ""){
-                                echo '<tr>
-                                        <td><strong>Amilasa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->amilasa.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 150 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->globulina.' g/dl</td>
+                                        <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
                                     </tr>';
                             }
                             if($quimica->trigliceridos != ""){
                                 echo '<tr>
                                         <td><strong>Trigliceridos</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->trigliceridos.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->indiceAG != ""){
-                                echo '<tr>
-                                        <td><strong>Indice A/G</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->indiceAG.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">10.0 a 48.1 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->trigliceridos.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Hasta 15 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->colesterol != ""){
                                 echo '<tr>
                                         <td><strong>Colesterol</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterol.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->bilirrubinaD != ""){
-                                echo '<tr>
-                                        <td><strong>Bilirrubina directa</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaD.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterol.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Hasta 200 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->colesterolHDL != ""){
                                 echo '<tr>
                                         <td><strong>Colesterol H.D.L</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolHDL.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 90 U/L</td>
-                                    </tr>';
-                            }
-                            if($quimica->bilirrubinaI != ""){
-                                echo '<tr>
-                                        <td><strong>Bilirrubina indirecta</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaI.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">Menor de 38 U/L</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolHDL.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">35-65 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->colesterolLDL != ""){
                                 echo '<tr>
                                         <td><strong>Colesterol L.D.L</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolLDL.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">98-279 U/L</td>
-                                    </tr>';
-                            }
-                            if($quimica->albumina != ""){
-                                echo '<tr>
-                                        <td><strong>Albumina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->albumina.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">1-40 U/L</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->colesterolLDL.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Hasta 150 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->acidoUrico != ""){
                                 echo '<tr>
                                         <td><strong>Ácido Úrico</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->acidoUrico.'</td>
-                                        <td style="text-align: center; font-weight: bold">U/L</td>
-                                        <td style="text-align: center; font-weight: bold">1-38 U/L</td>
-                                    </tr>';
-                            }
-                            if($quimica->fosforo != ""){
-                                echo '<tr>
-                                        <td><strong>Fosforo</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosforo.'</td>
-                                        <td style="text-align: center; font-weight: bold">%</td>
-                                        <td style="text-align: center; font-weight: bold">4.5-6.5%</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->acidoUrico.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">2.5-7.0 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->creatinina != ""){
                                 echo '<tr>
                                         <td><strong>Creatinina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->creatinina.'</td>
-                                        <td style="text-align: center; font-weight: bold">g/dl</td>
-                                        <td style="text-align: center; font-weight: bold">6.7-8.7 d/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->cloro != ""){
-                                echo '<tr>
-                                        <td><strong>Cloro</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->cloro.'</td>
-                                        <td style="text-align: center; font-weight: bold">g/dl</td>
-                                        <td style="text-align: center; font-weight: bold">3.5-5.0 g/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->creatinina.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">0.7-1.4 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->nitrogeno != ""){
                                 echo '<tr>
                                         <td><strong>Nitrógeno</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->nitrogeno.'</td>
-                                        <td style="text-align: center; font-weight: bold">g/dl</td>
-                                        <td style="text-align: center; font-weight: bold">2.3-3.4 g/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->calcio != ""){
-                                echo '<tr>
-                                        <td><strong>Calcio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->calcio.'</td>
-                                        <td style="text-align: center; font-weight: bold"></td>
-                                        <td style="text-align: center; font-weight: bold">1.2-2.2</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->nitrogeno.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">4.7-22.5 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->proteinasT != ""){
                                 echo '<tr>
                                         <td><strong>Proteinas totales</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->proteinasT.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Hasta 1.1 mg/dl</td>
-                                    </tr>';
-                            }
-                            if($quimica->potasio != ""){
-                                echo '<tr>
-                                        <td><strong>Potasio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->potasio.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">Hasta 0.25 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->proteinasT.' g/dl</td>
+                                        <td style="text-align: center; font-weight: bold">6.7-8.7 g/dl</td>
                                     </tr>';
                             }
                             if($quimica->bilirrubina != ""){
                                 echo '<tr>
                                         <td><strong>Bilirrubina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubina.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold"></td>
-                                    </tr>';
-                            }
-                            if($quimica->sodio != ""){
-                                echo '<tr>
-                                        <td><strong>Sodio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->sodio.'</td>
-                                        <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">135-155 mmol/L</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubina.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Hasta 1.1 mg/dl</td>
                                     </tr>';
                             }
                             if($quimica->tgo != ""){
                                 echo '<tr>
                                         <td><strong>T.G.O</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgo.'</td>
-                                        <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/L</td>
-                                    </tr>';
-                            }
-                            if($quimica->magnesio != ""){
-                                echo '<tr>
-                                        <td><strong>Magnesio</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->magnesio.'</td>
-                                        <td style="text-align: center; font-weight: bold">mmol/L</td>
-                                        <td style="text-align: center; font-weight: bold">95-115 mmol/L</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgo.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">Menos de 38 U/L</td>
                                     </tr>';
                             }
                             if($quimica->tgp != ""){
                                 echo '<tr>
                                         <td><strong>T.G.P</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgp.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
-                                        <td style="text-align: center; font-weight: bold">1.6-2.5 mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->tgp.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">Menos de 40 U/L</td>
                                     </tr>';
                             }
-                            if($quimica->fosfatasaA != ""){
+
+                            if($quimica->fosfatasa != ""){
                                 echo '<tr>
-                                        <td><strong>Fosfatasa alcalina</strong></td>
-                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasaA.'</td>
-                                        <td style="text-align: center; font-weight: bold">mg/dl</td>
+                                        <td><strong>Fosfatasa acida Prost.</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasa.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">Menos 1.7 U/L</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->lipasa != ""){
+                                echo '<tr>
+                                        <td><strong>Lipasa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->lipasa.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">Menos de 38 U/L</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->amilasa != ""){
+                                echo '<tr>
+                                        <td><strong>Amilasa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->amilasa.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">Menos de 90 U/L</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->indiceAG != ""){
+                                echo '<tr>
+                                        <td><strong>Indice A/G</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->indiceAG.'</td>
+                                        <td style="text-align: center; font-weight: bold">1.2-2.2</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->bilirrubinaD != ""){
+                                echo '<tr>
+                                        <td><strong>Bilirrubina directa</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaD.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">Hasta 0.25 mg/dl</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->bilirrubinaI != ""){
+                                echo '<tr>
+                                        <td><strong>Bilirrubina indirecta</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->bilirrubinaI.'</td>
+                                        <td style="text-align: center; font-weight: bold">---</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->albumina != ""){
+                                echo '<tr>
+                                        <td><strong>Albumina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->albumina.' g/dl</td>
+                                        <td style="text-align: center; font-weight: bold">3.5-5.0 g/dl</td>
+                                    </tr>';
+                            }
+                            
+                            
+
+                            if($quimica->fosforo != ""){
+                                echo '<tr>
+                                        <td><strong>Fosforo</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosforo.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">2.5-5.0 mg/dl</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->cloro != ""){
+                                echo '<tr>
+                                        <td><strong>Cloro</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->cloro.' mmol/l</td>
+                                        <td style="text-align: center; font-weight: bold">95-115mmol/l</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->calcio != ""){
+                                echo '<tr>
+                                        <td><strong>Calcio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->calcio.' mg/dl</td>
                                         <td style="text-align: center; font-weight: bold">8.1-10.4 mg/dl</td>
                                     </tr>';
                             }
                             
+                            if($quimica->potasio != ""){
+                                echo '<tr>
+                                        <td><strong>Potasio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->potasio.' mmol/l</td>
+                                        <td style="text-align: center; font-weight: bold">3.6-5.5 mmol/l</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->sodio != ""){
+                                echo '<tr>
+                                        <td><strong>Sodio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->sodio.' mmol/l</td>
+                                        <td style="text-align: center; font-weight: bold">135-155 mmol/l</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->magnesio != ""){
+                                echo '<tr>
+                                        <td><strong>Magnesio</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->magnesio.' mg/dl</td>
+                                        <td style="text-align: center; font-weight: bold">1.6-2.5 mg/dl</td>
+                                    </tr>';
+                            }
+                            
+                            if($quimica->fosfatasaA != ""){
+                                echo '<tr>
+                                        <td><strong>Fosfatasa alcalina</strong></td>
+                                        <td style="text-align: center; font-weight: bold">'.$quimica->fosfatasaA.' U/L</td>
+                                        <td style="text-align: center; font-weight: bold">98-279 U/L</td>
+                                    </tr>';
+                            }                           
                             if($quimica->observacionesQS != ""){
                                 echo '<tr>
                                         <td><strong>Observaciones</strong></td>

@@ -41,11 +41,12 @@
     }
 
     .cabecera_receta{
-        height: 50px
+        height: 50px;
+        padding-bottom: 20px
     }
 
     .contenido_receta{
-        height: 700px
+        height: 650px
     }
     
     .pie_receta{
@@ -54,13 +55,18 @@
 
     .signos_recetas{
         float:left;
-        width: 50%;
+        width: 40%;
         
     }
     
     .fechas_receta{
         float:right;
-        width: 50%
+        padding: 0px 0px 0px 5px;
+        width: 58%
+    }
+    .fechas_receta p{
+        font-size: 12px;
+        text-align: left
     }
 
 
@@ -74,7 +80,7 @@
 <div class="cabecera" style="font-family: Times New Roman">
     <div class="body_left">
         
-        <div>
+        <!-- <div>
             <h5 style="text-decoration: underline"><strong>TELEFONO</strong></h5>
             <h5><strong>2605-6298</strong></h5>
         </div>
@@ -85,26 +91,28 @@
             <p>7:00 a.m a 5:00 p.m</p>
             <p>Domingo</p>
             <p>8:00 a.m a 12:00 m.d</p>
-        </div>
+        </div> -->
 
         <h5 style="text-decoration: underline"><strong>SERVICIOS</strong></h5>
         <div style="text-align: left; margin: 15px 0px 100px -20px; line-height: 22px">
             <ul>
-                <li>Ultrasonografía</li>
-                <li>Toma y lectura de: Electrocardiogramas</li>
-                <li>Consulta de niños y adultos</li>
-                <li>Controles prenatales</li>
-                <li>Consulta Ginecológica y planificación familiar</li>
-                <li>Colocación de sueros</li>
-                <li>Control de azúcar y presión</li>
+                <li>Consulta general</li>
+                <li>Consulta con especialistas</li>
+                <li>Ingresos médicos</li>
                 <li>Pequeña cirugía</li>
-                <li>Cirugías mayores</li>
+                <li>Atención de partos</li>
+                <li>Laboratorio clínico</li>
+                <li>Exámenes especiales</li>
+                <li>Ultrasonografía</li>
+                <li>Rayos X</li>
+                <li>Transporte de pacientes delicados</li>
+                <li>Atención 24/7</li>
             </ul>
         </div>
 
-        <div style="font-size: 12px; font-weight: bold">
+        <!-- <div style="font-size: 12px; font-weight: bold">
             <p> Atendiéndole con la amabilidad que nos caracteriza.</p>
-        </div>
+        </div> -->
 
         
     </div>
@@ -112,10 +120,17 @@
         <div class="cabecera_receta">
             <table>
                 <tr>
-                    <th>PACIENTE: </th>
-                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 250px"> <?php echo $detalle->nombrePaciente; ?> </th>
-                    <th>Edad: </th>
-                    <th style="border-bottom: 1px solid #000000; text-align: left; width: 75"> <?php echo $detalle->edadPaciente; ?> Años</th>
+                    <td style="font-weight: bold">Paciente: </td>
+                    <td style="border-bottom: 1px solid #000000; text-align: left; width: 250px;"> <?php echo $detalle->nombrePaciente; ?> </td>
+                    <td style="font-weight: bold">Edad: </td>
+                    <td style="border-bottom: 1px solid #000000;text-align: left; width: 75px"> <?php echo $detalle->edadPaciente; ?> Años</td>
+                </tr>
+                <tr>
+                    <td colspan="4"> &nbsp; </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Fecha: </td>
+                    <td style="border-bottom: 1px solid #000000; text-align: left; width: 250px"> <?php echo $detalle->fechaReceta; ?> </td>
                 </tr>
             </table>
         </div>
@@ -133,6 +148,7 @@
 
                  
             ?>
+            <p><?php echo $detalle->indicacionLibre; ?></p>
         </div>
 
         <div class="pie_receta">
@@ -156,9 +172,9 @@
                     </tr>
                 </table>
             </div>
-            <div class="fechas_receta" style="line-height: 1px; text-align: center;">
-                <h6><strong>FECHA RECETA: </strong><?php echo $detalle->fechaReceta; ?></h6>
-                <h6><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></h6>
+            <div class="fechas_receta" style="border-left: 2px solid #075480; line-height: 1px; text-align: center;">
+                <p><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></p>
+                <p><strong>MEDICO: </strong><?php echo $detalle->nombreMedico; ?></p>
             </div>
         </div>
     </div>
