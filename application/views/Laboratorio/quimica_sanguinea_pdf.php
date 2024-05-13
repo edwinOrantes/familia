@@ -130,7 +130,7 @@
                             <td><strong class="borderAzul">Médico:</strong></td>
                             <td><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
                             <td><strong class="borderAzul">Fecha:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".$cabecera->hora; ?></p></td>
+                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".date("g:i A", strtotime($cabecera->hora)); ?></p></td>
                         </tr>
                     </table>
                 </div>

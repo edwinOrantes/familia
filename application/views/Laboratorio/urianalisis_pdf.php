@@ -130,15 +130,116 @@
                             <td><strong class="borderAzul">Médico:</strong></td>
                             <td><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
                             <td><strong class="borderAzul">Fecha:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".$cabecera->hora; ?></p></td>
+                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".date("g:i A", strtotime($cabecera->hora)); ?></p></td>
                         </tr>
                     </table>
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>RESULTADOS EXAMEN DE URIANALISIS</p>
+            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>URIANALISIS</p>
             <div class="detalle">
+
                 <table class="table">
+                    <tr style="background: #075480;">
+                        <th colspan="4">EXAMEN FISICO QUIMICO</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Color</strong></td>
+                        <td> <?php echo $urianalisis->color; ?></td>
+                        <td><strong>Aspecto</strong></td>
+                        <td><?php echo $urianalisis->aspecto; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Reacción</strong></td>
+                        <td> <?php echo $urianalisis->reaccion; ?></td>
+                        <td><strong>Densidad</strong></td>
+                        <td><?php echo $urianalisis->densidad; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>P.H.</strong></td>
+                        <td><?php echo $urianalisis->ph; ?></td>
+                        <td><strong>Glucosa</strong></td>
+                        <td><?php echo $urianalisis->glucosa; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Proteinas</strong></td>
+                        <td> <?php echo $urianalisis->proteinas; ?></td>
+                        <td><strong>Pigmentos Biliares</strong></td>
+                        <td><?php echo $urianalisis->pigmentosB; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Sangre oculta</strong></td>
+                        <td> <?php echo $urianalisis->sangreO; ?></td>
+                        <td><strong>Nitritos</strong></td>
+                        <td><?php echo $urianalisis->nitritos; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Cuerpos Cetonicos</strong></td>
+                        <td> <?php echo $urianalisis->cuerposC; ?> </td>
+                        <td><strong>Acidos Biliares</strong></td>
+                        <td><?php echo $urianalisis->acidosBiliares; ?></td>
+                    </tr>
+
+                    <tr style="background: #075480;">
+                        <th colspan="4">EXAMEN MICROSCOPICO</th>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Granulosos</strong></td>
+                        <td> <?php echo $urianalisis->granulosos; ?></td>
+                        <td><strong>Cilindros leucocitarios</strong></td>
+                        <td> <?php echo $urianalisis->cilindrosL; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Cilindros Hialinos</strong></td>
+                        <td> <?php echo $urianalisis->cilindrosH; ?> </td>
+                        <td><strong>Otros cilindros</strong></td>
+                        <td> <?php echo $urianalisis->otrosCilindros; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Leucositos</strong></td>
+                        <td> <?php echo $urianalisis->leucositos; ?> </td>
+                        <td><strong>Hematies</strong></td>
+                        <td> <?php echo $urianalisis->hematies; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Celulas Epiteliales</strong></td>
+                        <td> <?php echo $urianalisis->celulasE; ?> </td>
+                        <td><strong>Elementos minerales</strong></td>
+                        <td> <?php echo $urianalisis->elementosM; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Bacterias</strong></td>
+                        <td> <?php echo $urianalisis->bacterias; ?></td>
+                        <td><strong>Levadura</strong></td>
+                        <td> <?php echo $urianalisis->levadura; ?> </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Otros</strong></td>
+                        <td> <?php echo $urianalisis->otrosUno; ?> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Observaciones</strong></td>
+                        <td colspan=3><?php echo $urianalisis->observacionesU; ?></td>
+                    </tr>
+
+
+                </table>
+
+                <!-- <table class="table">
                     <thead>
                         <tr style="background: #075480;">
                             <th> Parametro </th>
@@ -147,8 +248,9 @@
                             <th> Valores de referencia </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
+                    <tbody> -->
+
+                        <!-- <?php
 
                             if($urianalisis->color != ""){
                                 echo '<tr>
@@ -349,10 +451,10 @@
                                     </tr>';
                             }
 
-                        ?>
+                        ?> -->
                        
-                    </tbody>
-                </table>
+                    <!-- </tbody>
+                </table> -->
             </div>
         </div>
     </div>

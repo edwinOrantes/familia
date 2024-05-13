@@ -130,15 +130,146 @@
                             <td><strong class="borderAzul">Médico:</strong></td>
                             <td><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
                             <td><strong class="borderAzul">Fecha:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".$cabecera->hora; ?></p></td>
+                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".date("g:i A", strtotime($cabecera->hora)); ?></p></td>
                         </tr>
                     </table>
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>RESULTADOS EXAMEN DE COPROLOGIA</p>
+            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>COPROLOGIA</p>
             <div class="detalle">
                 <table class="table">
+                    <tr style="background: #075480;">
+                        <th colspan="6">EXAMEN MACROSCOPICO</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Color</strong></td>
+                        <td colspan="2"> <?php echo $coprologia->color; ?></td>
+                        <td><strong>Consistencia</strong></td>
+                        <td colspan="2"><?php echo $coprologia->consistencia; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Mucus</strong></td>
+                        <td colspan="2"> <?php echo $coprologia->mucus; ?> </td>
+                        <td><strong>Hematies</strong></td>
+                        <td colspan="2"><?php echo $coprologia->hematies; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Leucocitos</strong></td>
+                        <td colspan="2"> <?php echo $coprologia->leucocitos; ?> </td>
+                        <td><strong>Bacterias</strong></td>
+                        <td colspan="2"><?php echo $coprologia->bacterias; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Levaduras</strong></td>
+                        <td colspan="2"> <?php echo $coprologia->levaduras; ?> </td>
+                        <td><strong>Restos Alim. Microsc.</strong></td>
+                        <td colspan="2"><?php echo $coprologia->restosAM; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Otros</strong></td>
+                        <td colspan="5"><?php echo $coprologia->otrosUno; ?></td>
+
+                    </tr>
+
+                    <tr style="background: #075480;">
+                        <th colspan="6">EXAMEN MICROSCOPICO</th>
+                    </tr>
+
+                    <tr style="background: rgba(255,0,0,0.3)">
+                        <th>PROTOZOARIOS</th>
+                        <th>TROFOZOITO</th>
+                        <th>QUISTE</th>
+                        <th>METAZOARIOS</th>
+                        <th>HUEVO</th>
+                        <th>LARVA</th>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Entamoeba Histolytica</strong></td>
+                        <td> <?php echo $coprologia->histolyticaT; ?> </td>
+                        <td> <?php echo $coprologia->histolyticaQ; ?> </td>
+                        <td><strong>Ascaris lumbricoides</strong></td>
+                        <td><?php echo $coprologia->ascarisH; ?></td>
+                        <td><?php echo $coprologia->ascarisL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Entamoeba Coli</strong></td>
+                        <td> <?php echo $coprologia->coliT; ?></td>
+                        <td> <?php echo $coprologia->coliQ; ?></td>
+                        <td><strong>Trichuris trinchiura</strong></td>
+                        <td><?php echo $coprologia->trinchiuraH; ?></td>
+                        <td><?php echo $coprologia->trinchiuraL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Endolimax Nana</strong></td>
+                        <td> <?php echo $coprologia->nanaT; ?></td>
+                        <td> <?php echo $coprologia->nanaQ; ?></td>
+                        <td><strong>Ancylostoma guod</strong></td>
+                        <td><?php echo $coprologia->guodH; ?></td>
+                        <td><?php echo $coprologia->guodL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Chilomastic mesnili</strong></td>
+                        <td> <?php echo $coprologia->mesniliT; ?></td>
+                        <td> <?php echo $coprologia->mesniliQ; ?></td>
+                        <td><strong>Enterobios vermic</strong></td>
+                        <td><?php echo $coprologia->vermicH; ?></td>
+                        <td><?php echo $coprologia->vermicL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Giardia Lambia</strong></td>
+                        <td> <?php echo $coprologia->lambiaT; ?> </td>
+                        <td><?php echo $coprologia->lambiaQ; ?></td>
+                        <td><strong>Strongiloides Sterco</strong></td>
+                        <td><?php echo $coprologia->stercoH; ?></td>
+                        <td><?php echo $coprologia->stercoL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Tricomonas hominis</strong></td>
+                        <td><?php echo $coprologia->hominisT; ?></td>
+                        <td><?php echo $coprologia->hominisQ; ?></td>
+                        <td><strong>Hymenolepis nana</strong></td>
+                        <td><?php echo $coprologia->hymenolepisH; ?></td>
+                        <td><?php echo $coprologia->hymenolepisL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Balantidium coli</strong></td>
+                        <td><?php echo $coprologia->balantidiumT; ?></td>
+                        <td><?php echo $coprologia->balantidiumQ; ?></td>
+                        <td><strong>Taenias</</strong>td>
+                        <td><?php echo $coprologia->taeniasH; ?></td>
+                        <td><?php echo $coprologia->taeniasL; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Blastocystis hominis</strong></td>
+                        <td><?php echo $coprologia->blastocystisT; ?></td>
+                        <td><?php echo $coprologia->blastocystisQ; ?></td>
+                        <td><strong>Otros</strong></td>
+                        <td><?php echo $coprologia->otrosH; ?></td>
+                        <td><?php echo $coprologia->otrosL; ?></td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>Observaciones</strong></td>
+                        <td colspan="5"><?php echo $coprologia->observacionesC; ?></td>
+                    </tr>
+
+
+                </table>
+                <!-- <table class="table">
                     <thead>
                         <tr style="background: #075480;">
                             <th> Parametro </th>
@@ -496,7 +627,7 @@
                         ?>
                        
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>

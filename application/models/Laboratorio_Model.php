@@ -1687,7 +1687,7 @@ class Laboratorio_Model extends CI_Model {
         public function historialHematologia($id = null){
             $sql = "SELECT * FROM tbl_hematologia AS h
                     INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = h.idConsulta)
-                    WHERE cl.idPaciente = '$id' ORDER BY h.idHematologia DESC";
+                    WHERE cl.idPaciente = '$id' AND h.pivoteCreado = 1 ORDER BY h.idHematologia DESC";
             $datos = $this->db->query($sql);
             return $datos->result();
         }
@@ -1708,7 +1708,7 @@ class Laboratorio_Model extends CI_Model {
                 $sql = "UPDATE tbl_hematologia SET 
                     examenSolicitado = ?, fechaExamen = ?, globulosRojos = ?, eritrosedimentacion = ?, globulosBlancos = ?, reticulositos = ?, hematocrito = ?, 
                     tpTrombolastina = ?, hemoglobina = ?, tSangramiento = ?, vlGMedio = ?, tCoagulacion = ?, hbGMedia = ?, tProtombina = ?, concHbGlobMed = ?, 
-                    neutrofilos = ?, linfocitos = ?, eosinofilos = ?, basofilos = ?, monocitos = ?, plaquetas = ?, observacionesH = ? WHERE idHematologia = ?             ";
+                    neutrofilos = ?, linfocitos = ?, eosinofilos = ?, basofilos = ?, monocitos = ?, plaquetas = ?, observacionesH = ?, pivoteCreado = 1 WHERE idHematologia = ?             ";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -1727,7 +1727,7 @@ class Laboratorio_Model extends CI_Model {
                     amilasa = ?, trigliceridos = ?, indiceAG = ?, colesterol = ?, bilirrubinaD = ?, colesterolHDL = ?, bilirrubinaI = ?, 
                     colesterolLDL = ?, albumina = ?, acidoUrico = ?, fosforo = ?, creatinina = ?, cloro = ?, nitrogeno = ?, calcio = ?, 
                     proteinasT = ?, potasio = ?, bilirrubina = ?, sodio = ?, tgo = ?, magnesio = ?, tgp = ?, fosfatasaA = ?, 
-                    observacionesQS = ? WHERE idQuimicaSanguinea = ?";
+                    observacionesQS = ?, pivoteCreado = '1' WHERE idQuimicaSanguinea = ?";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -1748,7 +1748,7 @@ class Laboratorio_Model extends CI_Model {
         public function historialQuimica($id = null){
             $sql = "SELECT * FROM tbl_quimica_sanguinea_lab AS qs
                     INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = qs.idConsulta)
-                    WHERE cl.idPaciente = '$id' ORDER BY qs.idQuimicaSanguinea DESC";
+                    WHERE cl.idPaciente = '$id' AND pivoteCreado = '1' ORDER BY qs.idQuimicaSanguinea DESC";
             $datos = $this->db->query($sql);
             return $datos->result();
         }
@@ -1797,7 +1797,7 @@ class Laboratorio_Model extends CI_Model {
                         nombreExamen = ?, fechaExamen = ?, color = ?, aspecto = ?, reaccion = ?, densidad = ?, ph = ?, glucosa = ?, 
                         proteinas = ?, pigmentosB = ?, sangreO = ?, nitritos = ?, cuerposC = ?, acidosBiliares = ?, granulosos = ?, 
                         cilindrosL = ?, cilindrosH = ?, otrosCilindros = ?, leucositos = ?, hematies = ?, celulasE = ?, elementosM = ?,
-                        bacterias = ?, levadura = ?, otrosUno = ?, otrosDos = ?, observacionesU = ? WHERE idUrianalisis  = ?";
+                        bacterias = ?, levadura = ?, otrosUno = ?, otrosDos = ?, observacionesU = ?,pivoteCreado = '1' WHERE idUrianalisis  = ?";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -1812,7 +1812,7 @@ class Laboratorio_Model extends CI_Model {
         public function historialUrianalisis($id = null){
             $sql = "SELECT * FROM tbl_uruanalisis_lab AS u
                     INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = u.idConsulta)
-                    WHERE cl.idPaciente = '$id' ORDER BY u.idUrianalisis DESC";
+                    WHERE cl.idPaciente = '$id' AND pivoteCreado = '1' ORDER BY u.idUrianalisis DESC";
             $datos = $this->db->query($sql);
             return $datos->result();
         }
@@ -1850,7 +1850,7 @@ class Laboratorio_Model extends CI_Model {
                         nanaT = ?, nanaQ = ?, guodH = ?, guodL = ?, mesniliT = ?, mesniliQ = ?, vermicH = ?, vermicL = ?,
                         lambiaT = ?, lambiaQ = ?, stercoH = ?, stercoL = ?, hominisT = ?, hominisQ = ?, hymenolepisH = ?,
                         hymenolepisL = ?, balantidiumT = ?, balantidiumQ = ?, taeniasH = ?, taeniasL = ?, blastocystisT = ?,
-                        blastocystisQ = ?, otrosH = ?, otrosL = ?, observacionesC = ?
+                        blastocystisQ = ?, otrosH = ?, otrosL = ?, observacionesC = ?, pivoteCreado = '1'
                         WHERE idCoprologia = ?";
                 if($this->db->query($sql, $data)){
                     return true;
@@ -1866,7 +1866,7 @@ class Laboratorio_Model extends CI_Model {
         public function historialCoprologia($id = null){
             $sql = "SELECT * FROM tbl_coprologia_lab AS c
                     INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = c.idConsulta)
-                    WHERE cl.idPaciente = '$id' ORDER BY c.idCoprologia DESC";
+                    WHERE cl.idPaciente = '$id' AND pivoteCreado = '1' ORDER BY c.idCoprologia DESC";
             $datos = $this->db->query($sql);
             return $datos->result();
         }
