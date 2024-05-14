@@ -58,6 +58,7 @@
 	<!--<script src="<?php echo base_url(); ?>public/tema/assets/js/index-chart.js"></script>-->
     <script src="<?php echo base_url(); ?>public/tema/assets/js/select2.min.js"></script>
 
+
 </head>
 
 

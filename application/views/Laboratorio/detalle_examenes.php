@@ -19,6 +19,8 @@
     </script>
 <?php endif; ?>
 
+
+
 <style>
     .tabla_examen, .nombre_examen{
         display: none;
@@ -30,7 +32,19 @@
 
     .table td  {
         padding: 3px 5px 0px 0px;
-        }
+    }
+
+    .historial_varios{
+        height: 250px;
+        line-height: 1em;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        width: 100%;
+        border: 1px solid;
+    }
+    #dvVarios {
+        height: 400px; /* Establece la altura deseada */
+    }
 </style>
 
 <div class="">
@@ -876,7 +890,177 @@
                         </div>
     
                         <div role="tabpanel" class="tab-pane fade" id="pruebasEspeciales">
-                            <p>Pruebas especiales </p>
+                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td style="width: 150px"><strong>FECHA</strong></td>
+                                                <td><input type="text" value="<?php echo $coprologia->fechaExamen; ?>" class="form-control"  id="fechaExamenV" name="fechaExamen"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>ENCABEZADO</td>
+                                                <td><input type="text" value="<?php echo $coprologia->nombreExamen; ?>"  class="form-control"  id="encabezadoExamenV" name="encabezadoExamen"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>EXAMEN INDICADO</strong></td>
+                                                <td><input type="text" value="<?php echo $coprologia->fechaExamen; ?>" class="form-control"  id="indicadoExamenV" name="indicadoExamen"></td>
+                                            </tr>
+                                        </table>
+                                        <div id="dvVarios">
+                                            <textarea class="form-control" rows="20" name="detalleVarios" id="detalleVarios"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <p><strong>HISTORIAL</strong></p>
+                                        <div class="table-responsive historial_varios table-md">
+                                            <table class="table table-borderless table-sm">
+                                                <tr>
+                                                    <td>Fecha</td>
+                                                    <td>Opcion</td>
+                                                </tr>
+                                                <?php 
+                                                    foreach ($historial_coprologia as $row) {
+                                                        if($row->fechaExamen == date("Y-m-d")){
+                                                            echo '<tr class="alert-primary">';
+                                                        }else{
+                                                            echo '<tr>';
+                                                        }
+                                                        echo ' <td>'.$row->fechaExamen.'</td>';
+                                                        echo ' <td>
+    
+                                                                <input type="hidden" class="colorC" value="'.$row->color.'">
+                                                                <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
+                                                                <input type="hidden" class="mucus" value="'.$row->mucus.'">
+                                                                <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
+                                                                <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
+                                                                <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
+                                                                <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
+                                                                <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
+                                                                <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
+                                                                <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
+                                                                <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
+                                                                <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
+                                                                <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
+                                                                <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
+                                                                <input type="hidden" class="coliT" value="'.$row->coliT.'">
+                                                                <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
+                                                                <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
+                                                                <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
+                                                                <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
+                                                                <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
+                                                                <input type="hidden" class="guodH" value="'.$row->guodH.'">
+                                                                <input type="hidden" class="guodL" value="'.$row->guodL.'">
+                                                                <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
+                                                                <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
+                                                                <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
+                                                                <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
+                                                                <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
+                                                                <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
+                                                                <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
+                                                                <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
+                                                                <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
+                                                                <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
+                                                                <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
+                                                                <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
+                                                                <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
+                                                                <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
+                                                                <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
+                                                                <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
+                                                                <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
+                                                                <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
+                                                                <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
+                                                                <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
+                                                                <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
+    
+                                                                <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
+                                                                <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+    
+                                                                <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                            </td>';
+                                                        echo '</tr>';
+                                                    }
+                                                ?>
+                                                
+                                            </table>
+                                        </div>
+                                        <p><strong>BOSQUEJO</strong></p>
+                                        <div class="table-responsive historial_varios table-md">
+                                            <table class="table table-borderless table-sm">
+                                                <tr>
+                                                    <td>Fecha</td>
+                                                    <td>Opcion</td>
+                                                </tr>
+                                                <?php 
+                                                    foreach ($historial_coprologia as $row) {
+                                                        if($row->fechaExamen == date("Y-m-d")){
+                                                            echo '<tr class="alert-primary">';
+                                                        }else{
+                                                            echo '<tr>';
+                                                        }
+                                                        echo ' <td>'.$row->fechaExamen.'</td>';
+                                                        echo ' <td>
+    
+                                                                <input type="hidden" class="colorC" value="'.$row->color.'">
+                                                                <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
+                                                                <input type="hidden" class="mucus" value="'.$row->mucus.'">
+                                                                <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
+                                                                <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
+                                                                <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
+                                                                <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
+                                                                <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
+                                                                <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
+                                                                <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
+                                                                <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
+                                                                <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
+                                                                <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
+                                                                <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
+                                                                <input type="hidden" class="coliT" value="'.$row->coliT.'">
+                                                                <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
+                                                                <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
+                                                                <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
+                                                                <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
+                                                                <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
+                                                                <input type="hidden" class="guodH" value="'.$row->guodH.'">
+                                                                <input type="hidden" class="guodL" value="'.$row->guodL.'">
+                                                                <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
+                                                                <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
+                                                                <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
+                                                                <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
+                                                                <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
+                                                                <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
+                                                                <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
+                                                                <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
+                                                                <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
+                                                                <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
+                                                                <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
+                                                                <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
+                                                                <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
+                                                                <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
+                                                                <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
+                                                                <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
+                                                                <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
+                                                                <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
+                                                                <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
+                                                                <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
+                                                                <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
+    
+                                                                <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
+                                                                <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+    
+                                                                <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                            </td>';
+                                                        echo '</tr>';
+                                                    }
+                                                ?>
+                                                
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
     
                         <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
@@ -891,6 +1075,7 @@
 
     </div>
 </div>
+
 
 <script>
     $(document).ready(function() {
@@ -907,6 +1092,8 @@
             var nuevaPestana = $(event.target).attr('href');
             localStorage.setItem('ultimaPestana', nuevaPestana);
         });
+
+
     });
 </script>
 
@@ -1062,4 +1249,5 @@
 
 
     });
+
 </script>
