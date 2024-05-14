@@ -1093,6 +1093,21 @@
             localStorage.setItem('ultimaPestana', nuevaPestana);
         });
 
+        var editor1 = new RichTextEditor("#dvVarios");
+
+            editor1.setHTMLCode("<p><b>Hello</b> World</p><p>Click the button below to show this HTML code</p>");
+
+            function btngetHTMLCode() {
+                alert(editor1.getHTMLCode())
+            }
+
+            function btnsetHTMLCode() {
+                editor1.setHTMLCode("<h1>editor1.setHTMLCode() sample</h1><p>You clicked the setHTMLCode button at " + new Date() + "</p>")
+            }
+            function btngetPlainText() {
+                alert(editor1.getPlainText())
+            }
+
 
     });
 </script>

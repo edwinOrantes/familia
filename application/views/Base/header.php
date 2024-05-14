@@ -58,6 +58,10 @@
 	<!--<script src="<?php echo base_url(); ?>public/tema/assets/js/index-chart.js"></script>-->
     <script src="<?php echo base_url(); ?>public/tema/assets/js/select2.min.js"></script>
 
+    <link rel="stylesheet" href="<?php echo base_url(); ?>public/richtexteditor/rte_theme_default.css" />
+    <script type="text/javascript" src="<?php echo base_url(); ?>public/richtexteditor/rte.js"></script>
+    <script type="text/javascript" src='<?php echo base_url(); ?>public/richtexteditor/plugins/all_plugins.js'></script>
+
 
 </head>
 
