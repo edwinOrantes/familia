@@ -65,6 +65,15 @@
         padding: 3px 5px 0px 0px;
     }
 
+    #dvPruebasEspeciales{
+        margin: 0 auto;
+        margin-bottom: 200px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 30px;
+        width: 50%;
+    }
+
 </style>
 
 
@@ -1179,7 +1188,77 @@
                                                             </div>
                                         
                                                             <div role="tabpanel" class="tab-pane fade" id="pruebasEspeciales">
-                                                                <p>Pruebas especiales </p>
+                                                                <div id="dvPruebasEspeciales">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 text-center">
+                                                                            <img src="<?php echo base_url(); ?>public/img/logo.png" width="250">
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <table class="table table-borderless table-sm text-center">
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="row">
+                                                                        <table class="table table-borderless table-sm">
+                                                                            <tr>
+                                                                                <td><strong>Paciente:</strong></td>
+                                                                                <td></td>
+                                                                                <td><strong>Edad:</strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><strong>Médico: </strong></td>
+                                                                                <td></td>
+                                                                                <td><strong>Fecha: </strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+    
+                                                                    <div class="row">
+                                                                        <p>Examen</p>
+                                                                        <table class="table table-bordered thead-primary w-100 text-center table-sm">
+                                                                            <thead>
+                                                                                <tr class="bg-primary">
+                                                                                    <th>Parametro</th>
+                                                                                    <th>Resultado</th>
+                                                                                    <th>Valor de referancia</th>
+                                                                                </tr>
+                                                                            </thead>
+    
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                </tr>
+    
+                                                                                <tr>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                </tr>
+    
+                                                                                <tr>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                    <td>A</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                         
                                                             <div role="tabpanel" class="tab-pane fade" id="bacteriologia">

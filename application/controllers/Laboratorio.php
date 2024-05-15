@@ -4978,6 +4978,12 @@ class Laboratorio extends CI_Controller {
 
             $data["coprologia"] = $this->Laboratorio_Model->obtenerCoprologia($id);
             $data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($data["paciente"]->idPaciente);
+            
+            $data["varios"] = $this->Laboratorio_Model->obtenerVarios($id);
+            $data["historial_varios"] = $this->Laboratorio_Model->historialVarios($data["paciente"]->idPaciente);
+            
+            //
+            $data["bosquejos"] = $this->Laboratorio_Model->obtenerBosquejos();
 
             $this->load->view("Base/header");
             $this->load->view("Laboratorio/detalle_examenes", $data);
@@ -5186,6 +5192,59 @@ class Laboratorio extends CI_Controller {
             // echo json_encode($datos);
         }
 
+        public function guardar_varios_lab(){
+            if($this->input->is_ajax_request()){
+                $datos = $this->input->post();
+                $consulta = $datos["idConsulta"];
+                unset($datos["idConsulta"]);
+                $datos ["detalle"] = base64_encode($datos["detalle"]);
+    
+                $bool = $this->Laboratorio_Model->guardarVariosLab($datos);
+                if($bool){
+                    $respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+    
+                }else{
+                    $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+                }
+    
+            }
+            else{
+                $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                header("content-type:application/json");
+                print json_encode($respuesta);
+            }
+
+        }
+
+        public function nuevo_varios_lab(){
+            if($this->input->is_ajax_request()){
+                $datos = $this->input->post();
+                $bool = $this->Laboratorio_Model->nuevoVariosLab($datos);
+                if($bool){
+                    $respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+    
+                }else{
+                    $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+                }
+    
+            }
+            else{
+                $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                header("content-type:application/json");
+                print json_encode($respuesta);
+            }
+
+        }
+
+
         public function coprologia_pdf($id = null){
             $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDFC($id);
             $data['coprologia'] = $this->Laboratorio_Model->coprologiaPDF($id);
@@ -5228,6 +5287,79 @@ class Laboratorio extends CI_Controller {
             // Fin
 
             // echo json_encode($data['coprologia']);
+
+        }
+
+        public function guardar_bosquejo(){
+            if($this->input->is_ajax_request()){
+                $datos = $this->input->post();
+                $datos ["detalle"] = base64_encode($datos["detalle"]);
+    
+    
+                $bool = $this->Laboratorio_Model->guardarBosquejo($datos);
+                if($bool){
+                    $respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+    
+                }else{
+                    $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                    header("content-type:application/json");
+                    print json_encode($respuesta);
+                }
+    
+                // echo json_encode($datos);
+    
+            }
+            else{
+                $respuesta = array('estado' => 0, 'respuesta' => 'Error');
+                header("content-type:application/json");
+                print json_encode($respuesta);
+            }
+        }
+
+
+        public function varios_lab_pdf($id){
+            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDFV($id);
+            $data['varios'] = $this->Laboratorio_Model->variosPDF($id);
+
+            // Factura
+                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+                $mpdf = new \Mpdf\Mpdf([
+                    'margin_left' => 15,
+                    'margin_right' => 15,
+                    'margin_top' => 15,
+                    'margin_bottom' => 25,
+                    'margin_header' => 10,
+                    'margin_footer' => 25
+                ]);
+                //$mpdf->setFooter('{PAGENO}');
+                $mpdf->SetHTMLFooter('
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                        </tr>
+                    </table>');
+                $mpdf->SetProtection(array('print'));
+                $mpdf->SetTitle("Centro Médico La Familia");
+                $mpdf->SetAuthor("Edwin Orantes");
+                $mpdf->showWatermarkText = true;
+                $mpdf->watermark_font = 'DejaVuSansCondensed';
+                $mpdf->watermarkTextAlpha = 0.1;
+                $mpdf->SetDisplayMode('fullpage');
+                //$mpdf->AddPage('L'); //Voltear Hoja
+
+                $html = $this->load->view('base/header', $data,true); 
+                $html = $this->load->view('Laboratorio/varios_lab_pdf', $data,true); // Cargando hoja de estilos
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('varios_pdf.pdf', 'I');
+            // Factura
+            
+
+            //  echo json_encode($data);
 
         }
     // Nuevos metodos de laboratorio

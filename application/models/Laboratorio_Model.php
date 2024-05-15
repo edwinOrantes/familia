@@ -1889,6 +1889,88 @@ class Laboratorio_Model extends CI_Model {
             return $datos->row();
         }
 
+        public function obtenerVarios($id = null){
+            $sql = "SELECT * FROM tbl_varios_lab AS vl WHERE vl.idConsulta = '$id' AND vl.idVarios = (SELECT MAX(idVarios) FROM tbl_varios_lab) ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function guardarVariosLab($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_varios_lab SET 
+                       fechaExamen = ?, encabezadoVarios = ?, nombreExamen = ?,  detalleVarios = ?, pivoteCreado = '1' WHERE idVarios = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+
+        
+        public function historialVarios($id = null){
+            $sql = "SELECT * FROM tbl_varios_lab AS vl
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = vl.idConsulta)
+                    WHERE cl.idPaciente = '$id' AND vl.pivoteCreado = '1' ORDER BY vl.idVarios DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+
+        public function nuevoVariosLab($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_varios_lab(idConsulta) VALUES(?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        
+        public function cabeceraPDFV($id = null){
+            $sql = "SELECT
+                    cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(vl.creadoVarios) as hora, m.nombreMedico 
+                    FROM tbl_varios_lab AS vl
+                    INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = vl.idConsulta)
+                    INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+                    INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+                    WHERE vl.idVarios = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function variosPDF($id = null){
+            $sql = "SELECT * FROM tbl_varios_Lab AS v WHERE v.idVarios = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function obtenerBosquejos(){
+            $sql = "SELECT * FROM tbl_bosquejos ORDER BY idBosquejo ASC ";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+
+        public function guardarBosquejo($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_bosquejos(encabezadoBosquejo, examenBosquejo, detalleBosquejo ) VALUES(?, ?, ?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
     // Metodos nuevos para examenes
 }
 ?>

@@ -254,7 +254,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/hematologia_pdf/'.$row->idHematologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verHematologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verHematologia"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -469,7 +469,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/quimica_pdf/'.$row->idQuimicaSanguinea.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verQuimica"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verQuimica"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -646,7 +646,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/urianalisis_pdf/'.$row->idUrianalisis.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verUrianalisis"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verUrianalisis"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -875,7 +875,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -889,25 +889,25 @@
                         </div>
     
                         <div role="tabpanel" class="tab-pane fade" id="pruebasEspeciales">
-                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
+                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_varios_lab" method="post">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <table class="table table-borderless">
                                             <tr>
                                                 <td style="width: 150px"><strong>FECHA</strong></td>
-                                                <td><input type="text" value="<?php echo $coprologia->fechaExamen; ?>" class="form-control"  id="fechaExamenV" name="fechaExamen"></td>
+                                                <td><input type="date" value="<?php echo $varios->fechaExamen; ?>" class="form-control"  id="fechaExamenV" name="fechaExamen"></td>
                                             </tr>
                                             <tr>
                                                 <td><strong>ENCABEZADO</td>
-                                                <td><input type="text" value="<?php echo $coprologia->nombreExamen; ?>"  class="form-control"  id="encabezadoExamenV" name="encabezadoExamen"></td>
+                                                <td><input type="text" value="<?php echo $varios->encabezadoVarios; ?>"  class="form-control"  id="encabezadoExamenV" name="encabezadoExamen"></td>
                                             </tr>
                                             <tr>
                                                 <td><strong>EXAMEN INDICADO</strong></td>
-                                                <td><input type="text" value="<?php echo $coprologia->fechaExamen; ?>" class="form-control"  id="indicadoExamenV" name="indicadoExamen"></td>
+                                                <td><input type="text" value="<?php echo $varios->nombreExamen; ?>" class="form-control"  id="indicadoExamenV" name="indicadoExamen"></td>
                                             </tr>
                                         </table>
                                         <!-- <textarea class="form-control" rows="20" name="detalleVarios" id="detalleVarios"></textarea> -->
-                                        <div id="dvVarios"></div>
+                                        <div id="dvVarios"><?php echo base64_decode($varios->detalleVarios); ?></div>
                                     </div>
                                     <div class="col-md-2 text-center">
                                         <p><strong>HISTORIAL</strong></p>
@@ -918,7 +918,7 @@
                                                     <td>Opcion</td>
                                                 </tr>
                                                 <?php 
-                                                    foreach ($historial_coprologia as $row) {
+                                                    foreach ($historial_varios as $row) {
                                                         if($row->fechaExamen == date("Y-m-d")){
                                                             echo '<tr class="alert-primary">';
                                                         }else{
@@ -927,55 +927,14 @@
                                                         echo ' <td>'.$row->fechaExamen.'</td>';
                                                         echo ' <td>
     
-                                                                <input type="hidden" class="colorC" value="'.$row->color.'">
-                                                                <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
-                                                                <input type="hidden" class="mucus" value="'.$row->mucus.'">
-                                                                <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
-                                                                <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
-                                                                <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
-                                                                <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
-                                                                <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
-                                                                <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
-                                                                <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
-                                                                <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
-                                                                <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
-                                                                <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
-                                                                <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
-                                                                <input type="hidden" class="coliT" value="'.$row->coliT.'">
-                                                                <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
-                                                                <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
-                                                                <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
-                                                                <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
-                                                                <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
-                                                                <input type="hidden" class="guodH" value="'.$row->guodH.'">
-                                                                <input type="hidden" class="guodL" value="'.$row->guodL.'">
-                                                                <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
-                                                                <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
-                                                                <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
-                                                                <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
-                                                                <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
-                                                                <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
-                                                                <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
-                                                                <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
-                                                                <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
-                                                                <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
-                                                                <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
-                                                                <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
-                                                                <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
-                                                                <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
-                                                                <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
-                                                                <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
-                                                                <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
-                                                                <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
-                                                                <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
-                                                                <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
-                                                                <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
-    
+                                                                <input type="hidden" class="encabezadoVarios" value="'.$row->encabezadoVarios.'">
+                                                                <input type="hidden" class="detalleVarios" value="'.$row->detalleVarios.'">
                                                                 <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="idVarios" value="'.$row->idVarios.'">
     
-                                                                <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="'.base_url().'Laboratorio/varios_lab_pdf/'.$row->idVarios.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                <a href="#" title="Ver examen" class="verVarios"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -991,64 +950,14 @@
                                                     <td>Opcion</td>
                                                 </tr>
                                                 <?php 
-                                                    foreach ($historial_coprologia as $row) {
-                                                        if($row->fechaExamen == date("Y-m-d")){
-                                                            echo '<tr class="alert-primary">';
-                                                        }else{
-                                                            echo '<tr>';
-                                                        }
-                                                        echo ' <td>'.$row->fechaExamen.'</td>';
+                                                    foreach ($bosquejos as $row) {
+                                                        echo '<tr>';
+                                                        echo ' <td>'.$row->examenBosquejo.'</td>';
                                                         echo ' <td>
-    
-                                                                <input type="hidden" class="colorC" value="'.$row->color.'">
-                                                                <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
-                                                                <input type="hidden" class="mucus" value="'.$row->mucus.'">
-                                                                <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
-                                                                <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
-                                                                <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
-                                                                <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
-                                                                <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
-                                                                <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
-                                                                <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
-                                                                <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
-                                                                <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
-                                                                <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
-                                                                <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
-                                                                <input type="hidden" class="coliT" value="'.$row->coliT.'">
-                                                                <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
-                                                                <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
-                                                                <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
-                                                                <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
-                                                                <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
-                                                                <input type="hidden" class="guodH" value="'.$row->guodH.'">
-                                                                <input type="hidden" class="guodL" value="'.$row->guodL.'">
-                                                                <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
-                                                                <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
-                                                                <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
-                                                                <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
-                                                                <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
-                                                                <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
-                                                                <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
-                                                                <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
-                                                                <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
-                                                                <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
-                                                                <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
-                                                                <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
-                                                                <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
-                                                                <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
-                                                                <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
-                                                                <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
-                                                                <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
-                                                                <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
-                                                                <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
-                                                                <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
-                                                                <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
-    
-                                                                <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
-                                                                <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
-    
-                                                                <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <input type="hidden" class="encabezadoBosquejo" value="'.$row->encabezadoBosquejo.'">
+                                                                <input type="hidden" class="examenBosquejo" value="'.$row->examenBosquejo.'">
+                                                                <input type="hidden" class="detalleBosquejo" value="'.$row->detalleBosquejo.'">
+                                                                <a href="#" title="Ver examen" class="verBosquejo"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -1058,8 +967,11 @@
                                         </div>
 
                                         <div class="mt-2">
-                                            <button type="button" class="btn btn-primary btn-block">Guardar bosquejo</button>
-                                            <button type="button" class="btn btn-primary btn-block">Guardar examen</button>
+                                            <input type="hidden" class="form-control" value="<?php echo $varios->idVarios; ?>" name="idExamen" id="idExamenV"> 
+                                            <input type="hidden" class="form-control" value="<?php echo $consulta; ?>" name="idConsulta" id="idConsultaV"> 
+                                            <button type="button" id="btnNuevoExamen" class="btn btn-outline-success btn-block">Nuevo</button>
+                                            <button type="button" id="btnGuardarBosquejo" class="btn btn-outline-primary btn-block">Guardar bosquejo</button>
+                                            <button type="button" id="btnGuardarExamen" class="btn btn-primary btn-block">Guardar examen</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1067,7 +979,7 @@
                         </div>
     
                         <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
-                        <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
+                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <table class="table table-borderless">
@@ -1237,7 +1149,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -1310,7 +1222,7 @@
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
     
                                                                 <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver receta" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="#" title="Ver examen" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -1525,5 +1437,213 @@
 
 
     });
+
+    $(document).on("click", ".verBosquejo", function(e){
+        e.preventDefault();
+        $("#encabezadoExamenV").val($(this).closest('tr').find('.encabezadoBosquejo').val());
+        $("#indicadoExamenV").val($(this).closest('tr').find('.examenBosquejo').val());
+        $(".note-editable").html(checkUTF8(atob($(this).closest('tr').find('.detalleBosquejo').val())))
+
+
+    });
+
+
+    $(document).on("click", "#btnGuardarBosquejo", function(e){
+        e.preventDefault();
+
+        var datos = {
+            encabezado: $("#encabezadoExamenV").val(),
+            examenV: $("#indicadoExamenV").val(),
+            detalle: $(".note-editable").html()
+        }
+
+        $.ajax({
+            url: "../../guardar_bosquejo",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error(registro.respuesta, 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error(registro.respuesta, 'Aviso!');
+
+                    }
+            }
+        });
+
+    });
+
+    $(document).on("click", "#btnGuardarExamen", function(e){
+        e.preventDefault();
+
+        var datos = {
+            fecha: $("#fechaExamenV").val(),
+            encabezado: $("#encabezadoExamenV").val(),
+            examenV: $("#indicadoExamenV").val(),
+            detalle: $(".note-editable").html(),
+            idExamen: $("#idExamenV").val(),
+            idConsulta: $("#idConsultaV").val()
+            
+        }
+
+        $.ajax({
+            url: "../../guardar_varios_lab",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            location.reload();
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error(registro.respuesta, 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error(registro.respuesta, 'Aviso!');
+
+                    }
+            }
+        });
+
+    });
+
+    $(document).on("click", "#btnNuevoExamen", function(e){
+        e.preventDefault();
+
+        var datos = {
+            idConsulta: $("#idConsultaV").val()
+        }
+
+        $.ajax({
+            url: "../../nuevo_varios_lab",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                var registro = eval(respuesta);
+                if (Object.keys(registro).length > 0){
+                    if(registro.estado == 1){
+                        location.reload();
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error(registro.respuesta, 'Aviso!');
+                    }
+                }else{
+                    toastr.remove();
+                    toastr.options = {
+                        "positionClass": "toast-top-left",
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1000",
+                        "extendedTimeOut": "50",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        },
+                    toastr.error(registro.respuesta, 'Aviso!');
+
+                }
+            }
+        });
+
+    });
+
+    $(document).on("click", ".verVarios", function(e){
+        e.preventDefault();
+        $("#fechaExamenV").val($(this).closest('tr').find('.fechaExamen').val());
+        $("#encabezadoExamenV").val($(this).closest('tr').find('.encabezadoVarios').val());
+        $("#indicadoExamenV").val($(this).closest('tr').find('.nombreExamen').val());
+        $(".note-editable").html(checkUTF8(atob($(this).closest('tr').find('.detalleVarios').val())))
+        $("#idExamenV").val($(this).closest('tr').find('.idVarios').val());
+
+    });
+    function checkUTF8(text) {
+        var utf8Text = text;
+        try {
+            // Try to convert to utf-8
+            utf8Text = decodeURIComponent(escape(text));
+            // If the conversion succeeds, text is not utf-8
+        }catch(e) {
+            // console.log(e.message); // URI malformed
+            // This exception means text is utf-8
+        }   
+        return utf8Text; // returned text is always utf-8
+    }
 
 </script>
