@@ -58,9 +58,9 @@
 	<!--<script src="<?php echo base_url(); ?>public/tema/assets/js/index-chart.js"></script>-->
     <script src="<?php echo base_url(); ?>public/tema/assets/js/select2.min.js"></script>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/richtexteditor/rte_theme_default.css" />
-    <script type="text/javascript" src="<?php echo base_url(); ?>public/richtexteditor/rte.js"></script>
-    <script type="text/javascript" src='<?php echo base_url(); ?>public/richtexteditor/plugins/all_plugins.js'></script>
+    <!-- include summernote css/js -->
+    <link href="<?php echo base_url(); ?>public/summernote/summernote.min.css" rel="stylesheet">
+    <script src="<?php echo base_url(); ?>public/summernote/summernote.min.js"></script>
 
 
 </head>
