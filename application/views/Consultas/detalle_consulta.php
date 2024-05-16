@@ -65,7 +65,7 @@
         padding: 3px 5px 0px 0px;
     }
 
-    #dvPruebasEspeciales{
+    #dvPruebasEspeciales, .contenedorExamen{
         margin: 0 auto;
         margin-bottom: 200px;
         border: 1px solid #000;
@@ -396,7 +396,7 @@
                                                     <div class="px-3"> 
                                                         <div class="tab-content">
                                                             <div role="tabpanel" class="tab-pane active show fade in" id="hematologia">
-                                                                <form action="<?php echo base_url(); ?>Laboratorio/guardar_hematologia_lab" method="post">
+                                                                <!-- <form action="<?php echo base_url(); ?>Laboratorio/guardar_hematologia_lab" method="post">
                                                                     <div class="row">
                                                                         <div class="col-md-10">
                                                                             <table class="table table-borderless">
@@ -528,11 +528,7 @@
                                                                                     </tr>
                                                                                     <?php 
                                                                                         foreach ($historial_hematologia as $row) {
-                                                                                            if($row->fechaConsulta == date("Y-m-d")){
-                                                                                                echo '<tr class="alert-primary">';
-                                                                                            }else{
-                                                                                                echo '<tr>';
-                                                                                            }
+                                                                                            echo '<tr>';
                                                                                             echo ' <td>'.$row->fechaConsulta.'</td>';
                                                                                             echo ' <td>
                                         
@@ -570,7 +566,60 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </form>
+                                                                </form> -->
+                                                                <div class="contenedorExamen">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 text-center">
+                                                                            <img src="<?php echo base_url(); ?>public/img/logo.png" width="250">
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <table class="table table-borderless table-sm text-center">
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong>Lorem ipsum dolor sit amet.</strong></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <div class="row">
+                                                                        <table class="table table-borderless table-sm">
+                                                                            <tr>
+                                                                                <td><strong>Paciente:</strong></td>
+                                                                                <td></td>
+                                                                                <td><strong>Edad:</strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><strong>Médico: </strong></td>
+                                                                                <td></td>
+                                                                                <td><strong>Fecha: </strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+    
+                                                                    <div class="row">
+                                                                        <p>Examen</p>
+                                                                        <table class="table table-bordered thead-primary w-100 text-center table-sm">
+                                                                            <thead>
+                                                                                <tr class="bg-primary">
+                                                                                    <th>Parametro</th>
+                                                                                    <th>Resultado</th>
+                                                                                    <th>Valor de referancia</th>
+                                                                                </tr>
+                                                                            </thead>
+    
+                                                                            <tbody id="tbodyCoprologia"></tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                         
                                                             <div role="tabpanel" class="tab-pane fade" id="quimicaSanguinea">
@@ -2264,6 +2313,9 @@
         $("#monocitos").val($(this).closest('tr').find('.monocitos').val());
         $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
         $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
+
+
+        
     });
 
 
@@ -2391,5 +2443,8 @@
 
 
     });
+
+
+
 </script>
 

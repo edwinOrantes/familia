@@ -211,13 +211,13 @@
                         <td><strong>Endolimax Nana</strong></td>
                         <td> <?php echo $coprologia->nanaT; ?></td>
                         <td> <?php echo $coprologia->nanaQ; ?></td>
-                        <td><strong>Ancylostoma guod</strong></td>
+                        <td><strong>Ancylostoma duodenale</strong></td>
                         <td><?php echo $coprologia->guodH; ?></td>
                         <td><?php echo $coprologia->guodL; ?></td>
                     </tr>
 
                     <tr>
-                        <td><strong>Chilomastic mesnili</strong></td>
+                        <td><strong>Chilomastix mesnili</strong></td>
                         <td> <?php echo $coprologia->mesniliT; ?></td>
                         <td> <?php echo $coprologia->mesniliQ; ?></td>
                         <td><strong>Enterobios vermic</strong></td>
@@ -229,7 +229,7 @@
                         <td><strong>Giardia Lambia</strong></td>
                         <td> <?php echo $coprologia->lambiaT; ?> </td>
                         <td><?php echo $coprologia->lambiaQ; ?></td>
-                        <td><strong>Strongiloides Sterco</strong></td>
+                        <td><strong>Strongyloides stercoralis</strong></td>
                         <td><?php echo $coprologia->stercoH; ?></td>
                         <td><?php echo $coprologia->stercoL; ?></td>
                     </tr>
