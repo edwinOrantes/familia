@@ -979,7 +979,7 @@
                         </div>
     
                         <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
-                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_coprologia_lab" method="post">
+                            <form action="<?php echo base_url(); ?>Laboratorio/guardar_bacteriologia_lab" method="post">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <table class="table table-borderless">
@@ -987,145 +987,145 @@
                                                     <tr>
                                                         <td colspan="3">
                                                             <strong>Examen indicado</strong><br>
-                                                            <input type="text" class="form-control" name="resultadoDirecto" id="resultadoDirecto">
+                                                            <input type="text" value="<?php echo $bacteriologia->nombreExamen; ?>" class="form-control" name="nombreExamen" id="nombreExamenB">
                                                         </td>
                                                         <td colspan="3">
                                                             <strong>Fecha</strong><br>
-                                                            <input type="date" value="<?php echo $coprologia->fechaExamen; ?>" class="form-control"  id="fechaExamenV" name="fechaExamen">
+                                                            <input type="date" value="<?php echo $bacteriologia->fechaExamen; ?>" class="form-control"  id="fechaExamenB" name="fechaExamen">
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td colspan="6">
                                                             <strong>Resultado </strong><br>
-                                                            <input type="text" size="92" name="recuentoBacteriologia" id="recuentoBacteriologia" class="form-control">
+                                                            <input type="text" value="<?php echo $bacteriologia->resultadoExamen; ?>" size="92" name="resultadoBacteriologia" id="resultadoBacteriologia" class="form-control">
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td colspan="6">
                                                             <strong>Se aisla</strong><br>
-                                                            <input type="text" size="92" name="procedenciaDirecto" id="procedenciaDirecto" class="form-control">
+                                                            <input type="text" value="<?php echo $bacteriologia->seAisla; ?>" size="92" name="seAisla" id="seAisla" class="form-control">
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Cefixime</strong></td>
-                                                        <td><input type="text" class="form-control" name="cefixime" id="cefixime"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefixime; ?>" class="form-control" name="cefixime" id="cefixime"></td>
                                                         <td><strong> Amikacina</strong></td>
-                                                        <td><input type="text" class="form-control" name="amikacina" id="amikacina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->amikacina; ?>" class="form-control" name="amikacina" id="amikacina"></td>
                                                         <td><strong> Levofloxacina</strong></td>
-                                                        <td><input type="text" class="form-control" name="levofloxacina" id="levofloxacina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->levofloxacina; ?>" class="form-control" name="levofloxacina" id="levofloxacina"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Ceftriaxona </strong></td>
-                                                        <td><input type="text" class="form-control" name="ceftriaxona" id="ceftriaxona"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->ceftriaxona; ?>" class="form-control" name="ceftriaxona" id="ceftriaxona"></td>
                                                         <td><strong> Azitromicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="azitromicina" id="azitromicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->azitromicina; ?>" class="form-control" name="azitromicina" id="azitromicina"></td>
                                                         <td><strong> Imipenem </strong></td>
-                                                        <td><input type="text" class="form-control" name="imipenem" id="imipenem"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->imipenem; ?>" class="form-control" name="imipenem" id="imipenem"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Meropenem </strong></td>
-                                                        <td><input type="text" class="form-control" name="meropenem" id="meropenem"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->meropenem; ?>" class="form-control" name="meropenem" id="meropenem"></td>
                                                         <td><strong> Fosfomicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="fosfocil" id="fosfocil"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->fosfocil; ?>" class="form-control" name="fosfocil" id="fosfocil"></td>
                                                         <td><strong> Ciprofloxacina </strong></td>
-                                                        <td><input type="text" class="form-control" name="ciprofloxacina" id="ciprofloxacina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->ciprofloxacina; ?>" class="form-control" name="ciprofloxacina" id="ciprofloxacina"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Penicilina </strong></td>
-                                                        <td><input type="text" class="form-control" name="penicilina" id="penicilina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->penicilina; ?>" class="form-control" name="penicilina" id="penicilina"></td>
                                                         <td><strong> Vancomicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="vancomicina" id="vancomicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->vancomicina; ?>" class="form-control" name="vancomicina" id="vancomicina"></td>
                                                         <td><strong> Ácido nalidíxico </strong></td>
-                                                        <td><input type="text" class="form-control" name="acidoNalidixico" id="acidoNalidixico"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->acidoNalidixico; ?>" class="form-control" name="acidoNalidixico" id="acidoNalidixico"></td>
                                                     </tr>
 
                                                     <tr>
                                                         
                                                         <td><strong> Gentamicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="gentamicina" id="gentamicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->gentamicina; ?>" class="form-control" name="gentamicina" id="gentamicina"></td>
                                                         <td><strong> Nitrofurantoina </strong></td>
-                                                        <td><input type="text" class="form-control" name="nitrofurantoina" id="nitrofurantoina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->nitrofurantoina; ?>" class="form-control" name="nitrofurantoina" id="nitrofurantoina"></td>
                                                         <td><strong> Ceftazidime </strong></td>
-                                                        <td><input type="text" class="form-control" name="ceftazimide" id="ceftazimide"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->ceftazimide; ?>" class="form-control" name="ceftazimide" id="ceftazimide"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Cefotaxime </strong></td>
-                                                        <td><input type="text" class="form-control" name="cefotaxime" id="cefotaxime"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefotaxime; ?>" class="form-control" name="cefotaxime" id="cefotaxime"></td>
                                                         <td><strong> Clindamicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="clindamicina" id="clindamicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->clindamicina; ?>" class="form-control" name="clindamicina" id="clindamicina"></td>
                                                         <td><strong> Trimetoprima/Sulfametoxazol</strong></td>
-                                                        <td><input type="text" class="form-control" name="trimetropimSulfa" id="trimetropimSulfa"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->trimetropimSulfa; ?>" class="form-control" name="trimetropimSulfa" id="trimetropimSulfa"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Ampicilina/Sulbactam </strong></td>
-                                                        <td><input type="text" class="form-control" name="ampicilina" id="ampicilina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->ampicilina; ?>" class="form-control" name="ampicilina" id="ampicilina"></td>
                                                         <td><strong> Piperacilina/Tazobactam </strong></td>
-                                                        <td><input type="text" class="form-control" name="piperacilina" id="piperacilina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->piperacilina; ?>" class="form-control" name="piperacilina" id="piperacilina"></td>
                                                         <td><strong> Amoxicilina/Ácido clavulánico</strong></td>
-                                                        <td><input type="text" class="form-control" name="amoxicilina" id="amoxicilina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->amoxicilina; ?>" class="form-control" name="amoxicilina" id="amoxicilina"></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Claritromicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="claritromicina" id="claritromicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->claritromicina; ?>" class="form-control" name="claritromicina" id="claritromicina"></td>
                                                         <td><strong> Cefuroxime </strong></td>
-                                                        <td><input type="text" class="form-control" name="cefuroxime" id="cefuroxime"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefuroxime; ?>" class="form-control" name="cefuroxime" id="cefuroxime"></td>
                                                         <td><strong> Cefepime </strong></td>
-                                                        <td><input type="text" class="form-control" name="cefepime" id="cefepime"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefepime; ?>" class="form-control" name="cefepime" id="cefepime"></td>
                                                         
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Metronidazol </strong></td>
-                                                        <td><input type="text" class="form-control" name="metronidazol" id="metronidazol"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->metronidazol; ?>" class="form-control" name="metronidazol" id="metronidazol"></td>
                                                         <td><strong> Norfloxacina </strong></td>
-                                                        <td><input type="text" class="form-control" name="norfloxacina" id="norfloxacina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->norfloxacina; ?>" class="form-control" name="norfloxacina" id="norfloxacina"></td>
                                                         <td><strong> Tobramicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="tobramicina" id="tobramicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->tobramicina; ?>" class="form-control" name="tobramicina" id="tobramicina"></td>
                                                         
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Ertapenem </strong></td>
-                                                        <td><input type="text" class="form-control" name="ertapenem" id="ertapenem"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->ertapenem; ?>" class="form-control" name="ertapenem" id="ertapenem"></td>
                                                         <td><strong> Doripenem </strong></td>
-                                                        <td><input type="text" class="form-control" name="doripenem" id="doripenem"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->doripenem; ?>" class="form-control" name="doripenem" id="doripenem"></td>
                                                         <td><strong> Colistin </strong></td>
-                                                        <td><input type="text" class="form-control" name="colistin" id="colistin"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->colistin; ?>" class="form-control" name="colistin" id="colistin"></td>
                                                         
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Linezolid </strong></td>
-                                                        <td><input type="text" class="form-control" name="linezolid" id="linezolid"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->linezolid; ?>" class="form-control" name="linezolid" id="linezolid"></td>
                                                         <td><strong> Moxifloxacino </strong></td>
-                                                        <td><input type="text" class="form-control" name="moxifloxacino" id="moxifloxacino"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->moxifloxacino; ?>" class="form-control" name="moxifloxacino" id="moxifloxacino"></td>
                                                         <td><strong> Kanamicina </strong></td>
-                                                        <td><input type="text" class="form-control" name="kanamicina" id="kanamicina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->kanamicina; ?>" class="form-control" name="kanamicina" id="kanamicina"></td>
                                                         
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Aztreonam </strong></td>
-                                                        <td><input type="text" class="form-control" name="aztreonam" id="aztreonam"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->aztreonam; ?>" class="form-control" name="aztreonam" id="aztreonam"></td>
                                                         <td><strong> Cefaclor </strong></td>
-                                                        <td><input type="text" class="form-control" name="cefaclor" id="cefaclor"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefaclor; ?>" class="form-control" name="cefaclor" id="cefaclor"></td>
                                                         <td><strong> Cefazolina </strong></td>
-                                                        <td><input type="text" class="form-control" name="cefazolina" id="cefazolina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->cefazolina; ?>" class="form-control" name="cefazolina" id="cefazolina"></td>
                                                         
                                                     </tr>
 
                                                     <tr>
                                                         <td><strong> Tetraciclina </strong></td>
-                                                        <td><input type="text" class="form-control" name="tetraciclina" id="tetraciclina"></td>
+                                                        <td><input type="text" value="<?php echo $bacteriologia->tetraciclina; ?>" class="form-control" name="tetraciclina" id="tetraciclina"></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
@@ -1134,7 +1134,8 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td colspan="6"><strong> Observación </strong><br><textarea  class="form-control" name="observacion" id="observacionBacteriologia" cols="96"></textarea></td>
+                                                         
+                                                        <td colspan="6"><strong> Observación </strong><br><textarea  class="form-control" name="observacion" id="observacionBacteriologia" cols="96"><?php echo $bacteriologia->observacionExamen; ?></textarea></td>
                                                     </tr>
 
                                                 </tbody>
@@ -1150,7 +1151,7 @@
                                                     <td>Opcion</td>
                                                 </tr>
                                                 <?php 
-                                                    foreach ($historial_coprologia as $row) {
+                                                    foreach ($historial_bacteriologia as $row) {
                                                         if($row->fechaExamen == date("Y-m-d")){
                                                             echo '<tr class="alert-primary">';
                                                         }else{
@@ -1159,55 +1160,53 @@
                                                         echo ' <td>'.$row->fechaExamen.'</td>';
                                                         echo ' <td>
     
-                                                                <input type="hidden" class="colorC" value="'.$row->color.'">
-                                                                <input type="hidden" class="consistencia" value="'.$row->consistencia.'">
-                                                                <input type="hidden" class="mucus" value="'.$row->mucus.'">
-                                                                <input type="hidden" class="hematiesC" value="'.$row->hematies.'">
-                                                                <input type="hidden" class="leucocitos" value="'.$row->leucocitos.'">
-                                                                <input type="hidden" class="bacteriasC" value="'.$row->bacterias.'">
-                                                                <input type="hidden" class="levaduras" value="'.$row->levaduras.'">
-                                                                <input type="hidden" class="restosAM" value="'.$row->restosAM.'">
-                                                                <input type="hidden" class="otrosUno" value="'.$row->otrosUno.'">
-                                                                <input type="hidden" class="otrosDosC" value="'.$row->otrosDos.'">
-                                                                <input type="hidden" class="histolyticaT" value="'.$row->histolyticaT.'">
-                                                                <input type="hidden" class="histolyticaQ" value="'.$row->histolyticaQ.'">
-                                                                <input type="hidden" class="ascarisH" value="'.$row->ascarisH.'">
-                                                                <input type="hidden" class="ascarisL" value="'.$row->ascarisL.'">
-                                                                <input type="hidden" class="coliT" value="'.$row->coliT.'">
-                                                                <input type="hidden" class="coliQ" value="'.$row->coliQ.'">
-                                                                <input type="hidden" class="trinchiuraH" value="'.$row->trinchiuraH.'">
-                                                                <input type="hidden" class="trinchiuraL" value="'.$row->trinchiuraL.'">
-                                                                <input type="hidden" class="nanaT" value="'.$row->nanaT.'">
-                                                                <input type="hidden" class="nanaQ" value="'.$row->nanaQ.'">
-                                                                <input type="hidden" class="guodH" value="'.$row->guodH.'">
-                                                                <input type="hidden" class="guodL" value="'.$row->guodL.'">
-                                                                <input type="hidden" class="mesniliT" value="'.$row->mesniliT.'">
-                                                                <input type="hidden" class="mesniliQ" value="'.$row->mesniliQ.'">
-                                                                <input type="hidden" class="vermicH" value="'.$row->vermicH.'">
-                                                                <input type="hidden" class="vermicL" value="'.$row->vermicL.'">
-                                                                <input type="hidden" class="lambiaT" value="'.$row->lambiaT.'">
-                                                                <input type="hidden" class="lambiaQ" value="'.$row->lambiaQ.'">
-                                                                <input type="hidden" class="stercoH" value="'.$row->stercoH.'">
-                                                                <input type="hidden" class="stercoL" value="'.$row->stercoL.'">
-                                                                <input type="hidden" class="hominisT" value="'.$row->hominisT.'">
-                                                                <input type="hidden" class="hominisQ" value="'.$row->hominisQ.'">
-                                                                <input type="hidden" class="hymenolepisH" value="'.$row->hymenolepisH.'">
-                                                                <input type="hidden" class="hymenolepisL" value="'.$row->hymenolepisL.'">
-                                                                <input type="hidden" class="balantidiumT" value="'.$row->balantidiumT.'">
-                                                                <input type="hidden" class="balantidiumQ" value="'.$row->balantidiumQ.'">
-                                                                <input type="hidden" class="taeniasH" value="'.$row->taeniasH.'">
-                                                                <input type="hidden" class="taeniasL" value="'.$row->taeniasL.'">
-                                                                <input type="hidden" class="blastocystisT" value="'.$row->blastocystisT.'">
-                                                                <input type="hidden" class="blastocystisQ" value="'.$row->blastocystisQ.'">
-                                                                <input type="hidden" class="otrosH" value="'.$row->otrosH.'">
-                                                                <input type="hidden" class="otrosL" value="'.$row->otrosL.'">
-                                                                <input type="hidden" class="observacionesC" value="'.$row->observacionesC.'">
+                                                                <input type="hidden" class="cefixime" value="'.$row->cefixime.'">
+                                                                <input type="hidden" class="amikacina" value="'.$row->amikacina.'">
+                                                                <input type="hidden" class="levofloxacina" value="'.$row->levofloxacina.'">
+                                                                <input type="hidden" class="ceftriaxona" value="'.$row->ceftriaxona.'">
+                                                                <input type="hidden" class="azitromicina" value="'.$row->azitromicina.'">
+                                                                <input type="hidden" class="imipenem" value="'.$row->imipenem.'">
+                                                                <input type="hidden" class="meropenem" value="'.$row->meropenem.'">
+                                                                <input type="hidden" class="fosfocil" value="'.$row->fosfocil.'">
+                                                                <input type="hidden" class="ciprofloxacina" value="'.$row->ciprofloxacina.'">
+                                                                <input type="hidden" class="penicilina" value="'.$row->penicilina.'">
+                                                                <input type="hidden" class="vancomicina" value="'.$row->vancomicina.'">
+                                                                <input type="hidden" class="acidoNalidixico" value="'.$row->acidoNalidixico.'">
+                                                                <input type="hidden" class="gentamicina" value="'.$row->gentamicina.'">
+                                                                <input type="hidden" class="nitrofurantoina" value="'.$row->nitrofurantoina.'">
+                                                                <input type="hidden" class="ceftazimide" value="'.$row->ceftazimide.'">
+                                                                <input type="hidden" class="cefotaxime" value="'.$row->cefotaxime.'">
+                                                                <input type="hidden" class="clindamicina" value="'.$row->clindamicina.'">
+                                                                <input type="hidden" class="trimetropimSulfa" value="'.$row->trimetropimSulfa.'">
+                                                                <input type="hidden" class="ampicilina" value="'.$row->ampicilina.'">
+                                                                <input type="hidden" class="piperacilina" value="'.$row->piperacilina.'">
+                                                                <input type="hidden" class="amoxicilina" value="'.$row->amoxicilina.'">
+                                                                <input type="hidden" class="claritromicina" value="'.$row->claritromicina.'">
+                                                                <input type="hidden" class="cefuroxime" value="'.$row->cefuroxime.'">
+                                                                <input type="hidden" class="cefepime" value="'.$row->cefepime.'">
+                                                                <input type="hidden" class="metronidazol" value="'.$row->metronidazol.'">
+                                                                <input type="hidden" class="norfloxacina" value="'.$row->norfloxacina.'">
+                                                                <input type="hidden" class="tobramicina" value="'.$row->tobramicina.'">
+                                                                <input type="hidden" class="ertapenem" value="'.$row->ertapenem.'">
+                                                                <input type="hidden" class="doripenem" value="'.$row->doripenem.'">
+                                                                <input type="hidden" class="colistin" value="'.$row->colistin.'">
+                                                                <input type="hidden" class="linezolid" value="'.$row->linezolid.'">
+                                                                <input type="hidden" class="moxifloxacino" value="'.$row->moxifloxacino.'">
+                                                                <input type="hidden" class="kanamicina" value="'.$row->kanamicina.'">
+                                                                <input type="hidden" class="aztreonam" value="'.$row->aztreonam.'">
+                                                                <input type="hidden" class="cefaclor" value="'.$row->cefaclor.'">
+                                                                <input type="hidden" class="cefazolina" value="'.$row->cefazolina.'">
+                                                                <input type="hidden" class="tetraciclina" value="'.$row->tetraciclina.'">
+                                                                <input type="hidden" class="observacionExamen" value="'.$row->observacionExamen.'">
     
                                                                 <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="resultadoExamen" value="'.$row->resultadoExamen.'">
+                                                                <input type="hidden" class="seAisla" value="'.$row->seAisla.'">
+                                                                <input type="hidden" class="idBacteriologia" value="'.$row->idBacteriologia.'">
     
-                                                                <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                <a href="#" title="Ver examen" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
+                                                                <a href="'.base_url().'Laboratorio/bacteriologia_lab_pdf/'.$row->idBacteriologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                <a href="#" title="Ver examen" class="verBacteriologia"><i class="fa fa-file text-success"></i></a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -1218,7 +1217,9 @@
                                         
                                         <div>
                                             <br>
-                                            <button type="button" id="btnGuardarExamen" class="btn btn-primary btn-block mt-3">Guardar examen</button>
+                                            <input type="text" class="form-control" value="<?php echo $bacteriologia->idBacteriologia; ?>" name="idBacteriologia" id="idBacteriologia"> 
+                                            <input type="hidden" class="form-control" value="<?php echo $consulta; ?>" name="idConsulta"> 
+                                            <button class="btn btn-primary btn-block mt-3">Guardar examen</button>
                                         </div>
                                         
                                     </div>
@@ -1302,7 +1303,6 @@
         $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
         $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
     });
-
 
     $(document).on("click", ".verQuimica", function(e){
         e.preventDefault();
@@ -1425,6 +1425,105 @@
         $("#otrosHC").val($(this).closest('tr').find('.otrosH').val());
         $("#otrosLC").val($(this).closest('tr').find('.otrosL').val());
         $("#observacionesCC").val($(this).closest('tr').find('.observacionesC').val());
+
+
+    });
+
+    
+    $(document).on("click", ".verBacteriologia", function(e){
+        e.preventDefault();
+
+        $("#nombreExamenB").val($(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamenB").val($(this).closest('tr').find('.fechaExamen').val());
+        $("#resultadoBacteriologia").val($(this).closest('tr').find('.resultadoExamen').val());
+        $("#seAisla").val($(this).closest('tr').find('.seAisla').val());
+
+        $("#cefixime").val($(this).closest('tr').find('.cefixime').val());
+        $("#amikacina").val($(this).closest('tr').find('.amikacina').val());
+        $("#levofloxacina").val($(this).closest('tr').find('.levofloxacina').val());
+        $("#ceftriaxona").val($(this).closest('tr').find('.ceftriaxona').val());
+        $("#azitromicina").val($(this).closest('tr').find('.azitromicina').val());
+        $("#imipenem").val($(this).closest('tr').find('.imipenem').val());
+        $("#meropenem").val($(this).closest('tr').find('.meropenem').val());
+        $("#fosfocil").val($(this).closest('tr').find('.fosfocil').val());
+        $("#ciprofloxacina").val($(this).closest('tr').find('.ciprofloxacina').val());
+        $("#penicilina").val($(this).closest('tr').find('.penicilina').val());
+        $("#vancomicina").val($(this).closest('tr').find('.vancomicina').val());
+        $("#acidoNalidixico").val($(this).closest('tr').find('.acidoNalidixico').val());
+        $("#gentamicina").val($(this).closest('tr').find('.gentamicina').val());
+        $("#nitrofurantoina").val($(this).closest('tr').find('.nitrofurantoina').val());
+        $("#ceftazimide").val($(this).closest('tr').find('.ceftazimide').val());
+        $("#cefotaxime").val($(this).closest('tr').find('.cefotaxime').val());
+        $("#clindamicina").val($(this).closest('tr').find('.clindamicina').val());
+        $("#trimetropimSulfa").val($(this).closest('tr').find('.trimetropimSulfa').val());
+        $("#ampicilina").val($(this).closest('tr').find('.ampicilina').val());
+        $("#piperacilina").val($(this).closest('tr').find('.piperacilina').val());
+        $("#amoxicilina").val($(this).closest('tr').find('.amoxicilina').val());
+        $("#claritromicina").val($(this).closest('tr').find('.claritromicina').val());
+        $("#cefuroxime").val($(this).closest('tr').find('.cefuroxime').val());
+        $("#cefepime").val($(this).closest('tr').find('.cefepime').val());
+        $("#metronidazol").val($(this).closest('tr').find('.metronidazol').val());
+        $("#norfloxacina").val($(this).closest('tr').find('.norfloxacina').val());
+        $("#tobramicina").val($(this).closest('tr').find('.tobramicina').val());
+        $("#ertapenem").val($(this).closest('tr').find('.ertapenem').val());
+        $("#doripenem").val($(this).closest('tr').find('.doripenem').val());
+        $("#colistin").val($(this).closest('tr').find('.colistin').val());
+        $("#linezolid").val($(this).closest('tr').find('.linezolid').val());
+        $("#moxifloxacino").val($(this).closest('tr').find('.moxifloxacino').val());
+        $("#kanamicina").val($(this).closest('tr').find('.kanamicina').val());
+        $("#aztreonam").val($(this).closest('tr').find('.aztreonam').val());
+        $("#cefaclor").val($(this).closest('tr').find('.cefaclor').val());
+        $("#cefazolina").val($(this).closest('tr').find('.cefazolina').val());
+        $("#tetraciclina").val($(this).closest('tr').find('.tetraciclina').val());
+        $("#observacionBacteriologia").val($(this).closest('tr').find('.observacionExamen').val());
+        $("#idBacteriologia").val($(this).closest('tr').find('.idBacteriologia').val());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     });

@@ -4981,6 +4981,10 @@ class Laboratorio extends CI_Controller {
             
             $data["varios"] = $this->Laboratorio_Model->obtenerVarios($id);
             $data["historial_varios"] = $this->Laboratorio_Model->historialVarios($data["paciente"]->idPaciente);
+
+
+            $data["bacteriologia"] = $this->Laboratorio_Model->obtenerBacteriologia($id);
+            $data["historial_bacteriologia"] = $this->Laboratorio_Model->historialBacteriologia($data["paciente"]->idPaciente);
             
             //
             $data["bosquejos"] = $this->Laboratorio_Model->obtenerBosquejos();
@@ -5130,6 +5134,7 @@ class Laboratorio extends CI_Controller {
 
             // echo json_encode($datos);
         }
+
 
         public function urianalisis_pdf($id = null){
             $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDFU($id);
@@ -5289,6 +5294,69 @@ class Laboratorio extends CI_Controller {
             // echo json_encode($data['coprologia']);
 
         }
+        
+        public function guardar_bacteriologia_lab(){
+            $datos = $this->input->post();
+            $consulta = $datos["idConsulta"];
+            unset($datos["idConsulta"]);
+            $bool = $this->Laboratorio_Model->guardarBacteriologia($datos);
+            if($bool){
+                $this->session->set_flashdata("exito","Los datos fueron guardados con exito!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }else{
+                $this->session->set_flashdata("error","Error al guardar los datos!");
+                redirect(base_url()."Laboratorio/detalle_consulta/$consulta/");
+            }
+
+            // echo json_encode($datos);
+        }
+
+        public function bacteriologia_lab_pdf($id = null){
+            $data['cabecera'] = $this->Laboratorio_Model->cabeceraPDFB($id);
+            $data['bacteriologia'] = $this->Laboratorio_Model->bacteriologiaPDF($id);
+
+            // Factura
+                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L', 'img_dpi' => 96]);
+                $mpdf = new \Mpdf\Mpdf([
+                    'margin_left' => 15,
+                    'margin_right' => 15,
+                    'margin_top' => 15,
+                    'margin_bottom' => 25,
+                    'margin_header' => 10,
+                    'margin_footer' => 25
+                ]);
+                //$mpdf->setFooter('{PAGENO}');
+                $mpdf->SetHTMLFooter('
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480">
+                                <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
+                            </td>
+                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
+                        </tr>
+                    </table>');
+                $mpdf->SetProtection(array('print'));
+                $mpdf->SetTitle("Centro Médico La Familia");
+                $mpdf->SetAuthor("Edwin Orantes");
+                $mpdf->showWatermarkText = true;
+                $mpdf->watermark_font = 'DejaVuSansCondensed';
+                $mpdf->watermarkTextAlpha = 0.1;
+                $mpdf->SetDisplayMode('fullpage');
+                //$mpdf->AddPage('L'); //Voltear Hoja
+
+                $html = $this->load->view('base/header', $data,true); 
+                $html = $this->load->view('Laboratorio/bacteriologia_pdf', $data,true); // Cargando hoja de estilos
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('hematologia_pdf.pdf', 'I');
+            // Fin
+
+            //    echo json_encode($data['urianalisis']);
+
+        }
+
+
 
         public function guardar_bosquejo(){
             if($this->input->is_ajax_request()){

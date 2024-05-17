@@ -1895,6 +1895,7 @@ class Laboratorio_Model extends CI_Model {
             return $datos->row();
         }
 
+
         public function guardarVariosLab($data = null){
             if($data != null){
                 $sql = "UPDATE tbl_varios_lab SET 
@@ -1952,6 +1953,63 @@ class Laboratorio_Model extends CI_Model {
             return $datos->row();
         }
 
+        
+        public function obtenerBacteriologia($id = null){
+            $sql = "SELECT * FROM tbl_bacteriologia_lab AS b WHERE b.idConsulta = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function guardarBacteriologia($data = null){
+            if($data != null){
+                $sql = "UPDATE tbl_bacteriologia_lab SET 
+                        nombreExamen = ?, fechaExamen = ?, resultadoExamen = ?, seAisla = ?, cefixime = ?, amikacina = ?, levofloxacina = ?, 
+                        ceftriaxona = ?, azitromicina = ?, imipenem = ?, meropenem = ?, fosfocil = ?, ciprofloxacina = ?, penicilina = ?, 
+                        vancomicina = ?, acidoNalidixico = ?, gentamicina = ?, nitrofurantoina = ?, ceftazimide = ?, cefotaxime = ?, 
+                        clindamicina = ?, trimetropimSulfa = ?, ampicilina = ?, piperacilina = ?, amoxicilina = ?, claritromicina = ?, 
+                        cefuroxime = ?, cefepime = ?, metronidazol = ?, norfloxacina = ?, tobramicina = ?, ertapenem = ?, doripenem = ?, 
+                        colistin = ?, linezolid = ?, moxifloxacino = ?, kanamicina = ?, aztreonam = ?, cefaclor = ?, cefazolina = ?, 
+                        tetraciclina = ?, observacionExamen = ?, pivoteCreado = '1' WHERE idBacteriologia = ?";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+
+        public function historialBacteriologia($id = null){
+            $sql = "SELECT * FROM tbl_bacteriologia_lab AS b
+            INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = b.idConsulta)
+            WHERE cl.idPaciente = '$id' AND pivoteCreado = '1' ORDER BY b.idBacteriologia DESC";
+            $datos = $this->db->query($sql);
+            return $datos->result();
+        }
+
+        public function cabeceraPDFB($id = null){
+            $sql = "SELECT
+            cl.codigoConsulta, p.nombrePaciente, p.edadPaciente, cl.fechaConsulta, TIME(b.creadoBacteriologia) as hora, m.nombreMedico 
+            FROM tbl_bacteriologia_lab AS b
+            INNER JOIN tbl_consulta_laboratorio AS cl ON(cl.idConsultaLaboratorio = b.idConsulta)
+            INNER JOIN tbl_pacientes AS p ON(p.idPaciente = cl.idPaciente)
+            INNER JOIN tbl_medicos AS m ON(m.idMedico = cl.idMedico)
+            WHERE b.idBacteriologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+        public function bacteriologiaPDF($id = null){
+            $sql = "SELECT * FROM tbl_bacteriologia_lab AS b WHERE b.idBacteriologia = '$id' ";
+            $datos = $this->db->query($sql);
+            return $datos->row();
+        }
+
+
+
+
         public function obtenerBosquejos(){
             $sql = "SELECT * FROM tbl_bosquejos ORDER BY idBosquejo ASC ";
             $datos = $this->db->query($sql);
@@ -1974,6 +2032,8 @@ class Laboratorio_Model extends CI_Model {
     // Metodos nuevos para examenes
 }
 ?>
+
+
 
 
 
