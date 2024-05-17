@@ -1215,7 +1215,7 @@ CREATE TABLE IF NOT EXISTS `tbl_diagnosticos_cie` (
   PRIMARY KEY (`idDiagnostico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12424 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_diagnosticos_cie: ~12,400 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_diagnosticos_cie: ~12,423 rows (aproximadamente)
 INSERT INTO `tbl_diagnosticos_cie` (`idDiagnostico`, `codigoDiagnostico`, `nombreDiagnostico`, `creadoDiagnostico`) VALUES
 	(1, 'A000', 'COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO CHOLERAE', '0000-00-00 00:00:00'),
 	(2, 'A001', 'COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO EL TOR', '0000-00-00 00:00:00'),

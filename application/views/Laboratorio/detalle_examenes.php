@@ -1723,6 +1723,7 @@
         $("#idExamenV").val($(this).closest('tr').find('.idVarios').val());
 
     });
+    
     function checkUTF8(text) {
         var utf8Text = text;
         try {

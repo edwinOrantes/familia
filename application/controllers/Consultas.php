@@ -43,6 +43,9 @@ class Consultas extends CI_Controller {
 			$data["historial_quimica"] = $this->Laboratorio_Model->historialQuimica($paciente->idPaciente);
 			$data["historial_urianalisis"] = $this->Laboratorio_Model->historialUrianalisis($paciente->idPaciente);
 			$data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($paciente->idPaciente);
+
+            $data["historial_varios"] = $this->Laboratorio_Model->historialVarios($data["paciente"]->idPaciente);
+            $data["historial_bacteriologia"] = $this->Laboratorio_Model->historialBacteriologia($data["paciente"]->idPaciente);
 		// Laboratorio
 		
 		$this->load->view("Base/header");
