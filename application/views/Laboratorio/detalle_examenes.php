@@ -1433,6 +1433,8 @@
     $(document).on("click", ".verBacteriologia", function(e){
         e.preventDefault();
 
+        
+
         $("#nombreExamenB").val($(this).closest('tr').find('.nombreExamen').val());
         $("#fechaExamenB").val($(this).closest('tr').find('.fechaExamen').val());
         $("#resultadoBacteriologia").val($(this).closest('tr').find('.resultadoExamen').val());
@@ -1723,7 +1725,7 @@
         $("#idExamenV").val($(this).closest('tr').find('.idVarios').val());
 
     });
-    
+
     function checkUTF8(text) {
         var utf8Text = text;
         try {
