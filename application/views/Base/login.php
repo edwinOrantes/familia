@@ -23,7 +23,7 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post" action="<?php echo base_url() ?>Home/validar_usuario">
 					<div class="text-center">
-						<img src="<?php echo base_url(); ?>public/img/logo.jpg" width="250" class="mb-3">
+						<img src="<?php echo base_url(); ?>public/img/logo.png" width="250" class="mb-3">
 					</div>	
 
 					<span class="login100-form-title p-b-34 p-t-27">

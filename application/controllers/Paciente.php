@@ -108,6 +108,19 @@ class Paciente extends CI_Controller {
 		$data["expedientes"] = $this->Paciente_Model->hojasPaciente($id);
 		$data["laboratorio"] = $this->Laboratorio_Model->historialConsultasXPaciente($id);
 		$data["consultas"] = $this->Consultas_Model->consultasPorPaciente($id);
+
+		$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($id); // Historial detalles Consultas
+
+		// Laboratorio
+			$data["historial_hematologia"] = $this->Laboratorio_Model->historialHematologia($id);
+			$data["historial_quimica"] = $this->Laboratorio_Model->historialQuimica($id);
+			$data["historial_urianalisis"] = $this->Laboratorio_Model->historialUrianalisis($id);
+			$data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($id);
+			$data["historial_varios"] = $this->Laboratorio_Model->historialVarios($id);
+			$data["historial_bacteriologia"] = $this->Laboratorio_Model->historialBacteriologia($id);
+		// Laboratorio
+
+
 		$this->load->view('Base/header');
 		$this->load->view('Paciente/detalle_paciente', $data);
 		$this->load->view('Base/footer');

@@ -205,7 +205,7 @@
             </div>
 
             <div>
-                <a class="pl-0 ml-0 text-center navbar-brand mr-0"><img src="<?= base_url()?>public/img/logo_celebracion.png" alt="logo"> </a>
+                <!-- <a class="pl-0 ml-0 text-center navbar-brand mr-0"><img src="<?= base_url()?>public/img/logo_celebracion.png" alt="logo"> </a> -->
             </div>
 
             <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">

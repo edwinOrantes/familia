@@ -252,6 +252,7 @@
                                                                 <input type="hidden" class="observacionesH" value="'.$row->observacionesH.'">
                                                                 <input type="hidden" class="examenSolicitado" value="'.$row->examenSolicitado.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="idHematologiaA" value="'.$row->idHematologia.'">
     
                                                                 <a href="'.base_url().'Laboratorio/hematologia_pdf/'.$row->idHematologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
                                                                 <a href="#" title="Ver examen" class="verHematologia"><i class="fa fa-file text-success"></i></a>
@@ -467,6 +468,7 @@
                                                                 <input type="hidden" class="observacionesQS" value="'.$row->observacionesQS.'">
                                                                 <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="idQuimicaSanguineaA" value="'.$row->idQuimicaSanguinea.'">
     
                                                                 <a href="'.base_url().'Laboratorio/quimica_pdf/'.$row->idQuimicaSanguinea.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
                                                                 <a href="#" title="Ver examen" class="verQuimica"><i class="fa fa-file text-success"></i></a>
@@ -488,8 +490,8 @@
                                     <div class="col-md-10">
                                         <table class="table table-borderless">
                                             <tr>
-                                                <td><strong>Examen:</strong> <input type="text" value="<?php echo $urianalisis->nombreExamen; ?>"  class="form-control"  id="nombreExamen" name="nombreExamen"></td>
-                                                <td><strong>Fecha:</strong>  <input type="date" value="<?php echo $urianalisis->fechaExamen; ?>" class="form-control"  id="fechaExamen" name="fechaExamen"></td>
+                                                <td><strong>Examen:</strong> <input type="text" value="<?php echo $urianalisis->nombreExamen; ?>"  class="form-control"  id="nombreExamenU" name="nombreExamen"></td>
+                                                <td><strong>Fecha:</strong>  <input type="date" value="<?php echo $urianalisis->fechaExamen; ?>" class="form-control"  id="fechaExamenU" name="fechaExamen"></td>
                                             </tr>
                                         </table>
         
@@ -644,6 +646,7 @@
                                                                 <input type="hidden" class="observacionesU" value="'.$row->observacionesU.'">
                                                                 <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="idUrianalisisA" value="'.$row->idUrianalisis.'">
     
                                                                 <a href="'.base_url().'Laboratorio/urianalisis_pdf/'.$row->idUrianalisis.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
                                                                 <a href="#" title="Ver examen" class="verUrianalisis"><i class="fa fa-file text-success"></i></a>
@@ -873,6 +876,8 @@
     
                                                                 <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
                                                                 <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
+                                                                <input type="hidden" class="idCoprologiaA" value="'.$row->idCoprologia.'">
+
     
                                                                 <a href="'.base_url().'Laboratorio/coprologia_pdf/'.$row->idCoprologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
                                                                 <a href="#" title="Ver examen" class="verCoprologia"><i class="fa fa-file text-success"></i></a>
@@ -1217,7 +1222,7 @@
                                         
                                         <div>
                                             <br>
-                                            <input type="text" class="form-control" value="<?php echo $bacteriologia->idBacteriologia; ?>" name="idBacteriologia" id="idBacteriologia"> 
+                                            <input type="hidden" class="form-control" value="<?php echo $bacteriologia->idBacteriologia; ?>" name="idBacteriologia" id="idBacteriologia"> 
                                             <input type="hidden" class="form-control" value="<?php echo $consulta; ?>" name="idConsulta"> 
                                             <button class="btn btn-primary btn-block mt-3">Guardar examen</button>
                                         </div>
@@ -1253,27 +1258,28 @@
             localStorage.setItem('ultimaPestana', nuevaPestana);
         });
 
-        $(document).ready(function() {
-            $('#dvVarios').summernote({
-                height: 400,                 // Altura del editor
-                minHeight: null,             // Altura mínima del editor
-                maxHeight: null,             // Altura máxima del editor
-                focus: true,                 // Enfocar el editor después de inicializarlo
-                lang: 'es-ES',               // Cambiar el idioma (necesitas incluir el archivo de idioma)
-                toolbar: [
-                    // Personalizar la barra de herramientas
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    // ['insert', ['link', 'picture', 'video']],
-                    // ['view', ['fullscreen', 'codeview', 'help']]
-                ],
-            });
-        });
+        
+    });
 
+    $(document).ready(function() {
+        $('#dvVarios').summernote({
+            height: 400,                 // Altura del editor
+            minHeight: null,             // Altura mínima del editor
+            maxHeight: null,             // Altura máxima del editor
+            focus: true,                 // Enfocar el editor después de inicializarlo
+            lang: 'es-ES',               // Cambiar el idioma (necesitas incluir el archivo de idioma)
+            toolbar: [
+                // Personalizar la barra de herramientas
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                // ['insert', ['link', 'picture', 'video']],
+                // ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+        });
     });
 </script>
 
@@ -1302,6 +1308,8 @@
         $("#monocitos").val($(this).closest('tr').find('.monocitos').val());
         $("#plaquetas").val($(this).closest('tr').find('.plaquetas').val());
         $("#observacionesH").val( $(this).closest('tr').find('.observacionesH').val());
+
+        $("#idHematologia").val( $(this).closest('tr').find('.idHematologiaA').val());
     });
 
     $(document).on("click", ".verQuimica", function(e){
@@ -1340,14 +1348,15 @@
         $("#tgp").val($(this).closest('tr').find('.tgp').val());
         $("#fosfatasaA").val($(this).closest('tr').find('.fosfatasaA').val());
         $("#observacionesQS").val($(this).closest('tr').find('.observacionesQS').val());
+        $("#idQuimicaSanguinea").val($(this).closest('tr').find('.idQuimicaSanguineaA').val());
 
     });
 
     $(document).on("click", ".verUrianalisis", function(e){
         e.preventDefault();
 
-        $("#nombreExamen").val($(this).closest('tr').find('.nombreExamen').val());
-        $("#fechaExamen").val($(this).closest('tr').find('.fechaExamen').val());
+        $("#nombreExamenU").val($(this).closest('tr').find('.nombreExamen').val());
+        $("#fechaExamenU").val($(this).closest('tr').find('.fechaExamen').val());
 
         $("#color").val($(this).closest('tr').find('.color').val());
         $("#aspecto").val($(this).closest('tr').find('.aspecto').val());
@@ -1374,6 +1383,8 @@
         $("#OtrosUno").val($(this).closest('tr').find('.otrosUno').val());
         $("#otrosDos").val($(this).closest('tr').find('.otrosDos').val());
         $("#observacionesU").val($(this).closest('tr').find('.observacionesU').val());
+
+        $("#idUrianalisis").val($(this).closest('tr').find('.idUrianalisisA').val());
 
     });
 
@@ -1425,6 +1436,7 @@
         $("#otrosHC").val($(this).closest('tr').find('.otrosH').val());
         $("#otrosLC").val($(this).closest('tr').find('.otrosL').val());
         $("#observacionesCC").val($(this).closest('tr').find('.observacionesC').val());
+        $("#idCoprologiaC").val($(this).closest('tr').find('.idCoprologiaA').val());
 
 
     });

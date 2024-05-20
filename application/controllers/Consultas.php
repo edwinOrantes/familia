@@ -43,9 +43,8 @@ class Consultas extends CI_Controller {
 			$data["historial_quimica"] = $this->Laboratorio_Model->historialQuimica($paciente->idPaciente);
 			$data["historial_urianalisis"] = $this->Laboratorio_Model->historialUrianalisis($paciente->idPaciente);
 			$data["historial_coprologia"] = $this->Laboratorio_Model->historialCoprologia($paciente->idPaciente);
-
-            $data["historial_varios"] = $this->Laboratorio_Model->historialVarios($data["paciente"]->idPaciente);
-            $data["historial_bacteriologia"] = $this->Laboratorio_Model->historialBacteriologia($data["paciente"]->idPaciente);
+            $data["historial_varios"] = $this->Laboratorio_Model->historialVarios($paciente->idPaciente);
+            $data["historial_bacteriologia"] = $this->Laboratorio_Model->historialBacteriologia($paciente->idPaciente);
 		// Laboratorio
 		
 		$this->load->view("Base/header");
@@ -352,16 +351,21 @@ class Consultas extends CI_Controller {
 			$mpdf = new \Mpdf\Mpdf([
 				'margin_left' => 15,
 				'margin_right' => 15,
-				'margin_top' => 40,
+				'margin_top' => 45,
 				'margin_bottom' => 25,
 				'margin_header' => 15,
 				'margin_footer' => 25
 			]);
 			$mpdf->SetHTMLHeader('
 					<div class="cabecera" style="font-family: Times New Roman">
-						<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
+						<div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg"></div>
 						<div class="title_cabecera">
-							<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
+							<h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
+							<h5 style="line-height: 20px">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel </h5>
+							<h5 style="padding-top: -15px;"> 
+								<img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
+								 <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
+							</h5>
 						</div>
 					</div>
 				');

@@ -71,10 +71,9 @@
 											<td class="text-center"><?php echo $paciente->duiPaciente ?></td>
 											<td class="text-center"><?php echo wordwrap($paciente->direccionPaciente,25,"<br>\n"); ?></td>
 											<td class="text-center"><?php
-												//echo "<a onclick='verDetalle($id, $nombre, $apellido, $edad, $telefono, $ocupacion, $sexo, $dui, $estado, $nacimiento, $municipio, $departamento, $direccion)' title='Ver detalles del médico' href='#verPaciente' data-toggle='modal'><i class='fas fa-eye ms-text-primary'></i></a>";
-												echo "<a title='Ver detalles del paciente' href='".base_url()."Paciente/detalle_paciente/".$paciente->idPaciente."'><i class='fas fa-eye ms-text-primary'></i></a>";
+												echo "<a title='Ver detalles del paciente' href='".base_url()."Paciente/detalle_paciente/".$paciente->idPaciente."' target='_blanck'><i class='fas fa-eye ms-text-primary'></i></a>";
 												echo "<a onclick='actualizarPaciente($id, $nombre, $edad, $telefono, $dui, $nacimiento, $direccion)' title='Actualizar datos del paciente' href='#actualizarP' data-toggle='modal'><i class='fas fa-edit ms-text-success'></i></a>";
-												echo "<a title='Hoja de cobro o consulta' href='".base_url()."Paciente/motivo_paciente/".$paciente->idPaciente."'><i class='far fa-file ms-text-success'></i></a>";
+												echo "<a title='Hoja de cobro o consulta' href='".base_url()."Paciente/motivo_paciente/".$paciente->idPaciente."' target='_blanck'><i class='far fa-file ms-text-success'></i></a>";
 											?>
 											</td>
 										</tr>

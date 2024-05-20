@@ -215,7 +215,11 @@ class Consultas_Model extends CI_Model {
             }
 
             public function recetasMedicas($p = null){
-                $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ORDER BY rm.idReceta DESC ";
+                // $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.idPaciente =  '$p' ORDER BY rm.idReceta DESC ";
+                $sql = "SELECT m.nombreMedico, rm.* FROM tbl_receta_medica AS rm 
+                        INNER JOIN tbl_consultas AS c ON(c.idConsulta = rm.idConsulta)
+                        INNER JOIN tbl_medicos AS m ON(m.idMedico = c.idMedico)
+                        WHERE rm.idPaciente =  '$p' ORDER BY rm.idReceta DESC";
                 $datos = $this->db->query($sql);
                 return $datos->result();
             }

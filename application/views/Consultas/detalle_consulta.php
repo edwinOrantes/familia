@@ -33,7 +33,7 @@
     }
 
     .historial_receta {
-        height: 480px;
+        height: 380px;
         overflow-y: scroll;
     }
 
@@ -261,7 +261,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-md-12">
-                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="3"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
+                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="3"><?php echo $consulta->examenFisico; ?></textarea>
                                             </div>
 
                                             <div class="col-md-12">
@@ -343,10 +343,10 @@
                                         
                                     </div>
 
-`                                </div>
+`                               </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="antecedentes">
-                                    <div class="row">
+                                    <div class="row p-3">
                                         <table class="table table-borderless table-sm">
                                             <tr>
                                                 <td style="width: 125px"><strong>ANT. MEDICOS</strong></td>
@@ -1604,7 +1604,7 @@
                                                                     
                                                                     <div class="col-md-2 text-center">
                                                                         <p><strong>HISTORIAL</strong></p>
-                                                                        <div class="table-responsive historial_varios table-md">
+                                                                        <div class="table-responsive historial_receta table-md">
                                                                             <table class="table table-borderless table-sm">
                                                                                 <tr>
                                                                                     <td>Fecha</td>
@@ -1641,10 +1641,8 @@
                                         
                                                             <div role="tabpanel" class="tab-pane fade" id="bacteriologia">
                                                                 <div class="row">
-                                                                    
                                                                     <div class="col-md-10">
                                                                         <div class="contenedorExamenB">
-                                                                            
                                                                             <table class="table table-borderless table-sm">
                                                                                 <tr>
                                                                                     <td><p class="h6"><strong>Examen: </strong> <span id="spanNombreBacteriologia"></span></p></td>
@@ -1652,9 +1650,9 @@
                                                                                 </tr>
                                                                             </table>
 
-                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="nombreExamenB"><strong></p>
-                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="resultadoExamenB"><strong></p>
-                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="seAislaB"><strong></p>
+                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="nombreExamenB"><strong></strong></p>
+                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="resultadoExamenB"><strong></strong></p>
+                                                                            <p style="font-size: 12px; color: #075480; margin-top: 25px" id="seAislaB"><strong></strong></p>
 
                                                                             <table class="table table-bordered thead-primary w-100 text-center table-sm">
                                                                                 <thead>
@@ -1674,79 +1672,71 @@
 
                                                                     <div class="col-md-2 text-center">
                                                                         <p><strong>HISTORIAL</strong></p>
-                                                                        <div class="">
-                                                                            <table class="">
+                                                                        <div class="historial_receta">
+                                                                            <table class="table table-borderless table-sm">
                                                                                 <tr>
                                                                                     <td>Fecha</td>
                                                                                     <td>Opcion</td>
                                                                                 </tr>
                                                                                 <?php 
                                                                                     foreach ($historial_bacteriologia as $row) {
-                                                                                        if($row->fechaExamen == date("Y-m-d")){
-                                                                                            echo '<tr class="alert-primary">';
-                                                                                        }else{
-                                                                                            echo '<tr>';
-                                                                                        }
-                                                                                                echo ' <td>'.$row->fechaExamen.'</td>';
-                                                                                                echo ' <td>
-                                    
-                                                                                                <input type="hidden" class="cefixime" value="'.$row->cefixime.'">
-                                                                                                <input type="hidden" class="amikacina" value="'.$row->amikacina.'">
-                                                                                                <input type="hidden" class="levofloxacina" value="'.$row->levofloxacina.'">
-                                                                                                <input type="hidden" class="ceftriaxona" value="'.$row->ceftriaxona.'">
-                                                                                                <input type="hidden" class="azitromicina" value="'.$row->azitromicina.'">
-                                                                                                <input type="hidden" class="imipenem" value="'.$row->imipenem.'">
-                                                                                                <input type="hidden" class="meropenem" value="'.$row->meropenem.'">
-                                                                                                <input type="hidden" class="fosfocil" value="'.$row->fosfocil.'">
-                                                                                                <input type="hidden" class="ciprofloxacina" value="'.$row->ciprofloxacina.'">
-                                                                                                <input type="hidden" class="penicilina" value="'.$row->penicilina.'">
-                                                                                                <input type="hidden" class="vancomicina" value="'.$row->vancomicina.'">
-                                                                                                <input type="hidden" class="acidoNalidixico" value="'.$row->acidoNalidixico.'">
-                                                                                                <input type="hidden" class="gentamicina" value="'.$row->gentamicina.'">
-                                                                                                <input type="hidden" class="nitrofurantoina" value="'.$row->nitrofurantoina.'">
-                                                                                                <input type="hidden" class="ceftazimide" value="'.$row->ceftazimide.'">
-                                                                                                <input type="hidden" class="cefotaxime" value="'.$row->cefotaxime.'">
-                                                                                                <input type="hidden" class="clindamicina" value="'.$row->clindamicina.'">
-                                                                                                <input type="hidden" class="trimetropimSulfa" value="'.$row->trimetropimSulfa.'">
-                                                                                                <input type="hidden" class="ampicilina" value="'.$row->ampicilina.'">
-                                                                                                <input type="hidden" class="piperacilina" value="'.$row->piperacilina.'">
-                                                                                                <input type="hidden" class="amoxicilina" value="'.$row->amoxicilina.'">
-                                                                                                <input type="hidden" class="claritromicina" value="'.$row->claritromicina.'">
-                                                                                                <input type="hidden" class="cefuroxime" value="'.$row->cefuroxime.'">
-                                                                                                <input type="hidden" class="cefepime" value="'.$row->cefepime.'">
-                                                                                                <input type="hidden" class="metronidazol" value="'.$row->metronidazol.'">
-                                                                                                <input type="hidden" class="norfloxacina" value="'.$row->norfloxacina.'">
-                                                                                                <input type="hidden" class="tobramicina" value="'.$row->tobramicina.'">
-                                                                                                <input type="hidden" class="ertapenem" value="'.$row->ertapenem.'">
-                                                                                                <input type="hidden" class="doripenem" value="'.$row->doripenem.'">
-                                                                                                <input type="hidden" class="colistin" value="'.$row->colistin.'">
-                                                                                                <input type="hidden" class="linezolid" value="'.$row->linezolid.'">
-                                                                                                <input type="hidden" class="moxifloxacino" value="'.$row->moxifloxacino.'">
-                                                                                                <input type="hidden" class="kanamicina" value="'.$row->kanamicina.'">
-                                                                                                <input type="hidden" class="aztreonam" value="'.$row->aztreonam.'">
-                                                                                                <input type="hidden" class="cefaclor" value="'.$row->cefaclor.'">
-                                                                                                <input type="hidden" class="cefazolina" value="'.$row->cefazolina.'">
-                                                                                                <input type="hidden" class="tetraciclina" value="'.$row->tetraciclina.'">
-                                                                                                <input type="hidden" class="observacionExamen" value="'.$row->observacionExamen.'">
-                                    
-                                                                                                <input type="hidden" class="nombreExamen" value="'.$row->nombreExamen.'">
-                                                                                                <input type="hidden" class="fechaExamen" value="'.$row->fechaExamen.'">
-                                                                                                <input type="hidden" class="resultadoExamen" value="'.$row->resultadoExamen.'">
-                                                                                                <input type="hidden" class="seAisla" value="'.$row->seAisla.'">
-                                                                                                <input type="hidden" class="idBacteriologia" value="'.$row->idBacteriologia.'">
-                                    
-                                                                                                <a href="'.base_url().'Laboratorio/bacteriologia_lab_pdf/'.$row->idBacteriologia.'" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
-                                                                                                <a href="#" title="Ver examen" class="verBacteriologia"><i class="fa fa-file text-success"></i></a>
-                                                                                            </td>';
+                                                                                        echo '<tr' . ($row->fechaExamen == date("Y-m-d") ? ' class="alert-primary"' : '') . '>';
+                                                                                        echo '<td>' . $row->fechaExamen . '</td>';
+                                                                                        echo  '<td>
+                                                                                            <input type="hidden" class="cefixime" value="' . $row->cefixime . '">
+                                                                                            <input type="hidden" class="amikacina" value="' . $row->amikacina . '">
+                                                                                            <input type="hidden" class="levofloxacina" value="' . $row->levofloxacina . '">
+                                                                                            <input type="hidden" class="ceftriaxona" value="' . $row->ceftriaxona . '">
+                                                                                            <input type="hidden" class="azitromicina" value="' . $row->azitromicina . '">
+                                                                                            <input type="hidden" class="imipenem" value="' . $row->imipenem . '">
+                                                                                            <input type="hidden" class="meropenem" value="' . $row->meropenem . '">
+                                                                                            <input type="hidden" class="fosfocil" value="' . $row->fosfocil . '">
+                                                                                            <input type="hidden" class="ciprofloxacina" value="' . $row->ciprofloxacina . '">
+                                                                                            <input type="hidden" class="penicilina" value="' . $row->penicilina . '">
+                                                                                            <input type="hidden" class="vancomicina" value="' . $row->vancomicina . '">
+                                                                                            <input type="hidden" class="acidoNalidixico" value="' . $row->acidoNalidixico . '">
+                                                                                            <input type="hidden" class="gentamicina" value="' . $row->gentamicina . '">
+                                                                                            <input type="hidden" class="nitrofurantoina" value="' . $row->nitrofurantoina . '">
+                                                                                            <input type="hidden" class="ceftazimide" value="' . $row->ceftazimide . '">
+                                                                                            <input type="hidden" class="cefotaxime" value="' . $row->cefotaxime . '">
+                                                                                            <input type="hidden" class="clindamicina" value="' . $row->clindamicina . '">
+                                                                                            <input type="hidden" class="trimetropimSulfa" value="' . $row->trimetropimSulfa . '">
+                                                                                            <input type="hidden" class="ampicilina" value="' . $row->ampicilina . '">
+                                                                                            <input type="hidden" class="piperacilina" value="' . $row->piperacilina . '">
+                                                                                            <input type="hidden" class="amoxicilina" value="' . $row->amoxicilina . '">
+                                                                                            <input type="hidden" class="claritromicina" value="' . $row->claritromicina . '">
+                                                                                            <input type="hidden" class="cefuroxime" value="' . $row->cefuroxime . '">
+                                                                                            <input type="hidden" class="cefepime" value="' . $row->cefepime . '">
+                                                                                            <input type="hidden" class="metronidazol" value="' . $row->metronidazol . '">
+                                                                                            <input type="hidden" class="norfloxacina" value="' . $row->norfloxacina . '">
+                                                                                            <input type="hidden" class="tobramicina" value="' . $row->tobramicina . '">
+                                                                                            <input type="hidden" class="ertapenem" value="' . $row->ertapenem . '">
+                                                                                            <input type="hidden" class="doripenem" value="' . $row->doripenem . '">
+                                                                                            <input type="hidden" class="colistin" value="' . $row->colistin . '">
+                                                                                            <input type="hidden" class="linezolid" value="' . $row->linezolid . '">
+                                                                                            <input type="hidden" class="moxifloxacino" value="' . $row->moxifloxacino . '">
+                                                                                            <input type="hidden" class="kanamicina" value="' . $row->kanamicina . '">
+                                                                                            <input type="hidden" class="aztreonam" value="' . $row->aztreonam . '">
+                                                                                            <input type="hidden" class="cefaclor" value="' . $row->cefaclor . '">
+                                                                                            <input type="hidden" class="cefazolina" value="' . $row->cefazolina . '">
+                                                                                            <input type="hidden" class="tetraciclina" value="' . $row->tetraciclina . '">
+                                                                                            <input type="hidden" class="observacionExamen" value="' . $row->observacionExamen . '">
+                                                                                            <input type="hidden" class="nombreExamen" value="' . $row->nombreExamen . '">
+                                                                                            <input type="hidden" class="fechaExamen" value="' . $row->fechaExamen . '">
+                                                                                            <input type="hidden" class="resultadoExamen" value="' . $row->resultadoExamen . '">
+                                                                                            <input type="hidden" class="seAisla" value="' . $row->seAisla . '">
+                                                                                            <input type="hidden" class="idBacteriologia" value="' . $row->idBacteriologia . '">
+                                                                                            <a href="' . base_url() . 'Laboratorio/bacteriologia_lab_pdf/' . $row->idBacteriologia . '" target="_blank" title="Imprimir resultado"><i class="fa fa-print text-danger"></i></a>
+                                                                                            <a href="#" title="Ver examen" class="verBacteriologia"><i class="fa fa-file text-success"></i></a>
+                                                                                        </td>';
                                                                                         echo '</tr>';
                                                                                     }
                                                                                 ?>
-                                                                                
                                                                             </table>
                                                                         </div>
-                                                                        
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                         
                                                         </div>
@@ -3823,8 +3813,6 @@
         }   
         return utf8Text; // returned text is always utf-8
     }
-
-
 
 </script>
 

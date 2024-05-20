@@ -1,7 +1,7 @@
 <style>
     body{
         
-        /* background-image: url('public/img/test3_bg.jpg') ; */
+        background-image: url('public/img/bg_cm.jpg') ;
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
@@ -11,16 +11,19 @@
         width: 100%;
     }
     .img_cabecera{
-        padding-top: -20px;
-        width: 225px;
         float: left;
+        padding-top: -20px;
+        padding-left: 20px;
+        /* text-align: center; */
+        width: 40%;
     }
     .title_cabecera{
         font-size: 16px;
         float: right;
         line-height: 5px;
         text-align: center;
-        width: 60%;
+        padding-right: 20px;
+        width: 50%;
     }
     .body_left{
         border: 2px solid #1560b7;
@@ -50,19 +53,19 @@
     }
     
     .pie_receta{
-        height: 100px
+        height: 100px;
     }
-
+    
     .signos_recetas{
         float:left;
-        width: 40%;
+        width: 58%;
         
     }
     
     .fechas_receta{
         float:right;
         padding: 0px 0px 0px 5px;
-        width: 58%
+        width: 40%;
     }
     .fechas_receta p{
         font-size: 12px;
@@ -167,11 +170,12 @@
                         <td><?php echo $detalle->peso; ?>Kg</td>
                         <td><?php echo $detalle->altura; ?>m</td>
                         <td><?php echo $detalle->imc; ?></td>
-                        <td><?php echo $detalle->presionPaciente; ?></td>
-                        <td><?php echo $detalle->temperaturaPaciente; ?></td>
+                        <td><?php echo $detalle->presionPaciente; ?> mm/Hg</td>
+                        <td><?php echo $detalle->temperaturaPaciente; ?> °C</td>
                     </tr>
                 </table>
             </div>
+
             <div class="fechas_receta" style="border-left: 2px solid #075480; line-height: 1px; text-align: center;">
                 <p><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></p>
                 <p><strong>MEDICO: </strong><?php echo $detalle->nombreMedico; ?></p>
