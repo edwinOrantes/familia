@@ -1757,7 +1757,7 @@
                                                         <td><strong>FECHA:</strong></td>
                                                         <td><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="fechaReceta" id="fechaReceta"></td>
                                                         <td><strong>PROXIMA CITA:</strong></td>
-                                                        <td><input type="date" value="" class="form-control" name="proximaReceta" id="proximaReceta"></td>
+                                                        <td><input type="date" value="<?php echo $receta = !is_null($receta_hoy) ? $receta_hoy->proximaReceta : ' '; ?>" class="form-control" name="proximaReceta" id="proximaReceta"></td>
                                                         <td><input type="hidden" value="<?php echo $paciente->idConsulta; ?>" class="form-control" name="consultaActual" id="consultaActual"></td>
                                                         <td><input type="hidden" value="<?php echo $paciente->idMedico; ?>" class="form-control" name="idMedico" id="idMedico"></td>
                                                     </tr>
@@ -1769,7 +1769,25 @@
                                             
                                                 <div class="col-md-8">
                                                     <div class="historial_receta dvhistorial_receta">
-                                                        <table class="table table-borderless"  id="recetaMedica">
+                                                        <table class="table table-borderless" id="recetaMedica">
+                                                            <?php
+                                                            if(!is_null($receta_hoy)){
+                                                                $medicamentos = json_decode($receta_hoy->medicamentosReceta);
+                                                                if(!is_null($medicamentos)){
+                                                                    foreach ($medicamentos as $row) {
+                                                                        echo '<tr>
+                                                                                <td>
+                                                                                    <input type="text" value="'.$row->medicamento.'" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" value="'.$row->indicacion.'" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
+                                                                                        <input type="text" value="'.$row->medida.'" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>';
+                                                                    }
+                                                            }
+                                                            }
+                                                            ?>
                                                             <tr>
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
@@ -1779,6 +1797,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
@@ -1788,6 +1807,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
@@ -1797,6 +1817,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
@@ -1806,6 +1827,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
@@ -1861,6 +1883,11 @@
                                                                         <a href="'.base_url().'Consultas/receta_medica/'.$row->idReceta.'" target="_blank" title="Imprimir receta"><i class="fa fa-print text-danger"></i></a>
                                                                         <a href="#" title="Ver receta" class="verReceta"><i class="fa fa-file text-success"></i></a>
                                                                         <input type="hidden" value="'.$row->htmlReceta.'" class="htmlReceta" name="htmlReceta">
+                                                                        <input type="hidden" value="'.base64_encode($row->medicamentosReceta).'" class="medicamentosReceta">
+                                                                        <input type="hidden" value="'.$row->idReceta.'" class="idReceta">
+                                                                        <input type="hidden" value="'.$row->proximaReceta.'" class="proximaReceta">
+                                                                        <input type="hidden" value="'.$row->indicacionLibre.'" class="indicacionLibre">
+                                                                        <input type="hidden" value="'.$row->fechaReceta.'" class="fechaReceta">
                                                                     </td>';
                                                                 echo '</tr>';
                                                             }
@@ -1872,6 +1899,7 @@
                                             </div>
                                         </div> 
 
+                                        <input type="hidden" value="<?php echo $receta = !is_null($receta_hoy) ? $receta_hoy->idReceta : '0'; ?>" id="idRecetaActual" name="idReceta">
                                         <input type="hidden" value="<?php echo $paciente->idPaciente; ?>" name="idPaciente">
                                     </form>
                                 </div>
@@ -1888,10 +1916,7 @@
                         </div>
                     <!-- Tabs -->
 
-                    
-
                     <!-- Parte para mostrar el detalle de Ingresos y Ambulatorios -->
-
 				</div>
             </div>
 		</div>
@@ -2545,15 +2570,48 @@
 
     $(document).on("click", ".verReceta", function(e) {
         e.preventDefault();
-        var html =  '<table class="table table-borderless text-center">';
+        var medicamentosReceta =  atob($(this).closest('tr').find('.medicamentosReceta').val());
+        $("#proximaReceta").val($(this).closest('tr').find('.proximaReceta').val());
+        $("#idRecetaActual").val($(this).closest('tr').find('.idReceta').val());
+        $("#indicacionLibre").val($(this).closest('tr').find('.indicacionLibre').val());
+        $("#fechaReceta").val($(this).closest('tr').find('.fechaReceta').val());
+
+
+        var valores = JSON.parse(medicamentosReceta);
+        
+        var html = '';
+        if(Array.isArray(valores)){
+            valores.forEach(medicamento => {
+                html += '<tr>';
+                html += '    <td>';
+                html += '        <input type="text" value="'+medicamento.medicamento+'" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">';
+                html += '        <div class="input-group">';
+                html += '            <input type="text" value="'+medicamento.indicacion+'" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">';
+                html += '            <input type="text" value="'+medicamento.medida+'" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">';
+                html += '        </div>';
+                html += '    </td>';
+                html += '</tr>';
+            });
+            $("#recetaMedica").html(html);
+            /* $("#dvdDetalle").show();
+            $(".dvhistorial_receta").hide(); */
+            
+        }else{
+            console.log(typeof(valores));
+            console.log("medicamentosReceta");
+
+        }
+        
+
+
+
+
+        /* var html =  '<table class="table table-borderless text-center">';
         html +=  '<tr class="alert-primary"> <td colspan= "3">INFORMACION DE LA RECETA</td> </tr>';
         html +=  $(this).closest('tr').find('.htmlReceta').val();
         html +=  '<tr class="alert-danger"> <td colspan= "3"><a href="#" class="cerrarReceta"><i class="fa fa-times"></i></a></tr>';
-        html +=  '</table>';
+        html +=  '</table>'; */
         
-        $("#dvdDetalle").html(html);
-        $("#dvdDetalle").show();
-        $(".dvhistorial_receta").hide();
     });
 
 
@@ -2711,10 +2769,13 @@
             var nuevaPestana = $(event.target).attr('href');
             localStorage.setItem('ultimaPestana', nuevaPestana);
         });
+
+        if($("#proximaReceta").val() != ""){
+            $("#btnGuardarReceta").show();
+        }
+
     });
 </script>
-
-
 
 <script>
     $(document).on("click", ".verHematologia", function(e){

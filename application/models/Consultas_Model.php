@@ -88,12 +88,21 @@ class Consultas_Model extends CI_Model {
                 return $datos->row();
             }
         }
+        
         public function detalleConsultaR($c = null){
             if($c != null){
                 $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
                 $datos = $this->db->query($sql);
                 return $datos->result();
             }
+        }
+
+        public function recetaHoy($fecha = null, $paciente = null){
+                $sql = "SELECT * FROM tbl_receta_medica AS rm WHERE rm.fechaReceta = '$fecha' 
+                        AND rm.idPaciente = '$paciente' AND rm.idReceta = (SELECT MAX(idReceta) 
+                        FROM tbl_receta_medica WHERE idPaciente = '$paciente') ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
         }
 
 
@@ -200,11 +209,21 @@ class Consultas_Model extends CI_Model {
         }
 
         // Recetas medicas
-            public function guardarRecetaMedica($data = null){
+            public function guardarRecetaMedica($data = null, $idReceta = null){
                 if($data != null){
+                    $bool = false;
                     $sql = "INSERT INTO tbl_receta_medica(fechaReceta, proximaReceta, idConsulta, indicacionLibre, idPaciente, htmlReceta, medicamentosReceta)
                             VALUES(?, ?, ?, ?, ?, ?, ?)";
-                    if($this->db->query($sql, $data)){
+
+                    $sqlU = "UPDATE tbl_receta_medica SET fechaReceta = ?, proximaReceta = ?, idConsulta = ?, indicacionLibre = ?, 
+                            idPaciente = ?, htmlReceta = ?, medicamentosReceta = ? WHERE idReceta = '$idReceta' ";
+                    if($idReceta == 0){
+                        $bool = $this->db->query($sql, $data);
+                    }else{
+                        $bool = $this->db->query($sqlU, $data);
+                    }
+
+                    if($bool){
                         return true;
                     }else{
                         return false;

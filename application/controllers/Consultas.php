@@ -29,12 +29,16 @@ class Consultas extends CI_Controller {
 		$paciente = $this->Consultas_Model->obtenerIdPaciente($consulta); // Obteneiendo el id del paciente
 		$data["paciente"] = $this->Consultas_Model->cabeceraConsulta($consulta);
 		$data["medidas"] = $this->Consultas_Model->historialMedidas($paciente->idPaciente);
+		$hoy = date("Y-m-d");
+		// $hoy = "2024-05-20";
+		
 
 		// Datos actuales
 			$data["consulta"] = $this->Consultas_Model->detalleConsulta($consulta);
 			$data["antecedentes"] = $this->Consultas_Model->antecedentesConsulta($paciente->idPaciente);
 			$data["historial_detalles"] = $this->Consultas_Model->historialDetallesConsultas($paciente->idPaciente); // Historial detalles Consultas
 			$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($paciente->idPaciente); // Historial detalles Consultas
+			$data["receta_hoy"] = $this->Consultas_Model->recetaHoy($hoy, $paciente->idPaciente); // Historial detalles Consultas
 			$data["historial_laboratorio"] = $this->Consultas_Model->fechasVisitas($paciente->idPaciente); // Historial laboratorio
 		// Datos actuales
 
@@ -51,7 +55,7 @@ class Consultas extends CI_Controller {
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
 
-		// echo json_encode($data["historial_laboratorio"]);
+		// echo json_encode($data["receta_hoy"]);
 	}
 
 	public function guardar_detalle_consulta(){
@@ -215,6 +219,7 @@ class Consultas extends CI_Controller {
 			echo "Error";
 		}
 	}
+
 	public function validar_fecha(){
 		if($this->input->is_ajax_request()){
 			$datos = $this->input->post();
@@ -295,7 +300,9 @@ class Consultas extends CI_Controller {
 
 	public function guardar_receta_medica(){
 		$datos = $this->input->post();
+		$idReceta = $datos["idReceta"];
 		unset($datos["idMedico"]);
+		unset($datos["idReceta"]);
 		
 		// Creando Json de medidas
 			// Crear un arreglo combinado
@@ -328,7 +335,7 @@ class Consultas extends CI_Controller {
 			$datos["medidas"] = json_encode($listaInsumos);
 		// Creando Json de medidas
 		
-		$bool = $this->Consultas_Model->guardarRecetaMedica($datos);
+		$bool = $this->Consultas_Model->guardarRecetaMedica($datos, $idReceta);
 		if($bool){
 			$this->session->set_flashdata("exito","Los datos fueron agregados con exito!");
 			redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
@@ -337,8 +344,7 @@ class Consultas extends CI_Controller {
 			redirect(base_url()."Consultas/detalle_consulta/".$datos['consultaActual']."/");
 		}
 
-		// echo json_encode($datos);
-			
+		// echo json_encode($datos);	
 
 	}
 
