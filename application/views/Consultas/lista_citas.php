@@ -40,6 +40,7 @@
                     
 				</div>
 				<div class="ms-panel-body">
+                    
                     <?php
                         if(sizeof($citas) > 0){
                     ?>

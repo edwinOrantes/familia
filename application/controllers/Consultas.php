@@ -179,6 +179,32 @@ class Consultas extends CI_Controller {
 		}
 	}
 
+	public function guardar_indicacion_extra(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarindicacionExtra($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
 
 	public function buscar_diagnostico(){
 		if($this->input->is_ajax_request()){
@@ -219,6 +245,18 @@ class Consultas extends CI_Controller {
 			echo "Error";
 		}
 	}
+
+	public function buscar_indicacion_extra(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+			$resp = $this->Consultas_Model->buscarIndicacionExtra($datos["str"]);
+			print json_encode($resp);
+		}else{
+			echo "Error";
+		}
+	}
+
+
 
 	public function validar_fecha(){
 		if($this->input->is_ajax_request()){

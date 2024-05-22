@@ -81,6 +81,15 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function buscarIndicacionExtra($str = null){
+            if($str != null){
+                $sql = "SELECT ie.detalleIndicacionExtra FROM tbl_indicacion_extra AS ie 
+                        WHERE ie.detalleIndicacionExtra LIKE '%$str%'";
+                $datos = $this->db->query($sql);
+                return $datos->result();
+            }
+        }
+
         public function detalleConsulta($c = null){
             if($c != null){
                 $sql = "SELECT * FROM tbl_dconsulta_medica AS cm WHERE cm.idConsulta = '$c' ";
@@ -153,6 +162,19 @@ class Consultas_Model extends CI_Model {
         public function guardarCantidadMedicamento($data = null){
             if($data != null){
                 $sql = "INSERT INTO tbl_cantidad_medicamentos(detalleCantidad) VALUES(?)";
+                if($this->db->query($sql, $data)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        public function guardarindicacionExtra($data = null){
+            if($data != null){
+                $sql = "INSERT INTO tbl_indicacion_extra(detalleIndicacionExtra) VALUES(?)";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
