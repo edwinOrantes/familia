@@ -104,12 +104,12 @@
         </div>
 
         <div id="principal">
-            <table style="text-align: center; margin-left: 20px">
+            <table style="text-align: center; margin-left: 50px">
                 <tr>
-                    <td><h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, <br> frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5></td>
+                    <td><h3 style="line-height: 20px;">Avenida Ferrocarril, #51 Barrio la Cruz, <br> El Tránsito, San Miguel, PBX: 2605-6298</h3></td>
                 </tr>
                 <tr>
-                    <td><h5 style="line-height: 20px">C.S.S.P. N° 2059</h5></td>
+                    <td><h2 style="line-height: 20px">C.S.S.P. N° 2059</h2></td>
                 </tr>
             </table>
         </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>RESULTADOS EXAMEN QUIMICA SANGUINEA</p>
+            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>QUIMICA SANGUINEA</p>
             <div class="detalle">
                 <table class="table">
                     <thead>
