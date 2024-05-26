@@ -395,9 +395,9 @@ class Consultas extends CI_Controller {
 			$mpdf = new \Mpdf\Mpdf([
 				'margin_left' => 15,
 				'margin_right' => 15,
-				'margin_top' => 45,
+				'margin_top' => 50,
 				'margin_bottom' => 25,
-				'margin_header' => 15,
+				'margin_header' => 20,
 				'margin_footer' => 25
 			]);
 			$mpdf->SetHTMLHeader('
@@ -405,11 +405,11 @@ class Consultas extends CI_Controller {
 						<div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg"></div>
 						<div class="title_cabecera">
 							<h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
-							<h5 style="line-height: 20px">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel </h5>
-							<h5 style="padding-top: -15px;"> 
+							<h5 style="padding-top: -15px;">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel </h5>
+							<h3 style="padding-top: -15px;"> 
 								<img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
 								 <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
-							</h5>
+							</h3>
 						</div>
 					</div>
 				');

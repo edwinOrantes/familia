@@ -5034,7 +5034,7 @@ class Laboratorio extends CI_Controller {
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480">
                                 <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
                             </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
@@ -5095,7 +5095,7 @@ class Laboratorio extends CI_Controller {
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480">
                                 <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
                             </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
@@ -5157,7 +5157,7 @@ class Laboratorio extends CI_Controller {
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480">
                                 <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
                             </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
@@ -5271,7 +5271,7 @@ class Laboratorio extends CI_Controller {
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480">
                                 <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
                             </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
@@ -5332,7 +5332,7 @@ class Laboratorio extends CI_Controller {
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480">
                                 <strong style="font-size: 11px; color: #075480">Firma y sello del profesional</strong>
                             </td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');
@@ -5406,7 +5406,7 @@ class Laboratorio extends CI_Controller {
                     <table width="100%">
                         <tr>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Firma y sello del profesional</td>
-                            <td width="33%" align="center"><strong style="font-size: 11px; color: #075480">{PAGENO}/{nbpg}</strong></td>
+                            <td width="33%" align="center"></td>
                             <td width="33%" style="text-align: center; border-top: 1px solid #075480"><strong style="font-size: 11px; color: #075480">Sello del laboratorio</strong></td>
                         </tr>
                     </table>');

@@ -1,6 +1,5 @@
 <style>
     body{
-        
         background-image: url('public/img/bg_cm.jpg') ;
         background-size: cover;        
         background-repeat: no-repeat;
@@ -12,21 +11,22 @@
     }
     .img_cabecera{
         float: left;
-        padding-top: -20px;
-        padding-left: 20px;
+        padding-top: -50px;
         /* text-align: center; */
-        width: 40%;
+        width: 25%;
     }
     .title_cabecera{
-        font-size: 16px;
         float: right;
-        line-height: 5px;
         text-align: center;
-        padding-right: 20px;
-        width: 50%;
+        width: 75%;
     }
+
+    .title_cabecera h2{
+        font-size: 40px
+    }
+
     .body_left{
-        border: 2px solid #1560b7;
+        border: 2px solid #075480;
         border-radius: 5px;
         float: left;
         height: 95%;
@@ -35,10 +35,9 @@
         width: 27%;
     }
 
-
     .body_right{
         float: right;
-        width: 68%;
+        width: 70%;
         display: flex;
         flex-direction: column;
     }
@@ -72,13 +71,51 @@
         text-align: left
     }
 
-
     .letraMayuscula{
         text-transform: uppercase;
     }
 
 
 </style>
+
+<?php
+    // Definir la fecha
+    function fecha($fecha = null){
+        // Crear un objeto DateTime a partir de la fecha
+        $date = new DateTime($fecha);
+        
+        // Array con los nombres de los días de la semana en español
+        $diasSemana = [
+            "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+        ];
+        
+        // Array con los nombres de los meses en español
+        $meses = [
+            1 => "enero", "febrero", "marzo", "abril", "mayo", "junio", 
+            "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+        ];
+        
+        // Obtener el nombre del día de la semana
+        $nombreDia = $diasSemana[$date->format("w")];
+        
+        // Obtener el día del mes
+        $diaMes = $date->format("d");
+        
+        // Obtener el nombre del mes
+        $nombreMes = $meses[(int)$date->format("m")];
+        
+        // Obtener el año
+        $anio = $date->format("Y");
+        
+        // Formatear la fecha
+        $fechaFormateada = "$nombreDia $diaMes de $nombreMes del $anio";
+        
+        // Imprimir la fecha formateada
+        return $fechaFormateada;
+
+    }
+?>
+
 
 <div class="cabecera" style="font-family: Times New Roman">
     <div class="body_left">
@@ -122,30 +159,32 @@
     <div class="body_right">
         <div class="cabecera_receta">
             <table>
-                <tr>
-                    <td style="font-weight: bold">Paciente: </td>
-                    <td style="border-bottom: 1px solid #000000; text-align: left; width: 250px;"> <?php echo $detalle->nombrePaciente; ?> </td>
-                    <td style="font-weight: bold">Edad: </td>
-                    <td style="border-bottom: 1px solid #000000;text-align: left; width: 75px"> <?php echo $detalle->edadPaciente; ?> Años</td>
+                 <tr>
+                    <td style="font-weight: bold; text-transform: uppercase">Fecha: </td>
+                    <td style="text-align: left; width: 250px"> <?php echo fecha($detalle->fechaReceta); ?> </td>
                 </tr>
+                
                 <tr>
-                    <td colspan="4"> &nbsp; </td>
+                    <td style="font-weight: bold">PACIENTE: </td>
+                    <td style="text-align: left; width: 250px; text-transform: uppercase"> <?php echo $detalle->nombrePaciente; ?></td>
+                    <td style="font-weight: bold">EDAD: </td>
+                    <td style="text-align: left; width: 75px; text-transform: uppercase"> <?php echo $detalle->edadPaciente; ?> Años</td>
                 </tr>
+
                 <tr>
-                    <td style="font-weight: bold">Fecha: </td>
-                    <td style="border-bottom: 1px solid #000000; text-align: left; width: 250px"> <?php echo $detalle->fechaReceta; ?> </td>
-                </tr>
+                    <td colspan=4 style="border-bottom: 2px solid #075480;"></td>
+                </tr>               
             </table>
         </div>
-        
+        <!-- <hr style="color: #075480; height: 2px;"> --> 
         <div class="contenido_receta">
             <?php
 
                 $indicaciones = json_decode($detalle->medicamentosReceta);
                 foreach ($indicaciones as $row) {
-                    echo '<div style="">
-                        <p>'.$row->medicamento.'</p>
-                        <p>'.$row->indicacion." ".@$row->medida.'</p>
+                    echo '<div class="" style="padding-top: -15px">
+                        <p><strong>'.$row->medicamento.'</strong></p>
+                        <p style="padding-top: -15px">'.$row->indicacion." ".@$row->medida.'</p>
                     </div>';
                 }
 

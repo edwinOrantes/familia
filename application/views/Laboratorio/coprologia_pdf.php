@@ -1,13 +1,29 @@
 <style>
     body{
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
         background-image: url('public/img/bg_cm.jpg') ;
         background-size: cover;        
         background-repeat: no-repeat;
         padding: 0;
         margin: 0;
     }
+
+    .img_cabecera{
+        float: left;
+        padding-top: -50px;
+        /* text-align: center; */
+        width: 25%;
+    }
+    .title_cabecera{
+        float: right;
+        text-align: center;
+        width: 75%;
+    }
+
+    .title_cabecera h2{
+        font-size: 40px
+    }
+
     #cabecera {
         text-align: left;
         width: 100%;
@@ -47,7 +63,7 @@
         padding: 5px;
         text-align: left;
         font-size: 12px;
-        border: 1px solid #075480;
+        border-bottom: 1px solid #075480;
     }
 
     .medicamentos{
@@ -58,7 +74,7 @@
         padding: 2px !important;
         font-size: 12px;
         color: #000000;
-        border: 1px solid #075480;
+        border-bottom: 1px solid #cbcbcb;
     }
 
     #tablaPaciente{
@@ -88,7 +104,7 @@
         color: #fff;
         padding: 5px 40px 5px 40px;
         height: 30px;
-        border: 1px solid #075480;
+        border: 1px solid #cbcbcb;
     }
 
     .detalle .table tr td{
@@ -97,7 +113,7 @@
 </style>
 
 <div>
-    <div id="cabecera" class="clearfix">
+    <!-- <div id="cabecera" class="clearfix">
 
         <div id="lateral">
             <p><img src="<?php echo base_url() ?>public/img/logo.jpg" alt="Logo hospital Orellana" width="250"></p>
@@ -113,10 +129,25 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div> -->
+
+    <?php
+        echo '<div class="cabecera" style="font-family: Times New Roman">
+                <div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg"></div>
+                <div class="title_cabecera">
+                    <h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
+                    <h5 style="padding-top: -15px;">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel, C.S.S.P. N° 2059 </h5>
+                    <h3 style="padding-top: -15px;"> 
+                        <img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
+                            <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
+                    </h3>
+                </div>
+            </div>'
+    ?>
+
     <div class="contenedor">
         <div class="medicamentos">
-            <div style="border: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
+            <div style="border-bottom: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
                 <div class="">
                     <table id="tablaPaciente" cellspacing=10>
                         <tr>
@@ -180,7 +211,7 @@
                         <th colspan="6">EXAMEN MICROSCOPICO</th>
                     </tr>
 
-                    <tr style="background: rgba(255,0,0,0.3)">
+                    <tr style="background: rgba(255,0,0,0.7)">
                         <th>PROTOZOARIOS</th>
                         <th>TROFOZOITO</th>
                         <th>QUISTE</th>

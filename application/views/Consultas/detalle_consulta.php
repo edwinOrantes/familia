@@ -1004,7 +1004,7 @@
                                                         </table>
 
                                                     </div>
-                                                    <input type="text" value="<?php echo $receta_hoy->indicacionLibre; ?>" class="form-control p-3" list="indicacion_extra" placeholder="Indicación extra" name="indicacionLibre" id="indicacionLibre">
+                                                    <input type="text" value="<?php echo @$receta_hoy->indicacionLibre; ?>" class="form-control p-3" list="indicacion_extra" placeholder="Indicación extra" name="indicacionLibre" id="indicacionLibre">
 
                                                     <div id="dvdDetalle" style="display: none">Detalle</div>
 

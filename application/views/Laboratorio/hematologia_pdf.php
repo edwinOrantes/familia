@@ -1,7 +1,6 @@
 <style>
     body{
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
         background-image: url('public/img/bg_cm.jpg') ;
         background-size: cover;        
         background-repeat: no-repeat;
@@ -15,20 +14,36 @@
         top: 40px;
         left : 40px;
         z-index: 1;
-        }
+    }
 
-    .heaven
-        {
+    .heaven{
         position:absolute;
         height:300px;
         width:300px;
         z-index: -1;
-        }
+    }
+
     #cabecera {
         text-align: left;
         width: 100%;
         margin: auto;
         margin-bottom: 15px;
+    }
+
+    .img_cabecera{
+        float: left;
+        padding-top: -50px;
+        /* text-align: center; */
+        width: 25%;
+    }
+    .title_cabecera{
+        float: right;
+        text-align: center;
+        width: 75%;
+    }
+
+    .title_cabecera h2{
+        font-size: 40px
     }
         
     #lateral {
@@ -73,7 +88,7 @@
         padding: 2px !important;
         font-size: 12px;
         color: #000000;
-        border: 1px solid #075480;
+        border-bottom: 1px solid #cbcbcb;
     }
 
     #tablaPaciente{
@@ -111,7 +126,7 @@
 </style>
 
 <div>
-    <div id="cabecera" class="clearfix">
+    <!-- <div id="cabecera" class="clearfix">
 
         <div id="lateral">
             <p><img src="<?php echo base_url() ?>public/img/logo.jpg" alt="Logo hospital Orellana" width="250"></p>
@@ -127,32 +142,49 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div> -->
+
+    <?php
+        echo '<div class="cabecera" style="font-family: Times New Roman">
+                <div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg"></div>
+                <div class="title_cabecera">
+                    <h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
+                    <h5 style="padding-top: -15px;">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel, C.S.S.P. N° 2059 </h5>
+                    <h3 style="padding-top: -15px;"> 
+                        <img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
+                            <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
+                    </h3>
+                </div>
+            </div>'
+    ?>
+    
+
+
     <div class="contenedor">
         <div class="medicamentos">
             
-            <div style="border: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
+            <div style="border-bottom: 2px solid #075480; padding-top: 10px; padding-bottom: 15px;">
                 <div class="">
                     <table id="tablaPaciente" cellspacing=10>
                         <tr>
-                            <td><strong class="borderAzul">Paciente:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->nombrePaciente; ?></p></td>
-                            <td><strong class="borderAzul">Edad:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->edadPaciente; ?> Años</p></td>
+                            <td  style="text-transform: uppercase"><strong class="borderAzul">Paciente:</strong></td>
+                            <td  style="text-transform: uppercase"><p class="borderAzul"><?php echo $cabecera->nombrePaciente; ?></p></td>
+                            <td  style="text-transform: uppercase"><strong class="borderAzul">Edad:</strong></td>
+                            <td  style="text-transform: uppercase"><p class="borderAzul"><?php echo $cabecera->edadPaciente; ?> Años</p></td>
                         </tr>
                         
                         <tr>
-                            <td><strong class="borderAzul">Médico:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
-                            <td><strong class="borderAzul">Fecha:</strong></td>
-                            <td><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".date("g:i A", strtotime($cabecera->hora)); ?></p></td>
+                            <td  style="text-transform: uppercase"><strong class="borderAzul">Médico:</strong></td>
+                            <td  style="text-transform: uppercase"><p class="borderAzul"><?php echo $cabecera->nombreMedico; ?></p></td>
+                            <td  style="text-transform: uppercase"><strong class="borderAzul">Fecha:</strong></td>
+                            <td  style="text-transform: uppercase"><p class="borderAzul"><?php echo $cabecera->fechaConsulta." ".date("g:i A", strtotime($cabecera->hora)); ?></p></td>
                         </tr>
                         
                     </table>
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #075480; margin-top: 25px"><strong>HEMATOLOGIA</strong></p>
+            <p style="font-size: 16px; color: #075480; margin-top: 25px"><strong>HEMATOLOGIA</strong></p>
             <div class="detalle">
                 <table class="table">
                     <thead>
