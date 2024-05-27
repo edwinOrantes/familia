@@ -354,11 +354,13 @@ class Consultas extends CI_Controller {
 
 				if($datos["medicamento"][$i]!= '' || $datos["indicacion"][$i] != '' || $datos["medida"][$i] != '') {
 					$html .= '<tr>
+						<td>'.$datos["aplicacion"][$i].'</td>
 						<td>'.$datos["medicamento"][$i].'</td>
 						<td>'.$datos["indicacion"][$i].'</td>
 						<td>'.$datos["medida"][$i].'</td>
 					</tr>';
 					$objeto = array(
+						"aplicacion" => $datos["aplicacion"][$i],
 						"medicamento" => $datos["medicamento"][$i],
 						"indicacion" => $datos["indicacion"][$i],
 						"medida" => $datos["medida"][$i],
@@ -368,7 +370,7 @@ class Consultas extends CI_Controller {
 				}
 
 			}
-			unset($datos["medicamento"], $datos["indicacion"], $datos["medida"], $datos["htmlReceta"]);
+			unset($datos["medicamento"], $datos["indicacion"], $datos["medida"], $datos["htmlReceta"], $datos["aplicacion"]);
 			$datos["html"] = $html;
 			$datos["medidas"] = json_encode($listaInsumos);
 		// Creando Json de medidas

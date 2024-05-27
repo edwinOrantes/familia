@@ -184,7 +184,7 @@
                 foreach ($indicaciones as $row) {
                     echo '<div class="" style="padding-top: -15px">
                         <p><strong>'.$row->medicamento.'</strong></p>
-                        <p style="padding-top: -15px">'.$row->indicacion." ".@$row->medida.'</p>
+                        <p style="padding-top: -15px">'.$row->aplicacion.' '.$row->indicacion." ".@$row->medida.'</p>
                     </div>';
                 }
 

@@ -942,6 +942,11 @@
                                                                                 <td>
                                                                                     <input type="text" value="'.$row->medicamento.'" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                                     <div class="input-group">
+                                                                                        <select value="'.$row->aplicacion.'" name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                                            <option value="DAR"'.($row->aplicacion == "DAR" ? " selected" : "").'>DAR</option>
+                                                                                            <option value="TOMAR"'.($row->aplicacion == "TOMAR" ? " selected" : "").'>TOMAR</option>
+                                                                                            <option value="DILUIR"'.($row->aplicacion == "DILUIR" ? " selected" : "").'>DILUIR</option>
+                                                                                        </select>
                                                                                         <input type="text" value="'.$row->indicacion.'" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                                         <input type="text" value="'.$row->medida.'" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                                     </div>
@@ -955,6 +960,13 @@
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                     <div class="input-group">
+
+                                                                        <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                            <option value="DAR">DAR</option>
+                                                                            <option value="TOMAR">TOMAR</option>
+                                                                            <option value="DILUIR">DILUIR</option>
+                                                                        </select>
+
                                                                         <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                         <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                     </div>
@@ -965,6 +977,11 @@
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                     <div class="input-group">
+                                                                        <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                            <option value="DAR">DAR</option>
+                                                                            <option value="TOMAR">TOMAR</option>
+                                                                            <option value="DILUIR">DILUIR</option>
+                                                                        </select>
                                                                         <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                         <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                     </div>
@@ -975,6 +992,11 @@
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                     <div class="input-group">
+                                                                        <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                            <option value="DAR">DAR</option>
+                                                                            <option value="TOMAR">TOMAR</option>
+                                                                            <option value="DILUIR">DILUIR</option>
+                                                                        </select>
                                                                         <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                         <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                     </div>
@@ -985,6 +1007,11 @@
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                     <div class="input-group">
+                                                                        <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                            <option value="DAR">DAR</option>
+                                                                            <option value="TOMAR">TOMAR</option>
+                                                                            <option value="DILUIR">DILUIR</option>
+                                                                        </select>
                                                                         <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                         <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                     </div>
@@ -995,6 +1022,11 @@
                                                                 <td>
                                                                     <input type="text" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">
                                                                     <div class="input-group">
+                                                                        <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">
+                                                                            <option value="DAR">DAR</option>
+                                                                            <option value="TOMAR">TOMAR</option>
+                                                                            <option value="DILUIR">DILUIR</option>
+                                                                        </select>
                                                                         <input type="text" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">
                                                                         <input type="text" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">
                                                                     </div>
@@ -1887,6 +1919,11 @@
                 html += '    <td>';
                 html += '        <input type="text" value="'+medicamento.medicamento+'" list="lista_medicamentos" class="form-control bold busquedaMedicamentos txtMedicamento" name="medicamento[]" placeholder="Medicamento">';
                 html += '        <div class="input-group">';
+                html += '            <select name="aplicacion[]" id="" class="mt-1 bordes" style="background: white; width: 150px !important;">';
+                html += '                <option value="DAR"'+(medicamento.aplicacion === "DAR" ? " selected" : "")+'>DAR</option>';
+                html += '                <option value="TOMAR"'+(medicamento.aplicacion === "TOMAR" ? " selected" : "")+'>TOMAR</option>';
+                html += '                <option value="DILUIR"'+(medicamento.aplicacion === "DILUIR" ? " selected" : "")+'>DILUIR</option>';
+                html += '            </select>';
                 html += '            <input type="text" value="'+medicamento.indicacion+'" list="lista_indicaciones" class="form-control bold mt-1 busquedaIndicaciones txtIndicacion" name="indicacion[]"  placeholder="Indicación médica">';
                 html += '            <input type="text" value="'+medicamento.medida+'" style="width: 40px !important" list="lista_medidas" class="form-control bold mt-1 busquedaMedidas txtMedida" name="medida[]"  placeholder="Cantidad">';
                 html += '        </div>';
@@ -3161,7 +3198,6 @@
                 
 
     });
-
 
     function checkUTF8(text) {
         var utf8Text = text;
