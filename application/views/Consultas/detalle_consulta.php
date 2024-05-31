@@ -202,7 +202,44 @@
                                     <div class="row">
 
                                         <div class="col-md-6">
-                                                <div class="col-md-12 bg-danger text-white">
+
+                                                <!-- <div class="col-md-12 bg-danger text-white">
+                                                    <div class="datosEnfermeria">
+                                                        <table class="table table-borderless table-sm">
+                                                            <tr class="text-center">
+                                                                <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
+                                                                <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m</td>
+                                                                <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
+                                                                <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
+                                                                <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="datosEnfermeriaH"></div>
+                                                </div> -->
+
+                                                <div class="col-md-12">
+                                                    <table class="table table-borderless table-sm">
+                                                        <tr>
+                                                            <td><strong>CONSULTA POR:</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" style="width: 400px" value="<?php echo $consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                                <div class="col-md-12 text-center">
+                                                    <p><strong>PRESENTE ENFERMEDAD</strong></p>
+                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control bordes" cols="30" rows="15"><?php echo $consulta->presenteEnfermedad; ?></textarea>
+                                                </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                        <div class="col-md-12 bg-danger text-white mt-3">
                                                     <div class="datosEnfermeria">
                                                         <table class="table table-borderless table-sm">
                                                             <tr class="text-center">
@@ -219,27 +256,10 @@
                                                     </div>
                                                     <div class="datosEnfermeriaH"></div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <table class="table table-borderless table-sm">
-                                                        <tr>
-                                                            <td><strong>CONSULTA POR:</strong></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="text" style="width: 400px" value="<?php echo $consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-12 text-center">
-                                                    <p><strong>PRESENTE ENFERMEDAD</strong></p>
-                                                    <textarea name="presenteEnfermedad" id="presenteEnfermedad" class="form-control bordes" cols="30" rows="3"><?php echo $consulta->presenteEnfermedad; ?></textarea>
-                                                </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><strong>EVOLUCION</strong></p>
-                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control bordes" cols="30" rows="11"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
+                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control bordes" cols="30" rows="15"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,12 +281,12 @@
                                                 </table>
                                             </div>
                                             <div class="col-md-12">
-                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="3"><?php echo $consulta->examenFisico; ?></textarea>
+                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="15"><?php echo $consulta->examenFisico; ?></textarea>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-center">
+                                                    <!-- <div class="col-md-12 text-center">
                                                         <p><strong>IMPRESION DIAGNOSTICA</strong></p>
                                                         <table class="table table-borderless">
                                                                 <tr>
@@ -282,10 +302,15 @@
     
     
                                                         <datalist id="lista_diagnostico"></datalist>
+                                                    </div> -->
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="margin-bottom: -3px"><strong>IMPRESION DIAGNOSTICA</strong></p>
+                                                        <textarea  name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->planConsulta; ?></textarea>
+                                                        <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
         
-                                                    <div class="col-md-6">
-                                                        <p><strong>PLAN</strong></p>
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="margin-bottom: -3px"><strong>PLAN</strong></p>
                                                         <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->planConsulta; ?></textarea>
                                                         <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
