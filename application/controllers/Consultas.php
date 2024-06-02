@@ -37,6 +37,7 @@ class Consultas extends CI_Controller {
 			$data["consulta"] = $this->Consultas_Model->detalleConsulta($consulta);
 			$data["antecedentes"] = $this->Consultas_Model->antecedentesConsulta($paciente->idPaciente);
 			$data["historial_detalles"] = $this->Consultas_Model->historialDetallesConsultas($paciente->idPaciente); // Historial detalles Consultas
+			$data["ultima_consulta"] = $this->Consultas_Model->ultimaCOnsulta($consulta); // Ultima Consultas
 			$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($paciente->idPaciente); // Historial detalles Consultas
 			$data["receta_hoy"] = $this->Consultas_Model->recetaHoy($hoy, $paciente->idPaciente); // Historial detalles Consultas
 			$data["historial_laboratorio"] = $this->Consultas_Model->fechasVisitas($paciente->idPaciente); // Historial laboratorio
@@ -62,7 +63,7 @@ class Consultas extends CI_Controller {
 		if($this->input->is_ajax_request()){
 			$datos = $this->input->post();
 
-			$datos["diagnostico"] = $datos["diagnosticoUno"]."<br>".$datos["diagnosticoDos"]."<br>".$datos["diagnosticoTres"];
+			// $datos["diagnostico"] = $datos["diagnosticoUno"]."<br>".$datos["diagnosticoDos"]."<br>".$datos["diagnosticoTres"];
 
 			$bool = $this->Consultas_Model->guardarDetalleConsulta($datos);
 			if($bool){

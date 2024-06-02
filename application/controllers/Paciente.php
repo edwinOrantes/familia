@@ -451,6 +451,7 @@ class Paciente extends CI_Controller {
 					$medicamento["idMedicamento"] = $datos["idM"];
 					$medicamento["precioMedicamento"] = $datos["precioM"];
 					$medicamento["cantidadMedicamento"] = 1;
+					$medicamento["detalle"] = "";
 					$medicamento["fechaHoja"] = date("y-m-d");
 					$medicamento["por"] = $this->session->userdata('id_usuario_h');
 				// Agregar a la hoja de cobro
@@ -498,6 +499,7 @@ class Paciente extends CI_Controller {
 					$medicamento["idMedicamento"] = $datos["idMedicamento"];
 					$medicamento["precioMedicamento"] = $datos["precioV"];
 					$medicamento["cantidadMedicamento"] = $datos["cantidad"];
+					$medicamento["detalle"] = $datos["detalle"];
 					$medicamento["fechaHoja"] = date("Y-m-d");;
 					$medicamento["por"] = $this->session->userdata('id_usuario_h');
 				// Medicamento

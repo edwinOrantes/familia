@@ -26,43 +26,48 @@
     }
 
     .body_left{
-        /* border: 2px solid #075480; */
+        border: 2px solid #075480;
         border-radius: 5px;
         float: left;
-        height: 85%;
+        height: 95%;
         padding: 5px;
         text-align:center;
-        width: 7%;
+        width: 27%;
     }
 
     .body_right{
         float: right;
-        width: 85%;
+        width: 70%;
         display: flex;
         flex-direction: column;
     }
 
     .cabecera_receta{
         height: 50px;
+        padding-bottom: 20px
     }
 
     .contenido_receta{
         height: 650px
     }
     
+    .pie_receta{
+        height: 100px;
+    }
+    
     .signos_recetas{
         float:left;
-        width: 50%;
+        width: 58%;
         
     }
     
     .fechas_receta{
         float:right;
         padding: 0px 0px 0px 5px;
-        width: 50%;
+        width: 40%;
     }
     .fechas_receta p{
-        font-size: 16px;
+        font-size: 12px;
         text-align: left
     }
 
@@ -70,14 +75,9 @@
         text-transform: uppercase;
     }
 
-    #mensaje{
-        clear: both;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold
-    }
 
 </style>
+
 <?php
     // Definir la fecha
     function fecha($fecha = null){
@@ -133,7 +133,7 @@
             <p>8:00 a.m a 12:00 m.d</p>
         </div> -->
 
-        <!-- <h5 style="text-decoration: underline"><strong>SERVICIOS</strong></h5>
+        <h5 style="text-decoration: underline"><strong>SERVICIOS</strong></h5>
         <div style="text-align: left; margin: 15px 0px 100px -20px; line-height: 22px">
             <ul>
                 <li>Consulta general</li>
@@ -148,7 +148,7 @@
                 <li>Transporte de pacientes delicados</li>
                 <li>Atención 24/7</li>
             </ul>
-        </div> -->
+        </div>
 
         <!-- <div style="font-size: 12px; font-weight: bold">
             <p> Atendiéndole con la amabilidad que nos caracteriza.</p>
@@ -158,7 +158,7 @@
     </div>
     <div class="body_right">
         <div class="cabecera_receta">
-            <table style="width: 100%">
+            <table>
                  <tr>
                     <td style="font-weight: bold; text-transform: uppercase">Fecha: </td>
                     <td style="text-align: left; width: 250px"> <?php echo fecha($detalle->fechaReceta); ?> </td>
@@ -195,17 +195,31 @@
 
         <div class="pie_receta">
             <hr style="color: #1560b7 ">
-            <div class="signos_recetas"></div>
+            <div class="signos_recetas">
+                <table style="font-size: 12px; text-align: center; padding-top: 7px; width: 100%">
+                    <tr>
+                        <th>Peso</th>
+                        <th>Altura</th>
+                        <th>IMC</th>
+                        <th>P.A</th>
+                        <th>Temp.</th>
+                    </tr>
+
+                    <tr>
+                        <td><?php echo $detalle->peso; ?>Kg</td>
+                        <td><?php echo $detalle->altura; ?>m</td>
+                        <td><?php echo $detalle->imc; ?></td>
+                        <td><?php echo $detalle->presionPaciente; ?> mm/Hg</td>
+                        <td><?php echo $detalle->temperaturaPaciente; ?> °C</td>
+                    </tr>
+                </table>
+            </div>
 
             <div class="fechas_receta" style="border-left: 2px solid #075480; line-height: 1px; text-align: center;">
                 <p><strong>PRÓXIMA CITA: </strong><?php echo $detalle->proximaReceta; ?></p>
                 <p><strong>MEDICO: </strong><?php echo $detalle->nombreMedico; ?></p>
             </div>
-
         </div>
     </div>
-
-    
 </div>
-<div id="mensaje"><p>Estamos para atenderle siempre, gracias por su confianza.</p></div>
 

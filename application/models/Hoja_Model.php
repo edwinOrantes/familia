@@ -379,8 +379,8 @@ class Hoja_Model extends CI_Model {
 
         public function guardarDetalleHojaUnitario($data = null){
             if($data != null){
-                $sql = "INSERT INTO tbl_hoja_insumos(idHoja, idInsumo, precioInsumo, cantidadInsumo, fechaInsumo, por)
-                        VALUES(?,?,?,?,?,?)";
+                $sql = "INSERT INTO tbl_hoja_insumos(idHoja, idInsumo, precioInsumo, cantidadInsumo, detalleInsumo, fechaInsumo, por)
+                        VALUES(?, ?, ?, ?, ?, ?, ?)";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
@@ -421,7 +421,7 @@ class Hoja_Model extends CI_Model {
 
         public function medicamentosHoja($id = null){
             if($id != null){
-                $sql = "SELECT hi.idHojaInsumo, m.nombreMedicamento, m.idMedicamento, m.stockMedicamento, m.usadosMedicamento, hi.precioInsumo,
+                $sql = "SELECT hi.idHojaInsumo, m.nombreMedicamento, m.idMedicamento, m.stockMedicamento, m.usadosMedicamento, hi.precioInsumo, hi.detalleInsumo,
                         hi.cantidadInsumo, hi.descuentoUnitario, hi.aumentoUnitario, hi.fechaInsumo, hi.pivoteStock, m.tipoMedicamento, m.pivoteMedicamento
                         FROM tbl_hoja_insumos as hi INNER JOIN tbl_medicamentos as m
                         ON(hi.idInsumo = m.idMedicamento) WHERE hi.idHoja = '$id' AND hi.eliminado = '0'";

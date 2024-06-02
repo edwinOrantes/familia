@@ -192,6 +192,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Motivo</th>
+                                        <th>Cantidad</th>
                                         <th>Precio</th>
                                     </tr>
                         <?php
@@ -199,19 +200,20 @@
                             $total = 0;
                             foreach ($detalleHoja as $row) {
                                 $index++;
-                                $total += $row->precioInsumo;
+                                $total += ($row->precioInsumo * $row->cantidadInsumo);
                         ?>
                                     <tr>
                                         <td><?php echo $index; ?></td>
-                                        <td><?php echo $row->nombreMedicamento; ?></td>
-                                        <td>$<?php echo $row->precioInsumo; ?></td>
+                                        <td><?php echo  $row->detalleInsumo == "" ? $row->nombreMedicamento : $row->nombreMedicamento." (".$row->detalleInsumo.") "; ?></td>
+                                        <td><?php echo $row->cantidadInsumo; ?></td>
+                                        <td>$<?php echo round($row->precioInsumo * $row->cantidadInsumo, 2); ?></td>
                                     </tr>
                         <?php
                             }
                         ?>
                                     <tr>
-                                        <td colspan="2"><strong>TOTAL</strong></td>
-                                        <td><strong>$<?php echo $total; ?></strong></td>
+                                        <td colspan="3"><strong>TOTAL</strong></td>
+                                        <td><strong>$<?php echo number_format($total, 2); ?></strong></td>
                                     </tr>
                                 </table>
                             </div>
@@ -274,7 +276,7 @@
                                                 <input type="text" id="temperaturaPaciente" placeholder="Temperatura" class="form-control temperaturaPaciente" />
                                             </td>
                                             <td>
-                                                <input type="text" id="presionPaciente" data-mask="999/999" placeholder="Presión" class="form-control presionPaciente" />
+                                                <input type="text" id="presionPaciente" data-mask="999/99?9" placeholder="Presión" class="form-control presionPaciente" />
                                             </td>
                                         </tr>
                                     </table>
@@ -379,7 +381,7 @@
                                                 ?>
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
-                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?><input type="hidden" class="form-control detalleExamen" /></td>
 
 
                                                         <td class="text-center" scope="row">
@@ -443,6 +445,7 @@
                                                     <th class="text-center" scope="col">Código</th>
                                                     <th class="text-center" scope="col">Nombre</th>
                                                     <th class="text-center" scope="col">Precio</th>
+                                                    <th class="text-center" scope="col">Cantidad</th>
                                                     <th class="text-center" scope="col">Agregar</th>
                                                 </tr>
                                             </thead>
@@ -454,7 +457,7 @@
                                                 ?>
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
-                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?><input type="hidden" class="form-control detalleExamen" /></td>
 
 
                                                         <td class="text-center" scope="row">
@@ -462,7 +465,10 @@
                                                             <input type="hidden" value="<?php echo $row->idMedicamento; ?>" id="test" class="form-control idM" />
                                                             <input type="hidden" value="<?php  echo $row->precioVMedicamento; ?>" id="test" class="form-control precioM" />
                                                             <input type="hidden" value="<?php  echo $row->nombreMedicamento; ?>" id="test" class="form-control nombreM" />
-                                                            <input type="hidden" value="1" id="test" class="form-control cantidadM" />
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            <input type="number" value="1" id="test" class="form-control cantidadM" />
                                                         </td>
                                                     
 
@@ -517,6 +523,7 @@
                                                 <tr>
                                                     <th class="text-center" scope="col">Código</th>
                                                     <th class="text-center" scope="col">Nombre</th>
+                                                    <th class="text-center" scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detalle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                     <th class="text-center" scope="col">Precio</th>
                                                     <th class="text-center" scope="col">Agregar</th>
                                                 </tr>
@@ -530,6 +537,7 @@
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
                                                         <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><input type="text" class="form-control detalleExamen" /></td>
 
 
                                                         <td class="text-center" scope="row">
@@ -592,6 +600,7 @@
                                                 <tr>
                                                     <th class="text-center" scope="col">Código</th>
                                                     <th class="text-center" scope="col">Nombre</th>
+                                                    <th class="text-center" scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detalle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                     <th class="text-center" scope="col">Precio</th>
                                                     <th class="text-center" scope="col">Agregar</th>
                                                 </tr>
@@ -605,6 +614,7 @@
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
                                                         <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><input type="text" class="form-control detalleExamen" /></td>
 
 
                                                         <td class="text-center" scope="row">
@@ -679,7 +689,7 @@
                                                 ?>
                                                     <tr class="filaMedicamento">
                                                         <td class="text-center" scope="row"><?php echo $row->codigoMedicamento; ?></td>
-                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?></td>
+                                                        <td class="text-center" scope="row"><?php echo $row->nombreMedicamento; ?><input type="hidden" class="form-control detalleExamen" /></td>
 
 
                                                         <td class="text-center" scope="row">
@@ -848,9 +858,10 @@
             nombreMedicamento: $(this).closest('tr').find(".nombreM").val(),
             precioV: $(this).closest('tr').find(".precioM").val(),
             cantidad: $(this).closest('tr').find(".cantidadM").val(),
+            detalle: $(this).closest('tr').find(".detalleExamen").val(),
         }
 
-        console.log(datos);
+        // console.log(datos);
 
         $.ajax({
             url: "../../agregar_examenes",

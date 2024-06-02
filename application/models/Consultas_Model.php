@@ -116,10 +116,24 @@ class Consultas_Model extends CI_Model {
 
 
         public function guardarDetalleConsulta($data = null){
-            $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
+            /* $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
                     tempConsulta = ?, frConsulta = ?, satConsulta = ?, examenFisico = ?, diagnosticoUno = ?, diagnosticoDos = ?, diagnosticoTres = ?,
                     diagnosticoConsulta = ?, planConsulta = ?
+                    WHERE idDetalleConsulta = ?"; */
+            $pivote = $data["idDetalleConsulta"];
+            
+            if($pivote == 0){
+                unset($data["idDetalleConsulta"]);
+                $sql = "INSERT INTO tbl_dconsulta_medica(idConsulta, consultaPor, presenteEnfermedad, evolucionEnfermedad, paConsulta, fcConsulta, tempConsulta, 
+                        frConsulta, satConsulta, examenFisico, diagnosticoConsulta, planConsulta)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            }else{
+                unset($data["consulta"]);
+                $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
+                    tempConsulta = ?, frConsulta = ?, satConsulta = ?, examenFisico = ?, diagnosticoConsulta = ?, planConsulta = ?
                     WHERE idDetalleConsulta = ?";
+
+            }
             if($this->db->query($sql, $data)){
                 return true;
             }else{
@@ -188,11 +202,21 @@ class Consultas_Model extends CI_Model {
         
         public function historialDetallesConsultas($p = null){
             if($p != null){
-                $sql = "SELECT * FROM tbl_dconsulta_medica AS dcm 
+                $sql = "SELECT  dcm.*, c.*, TIME(dcm.creadoConsulta) AS hora FROM tbl_dconsulta_medica AS dcm 
                         INNER JOIN tbl_consultas AS c ON(c.idConsulta = dcm.idConsulta)
-                        WHERE c.idPaciente = '$p' ORDER BY c.idConsulta DESC";
+                        WHERE c.idPaciente = '$p' ORDER BY dcm.idDetalleConsulta DESC";
                 $datos = $this->db->query($sql);
                 return $datos->result();
+            }
+        }
+        
+        public function ultimaCOnsulta($c = null){
+            if($c != null){
+                $sql = "SELECT * FROM tbl_dconsulta_medica AS dcm WHERE 
+                        dcm.idDetalleConsulta = (SELECT MAX(idDetalleConsulta) 
+                        FROM tbl_dconsulta_medica WHERE dcm.idConsulta = '$c')";
+                $datos = $this->db->query($sql);
+                return $datos->row();
             }
         }
 

@@ -228,7 +228,7 @@
                                                             <td><strong>CONSULTA POR:</strong></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><input type="text" style="width: 400px" value="<?php echo $ultima_consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
+                                                            <td><input type="text" style="width: 400px" value="<?php echo $consulta->consultaPor; ?>" class="form-control bordes" name="consultaPor" id="consultaPor"></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -247,7 +247,7 @@
                                                                 <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
                                                             </tr>
                                                             <tr>
-                                                                <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg <input type="hidden" value="<?php echo $paciente->peso; ?>" id="pesoEnfermeria"></td>
+                                                                <td> <strong>Peso: </strong>CONSULTA POR: Kg <input type="hidden" value="<?php echo $paciente->peso; ?>" id="pesoEnfermeria"></td>
                                                                 <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m <input type="hidden" value="<?php echo $paciente->altura; ?>" id="alturaEnfermeria"></td>
                                                                 <td> <strong>IMC: </strong><?php echo $paciente->imc; ?> <input type="hidden" value="<?php echo $paciente->imc; ?>" id="imcEnfermeria"></td>
                                                                 <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?> <input type="hidden" value="<?php echo $paciente->presionPaciente; ?>" id="presionEnfermeria"></td>
@@ -260,7 +260,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><strong>EVOLUCION</strong></p>
-                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control bordes" cols="30" rows="13"><?php echo $ultima_consulta->evolucionEnfermedad; ?></textarea>
+                                                    <textarea name="evolucionEnfermedad" id="evolucionEnfermedad" class="form-control bordes" cols="30" rows="13"><?php echo $consulta->evolucionEnfermedad; ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -273,16 +273,16 @@
                                                 <table class="table table-borderless">
                                                     <tr>
                                                         <td><strong>EXAMEN FISICO</strong></td>
-                                                        <td>P.A: <input type="text" class=" bordes"  size="5" class="" name="paConsulta" id="paConsulta"> <span class="font-weight-bold">mm/hg</span> </td>
-                                                        <td>F.C: <input type="text" class=" bordes"  size="5" class="" name="fcConsulta" id="fcConsulta"> <span class="font-weight-bold">lat/min</span></td>
-                                                        <td>Temp: <input type="text" class=" bordes"  size="5" class="" name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
-                                                        <td>FR: <input type="text" class=" bordes"  size="5" class="" name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
-                                                        <td>SAT: <input type="text" class=" bordes"  size="5" class="" name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
+                                                        <td>P.A: <input type="text" class=" bordes" value="<?php echo $consulta->paConsulta; ?>"  size="5" class="" name="paConsulta" id="paConsulta"> <span class="font-weight-bold">mm/hg</span> </td>
+                                                        <td>F.C: <input type="text" class=" bordes" value="<?php echo $consulta->fcConsulta; ?>"  size="5" class="" name="fcConsulta" id="fcConsulta"> <span class="font-weight-bold">lat/min</span></td>
+                                                        <td>Temp: <input type="text" class=" bordes" value="<?php echo $consulta->tempConsulta; ?>"  size="5" class="" name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
+                                                        <td>FR: <input type="text" class=" bordes" value="<?php echo $consulta->frConsulta; ?>"  size="5" class="" name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
+                                                        <td>SAT: <input type="text" class=" bordes" value="<?php echo $consulta->satConsulta; ?>"  size="5" class="" name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
                                                     </tr>
                                                 </table>
                                             </div>
                                             <div class="col-md-12">
-                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="13"></textarea>
+                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="13"><?php echo $consulta->examenFisico; ?></textarea>
                                             </div>
 
                                             <div class="col-md-12">
@@ -306,13 +306,13 @@
                                                     </div> -->
                                                     <div class="col-md-12 mt-3">
                                                         <p style="margin-bottom: -3px"><strong>IMPRESION DIAGNOSTICA</strong></p>
-                                                        <textarea name="diagnosticoConsulta" id="diagnosticoConsulta" class="form-control bordes" cols="30" rows="4"></textarea>
+                                                        <textarea name="diagnosticoConsulta" id="diagnosticoConsulta" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->diagnosticoConsulta; ?></textarea>
                                                     </div>
         
                                                     <div class="col-md-12 mt-3">
                                                         <p style="margin-bottom: -3px"><strong>PLAN</strong></p>
-                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"></textarea>
-                                                        <input type="hidden" value="0" name="idDetalleConsulta" id="idDetalleConsulta">
+                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->planConsulta; ?></textarea>
+                                                        <input type="text" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
 
                                                 </div>
@@ -326,32 +326,38 @@
                                                 <table class="table table-borderless table-sm">
                                                     <?php
                                                      foreach ($historial_detalles as $row) {
+                                                        if($row->fechaConsulta == date('Y-m-d')){
+                                                            echo '<tr class="verDetalleActual alert-primary">
+                                                                    <td><strong>'.$row->fechaConsulta.", ".date("g:i A", strtotime($row->hora)).'</strong><input type="hidden" value="'.$row->idConsulta.'" class="idConsultaA"></td>
+                                                                    <td>'.$row->consultaPor.'</td>
+                                                                </tr>';
+                                                        }else{
                                                     ?>
-                                                        <tr class="verDetalleConsulta">
-                                                            <td><?php echo $row->fechaConsulta.", ".date("g:i A", strtotime($row->hora)); ?>
-                                                                <input type="hidden" value="<?php echo $row->consultaPor; ?>" class="consultaPorH">
-                                                                <input type="hidden" value="<?php echo $row->presenteEnfermedad; ?>" class="presenteEnfermedadH">
-                                                                <input type="hidden" value="<?php echo $row->evolucionEnfermedad; ?>" class="evolucionEnfermedadH">
-                                                                <input type="hidden" value="<?php echo $row->paConsulta; ?>" class="paConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->fcConsulta; ?>" class="fcConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->satConsulta; ?>" class="satConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
-                                                                <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
-                                                                <input type="hidden" value="<?php echo $row->altura; ?>" class="alturaH">
-                                                                <input type="hidden" value="<?php echo $row->imc; ?>" class="imcH">
-                                                                <input type="hidden" value="<?php echo $row->temperaturaPaciente; ?>" class="temperaturaPacienteH">
-                                                                <input type="hidden" value="<?php echo $row->presionPaciente; ?>" class="presionPacienteH">
-                                                                <input type="hidden" value="<?php echo $row->examenFisico; ?>" class="examenFisicoH">
-                                                                <input type="hidden" value="<?php echo $row->diagnosticoUno; ?>" class="diagnosticoUnoH">
-                                                                <input type="hidden" value="<?php echo $row->diagnosticoDos; ?>" class="diagnosticoDosH">
-                                                                <input type="hidden" value="<?php echo $row->diagnosticoTres; ?>" class="diagnosticoTresH">
-                                                            </td>
-                                                            <td><?php echo $row->consultaPor; ?></td>
-                                                        </tr>
-                                                    <?php } ?>
+                                                    <tr class="verDetalleConsulta">
+                                                        <td><?php echo $row->fechaConsulta.", ".date("g:i A", strtotime($row->hora)); ?>
+                                                            <input type="hidden" value="<?php echo $row->consultaPor; ?>" class="consultaPorH">
+                                                            <input type="hidden" value="<?php echo $row->presenteEnfermedad; ?>" class="presenteEnfermedadH">
+                                                            <input type="hidden" value="<?php echo $row->evolucionEnfermedad; ?>" class="evolucionEnfermedadH">
+                                                            <input type="hidden" value="<?php echo $row->paConsulta; ?>" class="paConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->fcConsulta; ?>" class="fcConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->satConsulta; ?>" class="satConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
+                                                            <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
+                                                            <input type="hidden" value="<?php echo $row->altura; ?>" class="alturaH">
+                                                            <input type="hidden" value="<?php echo $row->imc; ?>" class="imcH">
+                                                            <input type="hidden" value="<?php echo $row->temperaturaPaciente; ?>" class="temperaturaPacienteH">
+                                                            <input type="hidden" value="<?php echo $row->presionPaciente; ?>" class="presionPacienteH">
+                                                            <input type="hidden" value="<?php echo $row->examenFisico; ?>" class="examenFisicoH">
+                                                            <input type="hidden" value="<?php echo $row->diagnosticoUno; ?>" class="diagnosticoUnoH">
+                                                            <input type="hidden" value="<?php echo $row->diagnosticoDos; ?>" class="diagnosticoDosH">
+                                                            <input type="hidden" value="<?php echo $row->diagnosticoTres; ?>" class="diagnosticoTresH">
+                                                        </td>
+                                                        <td><?php echo $row->consultaPor; ?></td>
+                                                    </tr>
+                                                    <?php }} ?>
                                                 </table>
                                             </div>
 
@@ -1661,7 +1667,6 @@
         }; */
 
         var datos = {
-            consulta: $("#consultaActual").val(),
             consultaPor: $("#consultaPor").val(),
             presenteEnfermedad: $("#presenteEnfermedad").val(),
             evolucionEnfermedad: $("#evolucionEnfermedad").val(),
@@ -1673,7 +1678,7 @@
             examenFisico: $("#examenFisico").val(),
             diagnostico: $("#diagnosticoConsulta").val(),
             planEnfermedad: $("#planEnfermedad").val(),
-            idDetalleConsulta: $("#idDetalleConsulta").val()
+            idDetalleConsulta: $("#idDetalleConsulta").val(),
         };
 
         $.ajax({
