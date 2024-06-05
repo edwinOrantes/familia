@@ -335,6 +335,23 @@ class Consultas_Model extends CI_Model {
             }
         // Examenes de laboratorio
 
+
+        public function guardarVacunacion($data = null){
+            $id = $data["idCartilla"];
+            if($data != null){
+                
+                $sql = "UPDATE tbl_vacunacion_paciente SET ".$data["nombre"]."=".$data["valor"]." WHERE idVacunacion = ".$data["idCartilla"];
+
+                if($this->db->query($sql)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
     
 }
 ?>

@@ -207,6 +207,32 @@ class Consultas extends CI_Controller {
 		}
 	}
 
+	public function guardar_vacunacion(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarVacunacion($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
 
 	public function buscar_diagnostico(){
 		if($this->input->is_ajax_request()){
@@ -396,6 +422,12 @@ class Consultas extends CI_Controller {
 		$data["detalle"] = $this->Consultas_Model->detalleReceta($r);
 		// Receta
 			$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+
+			$mpdf->autoScriptToLang = true;
+			$mpdf->autoLangToFont = true;
+			$mpdf->AddFontDirectory('ttfonts');
+			$mpdf->SetFont('Cream-Cake');
+
 			$mpdf = new \Mpdf\Mpdf([
 				'margin_left' => 15,
 				'margin_right' => 15,
@@ -421,15 +453,23 @@ class Consultas extends CI_Controller {
 			/* $mpdf->SetHTMLFooter('
 				<table width="100%">
 					<tr>
-						<td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Firma y sello del profesional</td>
-						<td width="33%" align="center"><strong style="font-size: 11px; color: #0b88c9">{PAGENO}/{nbpg}</strong></td>
-						<td width="33%" style="text-align: center; border-top: 1px solid #0b88c9"><strong style="font-size: 11px; color: #0b88c9">Sello del laboratorio</strong></td>
+						<td width="5%"></td>
+						<td width="90%" align="center" id="mensaje"><strong style="font-family: Cream-Cake;">Estamos para atenderle siempre, gracias por su confianza.</strong></td>
+						<td width="5%"></td>
 					</tr>
 				</table>'); */
+			$mpdf->SetHTMLFooter('
+				<table width="100%">
+					<tr>
+						<td width="5%"></td>
+						<td width="90%" align="center" id="mensaje"><img src= "'.base_url().'public/img/frase_footer.jpg"></td>
+						<td width="5%"></td>
+					</tr>
+				</table>');
 			$mpdf->SetProtection(array('print'));
-			$mpdf->SetTitle("Hospital Orellana, Usulutan");
+			$mpdf->SetTitle("Hospital La Familia");
 			$mpdf->SetAuthor("Edwin Orantes");
-			//$mpdf->SetWatermarkText("Hospital Orellana, Usulutan");
+			//$mpdf->SetWatermarkText("Hospital La Familia");
 			$mpdf->showWatermarkText = true;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
 			$mpdf->watermarkTextAlpha = 0.1;

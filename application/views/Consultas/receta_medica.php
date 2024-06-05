@@ -207,5 +207,5 @@
 
     
 </div>
-<div id="mensaje"><p>Estamos para atenderle siempre, gracias por su confianza.</p></div>
+<!-- <div id="mensaje"><p>Estamos para atenderle siempre, gracias por su confianza.</p></div> -->
 

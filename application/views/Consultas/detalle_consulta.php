@@ -415,7 +415,14 @@
                                                     <td>BCG</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                            <input type="checkbox" class='vacunacion' name="bcg" id="bcg" value='<?php echo $vacunacion->bcg; ?>'>
+                                                            <?php
+                                                                if($vacunacion->bcg == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="bcg" id="bcg" value="'.$vacunacion->bcg.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="bcg" id="bcg" value="'.$vacunacion->bcg.'" checked="">';
+                                                                }
+                                                            ?>
+                                                            
                                                             <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -424,7 +431,13 @@
                                                     <td>HB</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->hb == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hb" id="hb" value="'.$vacunacion->hb.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hb" id="hb" value="'.$vacunacion->hb.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -437,7 +450,13 @@
                                                     <td>Pentavalente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->pentavalente == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="pentavalente" id="pentavalente" value="'.$vacunacion->pentavalente.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="pentavalente" id="pentavalente" value="'.$vacunacion->pentavalente.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -446,7 +465,13 @@
                                                     <td>Poliomielitis</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->poliomielitis == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="poliomielitis" id="poliomielitis" value="'.$vacunacion->poliomielitis.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="poliomielitis" id="poliomielitis" value="'.$vacunacion->poliomielitis.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -455,7 +480,13 @@
                                                     <td>Rotavirus</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->rotavirus == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="rotavirus" id="rotavirus" value="'.$vacunacion->rotavirus.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="rotavirus" id="rotavirus" value="'.$vacunacion->rotavirus.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -464,7 +495,13 @@
                                                     <td>Neumococo 13 Valente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->neumococoValente == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="neumococoValente" id="neumococoValente" value="'.$vacunacion->neumococoValente.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="neumococoValente" id="neumococoValente" value="'.$vacunacion->neumococoValente.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -477,7 +514,13 @@
                                                     <td>Triple Viral tipo SPR</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->tripleViralSPRUno == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tripleViralSPRUno" id="tripleViralSPRUno" value="'.$vacunacion->tripleViralSPRUno.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tripleViralSPRUno" id="tripleViralSPRUno" value="'.$vacunacion->tripleViralSPRUno.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -486,7 +529,13 @@
                                                     <td>Refuerzo de Neumococo 13 Valente </td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->refuerzoNeumococoValente == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoNeumococoValente" id="refuerzoNeumococoValente" value="'.$vacunacion->refuerzoNeumococoValente.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoNeumococoValente" id="refuerzoNeumococoValente" value="'.$vacunacion->refuerzoNeumococoValente.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -499,7 +548,13 @@
                                                     <td>Primera dosis para la prevención de Hepatitis A</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->hepatitisAUno == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hepatitisAUno" id="hepatitisAUno" value="'.$vacunacion->hepatitisAUno.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hepatitisAUno" id="hepatitisAUno" value="'.$vacunacion->hepatitisAUno.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -508,7 +563,13 @@
                                                     <td>Primera dosis para la prevención de Varicela </td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->varicelaUno == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="varicelaUno" id="varicelaUno" value="'.$vacunacion->varicelaUno.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="varicelaUno" id="varicelaUno" value="'.$vacunacion->varicelaUno.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -521,7 +582,13 @@
                                                     <td>Primer refuerzo de Hexavalente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->refuerzoHexavalenteUno == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoHexavalenteUno" id="refuerzoHexavalenteUno" value="'.$vacunacion->refuerzoHexavalenteUno.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoHexavalenteUno" id="refuerzoHexavalenteUno" value="'.$vacunacion->refuerzoHexavalenteUno.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -530,7 +597,13 @@
                                                     <td>Segunda dosis de Triple Viral topo SPR</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->tripleViralSPRDos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tripleViralSPRDos" id="tripleViralSPRDos" value="'.$vacunacion->tripleViralSPRDos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tripleViralSPRDos" id="tripleViralSPRDos" value="'.$vacunacion->tripleViralSPRDos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -544,7 +617,13 @@
                                                     <td>Segunda dosis para prevenir Hepatitis A</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->hepatitisADos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hepatitisADos" id="hepatitisADos" value="'.$vacunacion->hepatitisADos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hepatitisADos" id="hepatitisADos" value="'.$vacunacion->hepatitisADos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -567,7 +646,13 @@
                                                     <td>Segundo refuerzo de DPT</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->dptDos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="dptDos" id="dptDos" value="'.$vacunacion->dptDos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="dptDos" id="dptDos" value="'.$vacunacion->dptDos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -576,7 +661,13 @@
                                                     <td>Refuerzo OPVb - Polio Oral</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->polioOral == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="polioOral" id="polioOral" value="'.$vacunacion->polioOral.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="polioOral" id="polioOral" value="'.$vacunacion->polioOral.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -585,7 +676,13 @@
                                                     <td>Segunda dosis para la prevención de Varicela</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->varicelaDos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="varicelaDos" id="varicelaDos" value="'.$vacunacion->varicelaDos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="varicelaDos" id="varicelaDos" value="'.$vacunacion->varicelaDos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -597,7 +694,13 @@
                                                     <td>Vacuna contra el Virus del Papiloma Humano Cuadrivalente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->papilomaCuadrivalente == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="papilomaCuadrivalente" id="papilomaCuadrivalente" value="'.$vacunacion->papilomaCuadrivalente.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="papilomaCuadrivalente" id="papilomaCuadrivalente" value="'.$vacunacion->papilomaCuadrivalente.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -610,7 +713,13 @@
                                                     <td>Refuerzo contra el Tétano y Difteria</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->refuerzoTetano == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoTetano" id="refuerzoTetano" value="'.$vacunacion->refuerzoTetano.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="refuerzoTetano" id="refuerzoTetano" value="'.$vacunacion->refuerzoTetano.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -623,7 +732,13 @@
                                                     <td>TDPA</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->tdpa == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tdpa" id="tdpa" value="'.$vacunacion->tdpa.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tdpa" id="tdpa" value="'.$vacunacion->tdpa.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -632,7 +747,13 @@
                                                     <td>TD</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->td == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="td" id="td" value="'.$vacunacion->td.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="td" id="td" value="'.$vacunacion->td.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -641,7 +762,13 @@
                                                     <td>Influenza tetravalente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->influenzaTetravalente == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="influenzaTetravalente" id="influenzaTetravalente" value="'.$vacunacion->influenzaTetravalente.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="influenzaTetravalente" id="influenzaTetravalente" value="'.$vacunacion->influenzaTetravalente.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -653,7 +780,13 @@
                                                     <td>TD</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->tdAdultos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tdAdultos" id="tdAdultos" value="'.$vacunacion->tdAdultos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="tdAdultos" id="tdAdultos" value="'.$vacunacion->tdAdultos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -662,7 +795,13 @@
                                                     <td>HB</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->hbAdultos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hbAdultos" id="hbAdultos" value="'.$vacunacion->hbAdultos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="hbAdultos" id="hbAdultos" value="'.$vacunacion->hbAdultos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -671,7 +810,13 @@
                                                     <td> Neumococo 23 Valente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->neumococoAdultos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="neumococoAdultos" id="neumococoAdultos" value="'.$vacunacion->neumococoAdultos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="neumococoAdultos" id="neumococoAdultos" value="'.$vacunacion->neumococoAdultos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -680,7 +825,13 @@
                                                     <td> Influencia Tetravalente</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->influenzaAdultos == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="influenzaAdultos" id="influenzaAdultos" value="'.$vacunacion->influenzaAdultos.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="influenzaAdultos" id="influenzaAdultos" value="'.$vacunacion->influenzaAdultos.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -692,7 +843,13 @@
                                                     <td>Fiebre Amarilla</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->fiebreAmarilla == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="fiebreAmarilla" id="fiebreAmarilla" value="'.$vacunacion->fiebreAmarilla.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="fiebreAmarilla" id="fiebreAmarilla" value="'.$vacunacion->fiebreAmarilla.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -701,7 +858,13 @@
                                                     <td>Antirrábica Humana</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->antirrabicaHumana == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="antirrabicaHumana" id="antirrabicaHumana" value="'.$vacunacion->antirrabicaHumana.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="antirrabicaHumana" id="antirrabicaHumana" value="'.$vacunacion->antirrabicaHumana.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
@@ -710,12 +873,19 @@
                                                     <td> SARS Cov - 2</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
+                                                        <?php
+                                                                if($vacunacion->covid == 0){
+                                                                    echo '<input type="checkbox" class="vacunacion" name="covid" id="covid" value="'.$vacunacion->covid.'">';
+                                                                }else{
+                                                                    echo '<input type="checkbox" class="vacunacion" name="covid" id="covid" value="'.$vacunacion->covid.'" checked="">';
+                                                                }
+                                                            ?>
                                                         <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
                                                 </tr>
                                             </table>
+                                            <input type="hidden" value="<?php echo $vacunacion->idVacunacion; ?>" id="cartillaVacunacion">
                                         </div>
                                         
                                     </div>
@@ -1597,6 +1767,80 @@
 <!-- Modales -->
 
 <script>
+
+    $(document).on("click", ".vacunacion", function(e) {
+        var pivote = $(this).closest('tr').find('input:checkbox[class=vacunacion]:checked').val();
+        var valor = 0;
+        
+        if (pivote == "0") {
+            valor = 1;
+        } else {
+            valor = 0;
+        }
+        var datos = {
+            nombre : $(this).closest('tr').find('.vacunacion').attr("name"),
+            valor : valor,
+            idCartilla : $("#cartillaVacunacion").val()
+        }
+
+        console.log(valor);
+
+        $.ajax({
+            url: "../../guardar_vacunacion",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+
+                    }
+                }
+        });
+
+    });
 
     $(document).on("keyup", ".impresionEnfermedad", function() {
         $("#lista_diagnostico").html();
