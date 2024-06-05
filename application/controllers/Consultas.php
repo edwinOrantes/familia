@@ -36,6 +36,7 @@ class Consultas extends CI_Controller {
 		// Datos actuales
 			$data["consulta"] = $this->Consultas_Model->detalleConsulta($consulta);
 			$data["antecedentes"] = $this->Consultas_Model->antecedentesConsulta($paciente->idPaciente);
+			$data["vacunacion"] = $this->Consultas_Model->vacunacionPaciente($paciente->idPaciente); // Vacunacion
 			$data["historial_detalles"] = $this->Consultas_Model->historialDetallesConsultas($paciente->idPaciente); // Historial detalles Consultas
 			$data["ultima_consulta"] = $this->Consultas_Model->ultimaCOnsulta($consulta); // Ultima Consultas
 			$data["historial_recetas"] = $this->Consultas_Model->recetasMedicas($paciente->idPaciente); // Historial detalles Consultas
@@ -56,7 +57,7 @@ class Consultas extends CI_Controller {
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
 
-		// echo json_encode($data["receta_hoy"]);
+		// echo json_encode($data["vacunacion"]);
 	}
 
 	public function guardar_detalle_consulta(){

@@ -415,8 +415,8 @@
                                                     <td>BCG</td>
                                                     <td>
                                                         <label class="ms-switch">
-                                                        <input type="checkbox">
-                                                        <span class="ms-switch-slider round"></span>
+                                                            <input type="checkbox" class='vacunacion' name="bcg" id="bcg" value='<?php echo $vacunacion->bcg; ?>'>
+                                                            <span class="ms-switch-slider round"></span>
                                                         </label>
                                                     </td>
                                                 </tr>

@@ -149,6 +149,14 @@ class Consultas_Model extends CI_Model {
             }
         }
 
+        public function vacunacionPaciente($v = null){
+            if($v != null){
+                $sql = "SELECT * FROM tbl_vacunacion_paciente AS v WHERE v.idPaciente = '$v' ";
+                $datos = $this->db->query($sql);
+                return $datos->row();
+            }
+        }
+
         public function guardarAntecedentesConsulta($data = null){
             $sql = "UPDATE tbl_antecedentes_consulta SET antecedentesMedicos = ?, antecedentesQuirurgicos = ?, antecedentesAlergias = ?,
                     antecedentesPartos = ?, antecedentesIngresos = ?, antecedentesOtros  = ?
