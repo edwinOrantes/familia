@@ -5,19 +5,20 @@
         width: 100%;
     }
 
-    .img_cabecera {
-        padding-top: -20px;
-        width: 25%;
-        width: 225px;
+    .img_cabecera{
         float: left;
+        padding-top: -50px;
+        /* text-align: center; */
+        width: 25%;
+    }
+    .title_cabecera{
+        float: right;
+        text-align: center;
+        width: 75%;
     }
 
-    .title_cabecera {
-        padding-top: -15px;
-        float: right;
-        line-height: 5px;
-        text-align: center;
-        width: 60%;
+    .title_cabecera h2{
+        font-size: 40px
     }
 
     .subtitle_cabecera {

@@ -655,7 +655,7 @@ class Hoja extends CI_Controller {
 			$mpdf = new \Mpdf\Mpdf([
 				'margin_left' => 15,
 				'margin_right' => 15,
-				'margin_top' => 70,
+				'margin_top' => 75,
 				'margin_bottom' => 40,
 				'margin_header' => 20,
 				'margin_footer' => 23
@@ -674,9 +674,16 @@ class Hoja extends CI_Controller {
 			$html = $this->load->view('Hoja/resumen_hoja', $data ,true); // Cargando hoja de estilos
 			$mpdf->SetHTMLHeader('
 				<div class="cabecera" style="font-family: Times New Roman">
-					<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
-					<div class="title_cabecera">
-						<h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
+					<div class="cabecera" style="font-family: Times New Roman">
+						<div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg" width=250></div>
+						<div class="title_cabecera">
+							<h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
+							<h5 style="padding-top: -15px;">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel </h5>
+							<h3 style="padding-top: -15px;"> 
+								<img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
+								 <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
+							</h3>
+						</div>
 					</div>
 					
 					<div class="subtitle_cabecera">
@@ -778,7 +785,7 @@ class Hoja extends CI_Controller {
 					'margin_right' => 15,
 					'margin_top' => 70,
 					'margin_bottom' => 78,
-					'margin_header' => 20,
+					'margin_header' => 25,
 					'margin_footer' => 23
 					]);
 				//$mpdf->setFooter('');
@@ -791,7 +798,7 @@ class Hoja extends CI_Controller {
 				$mpdf->SetDisplayMode('fullpage');
 				//$mpdf->AddPage('L'); //Voltear Hoja
 				$html = $this->load->view('Hoja/recibo_hoja', $data ,true); // Cargando hoja de estilos
-				$mpdf->SetHTMLHeader('
+				/* $mpdf->SetHTMLHeader('
 					<div class="cabecera" style="font-family: Times New Roman">
 						<div class="img_cabecera"><img src="'.base_url().'public/img/logo.jpg"></div>
 						<div class="title_cabecera">
@@ -833,6 +840,19 @@ class Hoja extends CI_Controller {
 							</tr>
 
 						</table>
+					</div>
+				'); */
+				$mpdf->SetHTMLHeader('
+					<div class="cabecera" style="font-family: Times New Roman">
+						<div class="img_cabecera"><img src="'.base_url().'public/img/logo_receta.jpg"></div>
+						<div class="title_cabecera">
+							<h2 style="line-height: 1px; color: #075480">HOSPITAL LA FAMILIA </h2>
+							<h5 style="padding-top: -15px;">Avenida Ferrocarril,Barrio la Cruz #51, <br> El Tránsito, San Miguel </h5>
+							<h3 style="padding-top: -15px;"> 
+								<img src="'.base_url().'public/img/telefono.jpg" style="width: 15px"> 2605-6298 &nbsp;&nbsp;&nbsp;
+								 <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
+							</h3>
+						</div>
 					</div>
 				');
 				

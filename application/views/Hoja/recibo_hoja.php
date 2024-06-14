@@ -10,17 +10,21 @@
     .cabecera{
         width: 100%;
     }
+    
     .img_cabecera{
-        padding-top: -20px;
-        width: 25%;
-        width: 225px;
         float: left;
+        padding-top: -50px;
+        /* text-align: center; */
+        width: 25%;
     }
     .title_cabecera{
         float: right;
-        line-height: 5px;
         text-align: center;
-        width: 60%;
+        width: 75%;
+    }
+
+    .title_cabecera h2{
+        font-size: 40px
     }
 
     .subtitle_cabecera{
