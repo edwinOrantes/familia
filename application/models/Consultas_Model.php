@@ -125,12 +125,12 @@ class Consultas_Model extends CI_Model {
             if($pivote == 0){
                 unset($data["idDetalleConsulta"]);
                 $sql = "INSERT INTO tbl_dconsulta_medica(idConsulta, consultaPor, presenteEnfermedad, evolucionEnfermedad, paConsulta, fcConsulta, tempConsulta, 
-                        frConsulta, satConsulta, examenFisico, diagnosticoConsulta, planConsulta)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        frConsulta, satConsulta, pcConsulta, examenFisico, diagnosticoConsulta, planConsulta)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             }else{
                 unset($data["consulta"]);
                 $sql = "UPDATE tbl_dconsulta_medica SET consultaPor = ?, presenteEnfermedad = ?, evolucionEnfermedad = ?, paConsulta = ?, fcConsulta = ?, 
-                    tempConsulta = ?, frConsulta = ?, satConsulta = ?, examenFisico = ?, diagnosticoConsulta = ?, planConsulta = ?
+                    tempConsulta = ?, frConsulta = ?, satConsulta = ?, pcConsulta = ?, examenFisico = ?, diagnosticoConsulta = ?, planConsulta = ?
                     WHERE idDetalleConsulta = ?";
 
             }

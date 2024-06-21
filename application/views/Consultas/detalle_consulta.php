@@ -79,6 +79,14 @@
 
 </style>
 
+<?php
+    function calcularEdad($fechaNacimiento) {
+        $fechaNacimiento = new DateTime($fechaNacimiento);
+        $fechaActual = new DateTime();
+        $diferencia = $fechaActual->diff($fechaNacimiento);
+        return $diferencia->y." Años, ".$diferencia->m." meses ".$diferencia->d." dias.";
+    }
+?>
 
 <div class="ms-content-wrapper">
 	<div class="row">
@@ -111,7 +119,7 @@
                                                     <td><strong>Nombre: </strong></td>
                                                     <td><?php echo $paciente->nombrePaciente; ?></td>
                                                     <td><strong>Edad: </strong></td>
-                                                    <td><?php echo $paciente->edadPaciente; ?> Años</td>
+                                                    <td><?php echo calcularEdad("2024-01-01"); ?></td>
                                                     <td><strong>Teléfono: </strong></td>
                                                     <td><?php echo $paciente->telefonoPaciente; ?></td>
                                                 </tr>
@@ -278,6 +286,7 @@
                                                         <td>Temp: <input type="text" class=" bordes"  size="5" class="" name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
                                                         <td>FR: <input type="text" class=" bordes"  size="5" class="" name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
                                                         <td>SAT: <input type="text" class=" bordes"  size="5" class="" name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
+                                                        <td>P.C.: <input type="text" class=" bordes"  size="5" class="" name="pcConsulta" id="pcConsulta"> <span class="font-weight-bold">cm</span></td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -312,7 +321,8 @@
                                                     <div class="col-md-12 mt-3">
                                                         <p style="margin-bottom: -3px"><strong>PLAN</strong></p>
                                                         <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"></textarea>
-                                                        <input type="hidden" value="0" name="idDetalleConsulta" id="idDetalleConsulta">
+                                                        <!-- <input type="hidden" value="0" name="idDetalleConsulta" id="idDetalleConsulta"> -->
+                                                        <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
 
                                                 </div>
@@ -337,6 +347,7 @@
                                                                 <input type="hidden" value="<?php echo $row->tempConsulta; ?>" class="tempConsultaH">
                                                                 <input type="hidden" value="<?php echo $row->frConsulta; ?>" class="frConsultaH">
                                                                 <input type="hidden" value="<?php echo $row->satConsulta; ?>" class="satConsultaH">
+                                                                <input type="hidden" value="<?php echo $row->pcConsulta; ?>" class="pcConsultaH">
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoConsulta; ?>" class="diagnosticoConsultaH">
                                                                 <input type="hidden" value="<?php echo $row->planConsulta; ?>" class="planConsultaH">
                                                                 <input type="hidden" value="<?php echo $row->peso; ?>" class="pesoH">
@@ -348,6 +359,8 @@
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoUno; ?>" class="diagnosticoUnoH">
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoDos; ?>" class="diagnosticoDosH">
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoTres; ?>" class="diagnosticoTresH">
+                                                                
+                                                                <input type="hidden" value="<?php echo $row->idDetalleConsulta; ?>" class="idDetalleConsultaH">
                                                             </td>
                                                             <td><?php echo $row->consultaPor; ?></td>
                                                         </tr>
@@ -1914,6 +1927,7 @@
             tempConsulta: $("#tempConsulta").val(),
             frConsulta: $("#frConsulta").val(),
             satConsulta: $("#satConsulta").val(),
+            pcConsulta: $("#pcConsulta").val(),
             examenFisico: $("#examenFisico").val(),
             diagnostico: $("#diagnosticoConsulta").val(),
             planEnfermedad: $("#planEnfermedad").val(),
@@ -2282,11 +2296,13 @@
         $("#tempConsulta").val($(this).closest('tr').find('.tempConsultaH').val());
         $("#frConsulta").val($(this).closest('tr').find('.frConsultaH').val());
         $("#satConsulta").val($(this).closest('tr').find('.satConsultaH').val());
+        $("#pcConsulta").val($(this).closest('tr').find('.pcConsultaH').val());
         $("#examenFisico").val($(this).closest('tr').find('.examenFisicoH').val());
         $("#planEnfermedad").val($(this).closest('tr').find('.planConsultaH').val());
         $("#diagnosticoUno").val($(this).closest('tr').find('.diagnosticoUnoH').val());
         $("#diagnosticoDos").val($(this).closest('tr').find('.diagnosticoDosH').val());
         $("#diagnosticoTres").val($(this).closest('tr').find('.diagnosticoTresH').val());
+        $("#idDetalleConsulta").val($(this).closest('tr').find('.idDetalleConsultaH').val());
 
         html += '<table class="table table-borderless table-sm">';
         html += '    <tbody><tr class="text-center">';
@@ -2301,7 +2317,7 @@
         html += '    </tr>';
         html += '</tbody></table>';
 
-        $("#btnGuardarDetalleConsulta").hide();
+        // $("#btnGuardarDetalleConsulta").hide();
         $(".datosEnfermeria").hide();
         $(".datosEnfermeriaH").html(html);
         $(".datosEnfermeriaH").show();
