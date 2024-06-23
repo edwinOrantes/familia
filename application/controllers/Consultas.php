@@ -57,7 +57,7 @@ class Consultas extends CI_Controller {
 		$this->load->view("Consultas/detalle_consulta", $data);
 		$this->load->view("Base/footer");
 
-		// echo json_encode($data["vacunacion"]);
+		// echo json_encode($data["consulta"]);
 	}
 
 	public function guardar_detalle_consulta(){
@@ -212,6 +212,32 @@ class Consultas extends CI_Controller {
 			$datos = $this->input->post();
 
 			$bool = $this->Consultas_Model->guardarVacunacion($datos);
+			if($bool){
+				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+
+			}else{
+				$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+				header("content-type:application/json");
+				print json_encode($respuesta);
+			}
+
+			// echo json_encode($datos);
+
+		}
+		else{
+			$respuesta = array('estado' => 0, 'respuesta' => 'Error');
+			header("content-type:application/json");
+			print json_encode($respuesta);
+		}
+	}
+
+	public function guardar_detalle_vacunacion(){
+		if($this->input->is_ajax_request()){
+			$datos = $this->input->post();
+
+			$bool = $this->Consultas_Model->guardarDetalleVacunacion($datos);
 			if($bool){
 				$respuesta = array('estado' => 1, 'respuesta' => 'Exito');
 				header("content-type:application/json");

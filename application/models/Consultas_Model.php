@@ -14,10 +14,10 @@ class Consultas_Model extends CI_Model {
         public function cabeceraConsulta($consulta = null){
             if($consulta != null){
                 $sql = "SELECT r.nombreResponsable, r.parentescoResponsable, r.duiResponsable, r.telefonoResponsable, p.*, c.idConsulta, c.peso, 
-                        c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta, c.idMedico
-                        FROM tbl_consultas AS c 
-                        INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
-                        INNER JOIN tbl_responsables AS r ON(r.idMenor = p.idPaciente)
+                c.altura, c.imc, c.temperaturaPaciente, c.presionPaciente, c.fechaConsulta, c.idMedico, c.fcPaciente,
+                c.frPaciente, c.satPaciente, c.pcPaciente FROM tbl_consultas AS c 
+                INNER JOIN tbl_pacientes AS p ON(p.idPaciente = c.idPaciente)
+                INNER JOIN tbl_responsables AS r ON(r.idMenor = p.idPaciente)
                         WHERE c.idConsulta = '$consulta' ";
                 $datos = $this->db->query($sql);
                 return $datos->row();
@@ -161,6 +161,15 @@ class Consultas_Model extends CI_Model {
             $sql = "UPDATE tbl_antecedentes_consulta SET antecedentesMedicos = ?, antecedentesQuirurgicos = ?, antecedentesAlergias = ?,
                     antecedentesPartos = ?, antecedentesIngresos = ?, antecedentesOtros  = ?
                     WHERE idAntecedentes  = ?";
+            if($this->db->query($sql, $data)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function guardarDetalleVacunacion($data = null){
+            $sql = "UPDATE tbl_vacunacion_paciente SET otrosDetalles = ? WHERE idVacunacion  = ?";
             if($this->db->query($sql, $data)){
                 return true;
             }else{

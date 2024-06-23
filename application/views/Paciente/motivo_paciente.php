@@ -279,6 +279,19 @@
                                                 <input type="text" id="presionPaciente" data-mask="999/99?9" placeholder="Presión" class="form-control presionPaciente" />
                                             </td>
                                         </tr>
+                                            <td>
+                                                <input type="text" id="fcPaciente" placeholder="F.C" class="form-control frPaciente" />
+                                            </td>
+                                            <td>
+                                                <input type="text" id="frPaciente" placeholder="F.R" class="form-control frPaciente" />
+                                            </td>
+                                            <td>
+                                                <input type="text" id="satPaciente" placeholder="Sat." class="form-control satPaciente" />
+                                            </td>
+                                            <td>
+                                                <input type="text" id="pcPaciente" placeholder="P.C" class="form-control pcPaciente" />
+                                            </td>
+                                        </tr>
                                     </table>
                                     <?php
                                         if( sizeof($examenes) > 0){
@@ -678,6 +691,7 @@
                                                     <th class="text-center" scope="col">Código</th>
                                                     <th class="text-center" scope="col">Nombre</th>
                                                     <th class="text-center" scope="col">Precio</th>
+                                                    <th class="text-center" scope="col">Cantidad</th>
                                                     <th class="text-center" scope="col">Agregar</th>
                                                 </tr>
                                             </thead>
@@ -697,9 +711,11 @@
                                                             <input type="hidden" value="<?php echo $row->idMedicamento; ?>" id="test" class="form-control idM" />
                                                             <input type="hidden" value="<?php  echo $row->precioVMedicamento; ?>" id="test" class="form-control precioM" />
                                                             <input type="hidden" value="<?php  echo $row->nombreMedicamento; ?>" id="test" class="form-control nombreM" />
-                                                            <input type="hidden" value="1" id="test" class="form-control cantidadM" />
                                                         </td>
-                                                    
+
+                                                        <td>
+                                                            <input type="number" value="1" id="test" class="form-control cantidadM" />
+                                                        </td>
 
                                                         <td class="text-center">
                                                             <?php
@@ -793,11 +809,16 @@
             imcPaciente: imc,
             temperatura: $("#temperaturaPaciente").val(),
             presion: $("#presionPaciente").val(),
+            fcPaciente : $("#fcPaciente").val(),
+            frPaciente : $("#frPaciente").val(),
+            satPaciente : $("#satPaciente").val(),
+            pcPaciente : $("#pcPaciente").val(),
             idM : $(this).closest('tr').find('.idM').val(),
             nombreMedicamento : $(this).closest('tr').find('.nombreM').val(),
             precioM : $(this).closest('tr').find('.precioM').val(),
             cantidadM : $(this).closest('tr').find('.cantidadM').val(),
             fecha : $(this).closest('tr').find('.fechaConsulta').val()
+
         }
 
         $.ajax({
