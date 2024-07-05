@@ -25,19 +25,9 @@
         font-size: 40px
     }
 
-    .body_left{
-        /* border: 2px solid #075480; */
-        border-radius: 5px;
-        float: left;
-        height: 85%;
-        padding: 5px;
-        text-align:center;
-        width: 7%;
-    }
-
     .body_right{
         float: right;
-        width: 85%;
+        width: 95%;
         display: flex;
         flex-direction: column;
     }
