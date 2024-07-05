@@ -119,7 +119,7 @@
                                                     <td><strong>Nombre: </strong></td>
                                                     <td><?php echo $paciente->nombrePaciente; ?></td>
                                                     <td><strong>Edad: </strong></td>
-                                                    <td><?php echo calcularEdad("2024-01-01"); ?></td>
+                                                    <td><?php echo calcularEdad($paciente->nacimientoPaciente); ?></td>
                                                     <td><strong>Teléfono: </strong></td>
                                                     <td><?php echo $paciente->telefonoPaciente; ?></td>
                                                 </tr>
@@ -210,25 +210,7 @@
 
                                     <div class="row">
 
-                                        <div class="col-md-6">
-
-                                                <!-- <div class="col-md-12 bg-danger text-white">
-                                                    <div class="datosEnfermeria">
-                                                        <table class="table table-borderless table-sm">
-                                                            <tr class="text-center">
-                                                                <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg</td>
-                                                                <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m</td>
-                                                                <td> <strong>IMC: </strong><?php echo $paciente->imc; ?></td>
-                                                                <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?></td>
-                                                                <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="datosEnfermeriaH"></div>
-                                                </div> -->
+                                        <div class="col-md-4">
 
                                                 <div class="col-md-12">
                                                     <table class="table table-borderless table-sm">
@@ -247,24 +229,28 @@
                                                 </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                        <div class="col-md-12 bg-danger text-white mt-3">
-                                                    <div class="datosEnfermeria">
-                                                        <table class="table table-borderless table-sm">
-                                                            <tr class="text-center">
-                                                                <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg <input type="hidden" value="<?php echo $paciente->peso; ?>" id="pesoEnfermeria"></td>
-                                                                <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m <input type="hidden" value="<?php echo $paciente->altura; ?>" id="alturaEnfermeria"></td>
-                                                                <td> <strong>IMC: </strong><?php echo $paciente->imc; ?> <input type="hidden" value="<?php echo $paciente->imc; ?>" id="imcEnfermeria"></td>
-                                                                <td> <strong>Presión: </strong><?php echo $paciente->presionPaciente; ?> <input type="hidden" value="<?php echo $paciente->presionPaciente; ?>" id="presionEnfermeria"></td>
-                                                                <td> <strong>Temperatura: </strong><?php echo $paciente->temperaturaPaciente; ?> °C <input type="hidden" value="<?php echo $paciente->temperaturaPaciente; ?>" id="temperaturaEnfermeria"></td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="datosEnfermeriaH"></div>
+                                        <div class="col-md-8">
+                                            <div class="col-md-12 bg-danger text-white mt-3">
+                                                <div class="datosEnfermeria">
+                                                    <table class="table table-borderless table-sm">
+                                                        <tr class="text-center">
+                                                            <td colspan="9"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> <strong>Peso: </strong><?php echo $paciente->peso; ?> Kg <input type="hidden" value="<?php echo $paciente->peso; ?>" id="pesoEnfermeria"></td>
+                                                            <td> <strong>Altura: </strong><?php echo $paciente->altura; ?> m <input type="hidden" value="<?php echo $paciente->altura; ?>" id="alturaEnfermeria"></td>
+                                                            <td> <strong>IMC: </strong><?php echo $paciente->imc; ?> <input type="hidden" value="<?php echo $paciente->imc; ?>" id="imcEnfermeria"></td>
+                                                            <td> <strong>P.A: </strong><?php echo $paciente->presionPaciente; ?> mm/hg <input type="hidden" value="<?php echo $paciente->presionPaciente; ?>" id="presionEnfermeria"></td>
+                                                            <td> <strong>Tem.: </strong><?php echo $paciente->temperaturaPaciente; ?> °C <input type="hidden" value="<?php echo $paciente->temperaturaPaciente; ?>" id="temperaturaEnfermeria"></td>
+                                                            <td> <strong>F.C.: </strong><?php echo $paciente->fcPaciente; ?> lat/min<input type="hidden" value="<?php echo $paciente->fcPaciente; ?>" id="fcEnfermeria"></td>
+                                                            <td> <strong>F.R.: </strong><?php echo $paciente->frPaciente; ?> resp/min<input type="hidden" value="<?php echo $paciente->frPaciente; ?>" id="frEnfermeria"></td>
+                                                            <td> <strong>Sat.: </strong><?php echo $paciente->satPaciente; ?> %<input type="hidden" value="<?php echo $paciente->satPaciente; ?>" id="satturaEnfermeria"></td>
+                                                            <td> <strong>P.C.: </strong><?php echo $paciente->pcPaciente; ?> cm<input type="hidden" value="<?php echo $paciente->pcPaciente; ?>" id="pcEnfermeria"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
+                                                <div class="datosEnfermeriaH"></div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><strong>EVOLUCION</strong></p>
@@ -281,17 +267,17 @@
                                                 <table class="table table-borderless">
                                                     <tr>
                                                         <td><strong>EXAMEN FISICO</strong></td>
-                                                        <td>P.A: <input type="text" class=" bordes"  size="5" class="" name="paConsulta" id="paConsulta"> <span class="font-weight-bold">mm/hg</span> </td>
-                                                        <td>F.C: <input type="text" class=" bordes"  size="5" class="" name="fcConsulta" id="fcConsulta"> <span class="font-weight-bold">lat/min</span></td>
-                                                        <td>Temp: <input type="text" class=" bordes"  size="5" class="" name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
-                                                        <td>FR: <input type="text" class=" bordes"  size="5" class="" name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
-                                                        <td>SAT: <input type="text" class=" bordes"  size="5" class="" name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
-                                                        <td>P.C.: <input type="text" class=" bordes"  size="5" class="" name="pcConsulta" id="pcConsulta"> <span class="font-weight-bold">cm</span></td>
+                                                        <td>P.A: <input type="text" class=" bordes" value="<?php echo $consulta->paConsulta; ?>" size="5"  name="paConsulta" id="paConsulta"> <span class="font-weight-bold">mm/hg</span> </td>
+                                                        <td>F.C: <input type="text" class=" bordes" value="<?php echo $consulta->fcConsulta; ?>" size="5"  name="fcConsulta" id="fcConsulta"> <span class="font-weight-bold">lat/min</span></td>
+                                                        <td>Temp: <input type="text" class=" bordes" value="<?php echo $consulta->tempConsulta; ?>" size="5"  name="tempConsulta" id="tempConsulta"> <span class="font-weight-bold">°C</span></td>
+                                                        <td>FR: <input type="text" class=" bordes" value="<?php echo $consulta->frConsulta; ?>" size="5"  name="frConsulta" id="frConsulta"> <span class="font-weight-bold">resp/min</span></td>
+                                                        <td>SAT: <input type="text" class=" bordes" value="<?php echo $consulta->satConsulta; ?>"  size="5"  name="satConsulta" id="satConsulta"> <span class="font-weight-bold">%</span></td>
+                                                        <td>P.C.: <input type="text" class=" bordes" value="<?php echo $consulta->pcConsulta; ?>" size="5"  name="pcConsulta" id="pcConsulta"> <span class="font-weight-bold">cm</span></td>
                                                     </tr>
                                                 </table>
                                             </div>
                                             <div class="col-md-12">
-                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="13"></textarea>
+                                                <textarea name="examenFisico" id="examenFisico" class="form-control bordes" cols="30" rows="13"><?php echo $consulta->examenFisico; ?></textarea>
                                             </div>
 
                                             <div class="col-md-12">
@@ -315,12 +301,12 @@
                                                     </div> -->
                                                     <div class="col-md-12 mt-3">
                                                         <p style="margin-bottom: -3px"><strong>IMPRESION DIAGNOSTICA</strong></p>
-                                                        <textarea name="diagnosticoConsulta" id="diagnosticoConsulta" class="form-control bordes" cols="30" rows="4"></textarea>
+                                                        <textarea name="diagnosticoConsulta" id="diagnosticoConsulta" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->diagnosticoConsulta; ?></textarea>
                                                     </div>
         
                                                     <div class="col-md-12 mt-3">
                                                         <p style="margin-bottom: -3px"><strong>PLAN</strong></p>
-                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"></textarea>
+                                                        <textarea name="planEnfermedad" id="planEnfermedad" class="form-control bordes" cols="30" rows="4"><?php echo $consulta->planConsulta; ?></textarea>
                                                         <!-- <input type="hidden" value="0" name="idDetalleConsulta" id="idDetalleConsulta"> -->
                                                         <input type="hidden" value="<?php echo $consulta->idDetalleConsulta; ?>" name="idDetalleConsulta" id="idDetalleConsulta">
                                                     </div>
@@ -355,6 +341,12 @@
                                                                 <input type="hidden" value="<?php echo $row->imc; ?>" class="imcH">
                                                                 <input type="hidden" value="<?php echo $row->temperaturaPaciente; ?>" class="temperaturaPacienteH">
                                                                 <input type="hidden" value="<?php echo $row->presionPaciente; ?>" class="presionPacienteH">
+
+                                                                <input type="hidden" value="<?php echo $row->fcPaciente; ?>" class="fcPacienteH">
+                                                                <input type="hidden" value="<?php echo $row->frPaciente; ?>" class="frPacienteH">
+                                                                <input type="hidden" value="<?php echo $row->satPaciente; ?>" class="satPacienteH">
+                                                                <input type="hidden" value="<?php echo $row->pcPaciente; ?>" class="pcPacienteH">
+
                                                                 <input type="hidden" value="<?php echo $row->examenFisico; ?>" class="examenFisicoH">
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoUno; ?>" class="diagnosticoUnoH">
                                                                 <input type="hidden" value="<?php echo $row->diagnosticoDos; ?>" class="diagnosticoDosH">
@@ -644,6 +636,7 @@
 
                                                 
                                             </table>
+
                                         </div>
 
                                         <div class="col-md-6">
@@ -899,6 +892,21 @@
                                                 </tr>
                                             </table>
                                             <input type="hidden" value="<?php echo $vacunacion->idVacunacion; ?>" id="cartillaVacunacion">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <table class="table table-sm text-center">
+                                                <tr>
+                                                    <td>
+                                                        <label for=""><strong>DETALLES</strong></label>
+                                                        <textarea class="form-control" name="otrosVacunacion" id="otrosVacunacion" cols="30" rows="5"><?php echo $vacunacion->otrosDetalles; ?></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" value="<?php echo $vacunacion->idVacunacion; ?>" id="idVacunacion">
+                                                        <button type="button" class="btn btn-primary btn-block mt-3 btnDetalleVacunacion">Guardar</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         
                                     </div>
@@ -2306,14 +2314,19 @@
 
         html += '<table class="table table-borderless table-sm">';
         html += '    <tbody><tr class="text-center">';
-        html += '        <td colspan="5"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>';
+        html += '        <td colspan="9"><strong>SIGNOS VITALES POR ENFERMERIA:</strong></td>';
         html += '    </tr>';
         html += '    <tr>';
         html += '        <td> <strong>Peso: </strong>'+$(this).closest('tr').find('.pesoH').val()+' Kg</td>';
         html += '        <td> <strong>Altura: </strong>'+$(this).closest('tr').find('.alturaH').val()+' Cm</td>';
         html += '        <td> <strong>IMC: </strong>'+$(this).closest('tr').find('.imcH').val()+'</td>';
-        html += '        <td> <strong>Presión: </strong>'+$(this).closest('tr').find('.presionPacienteH').val()+'</td>';
-        html += '        <td> <strong>Temperatura: </strong>'+$(this).closest('tr').find('.temperaturaPacienteH').val()+'°C</td>';
+        html += '        <td> <strong>P.A: </strong>'+$(this).closest('tr').find('.presionPacienteH').val()+'</td>';
+        html += '        <td> <strong>Temp.: </strong>'+$(this).closest('tr').find('.temperaturaPacienteH').val()+'°C</td>';
+
+        html += '        <td> <strong>F.C.: </strong>'+$(this).closest('tr').find('.fcPacienteH').val()+' lat/min</td>';
+        html += '        <td> <strong>F.R.: </strong>'+$(this).closest('tr').find('.frPacienteH').val()+'resp/min</td>';
+        html += '        <td> <strong>Sat.: </strong>'+$(this).closest('tr').find('.satPacienteH').val()+' %</td>';
+        html += '        <td> <strong>P.C.: </strong>'+$(this).closest('tr').find('.pcPacienteH').val()+' cm</td>';
         html += '    </tr>';
         html += '</tbody></table>';
 
@@ -2593,11 +2606,84 @@
         /* $("#pesoEnfermeria").val();
         $("#alturaEnfermeria").val();
         $("#imcEnfermeria").val(); */
+        
+
         $("#paConsulta").val($("#presionEnfermeria").val());
         $("#tempConsulta").val($("#temperaturaEnfermeria").val());
+
+        $("#fcConsulta").val($("#fcEnfermeria").val());
+        $("#frConsulta").val($("#frEnfermeria").val());
+        $("#satConsulta").val($("#satturaEnfermeria").val());
+        $("#pcConsulta").val($("#pcEnfermeria").val());
         
 
         // console.log(tabla);
+    });
+
+    $(document).on("click", ".btnDetalleVacunacion", function() {
+        var datos = {
+            detalle : $("#otrosVacunacion").val(),
+            idVacunacion : $("#idVacunacion").val()
+        }
+
+        console.log(datos);
+
+        $.ajax({
+            url: "../../guardar_detalle_vacunacion",
+            type: "POST",
+            data: datos,
+            success:function(respuesta){
+                    var registro = eval(respuesta);
+                    if (Object.keys(registro).length > 0){
+                        if(registro.estado == 1){
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.success('Datos agregados con exito', 'Aviso!');
+                            $("#txtIndicacionExtra").val("");
+                            $("#txtIndicacionExtra").focus();
+                        }else{
+                            toastr.remove();
+                            toastr.options = {
+                                "positionClass": "toast-top-left",
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "1000",
+                                "extendedTimeOut": "50",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                },
+                            toastr.error('No se agrego el detalle...', 'Aviso!');
+                        }
+                    }else{
+                        toastr.remove();
+                        toastr.options = {
+                            "positionClass": "toast-top-left",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "50",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            },
+                        toastr.error('No se agrego el detalle...', 'Aviso!');
+
+                    }
+                }
+        });
     });
 
     function checkUTF8(text) {

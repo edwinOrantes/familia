@@ -442,6 +442,12 @@ class Paciente extends CI_Controller {
 					$consulta["imcPaciente"] = $datos["imcPaciente"];
 					$consulta["temperatura"] = $datos["temperatura"];
 					$consulta["presion"] = $datos["presion"];
+
+					$consulta["fcPaciente"] = $datos["fcPaciente"];
+					$consulta["frPaciente"] = $datos["frPaciente"];
+					$consulta["satPaciente"] = $datos["satPaciente"];
+					$consulta["pcPaciente"] = $datos["pcPaciente"];
+
 					$consulta["fechaHoja"] = $datos["fecha"];
 					$consulta["hoja"] = $datos["idHoja"];
 				// Consulta

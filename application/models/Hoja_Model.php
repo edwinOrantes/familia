@@ -26,8 +26,9 @@ class Hoja_Model extends CI_Model {
 
         public function guardarConsulta($data = null){
             if ($data != null) {
-                $sql = "INSERT INTO tbl_consultas(idPaciente, idMedico, nombrePaciente, peso, altura, imc, temperaturaPaciente, presionPaciente, fechaConsulta, hojaCobro)
-                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO tbl_consultas(idPaciente, idMedico, nombrePaciente, peso, altura, imc, temperaturaPaciente, presionPaciente,
+                fcPaciente, frPaciente, satPaciente, pcPaciente, fechaConsulta, hojaCobro)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 if($this->db->query($sql, $data)){
                     return true;
                 }else{
