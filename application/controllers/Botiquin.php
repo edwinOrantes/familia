@@ -54,6 +54,8 @@ class Botiquin extends CI_Controller {
 		$this->load->view('Base/header');
 		$this->load->view('Botiquin/lista_medicamentos', $data);
 		$this->load->view('Base/footer');
+
+		// echo json_encode($data["medicamentos"]);
     }
 
     

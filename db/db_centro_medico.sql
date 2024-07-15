@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `tbl_antecedentes_consulta` (
   PRIMARY KEY (`idAntecedentes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_antecedentes_consulta: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_antecedentes_consulta: ~4 rows (aproximadamente)
 INSERT INTO `tbl_antecedentes_consulta` (`idAntecedentes`, `idPaciente`, `antecedentesMedicos`, `antecedentesQuirurgicos`, `antecedentesAlergias`, `antecedentesPartos`, `antecedentesIngresos`, `antecedentesOtros`, `creadoAntecedentes`) VALUES
 	(1, 5, 'algo\nalgo mas we', 'otra vez', 'algo', 'una vez mas', 'algo', 'otro algo', '2024-04-26 21:00:35'),
 	(2, 1, '', '', '', '', '', '', '2024-05-03 17:24:13'),
@@ -241,9 +241,9 @@ CREATE TABLE IF NOT EXISTS `tbl_bitacora` (
   `descripcionBitacora` text NOT NULL,
   `fechaBitacora` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idBitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=1050 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1054 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~86 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_bitacora: ~87 rows (aproximadamente)
 INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `fechaBitacora`) VALUES
 	(954, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:12'),
 	(955, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-01-13 22:11:36'),
@@ -340,7 +340,11 @@ INSERT INTO `tbl_bitacora` (`idBitacora`, `idUsuario`, `descripcionBitacora`, `f
 	(1046, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-05 00:20:46'),
 	(1047, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-06 00:32:47'),
 	(1048, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-18 19:10:23'),
-	(1049, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-23 14:29:46');
+	(1049, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-23 14:29:46'),
+	(1050, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-06-25 00:40:17'),
+	(1051, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-07-06 17:37:01'),
+	(1052, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-07-06 19:01:57'),
+	(1053, 1, 'El usuario: Informatica Ha iniciado sesión', '2024-07-14 23:16:17');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_bosquejos
 CREATE TABLE IF NOT EXISTS `tbl_bosquejos` (
@@ -498,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cola_laboratorio` (
   `consultaGenerada` int(11) NOT NULL DEFAULT 0,
   `fechaCola` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idCola`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_cola_laboratorio: ~35 rows (aproximadamente)
 INSERT INTO `tbl_cola_laboratorio` (`idCola`, `idPaciente`, `idHoja`, `consultaGenerada`, `fechaCola`) VALUES
@@ -546,7 +550,10 @@ INSERT INTO `tbl_cola_laboratorio` (`idCola`, `idPaciente`, `idHoja`, `consultaG
 	(42, 1, 44, 0, '2024-06-18 19:10:33'),
 	(43, 3, 45, 0, '2024-06-18 20:18:22'),
 	(44, 5, 46, 0, '2024-06-18 20:46:33'),
-	(45, 6, 47, 0, '2024-06-23 14:35:07');
+	(45, 6, 47, 0, '2024-06-23 14:35:07'),
+	(46, 6, 48, 0, '2024-06-25 00:41:07'),
+	(47, 1, 49, 0, '2024-07-06 19:03:18'),
+	(48, 1, 50, 0, '2024-07-14 23:59:35');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_compras_hemo
 CREATE TABLE IF NOT EXISTS `tbl_compras_hemo` (
@@ -645,9 +652,9 @@ CREATE TABLE IF NOT EXISTS `tbl_consultas` (
   `estadoConsulta` int(11) NOT NULL DEFAULT 1,
   `creadaConsulta` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idConsulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_consultas: ~25 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_consultas: ~24 rows (aproximadamente)
 INSERT INTO `tbl_consultas` (`idConsulta`, `idPaciente`, `idMedico`, `nombrePaciente`, `peso`, `altura`, `imc`, `temperaturaPaciente`, `presionPaciente`, `fcPaciente`, `frPaciente`, `satPaciente`, `pcPaciente`, `fechaConsulta`, `hojaCobro`, `estadoConsulta`, `creadaConsulta`) VALUES
 	(1, 1, 1, 'Juan Antonio Campos', 72.70, 150.00, 32.31, '0', '0', '0', '0', '0', '0', '2024-01-28', 1, 1, '2024-01-28 15:42:20'),
 	(2, 3, 1, 'Adela Maria Romero Cruz', 50.00, 150.00, 22.22, '0', '0', '0', '0', '0', '0', '2024-02-22', 3, 1, '2024-02-22 21:35:49'),
@@ -675,7 +682,9 @@ INSERT INTO `tbl_consultas` (`idConsulta`, `idPaciente`, `idMedico`, `nombrePaci
 	(32, 4, 1, 'Adela Matilde Romero Cruz', 50.00, 1.50, 22.22, '30', '120/80', '0', '0', '0', '0', '2024-06-04', 42, 1, '2024-06-02 15:28:36'),
 	(33, 4, 1, 'Adela Matilde Romero Cruz', 50.00, 1.60, 19.53, '32', '120/80', '0', '0', '0', '0', '2024-06-04', 43, 1, '2024-06-05 00:43:46'),
 	(34, 3, 2, 'Adela Maria Romero Cruz', 50.00, 1.50, 22.22, '32', '120/80', '0', '0', '0', '0', '2024-06-18', 45, 1, '2024-06-18 20:19:30'),
-	(35, 6, 2, 'Pedro Antonio Campos', 50.00, 1.25, 32.00, '35', '120/080', '5', '3', '4', '2', '2024-06-23', 47, 1, '2024-06-23 14:56:26');
+	(35, 6, 2, 'Pedro Antonio Campos', 50.00, 1.25, 32.00, '35', '120/080', '5', '3', '4', '2', '2024-06-23', 47, 1, '2024-06-23 14:56:26'),
+	(36, 6, 1, 'Pedro Antonio Campos', 50.00, 1.50, 22.22, '30', '120/80', '1', '2', '3', '4', '2024-06-24', 48, 1, '2024-06-25 00:41:50'),
+	(37, 1, 1, 'Juan Antonio Campos', 1.00, 2.00, 0.25, '3', '', '5', '6', '7', '8', '2024-07-06', 49, 1, '2024-07-06 19:03:57');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_consulta_laboratorio
 CREATE TABLE IF NOT EXISTS `tbl_consulta_laboratorio` (
@@ -1044,9 +1053,9 @@ CREATE TABLE IF NOT EXISTS `tbl_dconsulta_medica` (
   `planConsulta` text NOT NULL,
   `creadoConsulta` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idDetalleConsulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_dconsulta_medica: ~23 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_dconsulta_medica: ~22 rows (aproximadamente)
 INSERT INTO `tbl_dconsulta_medica` (`idDetalleConsulta`, `idConsulta`, `consultaPor`, `presenteEnfermedad`, `evolucionEnfermedad`, `paConsulta`, `fcConsulta`, `tempConsulta`, `frConsulta`, `satConsulta`, `pcConsulta`, `examenFisico`, `diagnosticoUno`, `diagnosticoDos`, `diagnosticoTres`, `diagnosticoConsulta`, `planConsulta`, `creadoConsulta`) VALUES
 	(1, 15, 'Dolor de cabeza', 'Por el momento esta bien.\nnítido la verdad', 'Muy bien', '1', '2', '3', '4', '', '', '', 'FIEBRE TIFOIDEA', 'COLERA NO ESPECIFICADO', 'BALANTIDIASIS', 'FIEBRE TIFOIDEA<br>COLERA NO ESPECIFICADO<br>BALANTIDIASIS', 'Por el momento nada', '2024-04-25 20:14:01'),
 	(2, 16, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-04-26 21:00:35'),
@@ -1074,7 +1083,9 @@ INSERT INTO `tbl_dconsulta_medica` (`idDetalleConsulta`, `idConsulta`, `consulta
 	(24, 32, 'Testing editado', '', 'Esta es otra evolucion\nBueno ahora sigue algo mas', '4', '4', '4', '4', '4', '', '', '', '', '', '', '', '2024-06-02 16:06:52'),
 	(25, 33, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-06-05 00:43:46'),
 	(26, 34, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-06-18 20:19:30'),
-	(27, 35, 'Fiebre', 'presente', '', '1', '2', '3', '4', '5', '7', 'Aqui examen fisico', '', '', '', 'aqu iimpresion', 'aqui plan', '2024-06-23 14:56:26');
+	(27, 35, 'Fiebre', 'presente', '', '1', '2', '3', '4', '5', '7', 'Aqui examen fisico', '', '', '', 'aqu iimpresion', 'aqui plan', '2024-06-23 14:56:26'),
+	(28, 36, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-06-25 00:41:50'),
+	(29, 37, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-07-06 19:03:57');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_dcuenta_descargosbm
 CREATE TABLE IF NOT EXISTS `tbl_dcuenta_descargosbm` (
@@ -14220,7 +14231,7 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_cobro` (
   KEY `idMedico` (`idMedico`),
   CONSTRAINT `tbl_hoja_cobro_ibfk_2` FOREIGN KEY (`idMedico`) REFERENCES `tbl_medicos` (`idMedico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tbl_hoja_cobro_ibfk_3` FOREIGN KEY (`idPaciente`) REFERENCES `tbl_pacientes` (`idPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla db_centro_medico.tbl_hoja_cobro: ~28 rows (aproximadamente)
 INSERT INTO `tbl_hoja_cobro` (`idHoja`, `codigoHoja`, `idPaciente`, `fechaHoja`, `tipoHoja`, `idMedico`, `idHabitacion`, `totalHoja`, `estadoHoja`, `salidaHoja`, `fechaIngresoHoja`, `correlativoSalidaHoja`, `diagnosticoHoja`, `anulada`, `credito_fiscal`, `motivoAnulada`, `paraHoja`, `descuentoHoja`, `seguroHoja`, `dh`, `esPaquete`, `porPagos`, `detalleAnulada`, `fechaRecibo`, `pagaMedico`, `destinoHoja`, `totalPaquete`, `esPromocion`, `formaPago`) VALUES
@@ -14261,7 +14272,10 @@ INSERT INTO `tbl_hoja_cobro` (`idHoja`, `codigoHoja`, `idPaciente`, `fechaHoja`,
 	(44, 1034, 1, '2024-06-18', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-18 19:10:33', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
 	(45, 1035, 3, '2024-06-18', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-18 20:18:22', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
 	(46, 1036, 5, '2024-06-18', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-18 20:46:33', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
-	(47, 1037, 6, '2024-06-23', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-23 14:35:07', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0);
+	(47, 1037, 6, '2024-06-23', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-23 14:35:07', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
+	(48, 1038, 6, '2024-06-24', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-06-25 00:41:07', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
+	(49, 1039, 1, '2024-07-06', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-07-06 19:03:18', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0),
+	(50, 1040, 1, '2024-07-14', 'Ambulatoria', 1, 1, 0.00, 1, '', '2024-07-14 23:59:35', 0, '', 0, '', '', '', NULL, 1, NULL, 0, 0, NULL, NULL, 0, 0, 0.00, 0, 0);
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_externos
 CREATE TABLE IF NOT EXISTS `tbl_hoja_externos` (
@@ -14304,9 +14318,9 @@ CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos` (
   KEY `idHojaInsumo` (`idHoja`),
   KEY `idInsumo` (`idInsumo`),
   CONSTRAINT `tbl_hoja_insumos_ibfk_3` FOREIGN KEY (`idHoja`) REFERENCES `tbl_hoja_cobro` (`idHoja`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos: ~42 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_hoja_insumos: ~39 rows (aproximadamente)
 INSERT INTO `tbl_hoja_insumos` (`idHojaInsumo`, `idHoja`, `idInsumo`, `precioInsumo`, `cantidadInsumo`, `detalleInsumo`, `fechaInsumo`, `descuentoUnitario`, `aumentoUnitario`, `por`, `eliminado`, `motivoEliminado`, `pivoteStock`, `filaKardexStock`, `fechaAgregado`) VALUES
 	(1, 2, 970, 1.00, 5, '', '2024-01-28', 0.00, 0.00, 1, 0, '', 0, 0, '2024-02-15 21:23:51'),
 	(2, 6, 970, 1.00, 100, '', '2024-03-16', 0.00, 0.00, 1, 0, '', 0, 0, '2024-03-16 23:54:09'),
@@ -14352,7 +14366,9 @@ INSERT INTO `tbl_hoja_insumos` (`idHojaInsumo`, `idHoja`, `idInsumo`, `precioIns
 	(43, 45, 145, 10.00, 1, '', '2024-06-18', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-18 20:19:30'),
 	(44, 47, 145, 10.00, 1, '', '2024-06-23', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-23 14:56:26'),
 	(45, 47, 147, 0.00, 1, '', '2024-06-23', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-23 14:57:54'),
-	(46, 47, 152, 0.00, 1, '', '2024-06-23', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-23 14:57:56');
+	(46, 47, 152, 0.00, 1, '', '2024-06-23', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-23 14:57:56'),
+	(47, 48, 145, 10.00, 1, '', '2024-06-24', 0.00, 0.00, 1, 0, '', 0, 0, '2024-06-25 00:41:50'),
+	(48, 49, 145, 10.00, 1, '', '2024-07-06', 0.00, 0.00, 1, 0, '', 0, 0, '2024-07-06 19:03:57');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_hoja_insumos_eliminados
 CREATE TABLE IF NOT EXISTS `tbl_hoja_insumos_eliminados` (
@@ -14557,9 +14573,9 @@ CREATE TABLE IF NOT EXISTS `tbl_kardex_botiquin` (
   `movimientoPor` int(11) NOT NULL,
   `creadoKardex` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idKardex`)
-) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_kardex_botiquin: ~42 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_kardex_botiquin: ~39 rows (aproximadamente)
 INSERT INTO `tbl_kardex_botiquin` (`idKardex`, `idInsumo`, `cantidadInsumo`, `stockActual`, `tipoKardex`, `filaEntrada`, `filaSalida`, `filaEmpleado`, `conceptoKardex`, `movimientoPor`, `creadoKardex`) VALUES
 	(203, 970, 0, 0, 'Eliminado', 101, 0, 0, '', 0, '2024-01-16 21:03:46'),
 	(204, 970, 100, 100, 'Entrada', 102, 0, 0, '', 0, '2024-01-16 21:05:19'),
@@ -14615,7 +14631,9 @@ INSERT INTO `tbl_kardex_botiquin` (`idKardex`, `idInsumo`, `cantidadInsumo`, `st
 	(254, 145, 1, -18, 'Salida', 0, 43, 0, 'Usado en cuentas privadas', 0, '2024-06-18 20:19:30'),
 	(255, 145, 1, -19, 'Salida', 0, 44, 0, 'Usado en cuentas privadas', 0, '2024-06-23 14:56:26'),
 	(256, 147, 1, -1, 'Salida', 0, 45, 0, 'Usado en cuentas privadas', 0, '2024-06-23 14:57:54'),
-	(257, 152, 1, -1, 'Salida', 0, 46, 0, 'Usado en cuentas privadas', 0, '2024-06-23 14:57:56');
+	(257, 152, 1, -1, 'Salida', 0, 46, 0, 'Usado en cuentas privadas', 0, '2024-06-23 14:57:56'),
+	(258, 145, 1, -20, 'Salida', 0, 47, 0, 'Usado en cuentas privadas', 0, '2024-06-25 00:41:50'),
+	(259, 145, 1, -21, 'Salida', 0, 48, 0, 'Usado en cuentas privadas', 0, '2024-07-06 19:03:57');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_kardex_hemo
 CREATE TABLE IF NOT EXISTS `tbl_kardex_hemo` (
@@ -14703,14 +14721,14 @@ CREATE TABLE IF NOT EXISTS `tbl_medicamentos` (
   PRIMARY KEY (`idMedicamento`),
   KEY `idClasificacionMedicamento` (`idClasificacionMedicamento`),
   KEY `idProveedorMedicamento` (`idProveedorMedicamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_medicamentos: ~154 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_medicamentos: ~146 rows (aproximadamente)
 INSERT INTO `tbl_medicamentos` (`idMedicamento`, `codigoMedicamento`, `nombreMedicamento`, `idProveedorMedicamento`, `precioCMedicamento`, `precioVMedicamento`, `descuentoMedicamento`, `tipoMedicamento`, `idClasificacionMedicamento`, `stockMedicamento`, `usadosMedicamento`, `pivoteMedicamento`, `minimoMedicamento`, `ocultarMedicamento`, `feriadoMedicamento`, `idFabricante`, `creadoMedicamento`) VALUES
-	(1, 1000, 'ACETAMINOFÉN', 1, 0.00, 0.00, 0, 'Servicios', 27, -4, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(2, 1001, 'AZITROMICINA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(3, 1002, 'DOGENAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(4, 1003, 'ANALGAN', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(1, 1000, 'ACETAMINOFÉN', 1, 0.00, 0.00, 0, 'Medicamento', 27, -4, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(2, 1001, 'AZITROMICINA', 1, 0.00, 0.00, 0, 'Medicamento', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(3, 1002, 'DOGENAL', 1, 0.00, 0.00, 0, 'Medicamento', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(4, 1003, 'ANALGAN', 1, 0.00, 0.00, 0, 'Medicamento', 27, 0, 0, 0, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(5, 1004, 'HEMOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, -2, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(6, 1005, 'LEUCOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(7, 1006, 'HEMATOCRITO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
@@ -14794,79 +14812,92 @@ INSERT INTO `tbl_medicamentos` (`idMedicamento`, `codigoMedicamento`, `nombreMed
 	(85, 1084, 'CALCIO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(86, 1085, 'MAGNESIO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
 	(87, 1086, 'FOSFORO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 1, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(88, 1087, 'CRANEO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(88, 1087, 'CRANEO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 1, 0.00, 1, '0000-00-00 00:00:00'),
 	(89, 1088, 'WATERS', 1, 0.00, 0.00, 0, 'Servicios', 27, -1, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(90, 1089, 'CUELLO(TEJIDOS BLANDOS)', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(91, 1090, 'CAVUM', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(92, 1091, 'SENOS PARA NASALES', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(93, 1092, 'TOWN', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(94, 1093, 'SILLA TURCA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(95, 1094, 'HUESOS NASALES', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(96, 1095, 'ART. T.M', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(97, 1096, 'ORBITA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(98, 1097, 'AGUJEROS OPTICOS', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(99, 1098, 'MASTOIDES', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(100, 1099, 'MANDIBULA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(101, 1100, 'CERVICAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(102, 1101, 'CERVICAL CON OBLICUAS', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(103, 1102, 'COLUMNA DORSAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(104, 1103, 'LUMBAR CON OBLICUAS', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(105, 1104, 'LUMBAR FLEXION Y EXTENSION', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(106, 1105, 'PELVIS', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(107, 1106, 'SACRO-COXIS', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(108, 1107, 'TORAX(PA) DI', 1, 0.00, 0.00, 0, 'Servicios', 27, -2, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(109, 1108, 'TORAX(PA Y LAT) DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(110, 1109, 'COSTILLA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(111, 1110, 'ESTERNON', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(112, 1111, 'ABDOMEN SIMPLE', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(113, 1112, 'ABDOMEN AGUDO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(114, 1113, 'ESOFAGOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(115, 1114, 'TUVO DIGESTIVO SUPERIOR', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(116, 1115, 'TRANSITO INTESTINAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(117, 1116, 'COLON, ENEMA BARITADO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(118, 1117, 'PIELOGRAMA E.V', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(119, 1118, 'PIELOGRAMA RETROGRADO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(120, 1119, 'CISTOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(121, 1120, 'CISTOURETROGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(122, 1121, 'PEV. POR INFUSION', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(123, 1122, 'URETROGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(124, 1123, 'SERIE OSEA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(125, 1124, 'CLAVICULA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(126, 1125, 'ESCAPULA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(127, 1126, 'HOMBRO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, -1, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(128, 1127, 'HUMERO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(129, 1128, 'CODO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(130, 1129, 'ANTEBRAZO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(131, 1130, 'MUÑECA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(132, 1131, 'MANO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(133, 1132, 'EDAD OSEA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(134, 1133, 'CADERA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(135, 1134, 'FEMUR DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(136, 1135, 'RODILLA DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(137, 1136, 'TIBIA PERONE DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(138, 1137, 'PIE DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(139, 1138, 'CALCANEO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(140, 1139, 'TOBILLO DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(141, 1140, 'HISTEROSALPINGOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(142, 1141, 'COLANGIOGRAMA POR TUBO EN T.', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(143, 1142, 'FISTULOGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(144, 1143, 'ULTRASONOGRAFIA ABDOMINAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
-	(145, 1144, 'Consulta general', 1, 10.00, 10.00, 0, 'Servicios', 27, -19, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:26:59'),
-	(146, 1145, 'Consulta ginecológica', 1, 25.00, 25.00, 0, 'Servicios', 27, -4, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:27:53'),
-	(147, 1146, 'Fisioterapia', 0, 0.00, 0.00, 0, 'Servicios', 27, -1, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:13:18'),
-	(148, 1147, 'Ambulancia', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:13:55'),
-	(149, 1148, 'Atención Psicologia', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:14:32'),
-	(150, 1149, 'Cumplimiento de enfermeria', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:06'),
-	(151, 1150, 'Terapia respiratoria', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:34'),
-	(152, 1151, 'Toma de electrocardiograma', 0, 0.00, 0.00, 0, 'Servicio', 0, -1, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
-	(153, 1152, 'ULTRASONOGRAFIA GINECOLOGICA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 0.00, 0, '2024-06-23 14:50:09'),
-	(154, 1153, 'ULTRASONOGRAFIA OBSTETRICA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 0.00, 0, '2024-06-23 14:50:09'),
-	(155, 1154, 'ULTRASONOGRAFIA PELVICA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 0.00, 0, '2024-06-23 14:50:09'),
-	(156, 1155, 'ULTRASONOGRAFIA MAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 0.00, 0, '2024-06-23 14:50:09'),
-	(157, 1156, 'CItologia', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
-	(158, 1157, 'Monitoreo fetal', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
-	(159, 1158, 'Biopsia', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
-	(160, 1159, 'Endo sampler', 0, 0.00, 0.00, 0, 'Servicio', 0, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58');
+	(90, 1087, 'CRANEO AP Y LAT', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(91, 1088, 'CRANEO AP', 1, 0.00, 25.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 25.00, 1, '0000-00-00 00:00:00'),
+	(92, 1089, 'ORBITAS', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(93, 1090, 'CAVUM', 1, 0.00, 25.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 25.00, 1, '0000-00-00 00:00:00'),
+	(94, 1091, 'WATTERS', 1, 0.00, 25.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 25.00, 1, '0000-00-00 00:00:00'),
+	(95, 1092, 'SENOS PARA NASALES', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(96, 1093, 'TOWN', 1, 0.00, 25.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 25.00, 1, '0000-00-00 00:00:00'),
+	(97, 1094, 'SILLA TURCA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(98, 1095, 'HUESOS NASALES', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(99, 1096, 'ART. TEMPORO MANDILBULA BILATERAL', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(100, 1097, 'ART. TEMPORO MANDILBULA DER', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(101, 1098, 'ORBITA', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(102, 1099, 'AGUJEROS OPTICOS', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(103, 1100, 'MASTOIDES', 1, 0.00, 65.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 65.00, 1, '0000-00-00 00:00:00'),
+	(104, 1101, 'MANDIBULA', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(105, 1102, 'CERVICAL', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(106, 1103, 'COLUMNA CERVICAL', 1, 0.00, 35.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 35.00, 1, '0000-00-00 00:00:00'),
+	(107, 1104, 'COLUMNA DORSAL', 1, 0.00, 35.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 35.00, 1, '0000-00-00 00:00:00'),
+	(108, 1105, 'COLUMNA LUMBAR', 1, 0.00, 35.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 35.00, 1, '0000-00-00 00:00:00'),
+	(109, 1106, 'COLUMNA CERVICAL C/ OBLICUAS', 1, 0.00, 55.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 55.00, 1, '0000-00-00 00:00:00'),
+	(110, 1107, 'COLUMNA LUMBAR C/ OBLICUAS', 1, 0.00, 55.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 55.00, 1, '0000-00-00 00:00:00'),
+	(111, 1108, 'COLUMNA LUMBAR FLEX Y EXT', 1, 0.00, 55.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 55.00, 1, '0000-00-00 00:00:00'),
+	(112, 1109, 'COLUMNA LUMBAR AP Y LAT CON FLEX Y EXT', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(113, 1110, 'PELVIS AP', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(114, 1111, 'SACRO-COXIS', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(115, 1112, 'TORAX(PA)', 1, 0.00, 25.00, 0, 'Servicios', 27, -2, 0, 2, 0, 0, 25.00, 1, '0000-00-00 00:00:00'),
+	(116, 1113, 'TORAX(PA Y LAT)', 1, 0.00, 42.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 42.00, 1, '0000-00-00 00:00:00'),
+	(117, 1114, 'COSTILLA', 1, 0.00, 35.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 35.00, 1, '0000-00-00 00:00:00'),
+	(118, 1115, 'ESTERNON', 1, 0.00, 20.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 20.00, 1, '0000-00-00 00:00:00'),
+	(119, 1116, 'TORAX LORDOTICA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(120, 1117, 'SERIE CARDIACA', 1, 0.00, 85.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 85.00, 1, '0000-00-00 00:00:00'),
+	(121, 1118, 'ABDOMEN SIMPLE', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(122, 1119, 'ABDOMEN DE PIE', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(123, 1120, 'ABDOMEN AGUDO', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(124, 1121, 'ESOFAGOGRAMA', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(125, 1122, 'TUBO DIGESTIVO SUPERIOR', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(126, 1123, 'TRANSITO INTESTINAL', 1, 0.00, 65.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 65.00, 1, '0000-00-00 00:00:00'),
+	(127, 1124, 'ENEMA BARITADO', 1, 0.00, 75.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 75.00, 1, '0000-00-00 00:00:00'),
+	(128, 1125, 'PIELOGRAMA ENDOVENOSO', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(129, 1126, 'PIELOGRAMA RETROGRADO', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(130, 1127, 'CISTOGRAMA', 1, 0.00, 62.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 62.00, 1, '0000-00-00 00:00:00'),
+	(131, 1128, 'CISTOURETROGRAMA', 1, 0.00, 80.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 80.00, 1, '0000-00-00 00:00:00'),
+	(132, 1129, 'PEV. POR INFUSION', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(133, 1130, 'URETROGRAMA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(134, 1131, 'SERIE OSEA', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(135, 1132, 'CLAVICULA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(136, 1133, 'ESCAPULA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(137, 1134, 'HOMBRO', 1, 0.00, 30.00, 0, 'Servicios', 27, -1, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(138, 1135, 'HUMERO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(139, 1136, 'CODO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(140, 1137, 'ANTEBRAZO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(141, 1138, 'MUÑECA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(142, 1139, 'MANO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(143, 1140, 'EDAD OSEA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(144, 1141, 'CADERA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(145, 1142, 'FEMUR', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(146, 1143, 'RODILLA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(147, 1144, 'PIERNA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(148, 1145, 'AMBAS RODILLA', 1, 0.00, 62.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 62.00, 1, '0000-00-00 00:00:00'),
+	(149, 1146, 'TIBIA PERONE DI', 1, 0.00, 0.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 0.00, 1, '0000-00-00 00:00:00'),
+	(150, 1147, 'PIE', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(151, 1148, 'PIE LATERAL', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(152, 1149, 'CALCANEO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(153, 1150, 'TOBILLO', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(154, 1151, 'HISTEROSALPINGOGRAMA', 1, 0.00, 100.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 100.00, 1, '0000-00-00 00:00:00'),
+	(155, 1152, 'COLANGIOGRAMA POR TUBO EN T.', 1, 0.00, 60.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 60.00, 1, '0000-00-00 00:00:00'),
+	(156, 1153, 'FISTULOGRAMA', 1, 0.00, 62.00, 0, 'Servicios', 27, 0, 0, 2, 0, 0, 62.00, 1, '0000-00-00 00:00:00'),
+	(157, 1089, 'ULTRASONOGRAFIA ABDOMINAL', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 30.00, 1, '0000-00-00 00:00:00'),
+	(158, 1090, 'ULTRASONOGRAFIA GINECOLOGICA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 30.00, 0, '2024-06-23 14:50:09'),
+	(159, 1091, 'ULTRASONOGRAFIA OBSTETRICA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 30.00, 0, '2024-06-23 14:50:09'),
+	(160, 1092, 'ULTRASONOGRAFIA PELVICA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 30.00, 0, '2024-06-23 14:50:09'),
+	(161, 1093, 'ULTRASONOGRAFIA MAMA', 1, 0.00, 30.00, 0, 'Servicios', 27, 0, 0, 3, 0, 0, 30.00, 0, '2024-06-23 14:50:09'),
+	(162, 1094, 'Fisioterapia', 0, 0.00, 0.00, 0, 'Servicios', 27, -1, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:13:18'),
+	(163, 1095, 'Ambulancia', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:13:55'),
+	(164, 1096, 'Atención Psicologia', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:14:32'),
+	(165, 1097, 'Cumplimiento de enfermeria', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:06'),
+	(166, 1098, 'Terapia respiratoria', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:34'),
+	(167, 1099, 'Toma de electrocardiograma', 0, 0.00, 0.00, 0, 'Servicio', 27, -1, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
+	(168, 1156, 'Citologia', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
+	(169, 1157, 'Monitoreo fetal', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
+	(170, 1158, 'Biopsia', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
+	(171, 1159, 'Endo sampler', 0, 0.00, 0.00, 0, 'Servicio', 27, 0, 0, 4, 0, 0, 0.00, 0, '2024-06-18 19:15:58'),
+	(172, 1144, 'Consulta general', 1, 10.00, 10.00, 0, 'Servicios', 27, -21, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:26:59'),
+	(173, 1145, 'Consulta ginecológica', 1, 25.00, 25.00, 0, 'Servicios', 27, -4, 0, 10, 0, 0, 0.00, 0, '2024-03-29 21:27:53');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_medicos
 CREATE TABLE IF NOT EXISTS `tbl_medicos` (
@@ -14948,9 +14979,9 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos_hoja` (
   `detalleBitacora` text NOT NULL,
   `fechaMovimiento` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idMovimiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_movimientos_hoja: ~141 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_movimientos_hoja: ~138 rows (aproximadamente)
 INSERT INTO `tbl_movimientos_hoja` (`idMovimiento`, `idHoja`, `idUsuario`, `nombreUsuario`, `detalleBitacora`, `fechaMovimiento`) VALUES
 	(1, 180, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:07:25'),
 	(2, 1, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: Adela Matilde Romero Cruz', '2024-01-28 00:15:06'),
@@ -15115,7 +15146,12 @@ INSERT INTO `tbl_movimientos_hoja` (`idMovimiento`, `idHoja`, `idUsuario`, `nomb
 	(161, 47, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-06-23 14:35:07'),
 	(162, 47, 1, 'Informatica', 'Agrego 1 elementos de Consulta general, con precio de $10.00', '2024-06-23 14:56:26'),
 	(163, 47, 1, 'Informatica', 'Agrego el examen Fisioterapia, con precio de $0.00', '2024-06-23 14:57:54'),
-	(164, 47, 1, 'Informatica', 'Agrego el examen Toma de electrocardiograma, con precio de $0.00', '2024-06-23 14:57:56');
+	(164, 47, 1, 'Informatica', 'Agrego el examen Toma de electrocardiograma, con precio de $0.00', '2024-06-23 14:57:56'),
+	(165, 48, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-06-25 00:41:07'),
+	(166, 48, 1, 'Informatica', 'Agrego 1 elementos de Consulta general, con precio de $10.00', '2024-06-25 00:41:50'),
+	(167, 49, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-07-06 19:03:18'),
+	(168, 49, 1, 'Informatica', 'Agrego 1 elementos de Consulta general, con precio de $10.00', '2024-07-06 19:03:57'),
+	(169, 50, 1, 'Informatica', 'Creo la hoja de cobro a nombre del paciente: ', '2024-07-14 23:59:35');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_movimientos_stocks
 CREATE TABLE IF NOT EXISTS `tbl_movimientos_stocks` (
@@ -16105,13 +16141,14 @@ CREATE TABLE IF NOT EXISTS `tbl_vacunacion_paciente` (
   `otrosDetalles` text NOT NULL,
   `creadoVacunacion` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idVacunacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla db_centro_medico.tbl_vacunacion_paciente: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_centro_medico.tbl_vacunacion_paciente: ~4 rows (aproximadamente)
 INSERT INTO `tbl_vacunacion_paciente` (`idVacunacion`, `idPaciente`, `bcg`, `hb`, `pentavalente`, `poliomielitis`, `rotavirus`, `neumococoValente`, `tripleViralSPRUno`, `refuerzoNeumococoValente`, `hepatitisAUno`, `varicelaUno`, `refuerzoHexavalenteUno`, `tripleViralSPRDos`, `hepatitisADos`, `dptDos`, `polioOral`, `varicelaDos`, `papilomaCuadrivalente`, `refuerzoTetano`, `tdpa`, `td`, `influenzaTetravalente`, `tdAdultos`, `hbAdultos`, `neumococoAdultos`, `influenzaAdultos`, `fiebreAmarilla`, `antirrabicaHumana`, `covid`, `otrosDetalles`, `creadoVacunacion`) VALUES
-	(1, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2024-06-23 15:42:07'),
+	(1, 4, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2024-06-23 15:42:07'),
 	(2, 3, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2024-06-23 15:42:07'),
-	(3, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Este es un detalle', '2024-06-23 15:42:07');
+	(3, 6, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Este es un detalle', '2024-06-23 15:42:07'),
+	(4, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2024-07-06 19:03:57');
 
 -- Volcando estructura para tabla db_centro_medico.tbl_vales_hemo
 CREATE TABLE IF NOT EXISTS `tbl_vales_hemo` (
