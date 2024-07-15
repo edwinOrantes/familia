@@ -154,53 +154,56 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="table-responsive mt-3">
-                                            <table class="table table-hover thead-primary">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center" scope="col">#</th>
-                                                        <th class="text-center" scope="col">Fecha</th>
-                                                        <th class="text-center" scope="col">Altura</th>
-                                                        <th class="text-center" scope="col">Peso</th>
-                                                        <th class="text-center" scope="col">IMC</th>
-                                                        <th class="text-center" scope="col">Peso ideal</th>
-                                                        <th class="text-center" scope="col">Temperatura </th>
-                                                        <th class="text-center" scope="col">Presión</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                        $index = 0;
-                                                        $peso_ideal = 0;
-                                                        foreach ($medidas as $row) {
-                                                            $index++;
-                                                            // Para hombres: Peso Ideal=Altura (cm)−100−[(Altura (cm)−150)/4]
-                                                            // Para mujeres: Peso Ideal=Altura (cm)−100−[(Altura (cm)−150)/2.5]
-
-                                                            // Calculo peso ideal
-                                                                if($paciente->sexoPaciente == "Masculino"){
-                                                                    $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/4);
-                                                                }else{
-                                                                    $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/2.5);
-                                                                }
-                                                            // Calculo peso ideal
-                                                    ?>
+                                        <div class="col-md-12">
+                                            <div class="table-responsive mt-3">
+                                                <table class="table table-hover thead-primary">
+                                                    <thead>
                                                         <tr>
-                                                            <td class="text-center"><?php echo $index; ?></td>
-                                                            <td class="text-center"><?php echo $row->fechaConsulta; ?></td>
-                                                            <td class="text-center"><?php echo ($row->altura); ?> cm</td>
-                                                            <td class="text-center"><?php echo $row->peso; ?> Kg</td>
-                                                            <td class="text-center"><?php echo $row->imc; ?></td>
-                                                            <td class="text-center"><?php echo $peso_ideal; ?> Kg</td>
-                                                            <td class="text-center"><?php echo $row->temperaturaPaciente; ?></td>
-                                                            <td class="text-center"><?php echo $row->presionPaciente; ?></td>
+                                                            <th class="text-center" scope="col">#</th>
+                                                            <th class="text-center" scope="col">Fecha</th>
+                                                            <th class="text-center" scope="col">Altura</th>
+                                                            <th class="text-center" scope="col">Peso</th>
+                                                            <th class="text-center" scope="col">IMC</th>
+                                                            <th class="text-center" scope="col">Peso ideal</th>
+                                                            <th class="text-center" scope="col">Temperatura </th>
+                                                            <th class="text-center" scope="col">Presión</th>
                                                         </tr>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            $index = 0;
+                                                            $peso_ideal = 0;
+                                                            foreach ($medidas as $row) {
+                                                                $index++;
+                                                                // Para hombres: Peso Ideal=Altura (cm)−100−[(Altura (cm)−150)/4]
+                                                                // Para mujeres: Peso Ideal=Altura (cm)−100−[(Altura (cm)−150)/2.5]
+    
+                                                                // Calculo peso ideal
+                                                                    if($paciente->sexoPaciente == "Masculino"){
+                                                                        $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/4);
+                                                                    }else{
+                                                                        $peso_ideal = ($row->altura) - 100 - ((($row->altura)-150)/2.5);
+                                                                    }
+                                                                // Calculo peso ideal
+                                                        ?>
+                                                            <tr>
+                                                                <td class="text-center"><?php echo $index; ?></td>
+                                                                <td class="text-center"><?php echo $row->fechaConsulta; ?></td>
+                                                                <td class="text-center"><?php echo ($row->altura); ?> cm</td>
+                                                                <td class="text-center"><?php echo $row->peso; ?> Kg</td>
+                                                                <td class="text-center"><?php echo $row->imc; ?></td>
+                                                                <td class="text-center"><?php echo $peso_ideal; ?> Kg</td>
+                                                                <td class="text-center"><?php echo $row->temperaturaPaciente; ?></td>
+                                                                <td class="text-center"><?php echo $row->presionPaciente; ?></td>
+                                                            </tr>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
+
+                                        </div>
                                     </div>
 
 
