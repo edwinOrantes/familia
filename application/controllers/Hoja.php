@@ -853,6 +853,17 @@ class Hoja extends CI_Controller {
 								 <img src="'.base_url().'public/img/whatsapp.jpg" style="width: 15px"> 7280-1674
 							</h3>
 						</div>
+
+						<div class="subtitle_cabecera">
+							<table class="tabla_num_recibo" style="font-family: Times New Roman;">
+								<tr>
+									<td><h5>HOJA DE COBRO: '.$paciente->codigoHoja.'</h5></td>
+									<td><h5>RECIBO DE COBRO: '.$paciente->correlativoSalidaHoja.'</h5></td>
+								</tr>
+							</table>
+
+						</div>
+						
 					</div>
 				');
 				
