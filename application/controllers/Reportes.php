@@ -713,7 +713,9 @@ class Reportes extends CI_Controller {
 
 	public function generar_cobros(){
 		$datos = $this->input->post();
+		// $generados = $this->Reportes_Model->seGeneroExternos($datos["fechaCorte"]);
 		$generados = $this->Reportes_Model->seGeneroExternos($datos["fechaCorte"]);
+		
 		
 		if(sizeof($generados) == 0){
 			$datos["codigoVerificacion"] = md5($datos["codigoVerificacion"]);
@@ -819,7 +821,7 @@ class Reportes extends CI_Controller {
 			redirect(base_url()."Reportes/externos_hoja");
 		}
 		
-		//echo json_encode($datos);
+		// echo json_encode($datos);
 
 	}
 

@@ -26,8 +26,8 @@ class Botiquin_Model extends CI_Model {
     public function guardarMedicamento($data = null){
         if($data != null){
             $sql = "INSERT INTO tbl_medicamentos(codigoMedicamento, nombreMedicamento, idFabricante, precioCMedicamento,
-                    precioVMedicamento, descuentoMedicamento, tipoMedicamento, idClasificacionMedicamento, ocultarMedicamento, feriadoMedicamento)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    precioVMedicamento, descuentoMedicamento, tipoMedicamento, idClasificacionMedicamento, pivoteMedicamento, ocultarMedicamento, feriadoMedicamento)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             if($this->db->query($sql, $data)){
                 return true;
             }else{

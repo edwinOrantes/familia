@@ -282,6 +282,23 @@
                                         </div>
 									</div>
 
+									<div class="col-md-12 mb-3">
+										<select class="form-control controlInteligente" id="pivoteMedicamento" name="pivoteMedicamento" required>
+                                            <option value="">.:: Seleccionar ::.</option>
+                                            <option value="0" selected>Botiquin</option>
+                                            <option value="1">Laboratorio Clinico</option>
+                                            <option value="2">Rayos X</option>
+                                            <option value="3">USG</option>
+                                            <option value="4">Otros servicios</option>
+                                            <option value="10">Consultas</option>
+
+
+                                        </select>
+                                        <div class="invalid-tooltip">
+                                            Selecciona una clasificación.
+                                        </div>
+									</div>
+
 								</div>
 
 								<div class="text-center">

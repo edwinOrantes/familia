@@ -1364,6 +1364,7 @@ class Hoja extends CI_Controller {
 				$medicamento["idMedicamento"] = $this->input->post("id");
 				$medicamento["precioMedicamento"] = $this->input->post("precioV");
 				$medicamento["cantidadMedicamento"] = $this->input->post("cantidad");
+				$medicamento["detalleInsumo"] = "";
 				$medicamento["fechaHoja"] = $this->input->post("fechaHoja");
 				$medicamento["por"] = $this->session->userdata('id_usuario_h');
 				
@@ -1388,6 +1389,8 @@ class Hoja extends CI_Controller {
 					header("content-type:application/json");
 					print json_encode($respuesta);
 				}
+
+				// echo json_encode($medicamento);
 
 			} 
 			else{

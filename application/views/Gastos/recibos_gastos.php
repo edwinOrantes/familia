@@ -150,11 +150,11 @@
         
 ?>
 
-    <div class="img_cabecera"><img src=<?php echo base_url()."public/img/logo.jpg"; ?>></div>
-    <div class="title_cabecera">
-        <h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
+    <div class="img_cabecera"> <img src=<?php echo base_url()."public/img/logo.jpg"; ?>>
+        <div class="title_cabecera">
+            <h5 style="line-height: 20px">Avenida Ferrocarril, #51 Barrio la Cruz, frente a la Iglesia Adventista, El Tránsito, San Miguel, PBX: 2605-6298</h5>
+        </div>
     </div>
-</div>
 <div class="paciente">
     <table class="tabla_paciente" style="font-family: Times New Roman; padding-left: -4px;">
 
